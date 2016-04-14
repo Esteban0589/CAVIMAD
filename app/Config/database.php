@@ -69,10 +69,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'database_name',
+		'host' => 'phpmyadmin.clk26rezrnfs.us-west-2.rds.amazonaws.com',
+		'login' => 'phpMyAdmin',
+		'password' => 'phpMyAdmin',
+		'database' => 'CAVIMAD',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

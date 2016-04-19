@@ -1,21 +1,19 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Usuario Model
+ * User Model
  *
- * @property Administradore $Administradore
- * @property Familia $Familia
- * @property Genero $Genero
+ * @property op $op
+ * @property Administrator $Administrator
  */
-class Usuario extends AppModel {
+class User extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'nombreUsuario';
-	
+	public $displayField = 'username';
 
 /**
  * Validation rules
@@ -23,7 +21,7 @@ class Usuario extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'nombre' => array(
+		'name' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -32,8 +30,8 @@ class Usuario extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'maxLength' => array(
-				'rule' => array('maxLength'),
+			'custom' => array(
+				'rule' => array('custom'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -41,15 +39,7 @@ class Usuario extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'apellido1' => array(
-			'maxLength' => array(
-				'rule' => array('maxLength'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+		'lastname1' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -58,16 +48,16 @@ class Usuario extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'apellido2' => array(
-			'maxLength' => array(
-				'rule' => array('maxLength'),
+			'custom' => array(
+				'rule' => array('custom'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+		),
+		'lastname2' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -76,8 +66,16 @@ class Usuario extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'custom' => array(
+				'rule' => array('custom'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
-		'correo' => array(
+		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
 				//'message' => 'Your custom message here',
@@ -95,7 +93,7 @@ class Usuario extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'pais' => array(
+		'country' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -105,7 +103,7 @@ class Usuario extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'estado' => array(
+		'state' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -115,7 +113,7 @@ class Usuario extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'ciudad' => array(
+		'city' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -125,41 +123,7 @@ class Usuario extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'nombreUsuario' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'maxLength' => array(
-				'rule' => array('maxLength'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'contrasena' => array(
-			'mimeType' => array(
-				'rule' => array('mimeType'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+		'username' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -177,15 +141,7 @@ class Usuario extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'rol' => array(
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+		'password' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -194,8 +150,36 @@ class Usuario extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'role' => array(
 			'inList' => array(
 				'rule' => array('inList'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'image_dir' => array(
+			'url' => array(
+				'rule' => array('url'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -213,9 +197,9 @@ class Usuario extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Administradore' => array(
-			'className' => 'Administradore',
-			'foreignKey' => 'usuario_id',
+		'Administrator' => array(
+			'className' => 'Administrator',
+			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -225,41 +209,6 @@ class Usuario extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
-
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'Familia' => array(
-			'className' => 'Familia',
-			'joinTable' => 'familias_usuarios',
-			'foreignKey' => 'usuario_id',
-			'associationForeignKey' => 'familia_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		),
-		'Genero' => array(
-			'className' => 'Genero',
-			'joinTable' => 'generos_usuarios',
-			'foreignKey' => 'usuario_id',
-			'associationForeignKey' => 'genero_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		)
 	);
 

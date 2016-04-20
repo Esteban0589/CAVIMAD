@@ -19,7 +19,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,12 +27,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <title>BUNTINGTON Public Schools</title>
     
     <!-- Styles -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
-    <link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
-    <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
-    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
+    
+    <?php echo $this->Html->css('font-awesome.min.css');?>
+    <?php echo $this->Html->css('bootstrap.min.css');?>
+    <?php echo $this->Html->css('dropdown-menu.css');?>
+    <?php echo $this->Html->css('jquery.fancybox.css');?>
+    <?php echo $this->Html->css('style.css');?>
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
+    <!--<link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
+   <!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
+    <!--<link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
+   <!-- <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
 
   </head>
   
@@ -80,7 +85,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="events.html" title="Upcoming Events">Events</a>
                         </li>
                         <li>
-                            <a href="courses.html" title="Available Courses">Courses</a>
+                            <a href="users" title="Administrar">Usarios</a>
                         </li>
                         <li>
                             <a href="#" class="Pages Collection" title="More Templates">Inner Pages</a>
@@ -131,6 +136,46 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         </div><!-- row end -->
     
     </div><!-- container + head wrapper end -->
+    
+     <div id="k-body"><!-- content wrapper -->
+    
+    	<div class="container"><!-- container -->
+        
+        	<div class="row"><!-- row -->
+            
+                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+                
+                    <form action="#" id="top-searchform" method="get" role="search">
+                        <div class="input-group">
+                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                        </div>
+                    </form>
+                    
+                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                
+                </div><!-- top search end -->
+            
+            	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+                
+                	<ol class="breadcrumb">
+                    	<li><a href="#">Home</a></li>
+                        <li class="active">Page Example</li>
+                    </ol>
+                    
+                </div><!-- breadcrumbs end -->
+                
+            </div><!-- row end -->
+        
+        </div><!-- container end -->
+    
+    </div><!-- content wrapper end -->
+    
+    <div id="content">
+
+			<?php echo $this->Flash->render(); ?>
+
+			<?php echo $this->fetch('content'); ?>
+		</div>
     
 	<div id="k-footer"><!-- footer -->
     
@@ -267,27 +312,24 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     </div><!-- subfooter end -->
 
     <!-- jQuery -->
-    <script src="js/jquery-2.1.1.min.js"></script>
+    <!-- <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
     
     <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
+     <!--<script src="js/bootstrap.min.js"></script>
     
     <!-- Drop-down -->
-    <script src="js/dropdown-menu.js"></script>
+     <!--<script src="js/dropdown-menu.js"></script>
     
     <!-- Fancybox -->
-	<script src="js/jquery.fancybox.pack.js"></script>
+	 <!--<script src="js/jquery.fancybox.pack.js"></script>
     <script src="js/jquery.fancybox-media.js"></script><!-- Fancybox media -->
 
     <!-- Pie charts -->
-    <script src="js/jquery.easy-pie-chart.js"></script>
-    
-    <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+     <!--<script src="js/jquery.easy-pie-chart.js"></script>
     
     <!-- Theme -->
-    <script src="js/theme.js"></script>
+    <!-- <script src="js/theme.js"></script>-->
     
   </body>
 </html>

@@ -1,228 +1,368 @@
-<?php
-/**
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Pages
- * @since         CakePHP(tm) v 0.10.0.1076
- */
+<!DOCTYPE html>
+<html>
+	
 
-if (!Configure::read('debug')):
-	throw new NotFoundException();
-endif;
 
-App::uses('Debugger', 'Utility');
-?>
-<h2><?php echo __d('cake_dev', 'Release Notes for CakePHP %s.', Configure::version()); ?></h2>
-<p>
-	<?php echo $this->Html->link(__d('cake_dev', 'Read the changelog'), 'http://cakephp.org/changelogs/' . Configure::version()); ?>
-</p>
-<?php
-if (Configure::read('debug') > 0):
-	Debugger::checkSecurityKeys();
-endif;
-?>
-<?php if (file_exists(WWW_ROOT . 'css' . DS . 'cake.generic.css')): ?>
-	<p id="url-rewriting-warning" style="background-color:#e32; color:#fff;">
-		<?php echo __d('cake_dev', 'URL rewriting is not properly configured on your server.'); ?>
-		1) <a target="_blank" href="http://book.cakephp.org/2.0/en/installation/url-rewriting.html" style="color:#fff;">Help me configure it</a>
-		2) <a target="_blank" href="http://book.cakephp.org/2.0/en/development/configuration.html#cakephp-core-configuration" style="color:#fff;">I don't / can't use URL rewriting</a>
-	</p>
-<?php endif; ?>
-<p>
-<?php
-if (version_compare(PHP_VERSION, '5.2.8', '>=')):
-	echo '<span class="notice success">';
-		echo __d('cake_dev', 'Your version of PHP is 5.2.8 or higher.');
-	echo '</span>';
-else:
-	echo '<span class="notice">';
-		echo __d('cake_dev', 'Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP.');
-	echo '</span>';
-endif;
-?>
-</p>
-<p>
-	<?php
-	if (is_writable(TMP)):
-		echo '<span class="notice success">';
-			echo __d('cake_dev', 'Your tmp directory is writable.');
-		echo '</span>';
-	else:
-		echo '<span class="notice">';
-			echo __d('cake_dev', 'Your tmp directory is NOT writable.');
-		echo '</span>';
-	endif;
-	?>
-</p>
-<p>
-	<?php
-	$settings = Cache::settings();
-	if (!empty($settings)):
-		echo '<span class="notice success">';
-			echo __d('cake_dev', 'The %s is being used for core caching. To change the config edit %s', '<em>' . $settings['engine'] . 'Engine</em>', 'APP/Config/core.php');
-		echo '</span>';
-	else:
-		echo '<span class="notice">';
-			echo __d('cake_dev', 'Your cache is NOT working. Please check the settings in %s', 'APP/Config/core.php');
-		echo '</span>';
-	endif;
-	?>
-</p>
-<p>
-	<?php
-	$filePresent = null;
-	if (file_exists(APP . 'Config' . DS . 'database.php')):
-		echo '<span class="notice success">';
-			echo __d('cake_dev', 'Your database configuration file is present.');
-			$filePresent = true;
-		echo '</span>';
-	else:
-		echo '<span class="notice">';
-			echo __d('cake_dev', 'Your database configuration file is NOT present.');
-			echo '<br/>';
-			echo __d('cake_dev', 'Rename %s to %s', 'APP/Config/database.php.default', 'APP/Config/database.php');
-		echo '</span>';
-	endif;
-	?>
-</p>
-<?php
-if (isset($filePresent)):
-	App::uses('ConnectionManager', 'Model');
-	try {
-		$connected = ConnectionManager::getDataSource('default');
-	} catch (Exception $connectionError) {
-		$connected = false;
-		$errorMsg = $connectionError->getMessage();
-		if (method_exists($connectionError, 'getAttributes')):
-			$attributes = $connectionError->getAttributes();
-			if (isset($errorMsg['message'])):
-				$errorMsg .= '<br />' . $attributes['message'];
-			endif;
-		endif;
-	}
-	?>
-	<p>
-		<?php
-			if ($connected && $connected->isConnected()):
-				echo '<span class="notice success">';
-					echo __d('cake_dev', 'CakePHP is able to connect to the database.');
-				echo '</span>';
-			else:
-				echo '<span class="notice">';
-					echo __d('cake_dev', 'CakePHP is NOT able to connect to the database.');
-					echo '<br /><br />';
-					echo $errorMsg;
-				echo '</span>';
-			endif;
-		?>
-	</p>
-<?php
-endif;
 
-App::uses('Validation', 'Utility');
-if (!Validation::alphaNumeric('cakephp')):
-	echo '<p><span class="notice">';
-		echo __d('cake_dev', 'PCRE has not been compiled with Unicode support.');
-		echo '<br/>';
-		echo __d('cake_dev', 'Recompile PCRE with Unicode support by adding <code>--enable-unicode-properties</code> when configuring');
-	echo '</span></p>';
-endif;
-?>
+<body>
 
-<p>
-	<?php
-	if (CakePlugin::loaded('DebugKit')):
-		echo '<span class="notice success">';
-			echo __d('cake_dev', 'DebugKit plugin is present');
-		echo '</span>';
-	else:
-		echo '<span class="notice">';
-			echo __d('cake_dev', 'DebugKit is not installed. It will help you inspect and debug different aspects of your application.');
-			echo '<br/>';
-			echo __d('cake_dev', 'You can install it from %s', $this->Html->link('GitHub', 'https://github.com/cakephp/debug_kit/tree/2.2'));
-		echo '</span>';
-	endif;
-	?>
-</p>
-
-<h3><?php echo __d('cake_dev', 'Editing this Page'); ?></h3>
-<p>
-<?php
-echo __d('cake_dev', 'To change the content of this page, edit: %s.<br />
-To change its layout, edit: %s.<br />
-You can also add some CSS styles for your pages at: %s.',
-	'APP/View/Pages/home.ctp', 'APP/View/Layouts/default.ctp', 'APP/webroot/css');
-?>
-</p>
-
-<h3><?php echo __d('cake_dev', 'Getting Started'); ?></h3>
-<p>
-	<?php
-	echo $this->Html->link(
-		sprintf('<strong>%s</strong> %s', __d('cake_dev', 'New'), __d('cake_dev', 'CakePHP 2.0 Docs')),
-		'http://book.cakephp.org/2.0/en/',
-		array('target' => '_blank', 'escape' => false)
-	);
-	?>
-</p>
-<p>
-	<?php
-	echo $this->Html->link(
-		__d('cake_dev', 'The 15 min Blog Tutorial'),
-		'http://book.cakephp.org/2.0/en/tutorials-and-examples/blog/blog.html',
-		array('target' => '_blank', 'escape' => false)
-	);
-	?>
-</p>
-
-<h3><?php echo __d('cake_dev', 'Official Plugins'); ?></h3>
-<p>
-<ul>
-	<li>
-		<?php echo $this->Html->link('DebugKit', 'https://github.com/cakephp/debug_kit/tree/2.2') ?>:
-		<?php echo __d('cake_dev', 'provides a debugging toolbar and enhanced debugging tools for CakePHP applications.'); ?>
-	</li>
-	<li>
-		<?php echo $this->Html->link('Localized', 'https://github.com/cakephp/localized') ?>:
-		<?php echo __d('cake_dev', 'contains various localized validation classes and translations for specific countries'); ?>
-	</li>
-</ul>
-</p>
-
-<h3><?php echo __d('cake_dev', 'More about CakePHP'); ?></h3>
-<p>
-<?php echo __d('cake_dev', 'CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.'); ?>
-</p>
-<p>
-<?php echo __d('cake_dev', 'Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.'); ?>
-</p>
-
-<ul>
-	<li><a href="http://cakephp.org">CakePHP</a>
-	<ul><li><?php echo __d('cake_dev', 'The Rapid Development Framework'); ?></li></ul></li>
-	<li><a href="http://book.cakephp.org"><?php echo __d('cake_dev', 'CakePHP Documentation'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Your Rapid Development Cookbook'); ?></li></ul></li>
-	<li><a href="http://api.cakephp.org"><?php echo __d('cake_dev', 'CakePHP API'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Quick API Reference'); ?></li></ul></li>
-	<li><a href="http://bakery.cakephp.org"><?php echo __d('cake_dev', 'The Bakery'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Everything CakePHP'); ?></li></ul></li>
-	<li><a href="http://plugins.cakephp.org"><?php echo __d('cake_dev', 'CakePHP Plugins'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'A comprehensive list of all CakePHP plugins created by the community'); ?></li></ul></li>
-	<li><a href="http://community.cakephp.org"><?php echo __d('cake_dev', 'CakePHP Community Center'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Everything related to the CakePHP community in one place'); ?></li></ul></li>
-	<li><a href="https://groups.google.com/group/cake-php"><?php echo __d('cake_dev', 'CakePHP Google Group'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Community mailing list'); ?></li></ul></li>
-	<li><a href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-	<ul><li><?php echo __d('cake_dev', 'Live chat about CakePHP'); ?></li></ul></li>
-	<li><a href="https://github.com/cakephp/"><?php echo __d('cake_dev', 'CakePHP Code'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Find the CakePHP code on GitHub and contribute to the framework'); ?></li></ul></li>
-	<li><a href="https://github.com/cakephp/cakephp/issues"><?php echo __d('cake_dev', 'CakePHP Issues'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'CakePHP Issues'); ?></li></ul></li>
-	<li><a href="https://github.com/cakephp/cakephp/wiki#roadmaps"><?php echo __d('cake_dev', 'CakePHP Roadmaps'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'CakePHP Roadmaps'); ?></li></ul></li>
-	<li><a href="http://training.cakephp.org"><?php echo __d('cake_dev', 'Training'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Join a live session and get skilled with the framework'); ?></li></ul></li>
-	<li><a href="http://cakefest.org"><?php echo __d('cake_dev', 'CakeFest'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Don\'t miss our annual CakePHP conference'); ?></li></ul></li>
-	<li><a href="http://cakefoundation.org"><?php echo __d('cake_dev', 'Cake Software Foundation'); ?> </a>
-	<ul><li><?php echo __d('cake_dev', 'Promoting development related to CakePHP'); ?></li></ul></li>
-</ul>
+ <div id="k-body"><!-- content wrapper -->
+    
+    	<div class="container"><!-- container -->
+        
+        	<div class="row"><!-- row -->
+            
+                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+                
+                    <form action="#" id="top-searchform" method="get" role="search">
+                        <div class="input-group">
+                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                        </div>
+                    </form>
+                    
+                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                
+                </div><!-- top search end -->
+            
+            	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+                
+                	<ol class="breadcrumb">
+                    	<li><a href="#">Home</a></li>
+                        <li class="active">Page Example</li>
+                    </ol>
+                    
+                </div><!-- breadcrumbs end -->
+                
+            </div><!-- row end -->
+            
+            <div class="row no-gutter fullwidth"><!-- row -->
+            
+                <div class="col-lg-12 clearfix"><!-- featured posts slider -->
+                
+                    <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
+                    
+                        <ol class="carousel-indicators"><!-- Indicators -->
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                            <li data-target="#carousel-featured" data-slide-to="3"></li>
+                            <li data-target="#carousel-featured" data-slide-to="4"></li>
+                        </ol><!-- Indicators end -->
+                    
+                        <div class="carousel-inner"><!-- Wrapper for slides -->
+                        
+                            <div class="item active">
+                                <img src="img/slide-3.jpg" alt="Image slide 3" />
+                                <div class="k-carousel-caption pos-1-3-right scheme-dark">
+                                	<div class="caption-content">
+                                        <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                        <p>
+                                        	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="item">
+                                <img src="img/slide-2.jpg" alt="Image slide 2" />
+                                <div class="k-carousel-caption pos-1-3-left scheme-light">
+                                	<div class="caption-content">
+                                        <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                        <p>
+                                        	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="item">
+                                <img src="img/slide-1.jpg" alt="Image slide 1" />
+                                <div class="k-carousel-caption pos-2-3-right scheme-dark">
+                                	<div class="caption-content">
+                                        <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                        <p>
+                                        	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                        </p>
+                                        <p>
+                                        	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="item">
+                                <img src="img/slide-4.jpg" alt="Image slide 4" />
+                                <div class="k-carousel-caption pos-2-3-left scheme-light">
+                                	<div class="caption-content">
+                                        <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                        <p>
+                                        	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                        </p>
+                                        <p>
+                                        	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="item">
+                                <img src="img/slide-5.jpg" alt="Image slide 5" />
+                                <div class="k-carousel-caption pos-c-2-3 scheme-dark no-bg">
+                                	<div class="caption-content">
+                                        <h3 class="caption-title title-giant">Learning makes us stronger for life</h3>
+                                        <p>
+                                        	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                        </p>
+                                        <p>
+                                        	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div><!-- Wrapper for slides end -->
+                    
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                        <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                        <!-- Controls end -->
+                        
+                    </div><!-- featured posts slider wrapper end -->
+                        
+                </div><!-- featured posts slider end -->
+                
+            </div><!-- row end -->
+            
+            <div class="row no-gutter"><!-- row -->
+                
+                <div class="col-lg-4 col-md-4"><!-- upcoming events wrapper -->
+                	
+                    <div class="col-padded col-shaded"><!-- inner custom column -->
+                    
+                    	<ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_up_events"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">Upcoming Events</h1>
+                                
+                                <ul class="list-unstyled">
+                                
+                                    <li class="up-event-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="Annual alumni game">Annual alumni game</a></h1>
+                                        
+                                        <div class="up-event-meta clearfix">
+                                            <div class="up-event-date">Jul 25, 2015</div><div class="up-event-time">9:00 - 11:00</div>
+                                        </div>
+                                        
+                                        <p>
+                                        Fusce condimentum pulvinar mattis. Nunc condimentum sapien sit amet odio vulputate, nec suscipit orci pharetra... <a href="#" class="moretag" title="read more">MORE</a> 
+                                        </p>
+                                    
+                                    </li>
+                                    
+                                    <li class="up-event-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="School talents gathering">School talents gathering</a></h1>
+                                        
+                                        <div class="up-event-meta clearfix">
+                                            <div class="up-event-date">Aug 25, 2015</div><div class="up-event-time">8:30 - 10:30</div>
+                                        </div>
+                                        
+                                        <p>
+                                        Pellentesque lobortis, arcu eget condimentum auctor, magna neque faucibus dui, ut varius diam neque sed diam... <a href="#" class="moretag" title="read more">MORE</a> 
+                                        </p>
+                                    
+                                    </li>
+                                    
+                                    <li class="up-event-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="School talents gathering">Campus "Open Doors"</a></h1>
+                                        
+                                        <div class="up-event-meta clearfix">
+                                            <div class="up-event-date">Sep 04, 2015</div><div class="up-event-date">Sep 11, 2015</div>
+                                        </div>
+                                        
+                                        <p>
+                                        Donec fringilla lacinia laoreet. Vestibulum ultrices blandit tempor. Aenean magna elit, varius eget quam a, posuere... <a href="#" class="moretag" title="read more">MORE</a> 
+                                        </p>
+                                    
+                                    </li>
+                                
+                                </ul>
+                            
+                            </li><!-- widgets list end -->
+                        
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- upcoming events wrapper end -->
+                
+                <div class="col-lg-4 col-md-4"><!-- recent news wrapper -->
+                	
+                    <div class="col-padded"><!-- inner custom column -->
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_recent_news"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">School News</h1>
+                                
+                                <ul class="list-unstyled">
+                                
+									<li class="recent-news-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="Megan Boyle flourishes...">Megan Boyle flourishes at Boston University</a></h1>
+                                        
+                                        <div class="recent-news-meta">
+                                            <div class="recent-news-date">Jun 12, 2014</div>
+                                        </div>
+                                        
+                                        <div class="recent-news-content clearfix">
+                                            <figure class="recent-news-thumb">
+                                                <a href="#" title="Megan Boyle flourishes..."><img src="img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
+                                            </figure>
+                                            <div class="recent-news-text">
+                                                <p>
+                                                Megan Boyle is flourishing at Boston University in Boston. Our High School Class of 2012 member is majoring... <a href="#" class="moretag" title="read more">MORE</a> 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                    </li>
+                                    
+									<li class="recent-news-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="Buntington Alum...">Buntington Alum Marc Bloom Pens New Book</a></h1>
+                                        
+                                        <div class="recent-news-meta">
+                                            <div class="recent-news-date">Jun 10, 2014</div>
+                                        </div>
+                                        
+                                        <div class="recent-news-content clearfix">
+                                            <figure class="recent-news-thumb">
+                                                <a href="#" title="Buntington Alum..."><img src="img/recent-news-thumb-2.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 2" /></a>
+                                            </figure>
+                                            <div class="recent-news-text">
+                                                <p>
+                                                Marc Bloom has a lot to say. He likes to share his experiences and opinions with others, so the 2011 Buntington... <a href="#" class="moretag" title="read more">MORE</a> 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                    </li>
+                                    
+									<li class="recent-news-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="Cody Rotschild Enjoys...">Cody Rotschild Enjoys Life in Montreal</a></h1>
+                                        
+                                        <div class="recent-news-meta">
+                                            <div class="recent-news-date">Jun 05, 2014</div>
+                                        </div>
+                                        
+                                        <div class="recent-news-content clearfix">
+                                            <figure class="recent-news-thumb">
+                                                <a href="#" title="Cody Rotschild Enjoys..."><img src="img/recent-news-thumb-3.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 3" /></a>
+                                            </figure>
+                                            <div class="recent-news-text">
+                                                <p>
+                                                Cody Rotschild might have graduated with Buntington High School’s Class of 2011, but she is really a woman... <a href="#" class="moretag" title="read more">MORE</a> 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                    </li>
+                                
+                                </ul>
+                                
+                            </li><!-- widgets list end -->
+                        
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- recent news wrapper end -->
+                
+                <div class="col-lg-4 col-md-4"><!-- misc wrapper -->
+                	
+                    <div class="col-padded col-shaded"><!-- inner custom column -->
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_course_search"><!-- widget -->
+                            
+                            	<h1 class="title-titan">Course Finder</h1>
+                                
+                                <form role="search" method="get" id="course-finder" action="#">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Find a course..." autocomplete="off" class="form-control" id="find-course" name="find-course" />
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">GO!</button></span>
+                                    </div>
+                                    <span class="help-block">* Enter course ID, title or the course instructor name</span>
+                                </form>
+                            
+                            </li><!-- widget end -->
+                            
+                            <li class="widget-container widget_text"><!-- widget -->
+                            
+                            	<a href="#" class="custom-button cb-green" title="How to apply?">
+                                	<i class="custom-button-icon fa fa-check-square-o"></i>
+                                    <span class="custom-button-wrap">
+                                    	<span class="custom-button-title">How to apply?</span>
+                                        <span class="custom-button-tagline">Join us whenewer you feel it’s time!</span>
+                                    </span>
+                                    <em></em>
+                                </a>
+                                
+                            	<a href="#" class="custom-button cb-gray" title="Campus tour">
+                                	<i class="custom-button-icon fa  fa-play-circle-o"></i>
+                                    <span class="custom-button-wrap">
+                                    	<span class="custom-button-title">Campus tour</span>
+                                        <span class="custom-button-tagline">Student's life at the glance. Take a tour...</span>
+                                    </span>
+                                    <em></em>
+                                </a>
+                                
+                            	<a href="#" class="custom-button cb-yellow" title="Prospectus">
+                                	<i class="custom-button-icon fa  fa-leaf"></i>
+                                    <span class="custom-button-wrap">
+                                    	<span class="custom-button-title">Prospectus</span>
+                                        <span class="custom-button-tagline">Request a free School Prospectus!</span>
+                                    </span>
+                                    <em></em>
+                                </a>
+                            
+                            </li><!-- widget end -->
+                            
+                            <li class="widget-container widget_sofa_twitter"><!-- widget -->
+                            
+                            	<ul class="k-twitter-twitts list-unstyled">
+                                
+                                    <li class="twitter-twitt">
+                                    	<p>
+                                        <a href="https://twitter.com/DanielleFilson">@MattDeamon</a> Why it always has to be so complicated? Try to get it via this link <a href="http://usap.co/potter">mama.co/hpot</a> Good luck mate!
+                                        </p>
+                                    </li>
+                                
+                                </ul>
+                                
+                                <div class="k-twitter-twitts-footer">
+                                	<a href="#" class="k-twitter-twitts-follow" title="Follow!"><i class="fa fa-twitter"></i>&nbsp; Follow us!</a>
+                                </div>
+                            
+                            </li><!-- widget end -->
+                            
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- misc wrapper end -->
+            
+            </div><!-- row end -->
+        
+        </div><!-- container end -->
+    
+    </div><!-- content wrapper end -->
+    </body>
+</html>

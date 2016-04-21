@@ -35,7 +35,7 @@ class AppController extends Controller {
 		'DebugKit.Toolbar',
 		'Session',
         'Flash',
-/*       'Auth' => array(
+        'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'pages',
 				'action' => 'display',
@@ -53,7 +53,6 @@ class AppController extends Controller {
 			),
 			'flash' => array('element' => 'auth_error')
 		)
-		*/
 	); 
 
     

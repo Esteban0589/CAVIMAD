@@ -3,8 +3,8 @@ App::uses('AppModel', 'Model');
 /**
  * User Model
  *
- * @property op $op
  * @property Administrator $Administrator
+ * @property Picture $Picture
  */
 class User extends AppModel {
 
@@ -13,7 +13,7 @@ class User extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'username';
+	public $displayField = 'name';
 
 /**
  * Validation rules
@@ -30,8 +30,8 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'custom' => array(
-				'rule' => array('custom'),
+			'maxLength' => array(
+				'rule' => array('maxLength'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -48,8 +48,8 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'custom' => array(
-				'rule' => array('custom'),
+			'maxLength' => array(
+				'rule' => array('maxLength'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -66,8 +66,8 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'custom' => array(
-				'rule' => array('custom'),
+			'maxLength' => array(
+				'rule' => array('maxLength'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -78,14 +78,6 @@ class User extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'notBlank' => array(
-				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -160,16 +152,16 @@ class User extends AppModel {
 			),
 		),
 		'role' => array(
-			'inList' => array(
-				'rule' => array('inList'),
+			'notBlank' => array(
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'notBlank' => array(
-				'rule' => array('notBlank'),
+			'inList' => array(
+				'rule' => array('inList'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -209,6 +201,28 @@ class User extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		)
+	);
+
+
+/**
+ * hasAndBelongsToMany associations
+ *
+ * @var array
+ */
+	public $hasAndBelongsToMany = array(
+		'Picture' => array(
+			'className' => 'Picture',
+			'joinTable' => 'pictures_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'picture_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
 		)
 	);
 

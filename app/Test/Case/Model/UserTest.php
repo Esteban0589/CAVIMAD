@@ -13,8 +13,12 @@ class UserTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'app.user',
-		'app.op',
-		'app.administrator'
+		'app.administrator',
+		'app.aboutus',
+		'app.download',
+		'app.link',
+		'app.picture',
+		'app.pictures_user'
 	);
 
 /**

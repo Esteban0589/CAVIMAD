@@ -27,17 +27,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <title>BUNTINGTON Public Schools</title>
     
     <!-- Styles -->
-    
-    <?php echo $this->Html->css('font-awesome.min.css');?>
-    <?php echo $this->Html->css('bootstrap.min.css');?>
-    <?php echo $this->Html->css('dropdown-menu.css');?>
-    <?php echo $this->Html->css('jquery.fancybox.css');?>
-    <?php echo $this->Html->css('style.css');?>
-    <!--<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
-    <!--<link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
-   <!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
-    <!--<link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
-   <!-- <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
+    <link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
+    <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
+    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
 
   </head>
   
@@ -54,8 +48,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <nav class="k-functional-navig"><!-- functional navig -->
         
                 <ul class="list-inline pull-right">
-                    <li><a href="#">Jobs</a></li>
-                    <li><a href="#">Calendar</a></li>
+                    <li><a href="users/add">Registrase</a></li>
+                    <li><a href="users/login">Iniciar Sesion</a></li>
                     <li><a href="#">Directions</a></li>
                 </ul>
         
@@ -79,13 +73,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
                         <li>
-                            <a href="news.html" title="Our School News">News</a>
+                            <a href="news.html" title="--------">Catalago</a>
                         </li>
                         <li>
-                            <a href="events.html" title="Upcoming Events">Events</a>
+                            <a href="events.html" title="--------">Biomonitoreo</a>
                         </li>
                         <li>
-                            <a href="users" title="Administrar">Usarios</a>
+                            <a href="users" title="--------">Colaboradores</a>
                         </li>
                         <li>
                             <a href="#" class="Pages Collection" title="More Templates">Inner Pages</a>
@@ -312,24 +306,24 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     </div><!-- subfooter end -->
 
     <!-- jQuery -->
-    <!-- <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
     
     <!-- Bootstrap -->
-     <!--<script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     
     <!-- Drop-down -->
-     <!--<script src="js/dropdown-menu.js"></script>
+    <script src="js/dropdown-menu.js"></script>
     
     <!-- Fancybox -->
-	 <!--<script src="js/jquery.fancybox.pack.js"></script>
+	<script src="js/jquery.fancybox.pack.js"></script>
     <script src="js/jquery.fancybox-media.js"></script><!-- Fancybox media -->
 
     <!-- Pie charts -->
-     <!--<script src="js/jquery.easy-pie-chart.js"></script>
+    <script src="js/jquery.easy-pie-chart.js"></script>
     
     <!-- Theme -->
-    <!-- <script src="js/theme.js"></script>-->
+    <script src="js/theme.js"></script>-->
     
   </body>
 </html>

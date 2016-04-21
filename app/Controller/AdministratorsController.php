@@ -40,6 +40,12 @@ class AdministratorsController extends AppController {
 		$this->set('administrator', $this->Administrator->find('first', $options));
 	}
 
+	public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete');
+    }
+
+
 /**
  * add method
  *

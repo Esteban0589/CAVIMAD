@@ -20,6 +20,8 @@
  */
 
 App::uses('Controller', 'Controller');
+//Para habilitar el envío de correos electrónicos.
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Application Controller

@@ -79,7 +79,7 @@ class Administrator extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Aboutus' => array(
+		/*'Aboutus' => array(
 			'className' => 'Aboutus',
 			'foreignKey' => 'administrator_id',
 			'dependent' => false,
@@ -91,7 +91,7 @@ class Administrator extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
+		),*/
 		'Download' => array(
 			'className' => 'Download',
 			'foreignKey' => 'administrator_id',

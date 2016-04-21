@@ -1,5 +1,5 @@
 <div class="users form">
-<?php echo $this->Form->create('User'); ?>
+<?php echo $this->Form->create('User', array('type' => 'file', 'novalidate' => 'novalidate')); ?>
 	<fieldset>
 		<legend><?php echo __('Add User'); ?></legend>
 	<?php
@@ -13,8 +13,8 @@
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
 		echo $this->Form->input('role');
-		echo $this->Form->input('image');
-		echo $this->Form->input('image_dir');
+		echo $this->Form->input('image', array('type' => 'file', 'label' => 'Foto'));
+					echo $this->Form->input('image_dir', array('type' => 'hidden'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

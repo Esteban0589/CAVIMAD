@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
  * User Model
  *
@@ -29,7 +30,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),/*
 			'maxLength' => array(
 				'rule' => array('maxLength'),
 				//'message' => 'Your custom message here',
@@ -37,7 +38,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 		'lastname1' => array(
 			'notBlank' => array(
@@ -47,7 +48,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),/*
 			'maxLength' => array(
 				'rule' => array('maxLength'),
 				//'message' => 'Your custom message here',
@@ -55,7 +56,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 		'lastname2' => array(
 			'notBlank' => array(
@@ -65,7 +66,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),/*
 			'maxLength' => array(
 				'rule' => array('maxLength'),
 				//'message' => 'Your custom message here',
@@ -73,7 +74,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 		'email' => array(
 			'email' => array(
@@ -159,7 +160,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),/*
 			'inList' => array(
 				'rule' => array('inList'),
 				//'message' => 'Your custom message here',
@@ -167,8 +168,8 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+			),*/
+		),/*
 		'image_dir' => array(
 			'url' => array(
 				'rule' => array('url'),
@@ -178,7 +179,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 	);
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -225,5 +226,15 @@ class User extends AppModel {
 			'finderQuery' => '',
 		)
 	);
+	
+	public function beforeSave($options = array()) {
+    if (isset($this->data[$this->alias]['password'])) {
+        $passwordHasher = new BlowfishPasswordHasher();
+        $this->data[$this->alias]['password'] = $passwordHasher->hash(
+            $this->data[$this->alias]['password']
+        );
+    }
+    return true;
+}
 
 }

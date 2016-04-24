@@ -40,8 +40,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
    
-    <base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
-
+    <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
+     <base href="https://inge2-maricelmonge.c9users.io/"/>
   </head>
   
   <body role="document">
@@ -86,25 +86,25 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
                         <li>
-                            <a href="" title="Pagina inicial">Inicio</a>
+                            <a href="" title="">Inicio</a>
                         </li>
                         <li>
-                            <a href="" title="Catalogo de especies">Catalogo</a>
+                            <a href="" title="">Catalogo</a>
                         </li>
                         <li>
-                            <a href="" title="Biomonitoreo(Descargas y referencias)">Biomonitoreo</a>
+                            <a href="" title="">Biomonitoreo</a>
                         </li>
                         <li>
-                            <a href="" title="Colaboradores(Informacion de los colaboradores)">Colaboradores</a>
+                            <a href="" title="">Colaboradores</a>
                         </li>
                         <li>
-                            <a href="" title="Referencias(Informacion descargable y enlaces utiles)">Referencias</a>
+                            <a href="" title="">Referencias</a>
                         </li>
                         <li>
-                            <a href="" title="Sobre nosotros(Nuestra Historia)">Sobre nosotros</a>
+                            <a href="" title="">Sobre nosotros</a>
                         </li>
                         <li>
-                            <a href="" title="Contactenos">Contactenos</a>
+                            <a href="" title="">Contactenos</a>
                         </li>
                         <!--
                         <li>
@@ -179,10 +179,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             
             	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
                 
-                	<ol class="breadcrumb">
-                    	<li><a href="#">Home</a></li>
-                        <li class="active">Page Example</li>
-                    </ol>
+                	<!--<ol class="breadcrumb">-->
+                 <!--   	<li><a href="#">Home</a></li>-->
+                 <!--       <li class="active">Page Example</li>-->
+                 <!--   </ol>-->
                     
                 </div><!-- breadcrumbs end -->
                 
@@ -308,24 +308,24 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     </div><!-- subfooter end -->
 
     <!-- jQuery -->
-    <!-- <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
     
     <!-- Bootstrap -->
-     <!--<script src="js/bootstrap.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
     
     <!-- Drop-down -->
-     <!--<script src="js/dropdown-menu.js"></script>
+     <script src="js/dropdown-menu.js"></script>
     
     <!-- Fancybox -->
-	 <!--<script src="js/jquery.fancybox.pack.js"></script>
+	<script src="js/jquery.fancybox.pack.js"></script>
     <script src="js/jquery.fancybox-media.js"></script><!-- Fancybox media -->
 
     <!-- Pie charts -->
-     <!--<script src="js/jquery.easy-pie-chart.js"></script>
+     <script src="js/jquery.easy-pie-chart.js"></script>
     
     <!-- Theme -->
-    <!-- <script src="js/theme.js"></script>-->
+     <script src="js/theme.js"></script>
     
   </body>
 </html>

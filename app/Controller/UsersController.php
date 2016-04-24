@@ -1,4 +1,4 @@
-q<?php
+<?php
 App::uses('AppController', 'Controller');
 /**
  * Users Controller
@@ -26,6 +26,38 @@ class UsersController extends AppController {
 		$this->set('users', $this->Paginator->paginate());
 	}
 
+
+/**
+ * viewManagers method
+ * 
+ * Devuelve la lista de colaboradores de la página
+ *
+ * @return void
+ */
+	public function viewManagers() {
+		
+		
+		$this->paginate = array(
+            'User' => array(
+                'conditions' => array('User.role' => 'manager'),
+                'limit' => 10,
+                'paramType' => 'querystring'
+        ));
+        $managers = $this->paginate('User');
+        $this->set('managers',$managers);
+		
+		/*
+		$this->User->recursive = 0;
+		$managers = $this->User->find('all', array(
+	        'conditions' => array('User.role' => 'admin')
+	    ));
+	    $managers = $this->Paginator->paginate();
+	    $this->set('managers', $managers);
+	    //$this->set('managers', $this->paginate('colaboradores'));*/
+	   
+	}
+
+
 /**
  * view method
  *
@@ -43,7 +75,7 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete');
+        $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete', 'viewManagers');
     }
 
 

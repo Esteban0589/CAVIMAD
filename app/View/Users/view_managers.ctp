@@ -1,15 +1,12 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
 
- <?php echo $this->Html->css('font-awesome.min.css');?>
-    <?php echo $this->Html->css('bootstrap.min.css');?>
-    <?php echo $this->Html->css('dropdown-menu.css');?>
-    <?php echo $this->Html->css('jquery.fancybox.css');?>
-    <?php echo $this->Html->css('style.css');?>
-<div class="users index">
 	<h2><?php echo __('Lista de Colaboradores'); ?></h2>
 			
 		<div class="row small k-equal-height"><!-- row -->
                               
-			 <div class="col-lg-6 col-md-6 col-sm-12">
+			 <div class="col-lg-12 col-md-6 col-sm-12">
 					
 				<table class="table table-hover">
 					
@@ -46,15 +43,16 @@
 			<p>
 			<?php
 				echo $this->Paginator->counter(array(
-					'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+					'format' => __('Página {:page} de {:pages}, mostrando {:current} resultados de {:count}')
 					));
 					?>	</p>
 					<div class="paging">
 					<?php
-						echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+						echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
 						echo $this->Paginator->numbers(array('separator' => ''));
-						echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+						echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
 					?>
 					</div>
 </div>
-
+</div>
+</div>

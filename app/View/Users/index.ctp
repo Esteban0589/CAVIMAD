@@ -12,7 +12,9 @@
 			<th><?php echo $this->Paginator->sort('state'); ?></th>
 			<th><?php echo $this->Paginator->sort('city'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
+			<!---->
+			<!--<th><?php echo $this->Paginator->sort('password'); ?></th>-->
+			<!---->
 			<th><?php echo $this->Paginator->sort('role'); ?></th>
 			<th><?php echo $this->Paginator->sort('image'); ?></th>
 			
@@ -31,7 +33,9 @@
 		<td><?php echo h($user['User']['state']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['city']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
+		<!---->
+		<!--<td><?php echo h($user['User']['password']); ?>&nbsp;</td>-->
+		<!---->
 		<td><?php echo h($user['User']['role']); ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('../files/user/image/' . $user['User']['image_dir'] . '/' . 'thumb_' .$user['User']['image']); ?></td>
 		

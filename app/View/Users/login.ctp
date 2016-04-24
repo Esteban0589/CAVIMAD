@@ -1,6 +1,6 @@
 <section id="form"><!--form-->
 	<div class="container">
-		<div class="row" align="center" margin= "0,0,0,0">
+		<div class="row" align="center">
 			<div class="col-lg-4 col-md-4">
 				<div class="login-form"><!--login form-->
 					<?php echo $this->Flash->render('auth'); ?>

@@ -13,9 +13,9 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator','Flash');
-	var $roles = array('admin' => 'Administrator','manager' => 'Manager','client' => 'Client');
-	
+
+	public $components = array('Paginator', 'Sessions', 'Flash');
+	var $roles = array('Administrador' => 'Administrador','Colaborador' => 'Colaborador','Usuario' => 'Usuario','Editor' => 'Editor');
 		
 /**
  * index method
@@ -23,9 +23,42 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->set('role', $this->roles);
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}
+
+
+/**
+ * viewManagers method
+ * 
+ * Devuelve la lista de colaboradores de la página
+ *
+ * @return void
+ */
+	public function viewManagers() {
+		
+		
+		$this->paginate = array(
+            'User' => array(
+                'conditions' => array('User.role' => 'manager'),
+                'limit' => 10,
+                'paramType' => 'querystring'
+        ));
+        $managers = $this->paginate('User');
+        $this->set('managers',$managers);
+		
+		/*
+		$this->User->recursive = 0;
+		$managers = $this->User->find('all', array(
+	        'conditions' => array('User.role' => 'admin')
+	    ));
+	    $managers = $this->Paginator->paginate();
+	    $this->set('managers', $managers);
+	    //$this->set('managers', $this->paginate('colaboradores'));*/
+	   
+	}
+
 
 /**
  * view method
@@ -44,7 +77,8 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete','forgot_password', 'reset');
+        $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete','viewManagers','forgot_password', 'reset');
+
     }
 
 
@@ -67,10 +101,10 @@ class UsersController extends AppController {
         }
     }
     
-        
+
     public function logout() {
-        // Borra la cookie en caso de que exista
-        $this->Cookie->delete('remember_me_cookie');
+	    $this->Session->destroy();
+	    $this->Cookie->delete('remember_me_cookie');
         return $this->redirect($this->Auth->logout());
     }
 
@@ -84,6 +118,39 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->loadModel('Administrator');
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->User->save($this->request->data)) {
+				if($_SESSION['role']=='admin'){
+					if($this->Administrator->save($this->request->data)){
+						$this->Flash->success(__('The user has been saved.'));
+						return $this->redirect(array('action' => 'index'));
+					}else {
+						$this->Flash->error(__('The user could not be saved. Please, try again.'));
+					}
+				}
+				$this->Flash->success(__('The user has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
+			$this->request->data = $this->User->find('first', $options);
+			if($this->request->data['User']['role']=='admin'):
+				$this->request->data = $this->Administrator->find('first', array('conditions' => array('Administrator.user_id' => $id)));
+			 endif;
+		
+		}
+	
+	}
+	
+	
+		public function editrol($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -97,8 +164,22 @@ class UsersController extends AppController {
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
+
 		}
+	
 	}
+
+	
+	
+	
+	// public function editrol($id = null) {
+	// 	if (!$this->User->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid user'));
+	// 	}
+	// 	$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+	// 	$this->set('user', $this->User->find('first', $options));
+	// }
+	
 	
 	/**
  * add method
@@ -106,6 +187,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->set('role', $this->roles);
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {

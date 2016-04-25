@@ -42,7 +42,7 @@
 							
 							
 							<td class="actions" >
-								<?php echo $this->Html->link(__('Editar rol'), array('action' => 'view', $user['User']['id'])); ?>
+								<?php echo $this->Html->link(__('Editar rol'), array('action' => 'editrol', $user['User']['id'])); ?>
 								<!--<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?> </li>-->
 							</td>
 							<td class="actions" align=center>

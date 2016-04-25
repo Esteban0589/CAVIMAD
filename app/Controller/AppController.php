@@ -61,6 +61,8 @@ class AppController extends Controller {
 		//Configuración para utilizar las cookies
 		$this->Cookie->key = 'qSI232qs*&sXOw!adre@34SAv!@*(XSL#$%)asGb$@11~_+!@#HKis~#^';
 		$this->Cookie->httpOnly = true;
+		  $this->Auth->allow('login');
+    	$this->set('current_user', $this->Auth->user());
 		if (!$this->Auth->loggedIn() && $this->Cookie->read('remember_me_cookie')) {
 			$cookie = $this->Cookie->read('remember_me_cookie');
 			$user = $this->User->find('first', array(
@@ -75,10 +77,4 @@ class AppController extends Controller {
 		}
 		}
 
-
-    public function beforeFilter(){
-    	$this->Auth->allow('login');
-    	$this->set('current_user', $this->Auth->user());
-    }
-    
 }

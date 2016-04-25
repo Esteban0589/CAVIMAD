@@ -36,11 +36,11 @@ a.moretag { font-size: 12px; text-transform: uppercase; }
 h1, h2, h3, h4, h5, h6 { font-weight: 700; color: #636363; }
 h1, h2, h3 { margin: 40px 0 20px;}
 h4, h5, h6 { margin: 40px 0 10px;}
-h1 { font-size: 28px; line-height: 36px; }
-h2 { font-size: 24px; line-height: 30px; }
-h3 { font-size: 22px; line-height: 28px; }
-h4 { font-size: 20px; line-height: 26px; }
-h5 { font-size: 18px; line-height: 24px; }
+h1 { font-size: 28px; line-height: 36px; color:#82B204; }
+h2 { font-size: 24px; line-height: 30px; color:#82B204; }
+h3 { font-size: 22px; line-height: 28px; color:#82B204; }
+h4 { font-size: 20px; line-height: 26px; color:#82B204; }
+h5 { font-size: 18px; line-height: 24px; color:#82B204; }
 h6 { font-size: 16px; line-height: 20px; text-transform: uppercase; }
 h1 > i, h2 > i, h3 > i, h4 > i, h5 > i, h6 > i { margin-right: 10px; }
 .page-title { font-size: 28px; font-weight: 700; line-height: 36px; margin-top: 0; margin-bottom: 0; padding-bottom: 15px; border-bottom: 1px solid rgba( 0, 0, 0, 0.05 ); }
@@ -74,7 +74,7 @@ h1 a:hover, h1 a:focus, h2 a:hover, h2 a:focus, h3 a:hover, h3 a:focus, h4 a:hov
 /* == END custom buttons == */
 
 /* == images == */
-img { max-width: 100%; height: auto; }
+img { max-width: 100%; height: 100%; }
 /* image hover effect */
 figure { margin: 0; padding: 0; position: relative; overflow: hidden; }
 figure a img { -webkit-transition: all 0.25s ease-in-out 0s; -moz-transition: all 0.25s ease-in-out 0s; -o-transition: all 0.25s ease-in-out 0s; transition: all 0.25s ease-in-out 0s; }
@@ -166,7 +166,7 @@ span.alter-menu-icon { display: block; width: 24px; height: 24px; background: ur
 /* ================================================== VARIOUS PAGE ELEMENTS */
 
 /* == site header == */
-#k-head { margin-bottom: 20px;background-color: #002D6A }
+#k-head { margin-bottom: 0px;background-color: #002D6A }
 #k-site-logo { position: relative; }
 .k-logo { margin: 0; }
 /* == END site header == */
@@ -190,7 +190,7 @@ span.alter-menu-icon { display: block; width: 24px; height: 24px; background: ur
 /* == END breadcrumbs == */
 
 /* == site body == */
-#k-body { background-color: #F9F9F9; border-top: 1px solid #F4F4F4; padding: 0 0 40px 0; }
+#k-body { background-color: #F9F9F9; border-top: 1px solid #F4F4F4; padding: 0 0 0px 0; }
 /* == END site body == */
 /*
 // == site footer == */

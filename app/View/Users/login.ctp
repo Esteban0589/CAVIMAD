@@ -1,51 +1,57 @@
 <section id="form"><!--form-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-1">
-					<div class="login-form"><!--login form-->
-
-            
-            <?php echo $this->Flash->render('auth'); ?>
-            <?php echo $this->Form->create('User'); ?>
-                <fieldset 'text_align':'center'>
-                    <div title="Insert your username"><?php echo $this->Form->input('username', array('type'=>'text', 'label'=>'Username: ','placeholder' => 'example@example.com'));?></div>
-                      <div>&nbsp</div>
-                    <div title="Insert your password"><?php echo $this->Form->input('password', array('label'=>'Password: ','placeholder' => 'Password'));?></div>
-                      <div>&nbsp</div>   
-                </fieldset>
-               	<?php 
-                echo $this->Form->button(__('Login'), array(
-								'class' => 'btn btn-default',
-								'div' => false,
-							));
-							echo '<br />';
-							echo $this->Form->end();
-             	?>
-            <div>&nbsp</div>
-           <?php echo $this->Form->end();
-							echo $this->Html->link(__('Forgot your password?'), array('action' => 'forgot_password'), array(
-								'class' => 'btn btn-default'
-							));?>
-          
-</div><!--/login form-->
-
-				</div>
-						<div class="col-sm-1">
-							<h2>OR</h2>
+	<div class="container">
+		<div class="row" align="center">
+			<div class="col-lg-4 col-md-4">
+				<div class="login-form"><!--login form-->
+					<?php echo $this->Flash->render('auth'); ?>
+					<?php echo $this->Form->create('User'); ?>
+               		<fieldset>
+						<div class="title-median" >
+							<h2>Ingresa tu usuario</h2>
+							<h6>
+								<?php 
+								echo $this->Form->input('username', array('label'=>' ','type'=>'text','placeholder' => 'ejemplo@ejemplo.com'));?>
+							</h6>
 						</div>
-						<div class="col-sm-4">
-							<div class="signup-form"><!--sign up form-->
-								<h2>No Account?</h2>
-								<form action="#">
-									<p>
-										<?php echo $this->Html->link(__('Create one!'), array('action' => 'add'), array(
-											'class' => 'btn btn-default',
-											'role' => 'button'
-										)); ?>
-									</p>
-								</form>
-					</div><!--/sign up form-->
-				</div>
+						<div class="title-median">
+							<h2>Ingresa tu contraseña</h2>
+							<h6>
+								<?php echo $this->Form->input ('password', array('label'=>' ','placeholder' => 'Contraseña'));?>
+							</h6>
+						</div>
+						<div>&nbsp</div>   
+					<?php 
+						echo $this->Form->button(__('Ingresar'), array(
+							'class' => 'btn-default btn-md cb-red',
+							'div' => false,
+							));
+							echo $this->Form->end();
+       		     	?>
+       		    <div>&nbsp</div>
+       		   		<?php 
+						echo $this->Html->link(__('¿Olvidaste tu contraseña?'), array('action' => 'forgot_password'), array(
+							'class' => 'btn-default btn-md cb-red',
+							));?>
+				</fieldset>
+			</div><!--/login form-->
+			</div>
+			<div class="col-lg-4 col-md-4">
+				<h2>O</h2>
+			</div>
+			<div class="col-lg-4 col-md-4">
+				<div class="signup-form text-info"><!--sign up form-->
+					<h2>¿No estás registrado?</h2>
+					<form action="#">
+						<p>
+							<?php echo $this->Html->link(__('Registrate'), array('action' => 'add'), array(
+								'class' => 'btn-default btn-md cb-red',
+								'role' => 'button'
+							)); ?>
+						</p>
+					</form>
+				</div><!--/sign up form-->
 			</div>
 		</div>
+	</div>
+
 </section><!--/form-->

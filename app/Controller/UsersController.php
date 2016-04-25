@@ -35,15 +35,12 @@ class UsersController extends AppController {
  * @return void
  */
 	public function viewManagers() {
-		$this->paginate = array(
-            'User' => array(
-                'conditions' => array('User.role' => 'Colaborador'),
-                'limit' => 10,
-                'paramType' => 'querystring'
-        ));
-        $managers = $this->paginate('User');
-        $this->set('managers', $managers);
+		$this->loadModel('Administrator');
+		$this->User->recursive = 0;
+		$this->set('users', $users = $this->User->find('all', array('conditions' => array('User.role' => 'Colaboradores'))));
+		$this->set('colaboradores', $colaboradores = $this->Administrator->find('all'));
 	}
+	
 
 
 /**

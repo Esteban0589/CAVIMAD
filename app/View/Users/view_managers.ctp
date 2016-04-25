@@ -13,22 +13,23 @@
 					<thead>
 						<tr>
 							<th><?php echo $this->Paginator->sort('Nombre'); ?></th>
-							<th><?php echo $this->Paginator->sort('Primer apellido'); ?></th>
-							<th><?php echo $this->Paginator->sort('Segundo apellido'); ?></th>
+							<th><?php echo $this->Paginator->sort('Apellidos'); ?></th>
 							<th><?php echo $this->Paginator->sort('Nombre de usuario'); ?></th>
-			
+							<th><?php echo $this->Paginator->sort('Institución'); ?></th>
+							<th><?php echo $this->Paginator->sort('Especialidad'); ?></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-					<?php foreach ($managers as $manager): ?>
+					<?php foreach ($colaboradores as $colaborador): ?>
 						<tr>
-							<td><?php echo h($manager['User']['name']); ?>&nbsp;</td>
-							<td><?php echo h($manager['User']['lastname1']); ?>&nbsp;</td>
-							<td><?php echo h($manager['User']['lastname2']); ?>&nbsp;</td>
-							<td><?php echo h($manager['User']['username']); ?>&nbsp;</td>
+							<td><?php echo h($colaborador['User']['name']); ?>&nbsp;</td>
+							<td><?php echo h($colaborador['User']['lastname1']." ".$colaborador['User']['lastname2']); ?>&nbsp;</td>
+							<td><?php echo h($colaborador['User']['username']); ?>&nbsp;</td>
+							<td><?php echo h($colaborador['Administrator']['institution']); ?>&nbsp;</td>
+							<td><?php echo h($colaborador['Administrator']['specialty']); ?>&nbsp;</td>
 							<td class="actions">
-								<?php echo $this->Html->link(__('Ir al perfil'), array('action' => 'view', $manager['User']['id'])); ?>
+								<?php echo $this->Html->link(__('Ir al perfil'), array('action' => 'view', $colaborador['User']['id'])); ?>
 							</td>
 						</tr>
 					<?php endforeach; ?>
@@ -38,7 +39,7 @@
 					
 			</div>
                             
-		</div><!-- row end -->
+		<!--</div>
 					
 			<p>
 			<?php
@@ -52,7 +53,7 @@
 						echo $this->Paginator->numbers(array('separator' => ''));
 						echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
 					?>
-					</div>
+					</div>-->
 </div>
 </div>
 </div>

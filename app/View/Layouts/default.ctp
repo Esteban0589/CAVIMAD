@@ -68,12 +68,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         <?php
 						    if(empty($_SESSION['role'])||$_SESSION['username']==null){
 					    ?>    
-    						<li><?php echo $this->Html->link('Iniciar sesion',array('controller' => 'users', 'action' => 'login'));?></li>
+    						<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
     						<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
     					<?php
 						} 
 						else{
-						    echo $this->Html->link('Logout',array('controller' => 'users', 'action' => 'logout'));}
+						    echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));}
   						?>
 					</li> 
                 </ul>

@@ -40,7 +40,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
    
-    <base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
+    <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->-->
+    <base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
 
   </head>
   
@@ -63,17 +64,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     	</div><!-- site logo end -->
         <ul class="list-inline pull-right">
-                    <li><a href="#">Jobs</a></li>
-                    <li><a href="#">Calendar</a></li>
-                    <li><a href="#">Directions</a></li>
-                    <li>
-						<?php
-						if(empty($_SESSION['role'])||$_SESSION['username']==null){
-							echo $this->Html->link('Login',array('controller' => 'users', 'action' => 'login'));
-						}
-						else {
+                    <!--<li><a href="#">Jobs</a></li>-->
+                        <?php
+						    if(empty($_SESSION['role'])||$_SESSION['username']==null){
+					    ?>    
+    						<li><?php echo $this->Html->link('Iniciar sesion',array('controller' => 'users', 'action' => 'login'));?></li>
+    						<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
+    					<?php
+						} 
+						else{
 						    echo $this->Html->link('Logout',array('controller' => 'users', 'action' => 'logout'));}
-	  					?>
+  						?>
 					</li> 
                 </ul>
         

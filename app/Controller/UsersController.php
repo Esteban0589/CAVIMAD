@@ -14,7 +14,7 @@ class UsersController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-	var $roles = array('admin' => 'Administrator','manager' => 'Manager','client' => 'Client');
+	var $roles = array('Administrador' => 'Administrador','Colaborador' => 'Colaborador','Usuario' => 'Usuario','Editor' => 'Editor');
 		
 /**
  * index method
@@ -22,6 +22,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->set('role', $this->roles);
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}
@@ -141,6 +142,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->set('role', $this->roles);
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {

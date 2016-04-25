@@ -39,9 +39,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
-   <base href"https://clavimad-jimemachado.c9users.io/"/>
+   <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
-    <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
+    <base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles 
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
 
@@ -59,7 +59,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         
             <h1 class="k-logo">
                 <a href="http://www.ucr.ac.cr" title="Pagina oficial Universidad de Costa Rica">
-                    <img src="app/webroot/img/ucr.gif" alt="UCR" width="100"; />
+                    <img src="app/webroot/img/logoUCR.png" alt="UCR" width="100"; />
                 </a>
             </h1>
             
@@ -76,8 +76,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     					<?php
 						} 
 						else{
-						    echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));}
-  						?>
+						  if($current_user['role']=='admin'): ?>
+						      <li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
+						  <?php endif;
+						}
+						  ?>
+						     
+						  
 					</li> 
                 </ul>
         

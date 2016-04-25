@@ -11,6 +11,7 @@
                     <div title="Insert your username"><?php echo $this->Form->input('username', array('type'=>'text', 'label'=>'Username: ','placeholder' => 'example@example.com'));?></div>
                       <div>&nbsp</div>
                     <div title="Insert your password"><?php echo $this->Form->input('password', array('label'=>'Password: ','placeholder' => 'Password'));?></div>
+                    <?php echo $this->Form->checkbox('remember_me'); ?> Recordarme
                       <div>&nbsp</div>   
                 </fieldset>
                	<?php 

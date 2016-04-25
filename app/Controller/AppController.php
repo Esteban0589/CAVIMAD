@@ -36,7 +36,7 @@ class AppController extends Controller {
     public $components = array(
 		'DebugKit.Toolbar',
 		'Session',
-        'Flash',
+        'Flash','Cookie',
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'pages',
@@ -56,6 +56,25 @@ class AppController extends Controller {
 			'flash' => array('element' => 'auth_error')
 		)
 	); 
+	
+	public function beforeFilter() {
+		//Configuración para utilizar las cookies
+		$this->Cookie->key = 'qSI232qs*&sXOw!adre@34SAv!@*(XSL#$%)asGb$@11~_+!@#HKis~#^';
+		$this->Cookie->httpOnly = true;
+		if (!$this->Auth->loggedIn() && $this->Cookie->read('remember_me_cookie')) {
+			$cookie = $this->Cookie->read('remember_me_cookie');
+			$user = $this->User->find('first', array(
+			'conditions' => array(
+			'User.username' => $cookie['username'],
+			'User.password' => $cookie['password']
+		)
+		));
+		if ($user && !$this->Auth->login($user['User'])) {
+		$this->redirect('/users/logout'); //Destruye la sesión y la cookie
+	}
+		}
+		}
+
 
     
     

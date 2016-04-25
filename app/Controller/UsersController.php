@@ -1,4 +1,4 @@
-q<?php
+<?php
 App::uses('AppController', 'Controller');
 /**
  * Users Controller
@@ -13,8 +13,9 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator','Flash');
 	var $roles = array('admin' => 'Administrator','manager' => 'Manager','client' => 'Client');
+	
 		
 /**
  * index method
@@ -43,13 +44,21 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete');
+        $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete','forgot_password', 'reset');
     }
 
 
     public function login() {
         if( !(empty($this->data))){
             if($this->Auth->login() ){
+                // Si se selecciona la opción para recordar
+                if ($this->request->data['User']['remember_me'] == 1) {
+                    unset($this->request->data['User']['remember_me']);
+                    //Le hace un Hash al usuario y password
+                    $this->request->data['User']['password'] = $this->Auth->password($this->request->data['User']['password']);
+                    //Escribe la cookie
+                    $this->Cookie->write('remember_me_cookie', $this->request->data['User'], true, '1 weeks'); //if user select remember me, the cookie will be saved in his browser for 1 week.
+                }
             	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
 	            $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
 	            return $this->redirect(array('controller' => 'pages','action' => 'display'));
@@ -57,6 +66,14 @@ class UsersController extends AppController {
         $this->Flash->error(__('Invalid username or password, try again'));
         }
     }
+    
+        
+    public function logout() {
+        // Borra la cookie en caso de que exista
+        $this->Cookie->delete('remember_me_cookie');
+        return $this->redirect($this->Auth->logout());
+    }
+
     
 
 /**
@@ -121,4 +138,151 @@ class UsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	//Envía un correo eléctronico según la plantilla deseada.
+	
+	public function send_mail($email_data = null)
+	{
+		$Email = new CakeEmail();
+        $Email->config('gmail');
+        $Email_to = $email_data['to'];
+		$Email_subject = $email_data['subject'];
+		$Email_template = $email_data['template'];
+		
+		$Email->to($email_data['to']);
+		$Email->subject($email_data['subject']);
+		$Email->template('$Email_template');
+		$Email->from('cavimad@noreply.com');
+		$Email->template($email_data['template']);
+
+   		$Email->viewVars (array('ms' => $email_data['body']['ms']));
+		$Email-> emailFormat ('html');
+		if ($Email->send())   
+            {
+            return true;
+            } else {
+            echo $this->Email->smtpError;
+            }
+	}
+	
+	
+	//Genera un token y envía un correo electrónico para reiniciar la contraseña.
+	public function forgot_password()
+	{
+        $this->User->recursive=-1;
+        if(!empty($this->data))
+        {
+            if(empty($this->data['User']['email']))
+            {
+                 $this->Flash->set('Por favor ingrese su dirección de correo electrónico con la cual se registró.');
+            }
+            else
+            {
+                $email=$this->data['User']['email'];
+                //Busca el correo en la tabla de usuarios.
+                $fu = $this->User->find('first', array('conditions' => array('User.email' => $email)));
+                                        
+                if($fu)
+                {
+                    
+                    if($fu['User']['activated']=='1')
+                    {
+                        $key = Security::hash(CakeText::uuid(),'sha512',true);
+                        $hash=sha1($fu['User']['username'].rand(0,100));
+                        $url = Router::url( array('controller'=>'Users','action'=>'reset'), true ).'/'.$key.'#'.$hash;
+                        $ms=$url;
+                        
+                        
+                        
+                        $ms=wordwrap($ms,1000);
+                        
+                        $fu['User']['tokenhash']=$key;
+                        $this->User->id=$fu['User']['id'];
+                
+                        
+                        if($this->User->saveField('tokenhash',$fu['User']['tokenhash']))
+                        {                        
+                        
+                        $this->set('ms', $ms);    
+                                                                    
+                        $data = array();
+                        
+                        $data['to'] = $fu['User']['email'];
+                        $data['subject'] = 'Reinicio de contraseña';
+                        $data['body'] = array('ms' => $ms);
+                        $data['template'] = 'reset_password';
+                        $output =$this->send_mail($data);
+
+                            if($output){
+                                $this->Flash->set('Correo electrónico enviado correctamente.');
+                                $this->redirect(array('controller'=>'users','action'=>'login'));
+                            }                                                                                                
+                        }
+                        else{
+                             $this->Flash->set("Error al generar enlace para reinicio de contraseña.");
+                        }
+                    }
+                    else
+                    {
+                         $this->Flash->set('La cuenta aún no está activada, por favor proceda a activar su cuenta.');
+                    }
+                }
+                else
+                {
+                     $this->Flash->set('Correo electrónico no encontrado.');
+                }
+            }
+        }    
+	}
+	
+	//Reinicia la contraseña según un hash agregado anteriormente.
+	public function reset($token=null)
+	{
+            
+        $this->User->recursive=-1;
+        if(!empty($token))
+        {
+            $u=$this->User->findBytokenhash($token);
+            if(!empty($u))
+            {
+                $this->User->id=$u['User']['id'];        
+                
+                if(!empty($this->data))
+                {    
+                    $this->User->data=$this->data;
+                    $this->User->data['User']['username']=$u['User']['username'];
+                    $new_hash=sha1($u['User']['username'].rand(0,100));					//Crea un nuevo token
+                        
+                    $this->User->data['User']['tokenhash']=$new_hash;
+                    
+                    if($this->User->validates(array('fieldList' => array('password', 'password_confirm'))))
+                    {
+                                                                                        
+                        if($this->User->save($this->User->data))
+                        {
+                            $this->Flash->set('La contraseña ha sido actualizada.');
+                            $this->redirect(array('controller'=>'users','action'=>'login'));
+                        }
+                    }
+                    else{
+                        $this->Flash->set('errors',$this->User->invalidFields());
+                        }
+                }
+            }
+            else
+            {
+                 $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
+            }
+        }
+        else
+        {
+            $this->Flash->set('Token inválido, intente de nuevo.');
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
+    
+	}
+
+
+
+	
 }

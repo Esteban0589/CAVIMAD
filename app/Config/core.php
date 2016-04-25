@@ -387,3 +387,14 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
+
+/**
+ * Permite almacenar una cookie con la sesión iniciada.
+ * 
+ */
+Configure::write('Session', array(
+        'defaults' => 'php',
+        'defaults' => 'php',
+        'cookieTimeout' => 0
+    ));
+

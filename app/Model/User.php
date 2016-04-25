@@ -155,6 +155,8 @@ class User extends AppModel {
 		'password' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
+
+				
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -162,7 +164,9 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
+				//Restringe que la contraseña contenga al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.
+				'rule' => '([A-Z]+[a-z0-9]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@]+)',
+				'message' => 'Su contraseña debe de contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

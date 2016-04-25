@@ -39,11 +39,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
-   
+   <base href"https://clavimad-jimemachado.c9users.io/"/>
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
-    <base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
+    <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
 
 
   </head>
@@ -118,6 +118,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </li>
                         <li>
                             <a href="" title="">Contactenos</a>
+                        </li>
+                        
+                         <li>
+                            <a  href="#drop-down-left" class="Pages Collection" title="" >
+                                <img src="app/webroot/img/g.png" alt="MENU" width="25" >
+                                </a>
+                            <ul class="sub-menu">
+                                <li><a href="users/view">Ver Perfil</a></li>
+                                <li><a href="users/edit">Edital Perfil</a></li>
+                                <li><a href="">cerrar Sesion</a></li>
+                                
                         </li>
                         <!--
                         <li>

@@ -13,7 +13,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session','Flash');
 	var $roles = array('Administrador' => 'Administrador','Colaborador' => 'Colaborador','Usuario' => 'Usuario','Editor' => 'Editor');
 		
 /**
@@ -61,7 +61,7 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'viewManagers');
+        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset');
     }
 
 
@@ -208,5 +208,148 @@ class UsersController extends AppController {
 			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+	
+	//Envía un correo eléctronico según la plantilla deseada.
+	
+	public function send_mail($email_data = null)
+	{
+		$Email = new CakeEmail();
+        $Email->config('gmail');
+        $Email_to = $email_data['to'];
+		$Email_subject = $email_data['subject'];
+		$Email_template = $email_data['template'];
+		
+		$Email->to($email_data['to']);
+		$Email->subject($email_data['subject']);
+		$Email->template('$Email_template');
+		$Email->from('cavimad@noreply.com');
+		$Email->template($email_data['template']);
+
+   		$Email->viewVars (array('ms' => $email_data['body']['ms']));
+		$Email-> emailFormat ('html');
+		if ($Email->send())   
+            {
+            return true;
+            } else {
+            echo $this->Email->smtpError;
+            }
+	}
+	
+	
+	//Genera un token y envía un correo electrónico para reiniciar la contraseña.
+	public function forgot_password()
+	{
+        $this->User->recursive=-1;
+        if(!empty($this->data))
+        {
+            if(empty($this->data['User']['email']))
+            {
+                 $this->Flash->set('Por favor ingrese su dirección de correo electrónico con la cual se registró.');
+            }
+            else
+            {
+                $email=$this->data['User']['email'];
+                //Busca el correo en la tabla de usuarios.
+                $fu = $this->User->find('first', array('conditions' => array('User.email' => $email)));
+                                        
+                if($fu)
+                {
+                    
+                    if($fu['User']['activated']=='1')
+                    {
+                        $key = Security::hash(CakeText::uuid(),'sha512',true);
+                        $hash=sha1($fu['User']['username'].rand(0,100));
+                        $url = Router::url( array('controller'=>'Users','action'=>'reset'), true ).'/'.$key.'#'.$hash;
+                        $ms=$url;
+                        
+                        
+                        
+                        $ms=wordwrap($ms,1000);
+                        
+                        $fu['User']['tokenhash']=$key;
+                        $this->User->id=$fu['User']['id'];
+                
+                        
+                        if($this->User->saveField('tokenhash',$fu['User']['tokenhash']))
+                        {                        
+                        
+                        $this->set('ms', $ms);    
+                                                                    
+                        $data = array();
+                        
+                        $data['to'] = $fu['User']['email'];
+                        $data['subject'] = 'Reinicio de contraseña';
+                        $data['body'] = array('ms' => $ms);
+                        $data['template'] = 'reset_password';
+                        $output =$this->send_mail($data);
+
+                            if($output){
+                                $this->Flash->set('Correo electrónico enviado correctamente.');
+                                $this->redirect(array('controller'=>'users','action'=>'login'));
+                            }                                                                                                
+                        }
+                        else{
+                             $this->Flash->set("Error al generar enlace para reinicio de contraseña.");
+                        }
+                    }
+                    else
+                    {
+                         $this->Flash->set('La cuenta aún no está activada, por favor proceda a activar su cuenta.');
+                    }
+                }
+                else
+                {
+                     $this->Flash->set('Correo electrónico no encontrado.');
+                }
+            }
+        }    
+	}
+	
+	//Reinicia la contraseña según un hash agregado anteriormente.
+	public function reset($token=null)
+	{
+            
+        $this->User->recursive=-1;
+        if(!empty($token))
+        {
+            $u=$this->User->findBytokenhash($token);
+            if(!empty($u))
+            {
+                $this->User->id=$u['User']['id'];        
+                
+                if(!empty($this->data))
+                {    
+                    $this->User->data=$this->data;
+                    $this->User->data['User']['username']=$u['User']['username'];
+                    $new_hash=sha1($u['User']['username'].rand(0,100));					//Crea un nuevo token
+                        
+                    $this->User->data['User']['tokenhash']=$new_hash;
+                    
+                    if($this->User->validates(array('fieldList' => array('password', 'password_confirm'))))
+                    {
+                                                                                        
+                        if($this->User->save($this->User->data))
+                        {
+                            $this->Flash->set('La contraseña ha sido actualizada.');
+                            $this->redirect(array('controller'=>'users','action'=>'login'));
+                        }
+                    }
+                    else{
+                        $this->Flash->set('errors',$this->User->invalidFields());
+                        }
+                }
+            }
+            else
+            {
+                 $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
+            }
+        }
+        else
+        {
+            $this->Flash->set('Token inválido, intente de nuevo.');
+            $this->redirect(array('controller'=>'users','action'=>'login'));
+        }
+    
 	}
 }

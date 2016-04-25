@@ -19,6 +19,7 @@
 								<?php echo $this->Form->input ('password', array('label'=>' ','placeholder' => 'Contraseña'));?>
 							</h6>
 						</div>
+						<?php echo $this->Form->checkbox('remember_me'); ?> Recordarme
 						<div>&nbsp</div>   
 					<?php 
 						echo $this->Form->button(__('Ingresar'), array(

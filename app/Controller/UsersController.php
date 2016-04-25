@@ -67,7 +67,21 @@ class UsersController extends AppController {
 
     public function login() {
         if( !(empty($this->data))){
+            // if($this->Auth->login() ){
+            // 	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
+	           // $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
+	           // return $this->redirect(array('controller' => 'pages','action' => 'display'));
+            // }
+            
             if($this->Auth->login() ){
+                // Si se selecciona la opción para recordar
+                if ($this->request->data['User']['remember_me'] == 1) {
+                    unset($this->request->data['User']['remember_me']);
+                    //Le hace un Hash al usuario y password
+                    $this->request->data['User']['password'] = $this->Auth->password($this->request->data['User']['password']);
+                    //Escribe la cookie
+                    $this->Cookie->write('remember_me_cookie', $this->request->data['User'], true, '1 weeks'); //if user select remember me, the cookie will be saved in his browser for 1 week.
+                }
             	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
 	            $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
 	            return $this->redirect(array('controller' => 'pages','action' => 'display'));
@@ -77,6 +91,8 @@ class UsersController extends AppController {
     }
     
     public function logout() {
+	   	// Borra la cookie en caso de que exista
+        $this->Cookie->delete('remember_me_cookie');
 	    $this->Session->destroy();
         return $this->redirect($this->Auth->logout());
     }

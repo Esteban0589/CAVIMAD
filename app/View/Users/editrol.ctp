@@ -14,8 +14,6 @@
 	            	<?php echo $this->Form->input('id');?>
 	          		<h4> <?php echo $this->request->data['User']['name'].' '.$this->request->data['User']['lastname1'].' '.$this->request->data['User']['lastname2']; ?></h4>
 	            	<div>&nbsp</div>
-	            	<?php echo $this->Form->input('role', array('options'=>array('Administrator'=>'Administrador', 'Colaborador'=>'Colaborador', 'Editor'=>'Editor', 'Usuario'=>'Usuario'),'label'=>'Rol:'));?>
-	
 	        	</fieldset>
 	        	<br>
 	        	<br>
@@ -35,6 +33,3 @@
         </div>
     </div>
 </div>
-	
-
-	

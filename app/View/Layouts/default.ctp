@@ -43,9 +43,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
-    <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles --> 
+    <base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles 
     <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
-     <base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->-->
 
 
   </head>
@@ -137,7 +137,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <?php
     						    if(!empty($_SESSION['role'])){
     					    ?>  
-                                <a  href="#drop-down-left" class="glyphicon glyphicon-cog" title="" >
+                                <a  href="#drop-down-left" class="glyphicon glyphicon-cog" title="" style="font-size:1em;">
                                     </a>
                                 <ul class="sub-menu">
                         
@@ -147,7 +147,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <?php
 						    } 
 						    ?>
-                                
+                             </ul>   
                         </li>
 
                         
@@ -218,7 +218,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </div>
                     </form>
                     
-                    <div id="bt-toggle-search" class="glyphicon glyphicon-search"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                    <div id="bt-toggle-search" class="glyphicon glyphicon-search">
+                        <!--<i class="s-open fa fa-search"></i>-->
+                        <!--<i class="s-close fa fa-times"></i>-->
+                    </div><!-- toggle search button -->
                 
                 </div><!-- top search end -->
             

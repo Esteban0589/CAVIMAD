@@ -1,4 +1,6 @@
-<?php
+<?php			
+//$this->debugController($this->request->data);
+
 App::uses('AppController', 'Controller');
 /**
  * Users Controller
@@ -105,34 +107,67 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
+ 
+ public function debugController($id) {
+		$this->request->data = $id;
+		
+		
+	}
 	public function edit($id = null) {
-		$this->loadModel('Administrator');
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				if($_SESSION['role']=='admin'){
-					if($this->Administrator->save($this->request->data)){
-						$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
-						return $this->redirect(array('controller'=>'pages','action' => 'display'));
-					}else {
-						$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
-					}
-				}
+			if ($this->User->saveAll($this->request->data)) {
 				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
-				return $this->redirect(array('controller'=>'pages','action' => 'display'));
+				return $this->redirect(array('action' => 'view',$id));
 			} else {
-				$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
+				$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevo'));
 			}
+			
+			
+		
+        	
+        	
+      
+			
+			
+			// if ($this->User->save($this->request->data)) {
+			// 	if($_SESSION['role']=='admin'){
+			// 		if($this->Administrator->save($this->request->data)){
+			// 			$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+			// 			return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// 		}else {
+			// 			$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
+			// 		}
+			// 	}
+			// 	$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+			// 	return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// } else {
+			// 	$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
+			// }
+			
+			
+			
+			// if ($this->User->save($this->request->data)) {
+			// 	if($_SESSION['role']=='admin'){
+			// 		if($this->User->saveAssociated($this->request->data)){
+			// 			$this->Flash->success(__('Los detalles de administrador han sido actualizados.'));
+			// 			return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// 		}else {
+			// 			$this->Flash->error(__('El administrador no pudo ser actualizado, intente de nuevos'));
+			// 		}
+			// 	}
+			// 	$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+			// 	return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// } else {
+			// 	$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
+			// }
+			
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
 			$this->request->data = $this->User->find('first', $options);
-			if($this->request->data['User']['role']=='admin'):
-				$this->request->data = $this->Administrator->find('first', array('conditions' => array('Administrator.user_id' => $id)));
-			 endif;
-		
 		}
 	
 	}
@@ -370,4 +405,5 @@ class UsersController extends AppController {
         }
     
 	}
+	
 }

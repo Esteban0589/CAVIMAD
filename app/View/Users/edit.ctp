@@ -26,24 +26,24 @@
 	            	<div>&nbsp</div>
 	            	<?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:'));?>
 	            	<div>&nbsp</div>
-	            	<?php if($current_user['role']=='Administrator'): ?>
-	            		<?php echo $this->Form->create('Administrator'); ?>
-	            		
-	            		<?php echo $this->Form->input('id'); ?>
-						<?php echo $this->Form->input('specialty', array('class'=>'form-control','label'=>'Especialidad:')); ?>
-						<div>&nbsp</div>
-						<?php echo $this->Form->input('curriculum', array('class'=>'form-control','label'=>'Curriculum:'));?>
-						<div>&nbsp</div>
-						<?php echo $this->Form->input('institution', array('class'=>'form-control','label'=>'Institución:'));?>
-						<div>&nbsp</div>
-						<?php echo $this->Form->input('publication', array('class'=>'form-control','label'=>'Publicaciones:'));?>
-						<div>&nbsp</div>
-					
-						
-					<?php endif; ?>
-					
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
 	            	<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
+	            	
+	            	<?php if(($current_user['role']=='Administrador')||($current_user['role']=='Administrador')): ?>
+	            		<?php echo $this->Form->create('Administrator'); ?>
+	            		
+	            		<?php echo $this->Form->input('Administrator.0.id'); ?>
+						<?php echo $this->Form->input('Administrator.0.specialty', array('class'=>'form-control','label'=>'Especialidad:')); ?>
+						<div>&nbsp</div>
+						<?php echo $this->Form->input('Administrator.0.curriculum', array('class'=>'form-control','label'=>'Curriculum:'));?>
+						<div>&nbsp</div>
+						<?php echo $this->Form->input('Administrator.0.institution', array('class'=>'form-control','label'=>'Institución:'));?>
+						<div>&nbsp</div>
+						<?php echo $this->Form->input('Administrator.0.publication', array('class'=>'form-control','label'=>'Publicaciones:'));?>
+						<div>&nbsp</div>
+
+					<?php endif; ?>
+					
 		        	<div>&nbsp</div>
 		            <div>&nbsp</div>
 		        	</fieldset>

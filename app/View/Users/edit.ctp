@@ -38,13 +38,14 @@
 					<div>&nbsp</div>
 					<?php echo $this->Form->input('publication', array('class'=>'form-control','label'=>'Publicaciones:'));?>
 					<div>&nbsp</div>
-					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
-            		<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
-            		
-            		<div>&nbsp</div>
+				
 					
 				<?php endif; ?>
-        	
+				
+				<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
+            	<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
+        	<div>&nbsp</div>
+            <div>&nbsp</div>
         	</fieldset>
         	<br>
         	<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>

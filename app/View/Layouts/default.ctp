@@ -126,15 +126,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </li>
                         
                          <li>
+                            
                             <a  href="#drop-down-left" class="Pages Collection" title="" >
                                 <img src="app/webroot/img/g.png" alt="MENU" width="25" >
                                 </a>
                             <ul class="sub-menu">
-                                <li><a href="users/view">Ver Perfil</a></li>
-                                <li><a href="users/edit">Edital Perfil</a></li>
-                                <li><a href="">cerrar Sesion</a></li>
+                    
+                                <?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?>
+                                <?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?>
+                                <li><a href="users/logout">cerrar Sesion</a></li>
                                 
                         </li>
+
+                        
                         <!--
                         <li>
                             <a href="#" class="Pages Collection" title="More Templates"></a>

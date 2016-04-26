@@ -78,16 +78,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 						else{
 						    if($current_user['role']=='Administrador'){?>
         						<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
-                                <li><a href="users/logout">Cerrar sesión</a></li>
 						    <?php
-    					    } 
-    						else{
+    					    }
     						?>
 					            <li><a href="users/logout">Cerrar sesión</a></li>       
-    						<?php
-    					    } 
+    					<?php
 						}
-						  ?>
+						?>
 						     
 						  
 					</li> 

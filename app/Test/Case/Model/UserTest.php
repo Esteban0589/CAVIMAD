@@ -14,7 +14,6 @@ class UserTest extends CakeTestCase {
 	public $fixtures = array(
 		'app.user',
 		'app.administrator',
-		'app.aboutus',
 		'app.download',
 		'app.link',
 		'app.picture',

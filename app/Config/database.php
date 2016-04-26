@@ -80,10 +80,10 @@ class DATABASE_CONFIG {
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'host' => 'phpmyadmin.clk26rezrnfs.us-west-2.rds.amazonaws.com',
+		'login' => 'phpMyAdmin',
+		'password' => 'phpMyAdmin',
+		'database' => 'test_cavimad',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

@@ -13,7 +13,11 @@ class UsersControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.user',
-		'app.administrator'
+		'app.administrator',
+		/*'app.download',
+		'app.link',
+		'app.picture',
+		'app.pictures_user'*/
 	);
 
 /**
@@ -26,6 +30,15 @@ class UsersControllerTest extends ControllerTestCase {
 	}
 
 /**
+ * testViewManagers method
+ *
+ * @return void
+ */
+	public function testViewManagers() {
+		$this->markTestIncomplete('testViewManagers not implemented.');
+	}
+
+/**
  * testView method
  *
  * @return void
@@ -35,12 +48,21 @@ class UsersControllerTest extends ControllerTestCase {
 	}
 
 /**
- * testAdd method
+ * testLogin method
  *
  * @return void
  */
-	public function testAdd() {
-		$this->markTestIncomplete('testAdd not implemented.');
+	public function testLogin() {
+		$this->markTestIncomplete('testLogin not implemented.');
+	}
+
+/**
+ * testLogout method
+ *
+ * @return void
+ */
+	public function testLogout() {
+		$this->markTestIncomplete('testLogout not implemented.');
 	}
 
 /**
@@ -53,12 +75,66 @@ class UsersControllerTest extends ControllerTestCase {
 	}
 
 /**
+ * testEditrol method
+ *
+ * @return void
+ */
+	public function testEditrol() {
+		$this->markTestIncomplete('testEditrol not implemented.');
+	}
+
+/**
+ * testEditactivated method
+ *
+ * @return void
+ */
+	public function testEditactivated() {
+		$this->markTestIncomplete('testEditactivated not implemented.');
+	}
+
+/**
+ * testAdd method
+ *
+ * @return void
+ */
+	public function testAdd() {
+		$this->markTestIncomplete('testAdd not implemented.');
+	}
+
+/**
  * testDelete method
  *
  * @return void
  */
 	public function testDelete() {
 		$this->markTestIncomplete('testDelete not implemented.');
+	}
+
+/**
+ * testSendMail method
+ *
+ * @return void
+ */
+	public function testSendMail() {
+		$this->markTestIncomplete('testSendMail not implemented.');
+	}
+
+/**
+ * testForgotPassword method
+ *
+ * @return void
+ */
+	public function testForgotPassword() {
+		$this->markTestIncomplete('testForgotPassword not implemented.');
+	}
+
+/**
+ * testReset method
+ *
+ * @return void
+ */
+	public function testReset() {
+		$this->markTestIncomplete('testReset not implemented.');
 	}
 
 }

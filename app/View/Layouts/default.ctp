@@ -70,16 +70,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <!--<li><a href="#">Jobs</a></li>-->
                         <?php
 						    if(empty($_SESSION['role'])||$_SESSION['username']==null){
-					    ?>    
+					    ?>   
     						<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
     						<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
     					<?php
 						} 
 						else{
-						  if($current_user['role']=='Administrador'): ?>
-						      <li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
+						    if($current_user['role']=='Administrador'){?>
+        						<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
                                 <li><a href="users/logout">Cerrar sesión</a></li>
-						  <?php endif;
+						    <?php
+    					    } 
+    						else{
+    						?>
+					            <li><a href="users/logout">Cerrar sesión</a></li>       
+    						<?php
+    					    } 
 						}
 						  ?>
 						     
@@ -127,17 +133,20 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </li>
                         
                          <li>
-                            
-                            
-                            
-                            <a  href="#drop-down-left" class="icon-align-left" title="" >
-                                <img src="app/webroot/img/g.png" alt="MENU" width="25" >
-                                </a>
-                            <ul class="sub-menu">
-                    
-                                <?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?>
-                                <?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?>
-                                <li><a href="users/logout">cerrar Sesion</a></li>
+                            <?php
+    						    if(!empty($_SESSION['role'])){
+    					    ?>  
+                                <a  href="#drop-down-left" class="icon-align-left" title="" >
+                                    <img src="app/webroot/img/g.png" alt="MENU" width="25" >
+                                    </a>
+                                <ul class="sub-menu">
+                        
+                                    <?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?>
+                                    <?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?>
+                                    <li><a href="users/logout">cerrar Sesion</a></li>
+                            <?php
+						    } 
+						    ?>
                                 
                         </li>
 

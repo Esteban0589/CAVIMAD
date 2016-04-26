@@ -14,9 +14,9 @@ class AdministratorsControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.administrator',
 		'app.user',
-		'app.aboutus',
+		/*'app.aboutus',
 		'app.download',
-		'app.link'
+		'app.link'*/
 	);
 
 /**
@@ -25,7 +25,8 @@ class AdministratorsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
-		$this->markTestIncomplete('testIndex not implemented.');
+		$result = $this->testAction('/users/index');
+        debug($result);
 	}
 
 /**

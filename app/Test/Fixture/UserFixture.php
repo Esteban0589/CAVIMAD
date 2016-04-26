@@ -11,6 +11,7 @@ class UserFixture extends CakeTestFixture {
  */
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'activated' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_spanish_ci', 'charset' => 'utf8'),
 		'lastname1' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_spanish_ci', 'charset' => 'utf8'),
 		'lastname2' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_spanish_ci', 'charset' => 'utf8'),
@@ -23,6 +24,7 @@ class UserFixture extends CakeTestFixture {
 		'role' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_spanish_ci', 'charset' => 'utf8'),
 		'image' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_spanish_ci', 'charset' => 'utf8'),
 		'image_dir' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_spanish_ci', 'charset' => 'utf8'),
+		'tokenhash' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_spanish_ci', 'charset' => 'utf8'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
@@ -37,6 +39,7 @@ class UserFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
+			'activated' => 1,
 			'name' => 'Lorem ipsum dolor sit amet',
 			'lastname1' => 'Lorem ipsum dolor sit amet',
 			'lastname2' => 'Lorem ipsum dolor sit amet',
@@ -48,7 +51,8 @@ class UserFixture extends CakeTestFixture {
 			'password' => 'Lorem ipsum dolor sit amet',
 			'role' => 'Lorem ipsum dolor sit amet',
 			'image' => 'Lorem ipsum dolor sit amet',
-			'image_dir' => 'Lorem ipsum dolor sit amet'
+			'image_dir' => 'Lorem ipsum dolor sit amet',
+			'tokenhash' => 'Lorem ipsum dolor sit amet'
 		),
 	);
 

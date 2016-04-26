@@ -26,7 +26,7 @@
             	<div>&nbsp</div>
             	<?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:'));?>
             	<div>&nbsp</div>
-            	<?php if($current_user['role']=='admin'): ?>
+            	<?php if($current_user['role']=='Administrator'): ?>
             		<?php echo $this->Form->create('Administrator'); ?>
             		
             		<?php echo $this->Form->input('id'); ?>

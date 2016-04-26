@@ -40,9 +40,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
    <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
-    <base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
+    <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
-    <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
+    <base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles 
     <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
 
 
@@ -76,8 +76,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     					<?php
 						} 
 						else{
-						  if($current_user['role']=='admin'): ?>
+						  if($current_user['role']=='Administrador'): ?>
 						      <li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
+                                <li><a href="users/logout">Cerrar sesión</a></li>
 						  <?php endif;
 						}
 						  ?>
@@ -127,7 +128,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         
                          <li>
                             
-                            <a  href="#drop-down-left" class="Pages Collection" title="" >
+                            
+                            
+                            <a  href="#drop-down-left" class="icon-align-left" title="" >
                                 <img src="app/webroot/img/g.png" alt="MENU" width="25" >
                                 </a>
                             <ul class="sub-menu">

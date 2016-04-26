@@ -36,6 +36,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
     <link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
+   <link href="css/bootstrap.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
     <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
@@ -130,11 +131,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </li>
                         
                          <li>
+                             
+                             
                             <?php
     						    if(!empty($_SESSION['role'])){
     					    ?>  
-                                <a  href="#drop-down-left" class="icon-align-left" title="" >
-                                    <img src="app/webroot/img/g.png" alt="MENU" width="25" >
+                                <a  href="#drop-down-left" class="glyphicon glyphicon-cog" title="" >
                                     </a>
                                 <ul class="sub-menu">
                         
@@ -215,7 +217,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </div>
                     </form>
                     
-                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                    <div id="bt-toggle-search" class="glyphicon glyphicon-search"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
                 
                 </div><!-- top search end -->
             
@@ -355,6 +357,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     <!-- Bootstrap -->
      <script src="js/bootstrap.min.js"></script>
+     <script src="js/bootstrap.js"></script>
+     <script src="js/npm.js"></script>
     
     <!-- Drop-down -->
      <script src="js/dropdown-menu.js"></script>

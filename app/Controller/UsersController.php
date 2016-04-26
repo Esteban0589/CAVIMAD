@@ -114,16 +114,16 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				if($_SESSION['role']=='admin'){
 					if($this->Administrator->save($this->request->data)){
-						$this->Flash->success(__('The user has been saved.'));
-						return $this->redirect(array('action' => 'index'));
+						$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+						return $this->redirect(array('controller'=>'pages','action' => 'display'));
 					}else {
-						$this->Flash->error(__('The user could not be saved. Please, try again.'));
+						$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
 					}
 				}
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+				return $this->redirect(array('controller'=>'pages','action' => 'display'));
 			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
 			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -142,17 +142,19 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+		if($_SESSION['role']=='admin'){
+			if ($this->request->is(array('post', 'put'))) {
+					if ($this->User->save($this->request->data)) {
+						$this->Flash->success(__('The user has been saved.'));
+						return $this->redirect(array('action' => 'index'));
+					} else {
+						$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				}
 			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+				$this->request->data = $this->User->find('first', $options);
+	
 			}
-		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
-
 		}
 	
 	}

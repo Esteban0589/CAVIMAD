@@ -1,4 +1,6 @@
-<?php
+<?php			
+//$this->debugController($this->request->data);
+
 App::uses('AppController', 'Controller');
 /**
  * Users Controller
@@ -105,34 +107,67 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
+ 
+ public function debugController($id) {
+		$this->request->data = $id;
+		
+		
+	}
 	public function edit($id = null) {
-		$this->loadModel('Administrator');
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				if($_SESSION['role']=='admin'){
-					if($this->Administrator->save($this->request->data)){
-						$this->Flash->success(__('The user has been saved.'));
-						return $this->redirect(array('action' => 'index'));
-					}else {
-						$this->Flash->error(__('The user could not be saved. Please, try again.'));
-					}
-				}
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+			if ($this->User->saveAll($this->request->data)) {
+				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+				return $this->redirect(array('action' => 'view',$id));
 			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevo'));
 			}
+			
+			
+		
+        	
+        	
+      
+			
+			
+			// if ($this->User->save($this->request->data)) {
+			// 	if($_SESSION['role']=='admin'){
+			// 		if($this->Administrator->save($this->request->data)){
+			// 			$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+			// 			return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// 		}else {
+			// 			$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
+			// 		}
+			// 	}
+			// 	$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+			// 	return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// } else {
+			// 	$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
+			// }
+			
+			
+			
+			// if ($this->User->save($this->request->data)) {
+			// 	if($_SESSION['role']=='admin'){
+			// 		if($this->User->saveAssociated($this->request->data)){
+			// 			$this->Flash->success(__('Los detalles de administrador han sido actualizados.'));
+			// 			return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// 		}else {
+			// 			$this->Flash->error(__('El administrador no pudo ser actualizado, intente de nuevos'));
+			// 		}
+			// 	}
+			// 	$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+			// 	return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			// } else {
+			// 	$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
+			// }
+			
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
 			$this->request->data = $this->User->find('first', $options);
-			if($this->request->data['User']['role']=='admin'):
-				$this->request->data = $this->Administrator->find('first', array('conditions' => array('Administrator.user_id' => $id)));
-			 endif;
-		
 		}
 	
 	}
@@ -142,17 +177,19 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+		if($_SESSION['role']=='admin'){
+			if ($this->request->is(array('post', 'put'))) {
+					if ($this->User->save($this->request->data)) {
+						$this->Flash->success(__('The user has been saved.'));
+						return $this->redirect(array('action' => 'index'));
+					} else {
+						$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				}
 			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+				$this->request->data = $this->User->find('first', $options);
+	
 			}
-		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
-
 		}
 	
 	}
@@ -196,7 +233,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
+				$this->Flash->success(__('El usuario ha sido creado. Por favor verifique su correo electrónico para activar su cuenta.'));
 				return $this->redirect(array('controller'=>'pages','action' => 'display'));
 			} else {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
@@ -303,7 +340,10 @@ class UsersController extends AppController {
                             if($output){
                                 $this->Flash->set('Correo electrónico enviado correctamente.');
                                 $this->redirect(array('controller'=>'users','action'=>'login'));
-                            }                                                                                                
+                            }
+                            else {
+                            	$this->Flash->set('Hubo un error al enviar el correo electrónico. Por favor intente nuevamente en unos minutos.');
+                            }
                         }
                         else{
                              $this->Flash->set("Error al generar enlace para reinicio de contraseña.");
@@ -368,4 +408,5 @@ class UsersController extends AppController {
         }
     
 	}
+	
 }

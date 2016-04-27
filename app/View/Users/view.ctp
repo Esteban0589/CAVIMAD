@@ -22,7 +22,21 @@
 					Ciudad: <?php echo h($user['User']['city']); ?>
 					<br/>
 					<br/>
-				
+					<?php if(($user['User']['role']=='Administrador')||($user['User']['role']=='Administrador')): ?>
+					Escpecialidad: <?php echo h($user['Administrator']['0']['specialty']); ?>
+					<br/>
+					<br/>
+					Escpecialidad: <?php echo h($user['Administrator']['0']['curriculum']); ?>
+					<br/>
+					<br/>
+					Escpecialidad: <?php echo h($user['Administrator']['0']['institution']); ?>
+					<br/>
+					<br/>
+					Escpecialidad: <?php echo h($user['Administrator']['0']['publication']); ?>
+					<br/>
+					<br/>
+
+					<?php endif; ?>
 
 					<!--<div class="actions">-->
 <!--	<h3><?php echo __('Actions'); ?></h3>-->

@@ -36,6 +36,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
     <link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
+   <link href="css/bootstrap.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
     <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
@@ -44,6 +45,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->-->
 
 
   </head>
@@ -69,17 +71,21 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <!--<li><a href="#">Jobs</a></li>-->
                         <?php
 						    if(empty($_SESSION['role'])||$_SESSION['username']==null){
-					    ?>    
+					    ?>   
     						<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
     						<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
     					<?php
 						} 
 						else{
-						  if($current_user['role']=='admin'): ?>
-						      <li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
-						  <?php endif;
+						    if($current_user['role']=='Administrador'){?>
+        						<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
+						    <?php
+    					    }
+    						?>
+					            <li><a href="users/logout">Cerrar sesión</a></li>       
+    					<?php
 						}
-						  ?>
+						?>
 						     
 						  
 					</li> 
@@ -135,16 +141,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </li>
                         
                          <li>
-                            
-                            <a  href="#drop-down-left" class="Pages Collection" title="" >
-                                <img src="app/webroot/img/g.png" alt="MENU" width="25" >
-                                </a>
-                            <ul class="sub-menu">
-                    
-                                <?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?>
-                                <?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?>
-                                <li><a href="users/logout">cerrar Sesion</a></li>
-                                
+                             
+                             
+                            <?php
+    						    if(!empty($_SESSION['role'])){
+    					    ?>  
+                                <a  href="#drop-down-left" class="glyphicon glyphicon-cog" title="" style="font-size:1em;">
+                                    </a>
+                                <ul class="sub-menu">
+                        
+                                    <?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?>
+                                    <?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?>
+                                    <li><a href="users/logout">cerrar Sesion</a></li>
+                            <?php
+						    } 
+						    ?>
+                             </ul>   
                         </li>
 
                         
@@ -215,7 +227,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </div>
                     </form>
                     
-                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                    <div id="bt-toggle-search" class="glyphicon glyphicon-search">
+                        <!--<i class="s-open fa fa-search"></i>-->
+                        <!--<i class="s-close fa fa-times"></i>-->
+                    </div><!-- toggle search button -->
                 
                 </div><!-- top search end -->
             
@@ -354,6 +369,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     <!-- Bootstrap -->
      <script src="js/bootstrap.min.js"></script>
+     <script src="js/bootstrap.js"></script>
+     <script src="js/npm.js"></script>
     
     <!-- Drop-down -->
      <script src="js/dropdown-menu.js"></script>

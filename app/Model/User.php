@@ -113,7 +113,7 @@ class User extends AppModel {
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 50),
-				'message' => 'El segundo apellido no debe tener más de 50 caracteres.',
+				'message' => 'El email no debe tener más de 50 caracteres.',
 				'allowEmpty' => false,
 				'required' => true,
 				//'last' => false, // Stop validation after this rule

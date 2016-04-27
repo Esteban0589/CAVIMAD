@@ -17,7 +17,7 @@
 				echo $this->Form->input('username', array('class'=>'form-control','label'=>'Nombre de Usuario:'));
 				echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:'));
 				echo $this->Form->input('role', array('default' => 'Usuario','type'=>'hidden')); 
-				echo $this->Form->input('activated', array('default' => '1','type'=>'hidden')); ?>
+				echo $this->Form->input('activated', array('default' => '0','type'=>'hidden')); ?>
 				<!--<?php// echo $this->Form->input('role', array('options'=>array('Usuario'=>'Usuario'), array('type'=>'hidden')));?>-->
 				
 				<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));

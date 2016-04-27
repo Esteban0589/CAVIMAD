@@ -41,10 +41,12 @@
 		$conditions = array(
 	  	  'User.id' => $this->Session->read('User.id'),
 	  	  'User.security_key' => $this->Session->read('User.key')
-		);
-		if ($this->User->hasAny($conditions)){
+		);?>
+		<?php if ($this->User->hasAny($conditions)){ ?>
     			<div class="alert alert-warning alert-dismissable">
                 	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>
+		<?php
+			
 		}
 ?>
 	</div>

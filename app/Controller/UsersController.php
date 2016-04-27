@@ -233,7 +233,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
+				$this->Flash->success(__('El usuario ha sido creado. Por favor verifique su correo electrónico para activar su cuenta.'));
 				return $this->redirect(array('controller'=>'pages','action' => 'display'));
 			} else {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
@@ -340,7 +340,10 @@ class UsersController extends AppController {
                             if($output){
                                 $this->Flash->set('Correo electrónico enviado correctamente.');
                                 $this->redirect(array('controller'=>'users','action'=>'login'));
-                            }                                                                                                
+                            }
+                            else {
+                            	$this->Flash->set('Hubo un error al enviar el correo electrónico. Por favor intente nuevamente en unos minutos.');
+                            }
                         }
                         else{
                              $this->Flash->set("Error al generar enlace para reinicio de contraseña.");

@@ -40,16 +40,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
-   <base href"https://clavimad-jimemachado.c9users.io/"/>
-    <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
-    <base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles 
-    <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles -->
-    <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
-<<<<<<< HEAD
-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->
-=======
-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->-->
->>>>>>> 22136cb4776913b595e0cd5e7d339f3e561cf73e
+   <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
+    <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
+    <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
+    <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
+    <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
+
 
 
   </head>

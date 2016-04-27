@@ -9,7 +9,7 @@
 				
 				<?php 
 				
-				echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:','placeholder' => 'Nombre','error' => __('Este Campo no puede quedar vacio')));
+				echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:','placeholder' => 'Nombre',));
 				echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:','placeholder' => 'Primer Apellido'));
 				echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:','placeholder' => 'Segundo Apellido'));
 				echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:','placeholder' => 'ejemplo@mail.com'));

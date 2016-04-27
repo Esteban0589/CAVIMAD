@@ -6,11 +6,13 @@
 				<div class="page-header">
 					<h2><?php echo __('Nuevo Usuario'); ?></h2>
 				</div>
+				
 				<?php 
-				echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:'));
-				echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:'));
-				echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:'));
-				echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:'));
+				
+				echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:','placeholder' => 'Nombre','error' => __('Este Campo no puede quedar vacio')));
+				echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:','placeholder' => 'Primer Apellido'));
+				echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:','placeholder' => 'Segundo Apellido'));
+				echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:','placeholder' => 'ejemplo@mail.com'));
 				echo $this->Form->input('country', array('class'=>'form-control','label'=>'País:')); 
 				echo $this->Form->input('state', array('class'=>'form-control','label'=>'Estado:'));
 				echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:')); 

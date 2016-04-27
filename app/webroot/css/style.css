@@ -24,11 +24,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 /* ================================================== COMMON STYLES */
 
-.errorm {
-background-color:#a90329;
-color:#fff;
-}
-
 /* == font and links == */
 body { font-family: 'Open Sans', 'Myriad Pro', 'Helvetica',  sans-serif; font-size: 16px; font-weight: 300; line-height: 26px; color: #002D6A; }
 a { -webkit-transition: 0.2s ease-in-out all; -moz-transition: 0.2s ease-in-out all; -o-transition: 0.2s ease-in-out all; transition: 0.2s ease-in-out all; }

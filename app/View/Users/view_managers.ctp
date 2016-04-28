@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-10">
 
-	<h2><?php echo __('Lista de Colaboradores'); ?></h2>
+	<h2 title= "Lista de los colaboradores de la página"><?php echo __('Lista de Colaboradores'); ?></h2>
 			
 		<div class="row small k-equal-height"><!-- row -->
                               
@@ -15,8 +15,8 @@
 							<th><?php echo $this->Paginator->sort('Nombre'); ?></th>
 							<th><?php echo $this->Paginator->sort('Apellidos'); ?></th>
 							<th><?php echo $this->Paginator->sort('Nombre de usuario'); ?></th>
-							<th><?php echo $this->Paginator->sort('Institución'); ?></th>
-							<th><?php echo $this->Paginator->sort('Especialidad'); ?></th>
+							<th title= "Institución a la que pertenece el colaborador"><?php echo $this->Paginator->sort('Institución'); ?></th>
+							<th title= "Especialidad del colaborador"><?php echo $this->Paginator->sort('Especialidad'); ?></th>
 						</tr>
 					</thead>
 					
@@ -28,7 +28,7 @@
 							<td><?php echo h($colaborador['User']['username']); ?>&nbsp;</td>
 							<td><?php echo h($colaborador['Administrator']['institution']); ?>&nbsp;</td>
 							<td><?php echo h($colaborador['Administrator']['specialty']); ?>&nbsp;</td>
-							<td class="actions">
+							<td title= "Ir al perfil del colaborador" class="actions">
 								<?php echo $this->Html->link(__('Ir al perfil'), array('action' => 'view', $colaborador['User']['id'])); ?>
 							</td>
 						</tr>

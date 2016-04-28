@@ -40,7 +40,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
-   <base href"https://clavimad-jimemachado.c9users.io/"/>
+   <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
@@ -59,16 +59,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!-- device test end -->
     
     <div id="header" class="container"> 
-    <!--<div class="caption-content">
-       <!--	<div id="k-site-logo" class="pull-left"><!-- site logo -->
+    <div class="caption-content">
+       	<div id="k-site-logo" class="pull-left">
         
-           <!-- <h1 class="k-logo">
+            <h1 class="k-logo">
                 <a href="http://www.ucr.ac.cr" title="Pagina oficial Universidad de Costa Rica">
                     <img src="app/webroot/img/logoUCR.png" alt="UCR" width="100"; />
                 </a>
             </h1>
-    	</div><!-- site logo end -->
-    	 <!--</div>-->
+    	</div>
+    </div>
         <ul class="list-inline pull-right">
                     <!--<li><a href="#">Jobs</a></li>-->
                         <?php
@@ -105,17 +105,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             
         
         	<div class="col-lg-12">
-                <div id="k-site-logo" class="pull-left"><!-- site logo -->
+             <!--   <div id="k-site-logo" class="pull-left">-->
                         
-                            <h1 class="k-logo">
-                                <a href="index-2.html" title="Home Page">
-                                    <img src="" alt="Site Logo/ en desarrollo" class="img-responsive" />
-                                </a>
-                            </h1>
-                            
-                            <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a><!-- alternative menu button -->
+             <!--       <h1 class="k-logo">-->
+             <!--           <a href="index-2.html" title="Home Page">-->
+             <!--               <img src="" alt="Site Logo/ en desarrollo" class="img-responsive" />-->
+             <!--           </a>-->
+             <!--       </h1>-->
                     
-                    	</div><!-- site logo end -->
+             <!--       <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a>-->
+            
+            	<!--</div>-->
 
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         

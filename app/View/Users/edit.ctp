@@ -26,6 +26,9 @@
 	            	<div>&nbsp</div>
 	            	<div title = "En este campo puede editar su Ciudad"><?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:','placeholder' => 'Ciudad'));?></div>
 	            	<div>&nbsp</div>
+	            	<div>&nbsp</div>
+	            	<div title = "En este campo puede editar su Contraseña"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:','placeholder' => 'Contraseña'));?></div>
+	            	<div>&nbsp</div>
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
 	            	<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
 	            	

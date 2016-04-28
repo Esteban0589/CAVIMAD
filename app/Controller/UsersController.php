@@ -158,8 +158,17 @@ class UsersController extends AppController {
 		if($_SESSION['role']=='Administrador'){
 			if ($this->request->is(array('post', 'put'))) {
 					if ($this->User->save($this->request->data)) {
-						$this->Flash->success(__('The user has been saved.'));
-						return $this->redirect(array('action' => 'index'));
+						$this->request->data['Administrator']['user_id'] = $this->User->id;
+						
+						if ($this->User->Administrator->save($this->request->data)){
+							$this->Flash->success(__('The user has been saved.'));
+							return $this->redirect(array('action' => 'index'));
+						}else{
+							$this->Flash->error(__('The user could not be saved. Please, try again.'));
+						}
+					
+						
+						
 					} else {
 						$this->Flash->error(__('The user could not be saved. Please, try again.'));
 				}
@@ -517,5 +526,6 @@ public function activate($token=null)
          }
      
  	}
+ 	
 	
 }

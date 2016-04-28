@@ -12,7 +12,7 @@
         
         	<div class="container"><!-- container -->
                 
-                <h1>CAVIMAD<small>Intro</small></h1>
+                <h1>CAVIMAD<small><div>Intro</div></small></h1>
                 <p>
                 Curabitur fringilla, massa sit amet ultricies iaculis, nisi lorem faucibus justo, eu interdum odio nunc eu lorem. Aliquam auctor id augue posuere. Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus.
                 </p>

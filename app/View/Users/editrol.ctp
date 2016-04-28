@@ -15,12 +15,14 @@
 	        	</fieldset>
 	        	<br>
 	        	<br>
+	        	<?php echo $this->Form->input('role', array('options'=>array('Administrator'=>'Administrador', 'Colaborador'=>'Colaborador', 'Editor'=>'Editor', 'Usuario'=>'Usuario'),'label'=>'Rol:'));?>
 	        	<br>
 	        	<br>
 	        	<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>
 	            <div>&nbsp</div>
 	            <div>&nbsp</div>
             <?php endif; ?>
+            
             <?php if($_SESSION['role']!='Administrador'): ?>
             	<div class="alert alert-warning alert-dismissable">
                 	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>

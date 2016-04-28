@@ -1,7 +1,14 @@
-<div class="forgetpwd form" style="margin:5px auto 5px auto;width:450px;">
-<?php echo $this->Form->create('User', array('reset')); ?>
-<?php echo $this->Form->input('password', array('label'=>'Nueva contraseña: ','placeholder' => 'Contraseña'));?>
-<?php echo $this->Form->input('password', array('label'=>'Repita su contraseña: ','placeholder' => 'Contraseña'));;?><br>
-<input type="submit" class="button" style="float:left;margin-left:3px;" value="Aceptar" />
-<?php echo $this->Form->end();?>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+		    <div class="page-header">
+    		    <h2>Restablecer contraseña</h2>
+    		</div>
+    		
+                <?php echo $this->Form->create('User', array('reset')); ?>
+                <?php echo $this->Form->input('password', array('label'=>'Nueva contraseña: ','placeholder' => 'Contraseña'));?>
+                <?php echo $this->Form->input('password', array('label'=>'Repita su contraseña: ','placeholder' => 'Repita Contraseña'));;?><br>
+                <?php echo $this->Form->end(array('label'=>'Restablecer', 'class'=>'btn btn-success')); ?>
+        </div>
+    </div>
 </div>

@@ -63,7 +63,7 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset');
+        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset','activate');
     }
 
 
@@ -233,13 +233,110 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('El usuario ha sido creado. Por favor verifique su correo electrónico para activar su cuenta.'));
-				return $this->redirect(array('controller'=>'pages','action' => 'display'));
-			} else {
+
+				if ($this->User->activaded == 0){
+					//$fu = $this->User;
+					//Genera el link para activar cuenta.
+					$key = Security::hash(CakeText::uuid(),'sha512',true);
+					$hash=sha1(['User']['username'].rand(0,100));
+
+	                //$hash=sha1($this->User->username.rand(0,100));
+	                $url = Router::url( array('action'=>'activate'), true ).'/'.$key.'#'.$hash;
+	               	$this->User->saveField('tokenhash',$key);
+	                $ms=$url;
+	                $ms=wordwrap($ms,1000);
+					//Envía el correo de activación de cuenta.
+					 $data = array();
+					 $user_data = array();
+	                 $user_data['name'] = $this->request->data['User']['name'];
+	                 $user_data['ms'] = $ms;
+	                 $this->set('user_data', $user_data);  
+	                        $data['to'] = $this->request->data['User']['email'];
+	                        $data['subject'] = 'Activación de cuenta';
+	                        $data['body'] = array('user_data' => $user_data);
+	                        $data['template'] = 'activate_account';
+	                        $output =$this->send_mail($data);
+	
+	                            if($output){
+	                                //$this->Flash->set('Correo electrónico enviado correctamente.'); Esto podría eliminarse
+	                                $this->Flash->success(__('El usuario ha sido creado. Por favor verifique su correo electrónico para activar su cuenta.'));
+	                          		return $this->redirect(array('controller'=>'pages','action' => 'display'));
+	                            }
+	                            else {
+	                            	$this->Flash->set('Hubo un error al enviar el correo electrónico. Por favor intente nuevamente en unos minutos.');
+	                            	delete_without_flash($this->request->data['User']['id']);
+	                            	
+	                            }
+				}
+			} 
+				//$this->Flash->success(__('The user has been saved.'));
+			//	return $this->redirect(array('controller'=>'pages','action' => 'display'));
+			 else {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
 			}
 		}
 	}
+	
+public function activate($token=null)
+	{
+		$this->User->recursive=-1;
+        if(!empty($token))
+        {
+            $u=$this->User->findBytokenhash($token);
+            //$this->debugController($this->request->data);
+           if(!empty($u))
+            {
+                $this->User->data=$u;        
+          //      debug($this->User->data);
+                if(!empty($this->User->data))
+                {    
+                    $new_hash=sha1($u['User']['username'].rand(0,100));					//Crea un nuevo token
+                        
+                    $this->User->data['User']['tokenhash']=$new_hash;
+                    
+                    if($this->User->data['User']['activated'] == (false)) //Si no se ha activado
+                    {
+                    	
+                        $this->User->data['User']['activated'] = (true);   
+                        if($this->User->data['User']['activated'] == (true))
+                        {
+                        	
+                           	if ($this->User->updateAll(array('User.activated' => 1), array('User.username' => $u['User']['username']))){
+                           		$this->Flash->success(__('Se activó su cuenta correctamente.'));
+                           		$this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
+								return $this->redirect(array('controller' => 'pages','action' => 'display'));
+                           	} else {
+								$this->Flash->error(__('El usuario no pudo ser activado, intente de nuevo'));
+							}
+                            
+                            
+                            
+                            // $this->Flash->set('Se activó su cuenta correctamente.');
+                            // return $this->redirect(array('action'=>'login'));
+                        }
+                    }
+                    else{
+                        $this->Flash->set('errors',$this->User->invalidFields());
+                        return $this->redirect(array('action'=>'login'));
+                        }
+                }
+            }
+            else
+            {
+                 $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
+                 return $this->redirect(array('action'=>'login'));
+                 //$this->redirect(array('action'=>'login'));
+            }
+        }
+        else
+        {
+            $this->Flash->set('Token inválido, intente de nuevo.');
+            $this->redirect(array('action'=>'login'));
+        }
+    
+	}
+	
+	
 	
 
 /**
@@ -278,8 +375,14 @@ class UsersController extends AppController {
 		$Email->template('$Email_template');
 		$Email->from('cavimad@noreply.com');
 		$Email->template($email_data['template']);
-
-   		$Email->viewVars (array('ms' => $email_data['body']['ms']));
+		if (!empty($email_data['body']['user_data']))
+		{
+			$Email->viewVars (array('user_data' => $email_data['body']['user_data']));
+		}
+		else
+		{
+		$Email->viewVars (array('ms' => $email_data['body']['ms']));
+		}
 		$Email-> emailFormat ('html');
 		if ($Email->send())   
             {
@@ -387,6 +490,7 @@ class UsersController extends AppController {
                                                                                         
                         if($this->User->save($this->User->data))
                         {
+                        	$this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
                             $this->Flash->set('La contraseña ha sido actualizada.');
                             $this->redirect(array('controller'=>'users','action'=>'login'));
                         }
@@ -399,6 +503,7 @@ class UsersController extends AppController {
             else
             {
                  $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
+                 $this->redirect(array('action'=>'login'));
             }
         }
         else

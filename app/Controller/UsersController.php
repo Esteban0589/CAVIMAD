@@ -40,7 +40,7 @@ class UsersController extends AppController {
 	public function viewManagers() {
 		$this->loadModel('Administrator');
 		$this->User->recursive = 0;
-		$this->set('users', $users = $this->User->find('all', array('conditions' => array('User.role' => 'Colaboradores'))));
+		$this->set('users', $users = $this->User->find('all', array('conditions' => array('User.role' => 'Colaborador'))));
 		$this->set('colaboradores', $colaboradores = $this->Administrator->find('all'));
 	}
 	

@@ -1,6 +1,14 @@
-<div class="forgetpwd form" style="margin:5px auto 5px auto;width:450px;">
-<?php echo $this->Form->create('User', array('forgetpwd')); ?>
-<?php echo $this->Form->input('email',array('style'=>'float:left'));?>
-<input type="submit" class="button" style="float:left;margin-left:3px;" value="Enviar" />
-<?php echo $this->Form->end();?>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+		    <div class="page-header">
+    		    <h2>¿Olvidaste tu Contraseña?</h2>
+    		</div>
+    		    <p>Si olvidaste tu contraseña por favor ingresa tu correo para resivir un correo electrónico de reactivación de contraseña.
+    		        </p>
+    		   
+                    <div title = "En este campo por favor introduzca su correo electrónico"> <?php echo $this->Form->input('User', array('forgetpwd','label'=>'Email:','placeholder' => 'ejemplo@mail.com')); ?> </div>
+                    <?php echo $this->Form->end(array('label'=>'Enviar', 'class'=>'btn btn-success')); ?>
+        </div>
+    </div>
 </div>

@@ -97,7 +97,7 @@ class User extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				'message' => 'Por favor ingresar un email válido.',
+				'message' => 'Por favor ingresar un correo electrónico válido.',
 				// 'allowEmpty' => false,
 				// 'required' => true,
 				//'last' => false, // Stop validation after this rule

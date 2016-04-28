@@ -6,18 +6,20 @@
 				<div class="page-header">
 					<h2><?php echo __('Nuevo Usuario'); ?></h2>
 				</div>
+				
 				<?php 
-				echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:'));
-				echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:'));
-				echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:'));
-				echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:'));
+				
+				echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:','placeholder' => 'Nombre',));
+				echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:','placeholder' => 'Primer Apellido'));
+				echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:','placeholder' => 'Segundo Apellido'));
+				echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:','placeholder' => 'ejemplo@mail.com'));
 				echo $this->Form->input('country', array('class'=>'form-control','label'=>'País:')); 
 				echo $this->Form->input('state', array('class'=>'form-control','label'=>'Estado:'));
 				echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:')); 
 				echo $this->Form->input('username', array('class'=>'form-control','label'=>'Nombre de Usuario:'));
 				echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:'));
 				echo $this->Form->input('role', array('default' => 'Usuario','type'=>'hidden')); 
-				echo $this->Form->input('activated', array('default' => '1','type'=>'hidden')); ?>
+				echo $this->Form->input('activated', array('default' => '0','type'=>'hidden')); ?>
 				<!--<?php// echo $this->Form->input('role', array('options'=>array('Usuario'=>'Usuario'), array('type'=>'hidden')));?>-->
 				
 				<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));
@@ -37,6 +39,21 @@
 		<!--		<li><?php echo $this->Html->link(__('New Administrator'), array('controller' => 'administrators', 'action' => 'add')); ?> </li>-->
 		<!--	</ul>-->
 		<!--</div>-->
+<<<<<<< HEAD
+=======
+		<?php
+		$conditions = array(
+	  	  'User.id' => $this->Session->read('User.id'),
+	  	  'User.security_key' => $this->Session->read('User.key')
+		);?>
+		
+		
+		<!--<?php //if ($this->User->hasAny($conditions)){ ?>-->
+    			<!--<div class="alert alert-warning alert-dismissable">-->
+       <!--         	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>-->
+       <!--         	</div>-->
+		<!--<?php //} ?> -->
+>>>>>>> eb2d7d2c5d77eb5093535d22ceb0deffe0bb8256
 	</div>
 	
 </div>

@@ -10,7 +10,7 @@
 							<h2>Ingresa tu usuario</h2>
 							<h6>
 								<?php 
-								echo $this->Form->input('username', array('label'=>' ','type'=>'text','placeholder' => 'ejemplo@ejemplo.com'));?>
+								echo $this->Form->input('username', array('label'=>' ','type'=>'text','placeholder' => 'Usuario'));?>
 							</h6>
 						</div>
 						<div class="title-median">

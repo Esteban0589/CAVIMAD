@@ -41,11 +41,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
    <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
+<<<<<<< HEAD
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles --> 
     <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->-->
+=======
+    <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
+    <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
+    <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
+    <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
+
+
+>>>>>>> eb2d7d2c5d77eb5093535d22ceb0deffe0bb8256
 
   </head>
   
@@ -56,17 +67,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!-- device test end -->
     
     <div id="header" class="container"> 
-       	<div id="k-site-logo" class="pull-left"><!-- site logo -->
+    <!--<div class="caption-content">
+       <!--	<div id="k-site-logo" class="pull-left"><!-- site logo -->
         
-            <h1 class="k-logo">
+           <!-- <h1 class="k-logo">
                 <a href="http://www.ucr.ac.cr" title="Pagina oficial Universidad de Costa Rica">
                     <img src="app/webroot/img/logoUCR.png" alt="UCR" width="100"; />
                 </a>
             </h1>
-            
-            <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a><!-- alternative menu button -->
-    
     	</div><!-- site logo end -->
+    	 <!--</div>-->
         <ul class="list-inline pull-right">
                     <!--<li><a href="#">Jobs</a></li>-->
                         <?php
@@ -103,7 +113,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             
         
         	<div class="col-lg-12">
-        
+                <div id="k-site-logo" class="pull-left"><!-- site logo -->
+                        
+                            <h1 class="k-logo">
+                                <a href="index-2.html" title="Home Page">
+                                    <img src="" alt="Site Logo/ en desarrollo" class="img-responsive" />
+                                </a>
+                            </h1>
+                            
+                            <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a><!-- alternative menu button -->
+                    
+                    	</div><!-- site logo end -->
 
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
@@ -136,7 +156,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <?php
     						    if(!empty($_SESSION['role'])){
     					    ?>  
-                                <a  href="#drop-down-left" class="glyphicon glyphicon-cog" title="" >
+                                <a  href="#drop-down-left" class="glyphicon glyphicon-cog" title="" style="font-size:1em;">
                                     </a>
                                 <ul class="sub-menu">
                         
@@ -146,7 +166,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <?php
 						    } 
 						    ?>
-                                
+                             </ul>   
                         </li>
 
                         
@@ -217,7 +237,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </div>
                     </form>
                     
-                    <div id="bt-toggle-search" class="glyphicon glyphicon-search"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                    <div id="bt-toggle-search" class="glyphicon glyphicon-search">
+                        <!--<i class="s-open fa fa-search"></i>-->
+                        <!--<i class="s-close fa fa-times"></i>-->
+                    </div><!-- toggle search button -->
                 
                 </div><!-- top search end -->
             
@@ -299,31 +322,30 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </div>
                     
                 </div><!-- widgets column left end -->
-            	<div class="col-lg-4 col-md-4"><!-- widgets column left -->
-            
+            	<div class="col-lg-4 col-md-4"><!-- widgets column right -->
+                
                     <div class="col-padded col-naked">
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	<li class="widget-container widget_nav_menu"><!-- widgets list -->
+                        	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Useful links</h1>
+                                <h1 class="title-widget">Flickr Stream</h1>
                                 
-                                <ul>
-                                	<li><a href="#" title="menu item">Placement Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Superintendent's Hearing Audio</a></li>
-                                    <li><a href="#" title="menu item">Budget Central</a></li>
-                                    <li><a href="#" title="menu item">Job Opportunities - Application</a></li>
-                                    <li><a href="#" title="menu item">College Acceptances as of May 12</a></li>
+                                <ul class="k-flickr-photos list-unstyled">
+                                	<li><a class="k-logo" href="http://www.ucr.ac.cr" title="Pagina oficial Universidad de Costa Rica"><img src="app/webroot/img/logoUCR.png" alt="UCR" width="100"; /></a></li>
+                                    <li><a href="http://www.cimar.ucr.ac.cr" title="Flickr photo"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
+                                    <li><a href="http://www.biologia.ucr.ac.cr" title="Flickr photo"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
+                                    
                                 </ul>
                     
 							</li>
                             
-                        </ul>
-                         
+                        </ul> 
+                        
                     </div>
-                    
-                </div><!-- widgets column left end -->
+                
+                </div><!-- widgets column right end -->
             
             </div><!-- row end -->
         

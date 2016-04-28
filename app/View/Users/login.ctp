@@ -9,17 +9,18 @@
 						<div class="title-median" >
 							<h2>Ingresa tu usuario</h2>
 							<h6>
-								<?php 
-								echo $this->Form->input('username', array('label'=>' ','type'=>'text','placeholder' => 'Usuario'));?>
+								<div title = "En este campo por favor introduzca su Nombre de Usario">
+								<?php echo $this->Form->input('username', array('label'=>' ','type'=>'text','placeholder' => 'Usuario'));?></div>
 							</h6>
 						</div>
 						<div class="title-median">
 							<h2>Ingresa tu contraseña</h2>
 							<h6>
-								<?php echo $this->Form->input ('password', array('label'=>' ','placeholder' => 'Contraseña'));?>
+								<div title = "En este campo por favor introduzca su Contraseña"> 
+								<?php echo $this->Form->input ('password', array('label'=>' ','placeholder' => 'Contraseña'));?></div>
 							</h6>
 						</div>
-						<?php echo $this->Form->checkbox('remember_me'); ?> Recordarme
+						<div title = "Click para recordar su sesion">  <?php echo $this->Form->checkbox('remember_me'); ?> Recordarme </div>
 						<div>&nbsp</div>   
 					<?php 
 						echo $this->Form->button(__('Ingresar'), array(

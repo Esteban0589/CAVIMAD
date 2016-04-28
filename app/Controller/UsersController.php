@@ -517,5 +517,38 @@ public function activate($token=null)
          }
      
  	}
+ 	
+ 	var $helpers = array('Html','Ajax','Javascript'); //these are the helpers I am using
+var $components = array('RequestHandler');
+
+	function ajax_validate(){
+		Configure::write('debug', 0); 
+		$this->autoRender = false;
+		$ret = "false";
+		$this->data = $_GET['data'];
+		
+		if ($this->RequestHandler->isAjax()) {
+		// If we have data, process it. If not send back an error.
+			if(is_array($this->data['User'])){
+				// $this->cleanUpFields();
+				// Validate the User, if it's ok, show no errors. If not ok, show errors
+				$this->User->create($this->data);
+				if ($this->User->validates()){
+	                		$ret = true;
+	            		} else {
+	            			$errors = $this->User->invalidFields();
+	            			// grab the error message from the array
+	            			$ret = '';
+	            			foreach($errors as $error){
+	            				$ret .= $error;
+	            			}
+	            		}
+			}
+			echo json_encode($ret);
+		} else {
+			echo 'not_ajax';
+		}
+	}
+ 	
 	
 }

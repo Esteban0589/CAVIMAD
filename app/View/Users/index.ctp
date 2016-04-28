@@ -20,8 +20,8 @@
 									<!--<th><?php echo $this->Paginator->sort('Ciudad'); ?></th>-->
 									<th><?php echo $this->Paginator->sort('Nombre de usuario'); ?></th>
 									<th><?php echo $this->Paginator->sort('Rol'); ?></th>
-									<th class="actions"><?php echo __('Editar'); ?></th>
-									<th class="actions2"><?php echo __('Activación'); ?></th>
+									<th title = "Click para poder editar Usuarios" class="actions"><?php echo __('Editar'); ?></th>
+									<th title = "Click para activar/desactivar usuarios"class="actions2"><?php echo __('Activación'); ?></th>
 								</tr>
 							</thead>
 							

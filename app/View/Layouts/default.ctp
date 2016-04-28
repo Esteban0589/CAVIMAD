@@ -383,7 +383,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
     <!-- Pie charts -->
      <script src="js/jquery.easy-pie-chart.js"></script>
-    
+
     <!-- Theme -->
      <script src="js/theme.js"></script>
     

@@ -393,10 +393,16 @@ public function activate($token=null)
                         $this->set('ms', $ms);    
                                                                     
                         $data = array();
-                        
+                        $data = array();
+                        $user_data = array();
+		                $user_data['name'] = $fu['User']['name'];
+		                $user_data['ms'] = $ms;
+                        $this->set('user_data', $user_data);  
+	                        
+            
                         $data['to'] = $fu['User']['email'];
                         $data['subject'] = 'Reinicio de contraseña';
-                        $data['body'] = array('ms' => $ms);
+                        $data['body'] = array('user_data' => $user_data);
                         $data['template'] = 'reset_password';
                         $output =$this->send_mail($data);
 
@@ -425,53 +431,51 @@ public function activate($token=null)
         }    
 	}
 	
-	//Reinicia la contraseña según un hash agregado anteriormente.
-	public function reset($token=null)
-	{
-            
-        $this->User->recursive=-1;
-        if(!empty($token))
-        {
-            $u=$this->User->findBytokenhash($token);
-            if(!empty($u))
-            {
-                $this->User->id=$u['User']['id'];        
-                
-                if(!empty($this->data))
-                {    
-                    $this->User->data=$this->data;
-                    $this->User->data['User']['username']=$u['User']['username'];
-                    $new_hash=sha1($u['User']['username'].rand(0,100));					//Crea un nuevo token
-                        
-                    $this->User->data['User']['tokenhash']=$new_hash;
-                    
-                    if($this->User->validates(array('fieldList' => array('password', 'password_confirm'))))
-                    {
-                                                                                        
-                        if($this->User->save($this->User->data))
-                        {
-                        	$this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
-                            $this->Flash->set('La contraseña ha sido actualizada.');
-                            $this->redirect(array('controller'=>'users','action'=>'login'));
-                        }
-                    }
-                    else{
-                        $this->Flash->set('errors',$this->User->invalidFields());
-                        }
-                }
-            }
-            else
-            {
-                 $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
-                 $this->redirect(array('action'=>'login'));
-            }
-        }
-        else
-        {
-            $this->Flash->set('Token inválido, intente de nuevo.');
-            $this->redirect(array('controller'=>'users','action'=>'login'));
-        }
-    
-	}
+ 	//Reinicia la contraseña según un hash agregado anteriormente.
+ 	public function reset($token=null)
+ 	{
+             
+         $this->User->recursive=-1;
+         if(!empty($token))
+         {
+             $u=$this->User->findBytokenhash($token);
+             if(!empty($u))
+             {
+                 $this->User->id=$u['User']['id'];        
+                 
+                 if(!empty($this->data))
+                 {    
+                     $this->User->data=$this->data;
+                     $this->User->data['User']['username']=$u['User']['username'];
+                     $new_hash=sha1($u['User']['username'].rand(0,100));					//Crea un nuevo token
+                         
+                     $this->User->data['User']['tokenhash']=$new_hash;
+                     
+                     if($this->User->validates(array('fieldList' => array('password', 'password_confirm'))))
+                     {
+                                                                                         
+                         if($this->User->save($this->User->data))
+                         {
+                             $this->Flash->set('La contraseña ha sido actualizada.');
+                             $this->redirect(array('controller'=>'users','action'=>'login'));
+                         }
+                     }
+                     else{
+                         $this->Flash->set('errors',$this->User->invalidFields());
+                         }
+                 }
+             }
+             else
+             {
+                  $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
+             }
+         }
+         else
+         {
+             $this->Flash->set('Token inválido, intente de nuevo.');
+             $this->redirect(array('controller'=>'users','action'=>'login'));
+         }
+     
+ 	}
 	
 }

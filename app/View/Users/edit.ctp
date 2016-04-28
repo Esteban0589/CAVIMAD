@@ -12,19 +12,19 @@
 	            	
 	
 	            	<?php echo $this->Form->input('id');?>
-	            	<?php echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:')); ?>
+	            	<div title = "En este campo puede editar su Nombre"><?php echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:','placeholder' => 'Nombre')); ?></div>
 	            	<div>&nbsp</div>
-	            	<?php echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:'));?> 
+	            	<div title = "En este campo puede editar su Primer Apellido"><?php echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:','placeholder' => 'Primer Apellido'));?> </div>
 	            	<div>&nbsp</div>
-	            	<?php echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:'));?>
+	            	<div title = "En este campo puede editar su Segundo Apellido"><?php echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:','placeholder' => 'Segundo Apellido'));?></div>
 	            	<div>&nbsp</div>
-	            	<?php echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:'));?>
+	            	<div title = "En este campo puede editar su Correo electrónico"><?php echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:','placeholder' => 'Correo electrónico'));?></div>
 	            	<div>&nbsp</div>
-	            	<?php echo $this->Form->input('country', array('class'=>'form-control','label'=>'Pais:'));?>
+	            	<div title = "En este campo puede editar su País"><?php echo $this->Form->input('country', array('class'=>'form-control','label'=>'Pais:','placeholder' => 'País'));?></div>
 	            	<div>&nbsp</div>
-	            	<?php echo $this->Form->input('state', array('class'=>'form-control','label'=>'Estado:'));?>
+	            	<div title = "En este campo puede editar su Estado/Provincia"><?php echo $this->Form->input('state', array('class'=>'form-control','label'=>'Estado:','placeholder' => 'Estado/provincia'));?></div>
 	            	<div>&nbsp</div>
-	            	<?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:'));?>
+	            	<div title = "En este campo puede editar su Ciudad"><?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:','placeholder' => 'Ciudad'));?></div>
 	            	<div>&nbsp</div>
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
 	            	<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>

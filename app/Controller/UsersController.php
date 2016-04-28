@@ -457,6 +457,7 @@ public function activate($token=null)
                          if($this->User->save($this->User->data))
                          {
                              $this->Flash->set('La contraseña ha sido actualizada.');
+                             $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
                              $this->redirect(array('controller'=>'users','action'=>'login'));
                          }
                      }

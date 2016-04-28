@@ -7,19 +7,17 @@
 					<h2><?php echo __('Nuevo Usuario'); ?></h2>
 				</div>
 				
-				 
-				
-				<div title = "En este campo por favor introduzca su Nombre"><?php echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:','placeholder' => 'Nombre',));?></div>
-				<div title = "En este campo por favor introduzca su Primer Apellido"><?php echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:','placeholder' => 'Primer Apellido'));?></div>
-				<div title = "En este campo por favor introduzca su Segundo Apellido"><?php echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:','placeholder' => 'Segundo Apellido'));?></div>
-				<div title = "En este campo por favor introduzca su Correo electrónico"><?php echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:','placeholder' => 'ejemplo@mail.com'));?></div>
-				<div title = "En este campo por favor introduzca su País"><?php echo $this->Form->input('country', array('class'=>'form-control','label'=>'País:', 'placeholder' => 'País'));?></div>
+				<div title = "En este campo por favor introduzca su nombre"><?php echo $this->Form->input('name', array('class'=>'form-control','label'=>'Nombre:','placeholder' => 'Nombre',));?></div>
+				<div title = "En este campo por favor introduzca su primer apellido"><?php echo $this->Form->input('lastname1', array('class'=>'form-control','label'=>'Primer Apellido:','placeholder' => 'Primer Apellido'));?></div>
+				<div title = "En este campo por favor introduzca su segundo apellido"><?php echo $this->Form->input('lastname2', array('class'=>'form-control','label'=>'Segundo Apellido:','placeholder' => 'Segundo Apellido'));?></div>
+				<div title = "En este campo por favor introduzca su correo electrónico"><?php echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:','placeholder' => 'ejemplo@mail.com'));?></div>
+				<div title = "En este campo por favor introduzca su país"><?php echo $this->Form->input('country', array('class'=>'form-control','label'=>'País:', 'placeholder' => 'País'));?></div>
 				<div title = "En este campo por favor introduzca su estado o provincia"><?php echo $this->Form->input('state', array('class'=>'form-control','label'=>'Estado:','placeholder' => 'Proovincia/Estado'));?></div>
 				<div title = "En este campo por favor introduzca su ciudad"><?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:','placeholder' => 'Ciudad')); ?></div>
-				<div title = "En este campo por favor introduzca su Nombre de Usuario"><?php echo $this->Form->input('username', array('class'=>'form-control','label'=>'Nombre de Usuario:','placeholder' => 'EjemploUusario123'));?></div>
-				<div title = "En este campo por favor introduzca su Contraseña"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:','placeholder' => 'contraseña'));?></div>
-				<div title = "Rol del usuario"><?php echo $this->Form->input('role', array('default' => 'Usuario','type'=>'hidden')); ?></div>
-				<div title = "Cuenta activad"><?php echo $this->Form->input('activated', array('default' => '0','type'=>'hidden')); ?> </div>
+				<div title = "En este campo por favor introduzca su nombre de usuario"><?php echo $this->Form->input('username', array('class'=>'form-control','label'=>'Nombre de Usuario:','placeholder' => 'EjemploUusario123'));?></div>
+				<div title = "Intriducir por favor una contraseña alfanumérica"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña (La contraseña debe ser alfanumérica):','placeholder' => 'contraseña'));?></div>
+				<div><?php echo $this->Form->input('role', array('default' => 'Usuario','type'=>'hidden')); ?></div>
+				<div><?php echo $this->Form->input('activated', array('default' => '0','type'=>'hidden')); ?> </div>
 				<!--<?php// echo $this->Form->input('role', array('options'=>array('Usuario'=>'Usuario'), array('type'=>'hidden')));?>-->
 				
 				<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));
@@ -39,8 +37,6 @@
 		<!--		<li><?php echo $this->Html->link(__('New Administrator'), array('controller' => 'administrators', 'action' => 'add')); ?> </li>-->
 		<!--	</ul>-->
 		<!--</div>-->
-<<<<<<< HEAD
-=======
 		<?php
 		$conditions = array(
 	  	  'User.id' => $this->Session->read('User.id'),
@@ -53,7 +49,7 @@
        <!--         	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>-->
        <!--         	</div>-->
 		<!--<?php //} ?> -->
->>>>>>> eb2d7d2c5d77eb5093535d22ceb0deffe0bb8256
+
 	</div>
 	
 </div>

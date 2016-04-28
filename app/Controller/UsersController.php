@@ -24,6 +24,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
+		if ( $_SESSION['role'] != 'Administrador'  ) {
+			throw new NotFoundException(__('Usuario invalido.'));
+		}
 		$this->set('role', $this->roles);
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
@@ -54,6 +57,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		if ( $_SESSION['role'] == null  ) {
+			throw new NotFoundException(__('Para esta sección es necesario estar registrado.'));
+		}
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -68,6 +74,10 @@ class UsersController extends AppController {
 
 
     public function login() {
+    	if ( $_SESSION['role'] != null  ) {
+			throw new NotFoundException(__('Sesión activa.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
         if( !(empty($this->data))){
         	$var=$this->User->findByUsername($this->request->data['User']['username']);
         	if($var['User']['activated']==true){
@@ -117,6 +127,10 @@ class UsersController extends AppController {
 	}
 	
 	public function edit($id = null) {
+		if ( $_SESSION['role'] == null  ) {
+			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -141,7 +155,7 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		if($_SESSION['role']=='admin'){
+		if($_SESSION['role']=='Administrador'){
 			if ($this->request->is(array('post', 'put'))) {
 					if ($this->User->save($this->request->data)) {
 						$this->Flash->success(__('The user has been saved.'));
@@ -159,6 +173,7 @@ class UsersController extends AppController {
 	}
 
 	public function editactivated($id = null) {
+		
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -193,6 +208,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
+		if ( $_SESSION['role'] != null  ) {
+			throw new NotFoundException(__('Ya estás registrado.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
 		$this->set('role', $this->roles);
 		if ($this->request->is('post')) {
 			$this->User->create();
@@ -243,6 +262,10 @@ class UsersController extends AppController {
 	
 public function activate($token=null)
 	{
+		if ( $_SESSION['role'] != null  ) {
+			throw new NotFoundException(__('Sesión activa.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
 		$this->User->recursive=-1;
         if(!empty($token))
         {
@@ -311,6 +334,10 @@ public function activate($token=null)
  * @return void
  */
 	public function delete($id = null) {
+		if ( $_SESSION['role'] != 'Administrador'  ) {
+			throw new NotFoundException(__('Sesión activa.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -360,6 +387,10 @@ public function activate($token=null)
 	//Genera un token y envía un correo electrónico para reiniciar la contraseña.
 	public function forgot_password()
 	{
+		if ( $_SESSION['role'] != null  ) {
+			throw new NotFoundException(__('Sesión activa.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
         $this->User->recursive=-1;
         if(!empty($this->data))
         {
@@ -438,7 +469,10 @@ public function activate($token=null)
  	//Reinicia la contraseña según un hash agregado anteriormente.
  	public function reset($token=null)
  	{
-             
+         if ( $_SESSION['role'] != null  ) {
+			throw new NotFoundException(__('Sesión activa.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}    
          $this->User->recursive=-1;
          if(!empty($token))
          {

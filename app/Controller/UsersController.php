@@ -29,7 +29,12 @@ class UsersController extends AppController {
 		}
 		$this->set('role', $this->roles);
 		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
+		if($this->User->activated==0){	
+			// $this->User=$this->User->FindByActivated(1);
+			// $this->User->FindByActivated(1);
+			// $this->set('users', $users = $this->User->find('all', array('conditions' => array('User.activated' => '1'))));
+			$this->set('users', $this->Paginator->paginate());
+		}
 	}
 
 

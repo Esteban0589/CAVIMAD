@@ -110,9 +110,8 @@ class UsersController extends AppController {
  
  public function debugController($id) {
 		$this->request->data = $id;
-		
-		
 	}
+	
 	public function edit($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
@@ -124,46 +123,7 @@ class UsersController extends AppController {
 			} else {
 				$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevo'));
 			}
-			
-			
-		
-        	
-        	
-      
-			
-			
-			// if ($this->User->save($this->request->data)) {
-			// 	if($_SESSION['role']=='admin'){
-			// 		if($this->Administrator->save($this->request->data)){
-			// 			$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
-			// 			return $this->redirect(array('controller'=>'pages','action' => 'display'));
-			// 		}else {
-			// 			$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
-			// 		}
-			// 	}
-			// 	$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
-			// 	return $this->redirect(array('controller'=>'pages','action' => 'display'));
-			// } else {
-			// 	$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
-			// }
-			
-			
-			
-			// if ($this->User->save($this->request->data)) {
-			// 	if($_SESSION['role']=='admin'){
-			// 		if($this->User->saveAssociated($this->request->data)){
-			// 			$this->Flash->success(__('Los detalles de administrador han sido actualizados.'));
-			// 			return $this->redirect(array('controller'=>'pages','action' => 'display'));
-			// 		}else {
-			// 			$this->Flash->error(__('El administrador no pudo ser actualizado, intente de nuevos'));
-			// 		}
-			// 	}
-			// 	$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
-			// 	return $this->redirect(array('controller'=>'pages','action' => 'display'));
-			// } else {
-			// 	$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevos'));
-			// }
-			
+
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
@@ -200,7 +160,7 @@ class UsersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
+				$this->Flash->success(__('Se cambio correctamente el estado de la cuenta.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));

@@ -37,16 +37,6 @@
 		<!--		<li><?php echo $this->Html->link(__('New Administrator'), array('controller' => 'administrators', 'action' => 'add')); ?> </li>-->
 		<!--	</ul>-->
 		<!--</div>-->
-		<?php
-		$conditions = array(
-	  	  'User.id' => $this->Session->read('User.id'),
-	  	  'User.security_key' => $this->Session->read('User.key')
-		);
-		if ($this->User->hasAny($conditions)){
-    			<div class="alert alert-warning alert-dismissable">
-                	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>
-		}
-?>
 	</div>
 	
 </div>

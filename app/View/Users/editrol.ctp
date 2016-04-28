@@ -9,8 +9,6 @@
 		            	
 			            <h2><?php echo __('Editar Rol'); ?></h2>            
 	            	</div>
-	            	
-	
 	            	<?php echo $this->Form->input('id');?>
 	          		<h4> <?php echo $this->request->data['User']['name'].' '.$this->request->data['User']['lastname1'].' '.$this->request->data['User']['lastname2']; ?></h4>
 	            	<div>&nbsp</div>

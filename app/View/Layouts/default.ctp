@@ -45,8 +45,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles --> 
     <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
-     <base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->
-
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->-->
 
   </head>
   

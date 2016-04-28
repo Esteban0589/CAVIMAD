@@ -69,26 +69,30 @@ class UsersController extends AppController {
 
     public function login() {
         if( !(empty($this->data))){
-            // if($this->Auth->login() ){
-            // 	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
-	           // $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
-	           // return $this->redirect(array('controller' => 'pages','action' => 'display'));
-            // }
-            
-            if($this->Auth->login() ){
-                // Si se selecciona la opción para recordar
-                if ($this->request->data['User']['remember_me'] == 1) {
-                    unset($this->request->data['User']['remember_me']);
-                    //Le hace un Hash al usuario y password
-                    $this->request->data['User']['password'] = $this->Auth->password($this->request->data['User']['password']);
-                    //Escribe la cookie
-                    $this->Cookie->write('remember_me_cookie', $this->request->data['User'], true, '1 weeks'); //if user select remember me, the cookie will be saved in his browser for 1 week.
-                }
-            	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
-	            $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
-	            return $this->redirect(array('controller' => 'pages','action' => 'display'));
-            }
-        $this->Flash->error(__('Invalid username or password, try again'));
+        	$var=$this->User->findByUsername($this->request->data['User']['username']);
+        	if($var['User']['activated']==true){
+    	        // if($this->Auth->login() ){
+    	        // 	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
+		           // $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
+		           // return $this->redirect(array('controller' => 'pages','action' => 'display'));
+    	        // }
+    	        
+    	        if($this->Auth->login() ){
+    	            // Si se selecciona la opción para recordar
+    	            if ($this->request->data['User']['remember_me'] == 1) {
+    	                unset($this->request->data['User']['remember_me']);
+    	                //Le hace un Hash al usuario y password
+    	                $this->request->data['User']['password'] = $this->Auth->password($this->request->data['User']['password']);
+    	                //Escribe la cookie
+    	                $this->Cookie->write('remember_me_cookie', $this->request->data['User'], true, '1 weeks'); //if user select remember me, the cookie will be saved in his browser for 1 week.
+					}
+    	        	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
+		            $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
+		            return $this->redirect(array('controller' => 'pages','action' => 'display'));
+				}
+    	    	$this->Flash->error(__('Usuario o contraseña invalida.'));
+    	    }
+    	    $this->Flash->error(__('Usuario no activado.'));
         }
     }
     

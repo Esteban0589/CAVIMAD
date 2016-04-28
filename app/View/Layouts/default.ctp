@@ -41,22 +41,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
    
    <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
-<<<<<<< HEAD
-    <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/><!-- theme styles -->
-    <!--<base href="https://inge2-maricelmonge.c9users.io"/><!-- theme styles -->
-    <!--<base href="https://cavimad-esteban0589.c9users.io/"/><!-- theme styles --> 
-    <!--<base href="https://cavimad---aivaco.c9users.io/"/><!-- theme styles -->
-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/><!-- theme styles -->-->
-=======
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
-
-
->>>>>>> eb2d7d2c5d77eb5093535d22ceb0deffe0bb8256
+     <base href="https://cavimad-julioczar0.c9users.io/"/>
 
   </head>
   
@@ -233,7 +222,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 
                     <form action="#" id="top-searchform" method="get" role="search">
                         <div class="input-group">
-                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
                         </div>
                     </form>
                     

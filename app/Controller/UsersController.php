@@ -468,6 +468,7 @@ public function activate($token=null)
              else
              {
                   $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
+                  $this->redirect(array('controller'=>'users','action'=>'login'));
              }
          }
          else

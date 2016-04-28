@@ -44,16 +44,16 @@ class User extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El nombre no debe estar vacío.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 20),
 				'message' => 'El nombre debe tener más de 20 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -62,16 +62,16 @@ class User extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El primer apellido no debe ser vacío.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 30),
 				'message' => 'El segundo apellido no debe tener más de 30 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -88,8 +88,8 @@ class User extends AppModel {
 			'maxLength' => array(
 				'rule' => array('maxLength', 30),
 				'message' => 'El segundo apellido no debe tener más de 30 caracteres.',
-				'allowEmpty' => true,
-				'required' => false,
+				// 'allowEmpty' => true,
+				// 'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -98,24 +98,24 @@ class User extends AppModel {
 			'email' => array(
 				'rule' => array('email'),
 				'message' => 'Por favor ingresar un email válido.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El email no debe estar vacío.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 50),
 				'message' => 'El email no debe tener más de 50 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -124,16 +124,16 @@ class User extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Este campo no debe estar vacío.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 20),
 				'message' => 'Este campo no debe contener más de 20 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -142,16 +142,16 @@ class User extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Este campo no debe estar vacío.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 60),
 				'message' => 'Este campo no debe contener más de 60 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -160,16 +160,16 @@ class User extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Este campo no debe estar vacío.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 60),
 				'message' => 'Este campo no debe contener más de 60 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -178,24 +178,24 @@ class User extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El nombre de usuario no debe estar vacío.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
 				'message' => 'El nombre de usuario debe ser alfanumérico.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 20),
 				'message' => 'El nombre de usuario no debe contener más de 20 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -204,8 +204,8 @@ class User extends AppModel {
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Contraseña no debe ser vacía.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -222,16 +222,16 @@ class User extends AppModel {
 			'maxLength' => array(
 				'rule' => array('maxLength', 16),
 				'message' => 'La contraseña no debe contener más de 16 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'minLength' => array(
 				'rule' => array('minLength', 6),
 				'message' => 'La contraseña no debe contener menos de 6 caracteres.',
-				'allowEmpty' => false,
-				'required' => true,
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),

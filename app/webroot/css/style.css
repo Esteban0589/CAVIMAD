@@ -574,7 +574,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 .btn-default:hover, .btn-default:focus { background-color: #333333; }
 .btn-primary { background-color: #82B204; }
 .btn-primary:hover,.btn-primary:focus { background-color: #d04c3c; }
-.btn-success { background-color: #35d37d; }
+.btn-success { background-color: #3891d4; }
 .btn-success:hover,.btn-success:focus { background-color: #2cae67; }
 .btn-info { background-color: #68b5e6; }
 .btn-info:hover,.btn-info:focus { background-color: #5798c1; }

@@ -199,6 +199,14 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'El nombre de usuario elegido ya está siendo utilizado.',
+				// 'allowEmpty' => false,
+				// 'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
 		'password' => array(
 			'notBlank' => array(

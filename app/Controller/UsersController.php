@@ -269,7 +269,7 @@ class UsersController extends AppController {
 				//$this->Flash->success(__('The user has been saved.'));
 			//	return $this->redirect(array('controller'=>'pages','action' => 'display'));
 			 else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				$this->Flash->error(__('El usuario no pudo ser registrado. Por favor confirmar que los datos sean válidos.'));
 			}
 		}
 	}

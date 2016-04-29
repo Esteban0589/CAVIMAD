@@ -211,8 +211,9 @@ class User extends AppModel {
 			),
 			'alphaNumeric' => array(
 				//Restringe que la contraseña contenga al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.
-				'rule' => '([A-Z]+[a-z0-9]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@]+)',
-				'message' => 'Su contraseña debe de contener al menos una letra mayúscula al inicio, una letra minúscula, un número y un caracter especial.',
+				//'rule' => '([A-Z]+[a-z0-9]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@]+)',
+				'rule' => array('alphaNumeric'),
+				'message' => 'Su contraseña debe contener únicamente caracteres alfanuméricos.',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

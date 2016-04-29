@@ -46,9 +46,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <base href="https://cavimad-esteban0589.c9users.io/"/>
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
-
-
 
   </head>
   
@@ -225,7 +222,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 
                     <form action="#" id="top-searchform" method="get" role="search">
                         <div class="input-group">
-                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
                         </div>
                     </form>
                     

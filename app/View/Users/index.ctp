@@ -20,6 +20,7 @@
 									<!--<th><?php echo $this->Paginator->sort('Ciudad'); ?></th>-->
 									<th><?php echo $this->Paginator->sort('Nombre de usuario'); ?></th>
 									<th><?php echo $this->Paginator->sort('Rol'); ?></th>
+									<th><?php echo $this->Paginator->sort('Estado'); ?></th>
 									<th title = "Click para poder editar Usuarios" class="actions"><?php echo __('Editar'); ?></th>
 									<th title = "Click para activar/desactivar usuarios"class="actions2"><?php echo __('Activación'); ?></th>
 								</tr>
@@ -39,8 +40,14 @@
 									<!--<td><?php echo h($user['User']['city']); ?>&nbsp;</td>-->
 									<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 									<td><?php echo h($user['User']['role']); ?>&nbsp;</td>
+									<td><?php if(($user['User']['activated'])==1){ 
+										echo Activo;
+									}else{
+										echo Inactivo;
+									} 
 									
-									
+									?>&nbsp;
+									</td>
 									<td class="actions" >
 										<?php echo $this->Html->link(__('Editar rol'), array('action' => 'editrol', $user['User']['id'])); ?>
 										<!--<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?> </li>-->

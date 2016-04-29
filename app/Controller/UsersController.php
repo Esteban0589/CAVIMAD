@@ -1,5 +1,5 @@
 <?php			
-//$this->debugController($this->request->data);
+//return $this->debugController($this->request->data);
 
 App::uses('AppController', 'Controller');
 /**
@@ -157,9 +157,9 @@ class UsersController extends AppController {
 		}
 		if($_SESSION['role']=='Administrador'){
 			if ($this->request->is(array('post', 'put'))) {
+						//return $this->debugController($this->request->data);
 					if ($this->User->save($this->request->data)) {
 						$this->request->data['Administrator']['user_id'] = $this->User->id;
-						
 						if ($this->User->Administrator->save($this->request->data)){
 							$this->Flash->success(__('The user has been saved.'));
 							return $this->redirect(array('action' => 'index'));

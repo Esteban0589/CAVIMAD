@@ -54,7 +54,13 @@
 
 
 				<div class="col col-sm-5">
-					<?php echo $this->Html->image('../files/user/image/' .$user['User']['image_dir'] . '/' . 'vga_' .$user['User']['image'], array('class' => 'img-thumbnail img-responsive')); ?>
+					<?php 
+					if (!empty($user['User']['image_dir'])){
+						echo $this->Html->image('../files/user/image/' .$user['User']['image_dir'] . '/' . 'vga_' .$user['User']['image'], array('class' => 'img-thumbnail img-responsive')); 
+					}else{
+						echo $this->Html->image('usuario.jpg');
+					}
+					?>
 				</div>
 			</div>
 

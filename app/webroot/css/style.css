@@ -137,7 +137,7 @@ img.alignleft, img.aligncenter, img.alignright { margin-bottom: 5px; }
 /* main links */
 #drop-down-left > li { margin-left: 50px; }
 #drop-down-left > li:first-child { /*margin-left: 0;*/ }
-#drop-down-left a { font-size: 13px; font-weight: 700; padding: 20px 0 10px !important; text-transform: uppercase; border-left: none; border-right: none; border-top: 5px solid #FFFFFF; -webkit-transition: all .25s; -moz-transition: all .25s; transition: all .25s; }
+#drop-down-left a { font-size: 13px; color: white; font-weight: 700; padding: 20px 0 10px !important; text-transform: uppercase; border-left: none; border-right: none; border-top: 5px solid #FFFFFF; -webkit-transition: all .25s; -moz-transition: all .25s; transition: all .25s; }
 #drop-down-left .k-item-desc { font-size: 12px; font-weight: 300; color: #959595; text-transform: none; -moz-opacity: 0.7; -webkit-opacity: 0.7; opacity: 0.7; }
 #drop-down-left a:link, #drop-down-left a:visited { color: #FFFFFF; background-color: transparent; }
 /* drops */

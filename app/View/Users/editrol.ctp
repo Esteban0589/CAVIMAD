@@ -15,10 +15,7 @@
 	          		<h4> <?php echo $this->request->data['User']['name'].' '.$this->request->data['User']['lastname1'].' '.$this->request->data['User']['lastname2']; ?></h4>
 	            	<div>&nbsp</div>
 	        	</fieldset>
-	        	<br>
-	        	<br>
-	        	<?php echo $this->Form->input('role', array('options'=>array('Administrator'=>'Administrador', 'Colaborador'=>'Colaborador', 'Editor'=>'Editor', 'Usuario'=>'Usuario'),'label'=>'Rol:'));?>
-	        	<br>
+	        	<?php echo $this->Form->input('role', array('class'=>'form-control','options'=>array('Administrador'=>'Administrador', 'Colaborador'=>'Colaborador', 'Editor'=>'Editor', 'Usuario'=>'Usuario'),'label'=>'Rol:'));?>
 	        	<br>
 	        	<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>
 	            <div>&nbsp</div>

@@ -32,9 +32,8 @@
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
 	            	<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
 	            	
-	            	<?php if(($current_user['role']=='Administrador')||($current_user['role']=='Administrador')): ?>
-	            		<?php echo $this->Form->create('Administrator'); ?>
-	            		
+	            	<?php if(($current_user['role']=='Administrador')||($current_user['role']=='Colaborador')): ?>
+
 	            		<?php echo $this->Form->input('Administrator.0.id'); ?>
 						<?php echo $this->Form->input('Administrator.0.specialty', array('class'=>'form-control','label'=>'Especialidad:')); ?>
 						<div>&nbsp</div>

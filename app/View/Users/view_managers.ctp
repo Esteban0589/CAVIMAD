@@ -22,16 +22,18 @@
 					
 					<tbody>
 					<?php foreach ($colaboradores as $colaborador): ?>
-						<tr>
-							<td><?php echo h($colaborador['User']['name']); ?>&nbsp;</td>
-							<td><?php echo h($colaborador['User']['lastname1']." ".$colaborador['User']['lastname2']); ?>&nbsp;</td>
-							<td><?php echo h($colaborador['User']['username']); ?>&nbsp;</td>
-							<td><?php echo h($colaborador['Administrator']['institution']); ?>&nbsp;</td>
-							<td><?php echo h($colaborador['Administrator']['specialty']); ?>&nbsp;</td>
-							<td title= "Ir al perfil del colaborador" class="actions">
-								<?php echo $this->Html->link(__('Ir al perfil'), array('action' => 'view', $colaborador['User']['id'])); ?>
-							</td>
-						</tr>
+						<?php if($colaborador['User']['role'] == 'Colaborador'){ ?>
+							<tr>
+								<td><?php echo h($colaborador['User']['name']); ?>&nbsp;</td>
+								<td><?php echo h($colaborador['User']['lastname1']." ".$colaborador['User']['lastname2']); ?>&nbsp;</td>
+								<td><?php echo h($colaborador['User']['username']); ?>&nbsp;</td>
+								<td><?php echo h($colaborador['Administrator']['institution']); ?>&nbsp;</td>
+								<td><?php echo h($colaborador['Administrator']['specialty']); ?>&nbsp;</td>
+								<td title= "Ir al perfil del colaborador" class="actions">
+									<?php echo $this->Html->link(__('Ir al perfil'), array('action' => 'view', $colaborador['User']['id'])); ?>
+								</td>
+							</tr>
+							<?php }?>
 					<?php endforeach; ?>
 					</tbody>
 					

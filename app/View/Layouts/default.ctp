@@ -43,7 +43,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
+    <base href="https://cavimad-esteban0589.c9users.io/"/>
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
@@ -148,7 +148,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <?php
     						    if(!empty($_SESSION['role'])){
     					    ?>  
-                                <a  href="#drop-down-left" class="glyphicon glyphicon-cog" title="" style="font-size:1em;">
+                                <a   class="glyphicon glyphicon-cog" title="" style="font-size:1em;">
                                     </a>
                                 <ul class="sub-menu">
                         
@@ -322,12 +322,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         
                         	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Flickr Stream</h1>
+                                <h1 class="title-widget">Organizaciones</h1>
                                 
                                 <ul class="k-flickr-photos list-unstyled">
-                                	<li><a class="k-logo" href="http://www.ucr.ac.cr" title="Pagina oficial Universidad de Costa Rica"><img src="app/webroot/img/logoUCR.png" alt="UCR" width="100"; /></a></li>
-                                    <li><a href="http://www.cimar.ucr.ac.cr" title="Flickr photo"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
-                                    <li><a href="http://www.biologia.ucr.ac.cr" title="Flickr photo"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
+                                	<li><a class="k-logo" href="http://www.ucr.ac.cr" title="Universidad de Costa Rica"><img src="app/webroot/img/ucr.gif" alt="UCR" width="100"; /></a></li>
+                                    <li><a href="http://www.cimar.ucr.ac.cr" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
+                                    <li><a href="http://www.biologia.ucr.ac.cr" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
                                     
                                 </ul>
                     
@@ -354,7 +354,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2015 Buntington Public Schools. All rights reserved.
+                    ECCI Ingenieria de Software 2. 2016
                     </p>
                 
                 </div>

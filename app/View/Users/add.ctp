@@ -15,7 +15,9 @@
 				<div title = "En este campo por favor introduzca su estado o provincia"><?php echo $this->Form->input('state', array('class'=>'form-control','label'=>'Estado:','placeholder' => 'Proovincia/Estado'));?></div>
 				<div title = "En este campo por favor introduzca su ciudad"><?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:','placeholder' => 'Ciudad')); ?></div>
 				<div title = "En este campo por favor introduzca su nombre de usuario"><?php echo $this->Form->input('username', array('class'=>'form-control','label'=>'Nombre de Usuario:','placeholder' => 'EjemploUusario123'));?></div>
-				<div title = "Intriducir por favor una contraseña alfanumérica"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña (La contraseña debe ser alfanumérica):','placeholder' => 'contraseña'));?></div>
+				<div>&nbsp</div>
+				<div title = "Intriducir por favor una contraseña alfanumérica"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña (debe ser alfanumérica y tener entre 6 y 16 caracteres):','placeholder' => 'contraseña'));?></div>
+				<div>&nbsp</div>
 				<div><?php echo $this->Form->input('role', array('default' => 'Usuario','type'=>'hidden')); ?></div>
 				<div><?php echo $this->Form->input('activated', array('default' => '0','type'=>'hidden')); ?> </div>
 				<!--<?php// echo $this->Form->input('role', array('options'=>array('Usuario'=>'Usuario'), array('type'=>'hidden')));?>-->

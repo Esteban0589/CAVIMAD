@@ -15,7 +15,7 @@
 	        	</fieldset>
 	        	<?php echo $this->Form->input('role', array('class'=>'form-control','options'=>array('Administrador'=>'Administrador', 'Colaborador'=>'Colaborador', 'Editor'=>'Editor', 'Usuario'=>'Usuario'),'label'=>'Rol:'));?>
 	        	<br>
-	        	<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>
+	        	<?php echo $this->Form->end(array('label'=>'Guardar', 'class'=>'btn btn-success')); ?>
 	            <div>&nbsp</div>
 	            <div>&nbsp</div>
             <?php endif; ?>

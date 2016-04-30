@@ -20,8 +20,7 @@
         	<br>
         	<br>
         	<br>
-        	<br>
-        	<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>
+        	<?php echo $this->Form->end(array('label'=>'Guardar', 'class'=>'btn btn-success')); ?>
             <div>&nbsp</div>
             <div>&nbsp</div>
               

@@ -22,7 +22,7 @@
 					Ciudad: <?php echo h($user['User']['city']); ?>
 					<br/>
 					<br/>
-					<?php if(($user['User']['role']=='Administrator')||($user['User']['role']=='Administrador')): ?>
+					<?php if(($user['User']['role']=='Administrador')||($user['User']['role']=='Colaborador')): ?>
 					Escpecialidad: <?php echo h($user['Administrator']['0']['specialty']); ?>
 					<br/>
 					<br/>

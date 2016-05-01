@@ -291,27 +291,24 @@
                                 
                                 <li class="widget-container widget_text"><!-- widget -->
                                 
-                                	<a href="#" class="custom-button cb-green" title="How to apply?">
+                                	<a href="#" class="custom-button2 cb-green" title="How to apply?">
                                     	<i class="custom-button-icon fa fa-check-square-o"></i>
-                                        <span class="custom-button-wrap">
                                         	<span class="custom-button-title">How to apply?</span>
                                             <span class="custom-button-tagline">Join us whenewer you feel it’s time!</span>
                                         </span>
                                         <em></em>
                                     </a>
                                     
-                                	<a href="#" class="custom-button cb-gray" title="Campus tour">
+                                	<a href="#" class="custom-button2  cb-gray" title="Campus tour">
                                     	<i class="custom-button-icon fa  fa-play-circle-o"></i>
-                                        <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Campus tour</span>
                                             <span class="custom-button-tagline">Student's life at the glance. Take a tour...</span>
                                         </span>
                                         <em></em>
                                     </a>
                                     
-                                	<a href="#" class="custom-button cb-yellow" title="Prospectus">
+                                	<a href="#" class="custom-button2  cb-yellow" title="Prospectus">
                                     	<i class="custom-button-icon fa  fa-leaf"></i>
-                                        <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Prospectus</span>
                                             <span class="custom-button-tagline">Request a free School Prospectus!</span>
                                         </span>

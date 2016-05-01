@@ -158,31 +158,29 @@ class UsersController extends AppController {
 	
 	
 		public function editrol($id = null) {
+
+		if ( $_SESSION['role'] == null  ) {
+			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if($_SESSION['role']=='Administrador'){
 			if ($this->request->is(array('post', 'put'))) {
-						//return $this->debugController($this->request->data);
-					if ($this->User->save($this->request->data)) {
-						$this->request->data['Administrator']['user_id'] = $this->User->id;
-						if ($this->User->Administrator->save($this->request->data)){
-							$this->Flash->success(__('The user has been saved.'));
-							return $this->redirect(array('action' => 'index'));
-						}else{
-							$this->Flash->error(__('The user could not be saved. Please, try again.'));
-						}
-					
-						
-						
-					} else {
-						$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				if ($this->User->saveAll($this->request->data)) {
+					$this->Flash->success(__('El rol ha sido actualizado.'));
+					return $this->redirect(array('action' => 'index', $id));
+				} else {
+					$this->Flash->error(__('El rol no se ha podido actualizar.'));
 				}
+	
 			} else {
 				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+				//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
 				$this->request->data = $this->User->find('first', $options);
-	
 			}
+			
 		}
 	
 	}

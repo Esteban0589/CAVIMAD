@@ -119,6 +119,14 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'El correo electrónico ya ha sido registrado.',
+				// 'allowEmpty' => false,
+				// 'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
 		'country' => array(
 			'notBlank' => array(
@@ -217,11 +225,11 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'alphaNumeric' => array(
+			'regex' => array(
 				//Restringe que la contraseña contenga al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.
-				//'rule' => '([A-Z]+[a-z0-9]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@]+)',
-				'rule' => array('alphaNumeric'),
-				'message' => 'Su contraseña debe contener únicamente caracteres alfanuméricos.',
+				'rule' => '(([^a-zA-Z0-9_]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@]*))',
+				//'rule' => array('alphaNumeric'),
+				'message' => 'Su contraseña debe contener al menos una mayúscula, una minúscula y un número.',
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

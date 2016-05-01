@@ -41,9 +41,9 @@
 									<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 									<td><?php echo h($user['User']['role']); ?>&nbsp;</td>
 									<td><?php if(($user['User']['activated'])==1){ 
-										echo Activo;
+										echo 'Activo';
 									}else{
-										echo Inactivo;
+										echo 'Inactivo';
 									} 
 									
 									?>&nbsp;

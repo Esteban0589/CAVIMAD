@@ -472,10 +472,10 @@ audio { display: none; }
 /* == bootstrap forms == */
 .help-block { font-size: 12px; margin: 5px 0 0; line-height: 16px; }
 .form-control { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; border: 2px solid rgba( 0, 0, 0, 0.1 ); -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; height: 40px; padding: 7px 10px; }
-.form-control::-webkit-input-placeholder { color: #D9D9D9; }
-.form-control:-moz-placeholder { color: #D9D9D9; }
-.form-control::-moz-placeholder { color: #D9D9D9; }
-.form-control:-ms-input-placeholder { color: #D9D9D9; }
+.form-control::-webkit-input-placeholder { color: #6E6E6E; }
+.form-control:-moz-placeholder { color: #6E6E6E; }
+.form-control::-moz-placeholder { color: #6E6E6E; }
+.form-control:-ms-input-placeholder { color: #6E6E6E; }
 label { font-weight: 400; line-height: 1; font-size: 12px; text-transform: uppercase; }
 .form-group { margin-bottom: 15px; }
 .form-group textarea { line-height: 22px; }

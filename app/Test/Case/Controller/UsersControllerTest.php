@@ -11,6 +11,7 @@ class UsersControllerTest extends ControllerTestCase {
  *
  * @var array
  */
+ 
 	public $fixtures = array(
 		'app.user',
 		'app.administrator',
@@ -26,7 +27,26 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
-		$this->markTestIncomplete('testIndex not implemented.');
+	/*	$data = array(
+			'id' => 1,
+			'activated' => 1,
+			'name' => 'Lorem ipsum dolor sit amet',
+			'lastname1' => 'Lorem ipsum dolor sit amet',
+			'lastname2' => 'Lorem ipsum dolor sit amet',
+			'email' => 'Lorem ipsum dolor sit amet',
+			'country' => 'Lorem ipsum dolor sit amet',
+			'state' => 'Lorem ipsum dolor sit amet',
+			'city' => 'Lorem ipsum dolor sit amet',
+			'username' => 'Lorem ipsum dolor sit amet',
+			'password' => 'Lorem ipsum dolor sit amet',
+			'role' => 'Lorem ipsum dolor sit amet',
+			'image' => 'Lorem ipsum dolor sit amet',
+			'image_dir' => 'Lorem ipsum dolor sit amet',
+			'tokenhash' => 'Lorem ipsum dolor sit amet'
+		);
+		$this->testAction('/users/login');
+		$this->testAction('/users/index');
+    	$this->assertInternalType('array', $this->vars['users']);*/
 	}
 
 /**
@@ -53,8 +73,30 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testLogin() {
-		$this->markTestIncomplete('testLogin not implemented.');
-	}
+	  $UsersController = $this->generate( 'Users', array(
+                'components' => array(
+                    'Auth' => array( 'user' )
+                ),
+            )
+        );
+
+        $UsersController->Auth->expects( $this->any() )
+        ->method( 'user' )
+        ->with( 'id' )
+        ->will( $this->returnValue( 2 ) );
+
+        $data = array( 'User' => array(
+                'username' => 'Lorem ipsum dolor sit amet',
+                'password' => 'Lorem ipsum dolor sit amet',
+                'remember_me' => 1
+            ) );
+
+        //$UsersController->Auth->login( $data['User'] );
+
+        $this->testAction( '/users/login', array( 'data' => $data, 'method' => 'get' ) );
+        $url = parse_url( $this->headers['pages'] );
+        $this->assertEquals( $url['path'], '/index' );
+    }
 
 /**
  * testLogout method
@@ -62,7 +104,7 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testLogout() {
-		$this->markTestIncomplete('testLogout not implemented.');
+		 $this->markTestIncomplete('testLogout not implemented.');
 	}
 
 /**

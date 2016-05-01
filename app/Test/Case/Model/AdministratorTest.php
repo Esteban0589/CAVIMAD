@@ -28,6 +28,8 @@ class AdministratorTest extends CakeTestCase {
 		parent::setUp();
 		$this->Administrator = ClassRegistry::init('Administrator');
 	}
+	
+	
 
 /**
  * tearDown method

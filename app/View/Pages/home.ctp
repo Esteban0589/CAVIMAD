@@ -38,9 +38,9 @@
                                     <img src="img/dragonfly-slider.jpg" alt="Image slide 3" />
                                     <div class="k-carousel-caption pos-1-3-right scheme-dark">
                                     	<div class="caption-content">
-                                            <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                            <h5 class="caption-title">Learning makes us stronger for life</h5>
                                             <p>
-                                            	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                            	Este es el texto correspondiente a la imagen a la Imagen #1 del carrousel.
                                             </p>
                                         </div>
                                     </div>
@@ -50,9 +50,9 @@
                                     <img src="img/img2.jpg" alt="Image slide 2" />
                                     <div class="k-carousel-caption pos-1-3-left scheme-light">
                                     	<div class="caption-content">
-                                            <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                            <h5 class="caption-title">Learning makes us stronger for life</h5>
                                             <p>
-                                            	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                            	Imagen #2, observe que bonito que se el carrousel.
                                             </p>
                                         </div>
                                     </div>
@@ -60,11 +60,11 @@
                                 
                                 <div class="item">
                                     <img src="img/img3.jpg" alt="Image slide 1" />
-                                    <div class="k-carousel-caption pos-2-3-right scheme-dark">
+                                    <div class="k-carousel-caption pos-1-3-right scheme-dark">
                                     	<div class="caption-content">
-                                            <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                            <h5 class="caption-title">Learning makes us stronger for life</h5>
                                             <p>
-                                            	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                            	La imagen #3 tiene otro estilo dentro de este carrousel. 
                                             </p>
                                             <p>
                                             	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
@@ -76,11 +76,11 @@
                                 <div class="item">
                                     <div class="img">
                                         <img src="img/img4.jpg" alt="Image slide 4" />
-                                        <div class="k-carousel-caption pos-2-3-left scheme-light">
+                                        <div class="k-carousel-caption pos-1-3-left scheme-light">
                                         	<div class="caption-content">
-                                                <h3 class="caption-title">Learning makes us stronger for life</h3>
+                                                <h5 class="caption-title">Learning makes us stronger for life</h5>
                                                 <p>
-                                                	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                                	Descripción que acompaña la imagen #4
                                                 </p>
                                                 <p>
                                                 	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
@@ -94,9 +94,9 @@
                                     <img src="img/img5.jpg" alt="Image slide 5" />
                                     <div class="k-carousel-caption pos-c-2-3 scheme-dark no-bg">
                                     	<div class="caption-content">
-                                            <h3 class="caption-title title-giant">Learning makes us stronger for life</h3>
+                                            <h5 class="caption-title title-giant">Learning makes us stronger for life</h5>
                                             <p>
-                                            	We could brag about all of the great opportunities that our students have... or you could hear it from the students themselves.
+                                            	Finalmente, la imagen #5 termina la galería del carrousel. 
                                             </p>
                                             <p>
                                             	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>

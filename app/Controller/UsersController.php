@@ -85,6 +85,7 @@ class UsersController extends AppController {
 		}
         if( !(empty($this->data))){
         	$var=$this->User->findByUsername($this->request->data['User']['username']);
+        	
         	if($var['User']['activated']==true){
     	        // if($this->Auth->login() ){
     	        // 	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
@@ -105,9 +106,9 @@ class UsersController extends AppController {
 		            $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
 		            return $this->redirect(array('controller' => 'pages','action' => 'display'));
 				}
-    	    	$this->Flash->error(__('Usuario o contraseña invalida.'));
+    	    	return $this->Flash->error(__('Usuario o contraseña invalida.'));
     	    }
-    	    $this->Flash->error(__('Usuario no activado.'));
+    	    return $this->Flash->error(__('Usuario no activado.'));
         }
     }
     

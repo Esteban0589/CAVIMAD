@@ -138,9 +138,12 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		
+		
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no valido'));
 		}
+		
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->saveAll($this->request->data)) {
 				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));

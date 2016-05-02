@@ -31,8 +31,8 @@
 					<div>&nbsp</div>
 					<div title = "En este campo por favor introduzca la institución a la que pertenece"><?php echo $this->Form->input('institution', array('class'=>'form-control','label'=>'Institución:','placeholder' => 'Institución')); ?></div>
 					<div>&nbsp</div>
-	            	<div title = "En este campo puede editar su Contraseña"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:','placeholder' => 'Contraseña'));?></div>
-	            	<div>&nbsp</div>
+	            	<!--<div title = "En este campo puede editar su Contraseña"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:','placeholder' => 'Contraseña'));?></div>-->
+	            	<!--<div>&nbsp</div>-->
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
 	            	<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
 	            	

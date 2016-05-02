@@ -40,6 +40,7 @@ class User extends AppModel {
  * @var array
  */
 	public $validate = array(
+		
 		'name' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -69,7 +70,7 @@ class User extends AppModel {
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 30),
-				'message' => 'El segundo apellido no debe tener más de 30 caracteres.',
+				'message' => 'El primer apellido no debe tener más de 30 caracteres.',
 				// 'allowEmpty' => false,
 				// 'required' => true,
 				//'last' => false, // Stop validation after this rule

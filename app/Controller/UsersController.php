@@ -80,7 +80,8 @@ class UsersController extends AppController {
 
     public function login() {
     	if ( $_SESSION['role'] != null  ) {
-			throw new NotFoundException(__('Sesión activa.'));
+			 $this->Flash->error(__('Su sesión ya esta activa.'));
+			//throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
         if( !(empty($this->data))){

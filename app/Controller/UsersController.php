@@ -2,6 +2,7 @@
 //return $this->debugController($this->request->data);
 
 App::uses('AppController', 'Controller');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
  * Users Controller
  *
@@ -238,14 +239,11 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-
+				//Si el usuario creado no está activado.
 				if ($this->User->activaded == 0){
-					//$fu = $this->User;
 					//Genera el link para activar cuenta.
 					$key = Security::hash(CakeText::uuid(),'sha512',true);
 					$hash=sha1(['User']['username'].rand(0,100));
-
-	                //$hash=sha1($this->User->username.rand(0,100));
 	                $url = Router::url( array('action'=>'activate'), true ).'/'.$key.'#'.$hash;
 	               	$this->User->saveField('tokenhash',$key);
 	                $ms=$url;
@@ -263,7 +261,6 @@ class UsersController extends AppController {
 	                        $output =$this->send_mail($data);
 	
 	                            if($output){
-	                                //$this->Flash->set('Correo electrónico enviado correctamente.'); Esto podría eliminarse
 	                                $this->Flash->success(__('El usuario ha sido creado. Por favor verifique su correo electrónico para activar su cuenta.'));
 	                          		return $this->redirect(array('controller'=>'pages','action' => 'display'));
 	                            }
@@ -274,15 +271,14 @@ class UsersController extends AppController {
 	                            }
 				}
 			} 
-				//$this->Flash->success(__('The user has been saved.'));
-			//	return $this->redirect(array('controller'=>'pages','action' => 'display'));
 			 else {
 				$this->Flash->error(__('El usuario no pudo ser registrado. Por favor confirmar que los datos sean válidos.'));
 			}
 		}
 	}
 	
-public function activate($token=null)
+	//Permite activar un usuario en la base de datos a través de un link generado automáticamente.
+	public function activate($token=null)
 	{
 		if ( $_SESSION['role'] != null  ) {
 			throw new NotFoundException(__('Sesión activa.'));
@@ -292,24 +288,23 @@ public function activate($token=null)
         if(!empty($token))
         {
             $u=$this->User->findBytokenhash($token);
-            //$this->debugController($this->request->data);
            if(!empty($u))
             {
                 $this->User->data=$u;        
-          //      debug($this->User->data);
                 if(!empty($this->User->data))
                 {    
-                    $new_hash=sha1($u['User']['username'].rand(0,100));					//Crea un nuevo token
+                	//Crea un nuevo token.
+                    $new_hash=sha1($u['User']['username'].rand(0,100));					
                         
                     $this->User->data['User']['tokenhash']=$new_hash;
-                    
-                    if($this->User->data['User']['activated'] == (false)) //Si no se ha activado
+                    //Si no se ha activado el usuario en cuestión.
+                    if($this->User->data['User']['activated'] == (false)) 
                     {
                     	
                         $this->User->data['User']['activated'] = (true);   
                         if($this->User->data['User']['activated'] == (true))
                         {
-                        	
+                        	//Actualiza el usuario para que su estado sea activo.	
                            	if ($this->User->updateAll(array('User.activated' => 1), array('User.username' => $u['User']['username']))){
                            		$this->Flash->success(__('Se activó su cuenta correctamente.'));
                            		$this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
@@ -317,9 +312,6 @@ public function activate($token=null)
                            	} else {
 								$this->Flash->error(__('El usuario no pudo ser activado, intente de nuevo'));
 							}
-                            
-                            
-                            
                             // $this->Flash->set('Se activó su cuenta correctamente.');
                             // return $this->redirect(array('action'=>'login'));
                         }
@@ -334,7 +326,6 @@ public function activate($token=null)
             {
                  $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
                  return $this->redirect(array('action'=>'login'));
-                 //$this->redirect(array('action'=>'login'));
             }
         }
         else
@@ -362,11 +353,11 @@ public function activate($token=null)
 		}
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario inválido.'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->User->delete()) {
-			$this->Flash->success(__('The user has been deleted.'));
+			$this->Flash->success(__('El usuario fue eliminado.'));
 		} else {
 			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
 		}
@@ -388,13 +379,15 @@ public function activate($token=null)
 		$Email->template('$Email_template');
 		$Email->from('cavimad@noreply.com');
 		$Email->template($email_data['template']);
+		//Los parámetros para envíos pueden ser un arreglo o parámetro simple. En caso de querer actualizar los datos enviados (variables), actualizar este 
+		//código.
 		if (!empty($email_data['body']['user_data']))
 		{
 			$Email->viewVars (array('user_data' => $email_data['body']['user_data']));
 		}
 		else
 		{
-		$Email->viewVars (array('ms' => $email_data['body']['ms']));
+			$Email->viewVars (array('ms' => $email_data['body']['ms']));
 		}
 		$Email-> emailFormat ('html');
 		if ($Email->send())   
@@ -414,6 +407,7 @@ public function activate($token=null)
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
         $this->User->recursive=-1;
+        //Si los datos ingresados no son vacíos.
         if(!empty($this->data))
         {
             if(empty($this->data['User']['email']))
@@ -425,12 +419,13 @@ public function activate($token=null)
                 $email=$this->data['User']['email'];
                 //Busca el correo en la tabla de usuarios.
                 $fu = $this->User->find('first', array('conditions' => array('User.email' => $email)));
-                                        
+                //Si existe el usuario                        
                 if($fu)
                 {
-                    
+                    //Y está activo.
                     if($fu['User']['activated']=='1')
                     {
+                    	//Genera un hash para concatenarselo a un link.
                         $key = Security::hash(CakeText::uuid(),'sha512',true);
                         $hash=sha1($fu['User']['username'].rand(0,100));
                         $url = Router::url( array('controller'=>'Users','action'=>'reset'), true ).'/'.$key.'#'.$hash;
@@ -443,10 +438,10 @@ public function activate($token=null)
                         $fu['User']['tokenhash']=$key;
                         $this->User->id=$fu['User']['id'];
                 
-                        
+                        //Guarda el hash en la base de datos.
                         if($this->User->saveField('tokenhash',$fu['User']['tokenhash']))
                         {                        
-                        
+                        //Parámetros para enviar el correo eletrónico.
                         $this->set('ms', $ms);    
                                                                     
                         $data = array();
@@ -496,9 +491,12 @@ public function activate($token=null)
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}    
          $this->User->recursive=-1;
+         //Si existe el token.
          if(!empty($token))
          {
+         	 //Busque el usuario según el token obtenido a través del link.
              $u=$this->User->findBytokenhash($token);
+             //Si el usuario existe.
              if(!empty($u))
              {
                  $this->User->id=$u['User']['id'];        
@@ -511,9 +509,10 @@ public function activate($token=null)
                          
                      $this->User->data['User']['tokenhash']=$new_hash;
                      
+                     //Si los passwords ingresados son iguales.
                      if($this->User->validates(array('fieldList' => array('password', 'password_confirm'))))
                      {
-                                                                                         
+                         //Actualiza el usuario con la nueva contraseña.                   
                          if($this->User->save($this->User->data))
                          {
                              $this->Flash->set('La contraseña ha sido actualizada.');
@@ -538,6 +537,54 @@ public function activate($token=null)
              $this->redirect(array('controller'=>'users','action'=>'login'));
          }
      
+ 	}
+ 	
+ 	//Método que permite a un usuario cambiar su contraseña.
+ 	public function new_password()
+ 	{
+ 		$this->User->recursive=-1;
+        $passwordHasher = new BlowfishPasswordHasher();
+        //Hashea la nueva contraseña.
+	   	$pass1 = $passwordHasher->hash(
+	            $this->request->data['User']['new_password']);
+	    //Crea una contraseña hasheada con respecto al key utilizado en la nueva contraseña ($pass1).
+	    $pass2 = Security::hash($this->request->data['User']['repeat_password'],'blowfish',$pass1);
+ 		//Compara que las contraseña ingresada por el usuario sea igual a la almacenada por la base de datos.
+ 		$pass=$this->User->find('first', array('conditions' => array('User.username' => $_SESSION['username'])));
+ 		
+ 		//Contraseña ya hasheada para comparar por la existente en la base de datos.
+ 		$pass40=Security::hash($this->request->data['User']['actual_password'],'blowfish',$pass['User']['password']);
+ 		//Compara la cotraseña ingresada con la que se encuentra almacenada en la base de datos.
+ 		if($pass40 == $pass['User']['password'])
+ 		{
+ 			//Compara que las contraseñas ingresadas por el usuario sean iguales.
+ 			if($pass1 == $pass2)
+ 			{
+
+ 				$this->User->id = $pass['User']['id'];
+ 				if($this->User->savefield('password',$this->request->data['User']['repeat_password']))
+ 				{
+                    $this->Flash->success(__('La contraseña ha sido actualizada.'));
+					return $this->redirect(array('action' => 'edit',$pass['User']['id']));
+ 				}
+ 				 else 
+ 				 {
+					$this->Flash->error(__('Imposible actualizar la contraseña. Contacte al administrador del sitio.'));
+					return $this->redirect(array('action' => 'edit',$pass['User']['id']));
+ 				 }
+ 			}
+ 			else
+ 			{
+ 				$this->Flash->error(__('Las contraseñas ingresadas no son iguales.'));
+				return $this->redirect(array('action' => 'edit',$pass['User']['id']));
+ 			}
+ 		}
+ 		else
+ 		{
+ 				$this->Flash->error(__('La contraseña ingresada no es igual a la almacenada en el sistema.'));
+ 				return $this->redirect(array('action' => 'edit',$pass['User']['id']));
+ 		}
+ 		
  	}
  	
 	

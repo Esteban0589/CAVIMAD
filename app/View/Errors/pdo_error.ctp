@@ -22,6 +22,6 @@
 </p>
 <?php
 if (Configure::read('debug') > 0):
-	echo $this->element('UserName Duplicado en la base de datos');
+	echo $this->element('UserName duplicado en la base de datos');
 endif;
 ?>

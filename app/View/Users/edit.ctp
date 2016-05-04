@@ -7,7 +7,8 @@
 	            <div class="page-header">
 	            	
 		            <h2><?php echo __('Editar perfil'); ?></h2>
-				<?php if($current_user['username']==$this->request->data['User']['username']): ?>	            
+				<?php if($current_user['username']==$this->request->data['User']['username']): ?>
+				<!--<?php debug($this->request->data)?>-->
 	            	</div>
 	            	
 	
@@ -20,6 +21,7 @@
 	            	<div>&nbsp</div>
 	            	<div title = "En este campo puede editar su Correo electrónico"><?php echo $this->Form->input('email', array('class'=>'form-control','label'=>'Email:','placeholder' => 'Correo electrónico'));?></div>
 	            	<div>&nbsp</div>
+	            	<small><div class="col-lg-16 col-sm-32"><p aling ="left"><i><a data-toggle="modal" data-target="#ModalPassword">Cambiar mi contraseña</a></i></p></div></small>
 	            	<div title = "En este campo puede editar su País"><?php echo $this->Form->input('country', array('class'=>'form-control','label'=>'Pais:','placeholder' => 'País'));?></div>
 	            	<div>&nbsp</div>
 	            	<div title = "En este campo puede editar su Estado/Provincia"><?php echo $this->Form->input('state', array('class'=>'form-control','label'=>'Estado:','placeholder' => 'Estado/provincia'));?></div>
@@ -31,6 +33,8 @@
 					<div>&nbsp</div>
 					<div title = "En este campo por favor introduzca la institución a la que pertenece"><?php echo $this->Form->input('institution', array('class'=>'form-control','label'=>'Institución:','placeholder' => 'Institución')); ?></div>
 					<div>&nbsp</div>
+	            
+	            	<div>&nbsp</div>
 	            	<!--<div title = "En este campo puede editar su Contraseña"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:','placeholder' => 'Contraseña'));?></div>-->
 	            	<!--<div>&nbsp</div>-->
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
@@ -67,3 +71,28 @@
 </div>
 	
 
+<!-- Modal que maneja el cambio de contraseña -->
+<div id="ModalPassword" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<div class="col-md-6">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>Cambio de contraseña</h4>
+      </div>
+      <div class="modal-body">
+      		<?php echo $this->Form->create( array('url' => 'new_password')); ?>
+        	<div title = "En este campo debe de digitar su contraseña actual"><?php echo $this->Form->input('actual_password', array('class'=>'form-control','label'=>'Contraseña actual:','placeholder' => 'Contraseña actual','type' => 'password'));?></div>
+        	<div title = "Digite aquí su nueva contraseña"><?php echo $this->Form->input('new_password', array('class'=>'form-control','label'=>'Nueva contraseña:','placeholder' => 'Nueva contraseña','type' => 'password'));?></div>
+        	<div title = "Por favor, repita su nueva contraseña en este campo"><?php echo $this->Form->input('repeat_password', array('class'=>'form-control','label'=>'Repita su contraseña:','placeholder' => 'Repita su contraseña', 'type' => 'password'));?></div>
+      		
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>-->
+        <?php echo $this->Form->end(array('label'=>'Guardar', 'controller'=>'User','action'=>'new_password', 'class'=>'btn btn-success')); ?>
+      </div>
+    </div>
+
+  </div>
+</div>

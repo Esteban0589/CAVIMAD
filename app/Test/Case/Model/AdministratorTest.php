@@ -14,9 +14,9 @@ class AdministratorTest extends CakeTestCase {
 	public $fixtures = array(
 		'app.administrator',
 		'app.user',
-		'app.aboutus',
+		/*'app.aboutus',
 		'app.download',
-		'app.link'
+		'app.link'*/
 	);
 
 /**
@@ -42,4 +42,16 @@ class AdministratorTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
+	public function testSave() {
+        $data = array(
+			'id' => 1,
+			'specialty' => 'Alguna',
+			'curriculum' => 'Varios',
+			'institution' => 'Una institución',
+			'publication' => 'Varias',
+			'user_id' => 1
+		);
+        $result = $this->Administrator->save($data);
+        $this->assertTrue(!empty($this->Administrator->id));
+    }
 }

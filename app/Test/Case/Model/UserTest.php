@@ -14,10 +14,10 @@ class UserTest extends CakeTestCase {
 	public $fixtures = array(
 		'app.user',
 		'app.administrator',
-		'app.download',
+		/*'app.download',
 		'app.link',
 		'app.picture',
-		'app.pictures_user'
+		'app.pictures_user'*/
 	);
 
 /**
@@ -42,6 +42,27 @@ class UserTest extends CakeTestCase {
 	}
 
 
+	public function testSave() {
+        $data = array(
+			'id' => 1,
+			'activated' => 1,
+			'name' => 'Jose',
+			'lastname1' => 'Lopez',
+			'lastname2' => 'Lopez',
+			'email' => 'jose@ejemplo.com',
+			'country' => 'CR',
+			'state' => 'SJ',
+			'city' => 'SP',
+			'username' => 'jose.lopez',
+			'password' => 'Jose.lopez1',
+			'role' => 'Usuario',
+			'image' => '',
+			'image_dir' => '',
+			'tokenhash' => ''
+		);
+        $result = $this->User->save($data);
+        $this->assertTrue(!empty($this->User->id));
+    }
 
 	
 }

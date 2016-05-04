@@ -134,6 +134,7 @@ class UsersController extends AppController {
 	}
 	
 	public function edit($id = null) {
+		$this->loadModel('Administrator');
 		if ( $_SESSION['role'] == null  ) {
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
@@ -145,7 +146,11 @@ class UsersController extends AppController {
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->saveAll($this->request->data)) {
+			debug($this->request->data['User']);
+			if ($this->User->saveAll($this->request->data['User'])) {
+				if($_SESSION['role'] == 'Administrador' || $_SESSION['role'] == 'Colaborador') {
+					$this->Administrator->saveAll($this->request->data['Administrator']);
+				}
 				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
 				return $this->redirect(array('action' => 'view',$id));
 			} else {

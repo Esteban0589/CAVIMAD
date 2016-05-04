@@ -40,6 +40,7 @@ class User extends AppModel {
  * @var array
  */
 	public $validate = array(
+		
 		'name' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -69,7 +70,7 @@ class User extends AppModel {
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 30),
-				'message' => 'El segundo apellido no debe tener más de 30 caracteres.',
+				'message' => 'El primer apellido no debe tener más de 30 caracteres.',
 				// 'allowEmpty' => false,
 				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
@@ -227,7 +228,7 @@ class User extends AppModel {
 			),
 			'regex' => array(
 				//Restringe que la contraseña contenga al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.
-				'rule' => '(([^a-zA-Z0-9_]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@]*))',
+				'rule' => '(^[a-zA-Z0-9_]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@\[a-zA-Z0-9]*]*)',
 				//'rule' => array('alphaNumeric'),
 				'message' => 'Su contraseña debe contener al menos una mayúscula, una minúscula y un número.',
 				//'message' => 'Your custom message here',

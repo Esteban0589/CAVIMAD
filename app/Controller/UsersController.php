@@ -81,7 +81,8 @@ class UsersController extends AppController {
 
     public function login() {
     	if ( $_SESSION['role'] != null  ) {
-			throw new NotFoundException(__('Sesión activa.'));
+			 $this->Flash->error(__('Su sesión ya esta activa.'));
+			//throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
         if( !(empty($this->data))){
@@ -138,9 +139,12 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		
+		
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no valido'));
 		}
+		
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->saveAll($this->request->data)) {
 				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));

@@ -32,7 +32,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php echo $this->Html->css('bootstrap.min.css');?>
     <?php echo $this->Html->css('dropdown-menu.css');?>
     <?php echo $this->Html->css('jquery.fancybox.css');?>
+    <?php echo $this->Html->css('jquery-ui.min.css');?>
     <?php echo $this->Html->css('style.css');?>
+    <?php echo $this->Html->script(array('jquery-ui.min', 'buscador'));?>
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
     <link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
@@ -46,7 +48,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/>
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
-
+    <base href="https://ingenieria2-kevinfl.c9users.io/"/>
   </head>
   
   <body role="document">
@@ -220,10 +222,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             
                 <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
                 
-                    <form action="#" id="top-searchform" method="get" role="search">
-                        <div class="input-group">
+                    <form  controller = "Categories" action= "Categories/buscador" id="top-searchform" method="get" role="search">
+                    <?php //$this->Form->create('Search', array('type' => 'GET','class' =>'top-searchform','url' => array('Controller' => 'Category', 'action' => 'buscador'))); ?>
+                        <div class="input-group"> 
                             <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
                         </div>
+                    <?php //echo $this->Form->button('Buscar');?>
+                    <?php //echo $this->Form->end();?>
                     </form>
                     
                     <div id="bt-toggle-search" class="glyphicon glyphicon-search">

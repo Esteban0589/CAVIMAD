@@ -107,4 +107,56 @@ class CategoriesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	public function buscador(){
+	$term = null;
+	if(!empty($this->request->query['term'])){
+		$term=$this->request->query['term'];
+		$terms=explode(' ', trim($term));					
+		$terms=array_diff($terms,array(''));
+		foreach($terms as $term){
+				$conditions[] = array(
+				"OR" => array(
+					    array('Users.username LIKE '=>'%'.$term.'%'),
+					    array('Users.id LIKE '=>'%'.$term.'%')));
+			}
+		$this->loadModel(Users);
+		$usuarios = $this->User->find('all', array('recursive'=>0, 'conditions'=>$conditions));
+		echo json_enconde($usuarios);
+		$this->autoRender=false;
+	}
+	
+	
+	/*	$buscar = $_POST['b'];
+      if(!empty($buscar)) {
+            buscar($buscar);
+      }
+      function buscar($b) {
+       /* $id=($this->request->data['Product']['s']);
+		//debug($id);
+		if(($id)){
+			$condition=explode(' ', trim($id));					
+			$condition=array_diff($condition,array(''));		
+			$conditions=null;	
+			//$this->loadModel(Category);
+			foreach($condition as $tconditions){
+				$conditions[] = array(
+				"OR" => array(
+					    array('Users.username LIKE '=>'%'.$tconditions.'%'),
+					    array('Users.id LIKE '=>'%'.$tconditions.'%')));
+
+			}
+			$this->loadModel('User');
+			$var=$this->User->find('all', array('recursive'=>0, 'conditions'=>$conditions));
+			//debug($productss);
+			if(count($productss)>0){
+				$this->set('products',$productss);
+			}
+			else{
+				 $this->Flash->set(__('There are no products for this search.'));
+				 //debug($id);
+				 return $this->redirect(array('action' => 'index'));	
+			}
+		}
+      }*/
+	}
 }

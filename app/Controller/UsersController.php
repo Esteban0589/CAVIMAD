@@ -29,7 +29,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
-		if ( $_SESSION['role'] != 'Administrador'  ) {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador' ) ) {
 			throw new NotFoundException(__('Usuario invalido.'));
 		}
 		$this->set('role', $this->roles);
@@ -67,7 +67,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if ( $_SESSION['role'] == null  ) {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null)  ) {
 			throw new NotFoundException(__('Para esta sección es necesario estar registrado.'));
 		}
 		if (!$this->User->exists($id)) {
@@ -80,7 +80,7 @@ class UsersController extends AppController {
 
 
     public function login() {
-    	if ( $_SESSION['role'] != null  ) {
+    	if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
 			 $this->Flash->error(__('Su sesión ya esta activa.'));
 			//throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
@@ -136,7 +136,7 @@ class UsersController extends AppController {
 	
 	public function edit($id = null) {
 		$this->loadModel('Administrator');
-		if ( $_SESSION['role'] == null  ) {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null)  ) {
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -147,7 +147,7 @@ class UsersController extends AppController {
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
-			debug($this->request->data['User']);
+			//debug($this->request->data['User']);
 			if ($this->User->saveAll($this->request->data['User'])) {
 				if($_SESSION['role'] == 'Administrador' || $_SESSION['role'] == 'Colaborador') {
 					$this->Administrator->saveAll($this->request->data['Administrator']);
@@ -169,14 +169,14 @@ class UsersController extends AppController {
 	
 		public function editrol($id = null) {
 
-		if ( $_SESSION['role'] == null  ) {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null ) ) {
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		if($_SESSION['role']=='Administrador'){
+		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
 			if ($this->request->is(array('post', 'put'))) {
 				if ($this->User->saveAll($this->request->data)) {
 					$this->Flash->success(__('El rol ha sido actualizado.'));
@@ -231,7 +231,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
-		if ( $_SESSION['role'] != null  ) {
+		if (  (!empty($_SESSION['role'])) && ($_SESSION['role'] != null)  ) {
 			throw new NotFoundException(__('Ya estás registrado.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -280,7 +280,7 @@ class UsersController extends AppController {
 	//Permite activar un usuario en la base de datos a través de un link generado automáticamente.
 	public function activate($token=null)
 	{
-		if ( $_SESSION['role'] != null  ) {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -347,7 +347,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		if ( $_SESSION['role'] != 'Administrador'  ) {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador')) {
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -402,7 +402,7 @@ class UsersController extends AppController {
 	//Genera un token y envía un correo electrónico para reiniciar la contraseña.
 	public function forgot_password()
 	{
-		if ( $_SESSION['role'] != null  ) {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null)  ) {
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -486,7 +486,7 @@ class UsersController extends AppController {
  	//Reinicia la contraseña según un hash agregado anteriormente.
  	public function reset($token=null)
  	{
-         if ( $_SESSION['role'] != null  ) {
+         if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null ) ) {
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}    
@@ -510,10 +510,10 @@ class UsersController extends AppController {
                      $this->User->data['User']['tokenhash']=$new_hash;
                      
                      //Si los passwords ingresados son iguales.
-                     if($this->User->validates(array('fieldList' => array('password', 'password_confirm'))))
+                     if($this->User->validates(array('fieldList' => array('password', 'repeat_password'))))
                      {
                          //Actualiza el usuario con la nueva contraseña.                   
-                         if($this->User->save($this->User->data))
+                         if($this->User->savefield('password',$this->request->data['User']['password']))
                          {
                              $this->Flash->set('La contraseña ha sido actualizada.');
                              $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
@@ -521,7 +521,7 @@ class UsersController extends AppController {
                          }
                      }
                      else{
-                         $this->Flash->set('errors',$this->User->invalidFields());
+                         $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
                          }
                  }
              }

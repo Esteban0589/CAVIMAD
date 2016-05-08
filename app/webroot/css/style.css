@@ -22,6 +22,85 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 -------------------------------- */
 
+/** Notices and Errors **/
+.message {
+	clear: both;
+	color: #fff;
+	font-size: 140%;
+	font-weight: bold;
+	margin: 0 0 1em 0;
+	padding: 5px;
+}
+
+.success,
+.message,
+.cake-error,
+.cake-debug,
+.notice,
+p.error,
+.error-message {
+	background-color:#f2dede;
+	border-color:#ebccd1;
+	color:#a94442;
+	border-top-color:#e4b9c0
+}
+.success,
+.message,
+.cake-error,
+p.error,
+.error-message {
+	background-color:#f2dede;
+	border-color:#ebccd1;
+	color:#a94442;
+	border-top-color:#e4b9c0
+}
+.success {
+	background-color:#dff0d8;
+	border-color:#d6e9c6;
+	color:#3c763d;
+	border-top-color:#c9e2b3
+}
+p.error {
+	font-family: Monaco, Consolas, Courier, monospace;
+	font-size: 120%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+p.error em {
+	font-weight: normal;
+	line-height: 140%;
+}
+.notice {
+	color: #000;
+	display: block;
+	font-size: 120%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+.success {
+	color: #fff;
+}
+
+/**  Actions  **/
+.actions ul {
+	margin: 0;
+	padding: 0;
+}
+.actions li {
+	margin:0 0 0.5em 0;
+	list-style-type: none;
+	white-space: nowrap;
+	padding: 0;
+}
+.actions ul li a {
+	font-weight: normal;
+	display: block;
+	clear: both;
+}
+
+
+
+
 /* ================================================== COMMON STYLES */
 
 /* == font and links == */
@@ -571,12 +650,12 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 .btn, .btn:before, .btn:after { -webkit-transition: 0.25s ease-in-out all; -moz-transition: 0.25s ease-in-out all; -o-transition: 0.25s ease-in-out all; transition: 0.25s ease-in-out all; }
 .btn { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; box-shadow: none; background-image: none; background-repeat: no-repeat; border-color: transparent; font-weight: 700; text-transform: uppercase; }
 .btn-primary, .btn-default, .btn-success, .btn-info, .btn-warning, .btn-danger, .btn-link { background-image: none; background-repeat: no-repeat; border-color: transparent !important; color: #FFF !important; }
-.btn-default { background-color: #666666; }
-.btn-default:hover, .btn-default:focus { background-color: #333333; }
-.btn-primary { background-color: #82B204; }
-.btn-primary:hover,.btn-primary:focus { background-color: #d04c3c; }
+.btn-default { background-color: #3891d4; }
+.btn-default:hover, .btn-default:focus { background-color: #82B204; }
+.btn-primary { background-color: #3891d4; }
+.btn-primary:hover,.btn-primary:focus { background-color: #82B204; }
 .btn-success { background-color: #3891d4; }
-.btn-success:hover,.btn-success:focus { background-color: #2cae67; }
+.btn-success:hover,.btn-success:focus { background-color: #82B204; }
 .btn-info { background-color: #68b5e6; }
 .btn-info:hover,.btn-info:focus { background-color: #5798c1; }
 .btn-warning { background-color: #f5a610; }

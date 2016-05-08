@@ -19,6 +19,10 @@ class UsersController extends AppController {
 	public $components = array('Paginator', 'Session','Flash');
 	var $roles = array('Administrador' => 'Administrador','Colaborador' => 'Colaborador','Usuario' => 'Usuario','Editor' => 'Editor');
 		
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset','activate');
+    }
 /**
  * index method
  *
@@ -73,10 +77,6 @@ class UsersController extends AppController {
 		$this->set('user', $this->User->find('first', $options));
 	}
 
-    public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset','activate');
-    }
 
 
     public function login() {

@@ -8,12 +8,11 @@ App::uses('AppModel', 'Model');
  */
 class Category extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'name';
+	var $actsAs = array(
+		'Tree'
+		);
+
+
 
 /**
  * Validation rules
@@ -21,26 +20,6 @@ class Category extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'left' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'right' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'name' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),

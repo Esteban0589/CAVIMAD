@@ -15,13 +15,10 @@
  */
 ?>
 <p class="error">
-	<?php printf(
-		__d('cake', 'El nombre de usuario no puede ser utilizado, por favor ingrese otro.'),
-		"<strong>'{$url}'</strong>"
-	); ?>
+	<?php printf(__d('cake', 'Error interno.'),"<strong>'{$url}'</strong>"); ?>
 </p>
-<?php
-if (Configure::read('debug') > 0):
-	echo $this->element('UserName duplicado en la base de datos');
-endif;
+<?php 
+	if (Configure::read('debug') > 0):	
+		echo $this->element('Error en la base de datos, para reeditar este mensaje ingrese a app/view/error/pdo_error.ctp');
+	endif;
 ?>

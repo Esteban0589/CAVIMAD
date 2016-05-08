@@ -33,17 +33,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php echo $this->Html->css('dropdown-menu.css');?>
     <?php echo $this->Html->css('jquery.fancybox.css');?>
     <?php echo $this->Html->css('style.css');?>
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
-    <link href="css/dropdown-menu.css" rel="stylesheet" type="text/css"><!-- dropdown-menu -->
-   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
-   <link href="css/bootstrap.css" rel="stylesheet" type="text/css"><!-- Bootstrap -->
-    <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
-   <link href="css/style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">     -->
+    <!--<link href="css/dropdown-menu.css" rel="stylesheet" type="text/css">        -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">        -->
+    <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css">            -->
+    <!--<link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css">                -->
    
    <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
+    <base href="https://cavimad-esteban0589.c9users.io/"/>
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
 
@@ -221,9 +221,26 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
                 
                     <form action="#" id="top-searchform" method="get" role="search">
-                        <div class="input-group">
-                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
-                        </div>
+                            
+                            
+                            
+                            
+                            <?php echo $this->Form->create('Categoriy',array('type'=>'GET','class'=>'navbar-form navbar-center','url'=>array('controller'=>'categories', 'action'=>'search')))?>
+                            
+                            <div class = "input-group">
+                                <?php echo $this->Form->input('search',array('placeholder'=>'Buscar nivel taxonomico','class'=>'form-control','id'=>'sitesearch','type'=>'text','label'=>false,'autocomplete'=>'off'))?>
+                            </div>
+                            <?php echo $this->Form->button('Buscar',array('div'=>false,'class'=>'btn btn-primary'))?>
+                            
+                            
+                            
+                            
+                        <!--<div class="input-group">-->
+                        <!--    <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />-->
+                        <!--</div>-->
+                        
+                        
+                        
                     </form>
                     
                     <div id="bt-toggle-search" class="glyphicon glyphicon-search">

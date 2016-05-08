@@ -510,10 +510,10 @@ class UsersController extends AppController {
                      $this->User->data['User']['tokenhash']=$new_hash;
                      
                      //Si los passwords ingresados son iguales.
-                     if($this->User->validates(array('fieldList' => array('password', 'password_confirm'))))
+                     if($this->User->validates(array('fieldList' => array('password', 'repeat_password'))))
                      {
                          //Actualiza el usuario con la nueva contraseña.                   
-                         if($this->User->save($this->User->data))
+                         if($this->User->savefield('password',$this->request->data['User']['password']))
                          {
                              $this->Flash->set('La contraseña ha sido actualizada.');
                              $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
@@ -521,7 +521,7 @@ class UsersController extends AppController {
                          }
                      }
                      else{
-                         $this->Flash->set('errors',$this->User->invalidFields());
+                         $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
                          }
                  }
              }

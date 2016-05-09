@@ -72,7 +72,7 @@ class DATABASE_CONFIG {
 		'host' => 'phpmyadmin.clk26rezrnfs.us-west-2.rds.amazonaws.com',
 		'login' => 'phpMyAdmin',
 		'password' => 'phpMyAdmin',
-		'database' => 'CAVIMAD',
+		'database' => 'CAVIMADARBOL',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

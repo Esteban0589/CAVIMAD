@@ -174,13 +174,32 @@ class UsersController extends AppController {
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no valido'));
 		}
 		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
 			if ($this->request->is(array('post', 'put'))) {
 				if ($this->User->saveAll($this->request->data)) {
-					$this->Flash->success(__('El rol ha sido actualizado.'));
-					return $this->redirect(array('action' => 'index', $id));
+					
+					
+					if(empty($this->User->Administrator->find('first',array('conditions' => array('Administrator.user_id' => $this->request->data['User']['id']))))){
+						$this->request->data['Administrator']['user_id'] = $this->request->data['User']['id'];
+						if ($this->User->Administrator->save($this->request->data)){
+							$this->Flash->success(__('El rol ha sido actualizado correctamente.'));
+							return $this->redirect(array('action' => 'index', $id));
+							
+						}
+						else{
+							$this->Flash->success(__('El rol no se puedo actualizar.'));
+						return $this->redirect(array('action' => 'index', $id));
+						}
+					}
+					else{
+						$this->Flash->success(__('El rol ha sido actualizado.'));
+						return $this->redirect(array('action' => 'index', $id));
+					}
+					
+					
+					
 				} else {
 					$this->Flash->error(__('El rol no se ha podido actualizar.'));
 				}

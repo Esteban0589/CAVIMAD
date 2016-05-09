@@ -10,34 +10,20 @@
 				<div class="col col-sm-7">
 
 				
-					Email: <?php echo h($user['User']['email']); ?>
-					<br/>
-					<br/>
-					País: <?php echo h($user['User']['country']); ?>
-					<br/>
-					<br/>
-					Estado: <?php echo h($user['User']['state']); ?>
-					<br/>
-					<br/>
-					Ciudad: <?php echo h($user['User']['city']); ?>
-					<br/>
-					<br/>
-					Institución: <?php echo h($user['User']['institution']); ?>
-					<br/>
-					<br/>
-					Ocupación: <?php echo h($user['User']['occupation']); ?>
-					<br/>
-					<br/>
-					<?php if(($user['User']['role']=='Administrador')||($user['User']['role']=='Colaborador')): ?>
-					Escpecialidad: <?php echo h($user['Administrator']['0']['specialty']); ?>
-					<br/>
-					<br/>
-					Publicaciones: <?php echo h($user['Administrator']['0']['publication']); ?>
-					<br/>
-					<br/>
-					Curriculum: <?php echo h($user['Administrator']['0']['curriculum']); ?>
-					<br/>
-					<br/>
+					<h5>Email:</h5> <?php echo h($user['User']['email']); ?>
+					<h5>País:</h5> <?php echo h($user['User']['country']); ?>
+					<h5>Estado:</h5> <?php echo h($user['User']['state']); ?>
+					<h5>Ciudad:</h5> <?php echo h($user['User']['city']); ?>
+					<h5>Institución:</h5> <?php echo h($user['User']['institution']); ?>
+					<h5>Ocupación:</h5> <?php echo h($user['User']['occupation']); ?>
+						<?php if(($user['User']['role']=='Administrador')||($user['User']['role']=='Colaborador')): ?>
+					<h5>Escpecialidad:</h5> <?php echo h($user['Administrator']['0']['specialty']); ?>
+					<h5>Publicaciones:</h5>
+						<p><?php echo nl2br(h($user['Administrator']['0']['publication'])); ?> </p>
+					<h5>Curriculum:</h5> 
+						<p><?php echo nl2br( h($user['Administrator']['0']['curriculum'])); ?> </p>
+					
+					
 
 					<?php endif; ?>
 

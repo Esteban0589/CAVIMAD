@@ -117,7 +117,7 @@ h1 { font-size: 28px; line-height: 36px; color:#82B204; }
 h2 { font-size: 24px; line-height: 30px; color:#82B204; }
 h3 { font-size: 22px; line-height: 28px; color:#82B204; }
 h4 { font-size: 20px; line-height: 26px; color:#82B204; }
-h5 { font-size: 18px; line-height: 24px; color:#82B204; }
+h5 { font-size: 18px; line-height: 24px; color:#002D6A; }
 h6 { font-size: 16px; line-height: 20px; text-transform: uppercase; }
 h1 > i, h2 > i, h3 > i, h4 > i, h5 > i, h6 > i { margin-right: 10px; }
 .page-title { font-size: 28px; font-weight: 700; line-height: 36px; margin-top: 0; margin-bottom: 0; padding-bottom: 15px; border-bottom: 1px solid rgba( 0, 0, 0, 0.05 ); }

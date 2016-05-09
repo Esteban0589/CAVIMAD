@@ -28,13 +28,11 @@
 	            	<div>&nbsp</div>
 	            	<div title = "En este campo puede editar su Ciudad"><?php echo $this->Form->input('city', array('class'=>'form-control','label'=>'Ciudad:','placeholder' => 'Ciudad'));?></div>
 	            	<div>&nbsp</div>
-	            	<div>&nbsp</div>
 	            	<div title = "En este campo por favor seleccione su ocupación"><?php echo $this->Form->input('occupation', array('class'=>'form-control', 'options'=>array('Estudiante'=>'Estudiante', 'Docente'=>'Docente', 'Investigador'=>'Investigador', 'Consultor'=>'Consultor', 'Universitario'=>'Universitario', 'Otro'=>'Otro'),'label'=>'Ocupación:','placeholder' => 'Ocupación')); ?></div>
 					<div>&nbsp</div>
 					<div title = "En este campo por favor introduzca la institución a la que pertenece"><?php echo $this->Form->input('institution', array('class'=>'form-control','label'=>'Institución:','placeholder' => 'Institución')); ?></div>
 					<div>&nbsp</div>
 	            
-	            	<div>&nbsp</div>
 	            	<!--<div title = "En este campo puede editar su Contraseña"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:','placeholder' => 'Contraseña'));?></div>-->
 	            	<!--<div>&nbsp</div>-->
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
@@ -45,15 +43,14 @@
 	            		<?php echo $this->Form->input('Administrator.0.id'); ?>
 						<?php echo $this->Form->input('Administrator.0.specialty', array('class'=>'form-control','label'=>'Especialidad:')); ?>
 						<div>&nbsp</div>
-						<?php echo $this->Form->input('Administrator.0.curriculum', array('class'=>'form-control','label'=>'Curriculum:'));?>
+						<?php echo $this->Form->input('Administrator.0.publication', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','label'=>'Publicaciones:'));?>
 						<div>&nbsp</div>
-						<?php echo $this->Form->input('Administrator.0.publication', array('class'=>'form-control','label'=>'Publicaciones:'));?>
+						<?php echo $this->Form->input('Administrator.0.curriculum', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','label'=>'Curriculum:'));?>
 						<div>&nbsp</div>
 
 					<?php endif; ?>
 					
-		        	<div>&nbsp</div>
-		            <div>&nbsp</div>
+	
 		        	</fieldset>
 		        	<br>
 		        	<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>

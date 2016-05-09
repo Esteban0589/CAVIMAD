@@ -1,6 +1,7 @@
 <section id="form"><!--form-->
 	<div class="container">
-			<div class="col-md-4 col-md-offset-2" style="border-right: 1px solid #eaeaea;padding-right: 35px;">
+		<div class = "col-md-2"></div>
+			<div class="col-md-4" style="border-right: 1px solid #eaeaea;text-align: center">
 				<div class="login-form"><!--login form-->
 					<?php echo $this->Flash->render('auth'); ?>
 					<?php echo $this->Form->create('User'); ?>
@@ -28,6 +29,7 @@
 							));?>
 						</div>
 						<br>
+						<br>
 					</div>
 						
 				</fieldset>
@@ -36,13 +38,15 @@
 				<!--/sign up form-->
 			
 		</div>
- 		<div class="col-md-4" style="margin-left: 60px; margin-top: 50px;">
+ 		<div class="col-md-4" style="text-align: center">
 				<br>
 				<br>
+				<br><br><br>
 			<div style="text-align: center" >
 				<h2>¿No estás registrado?</h2>
 			<form action="#">
 				<p>
+					
 							<?php echo $this->Html->link(__('Regístrate'), array('action' => 'add'), array(
 								'class' => 'btn btn-success',
 							)); ?>

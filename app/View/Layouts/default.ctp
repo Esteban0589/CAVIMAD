@@ -82,7 +82,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 						else{
 						    
 						    ?>    
-						    <li><h5><?php echo 'Bienvenido '.$current_user['name'];?></h5></li>
+						    <li><h6><?php echo 'Bienvenido '.$current_user['name'];?></h6></li>
 <?php						    
 						    
 						    

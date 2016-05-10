@@ -478,7 +478,7 @@ class UsersController extends AppController {
                         $output =$this->send_mail($data);
 
                             if($output){
-                                $this->Flash->set('Correo electrónico enviado correctamente.');
+                                $this->Flash->success(__('Correo electrónico enviado correctamente.'));
                                 $this->redirect(array('controller'=>'users','action'=>'login'));
                             }
                             else {

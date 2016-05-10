@@ -14,7 +14,8 @@ class CategoriesController extends TreeMenuAppController {
     public function beforeFilter(){
         parent::beforeFilter();
 
-        $this->layout = 'TreeMenu.bootstrap';
+        /*$this->layout = 'TreeMenu.bootstrap';*/
+        $this->layout = 'default';
         
         if(isset($this->params['named']['alias'])){
             $alias = Inflector::slug($this->params['named']['alias']);

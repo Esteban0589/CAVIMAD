@@ -60,7 +60,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!-- device test end -->
     
     <div id="header" class="container"> 
-    <div class="caption-content">
+        <div class="caption-content">
        	<div id="k-site-logo" class="pull-left">
         
             <h1 class="k-logo">
@@ -71,36 +71,30 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     	</div>
     </div>
         <ul class="list-inline pull-right">
-                    <!--<li><a href="#">Jobs</a></li>-->
-                        <?php
-						    if(empty($_SESSION['role'])||$_SESSION['username']==null){
-					    ?>   
-    						<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
-    						<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
-    					<?php
-						} 
-						else{
-						    
-						    ?>    
-						    <li><h5><?php echo 'Bienvenido '.$current_user['name'];?></h5></li>
-<?php						    
-						    
-						    
-						    if($current_user['role']=='Administrador'){?>
-        						<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
-						    <?php
-    					    }
-    						?>
-        						<li><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></li>
-    					<?php
-						}
-						?>
-						     
-						  
-					</li> 
-                </ul>
+            <?php
+			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
+		    ?>   
+				<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
+				<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
+			<?php
+			} 
+			else{
+			    
+			    ?>    
+			    <li><h6><?php echo 'Bienvenido '.$current_user['name'];?></h6></li>
+                <?php
+			    if($current_user['role']=='Administrador'){?>
+					<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
+			    <?php
+			    }
+				?>
+					<li><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></li>
+			<?php
+			}
+			?>
+		 
+        </ul>
         
-
     </div>
     
     <div id="k-head" ><!-- container + head wrapper -->
@@ -108,21 +102,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <div class="container">
     
     	    <div class="row"><!-- row -->
-        
             
-        
         	<div class="col-lg-12">
-             <!--   <div id="k-site-logo" class="pull-left">-->
-                        
-             <!--       <h1 class="k-logo">-->
-             <!--           <a href="index-2.html" title="Home Page">-->
-             <!--               <img src="" alt="Site Logo/ en desarrollo" class="img-responsive" />-->
-             <!--           </a>-->
-             <!--       </h1>-->
-                    
-             <!--       <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a>-->
-            
-            	<!--</div>-->
 
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
@@ -149,68 +130,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="" title="">Contactenos</a>
                         </li>
                         
-                         <li>
-                             
-                             
-                            <?php
-    						    if(!empty($_SESSION['role'])){
-    					    ?>  
-                                <a   class="glyphicon glyphicon-cog" title="" style="font-size:1em;">
-                                    </a>
+                        <li>
+                            <?php if(!empty($_SESSION['role'])){    ?>  
+                                <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         
                                     <?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?>
                                     <?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?>
-                                    <li><a href="users/logout">cerrar Sesion</a></li>
-                            <?php
-						    } 
-						    ?>
-                             </ul>   
+                                    <?php echo $this->Html->link('Cerrar sesion',array('controller' => 'users', 'action' => 'logout'));?>
+                            <?php     }     ?>
+                                </ul>   
                         </li>
 
-                        
-                        <!--
-                        <li>
-                            <a href="#" class="Pages Collection" title="More Templates"></a>
-                            <ul class="sub-menu">
-                                <li><a href="news-single.html">News Single Page</a></li>
-                                <li><a href="events-single.html">Events Single Page</a></li>
-                                <li><a href="courses-single.html">Course Single Page</a></li>
-                                <li><a href="gallery-single.html">Gallery Single Page</a></li>
-                                <li><a href="news-stacked.html">News Stacked Page</a></li>
-                                <li><a href="search-results.html">Search Results Page</a></li>
-                                <li>
-                                    <a href="#">Menu Test</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">Second Level 01</a></li>
-                                        <li>
-                                            <a href="#">Second Level 02</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="#">Third Level 01</a></li>
-                                                <li><a href="#">Third Level 02</a></li>
-                                                <li><a href="#">Third Level 03</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Second Level 03</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="about-us.html" title="How things work">About Us</a>
-                            <ul class="sub-menu">
-                                <li><a href="full-width.html">Full Width Page</a></li>
-                                <li><a href="sidebar-left.html">Sidebar on Left</a></li>
-                                <li><a href="formatting.html">Formatting</a></li>
-                                <li><a href="school-leadership.html">School Leadership</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="404.html">404 Error</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="contact-us.html" title="School Contacts">Contact Us</a>
-                        </li>
-                        -->
                     </ul>
         
             	</nav><!-- main navig end -->

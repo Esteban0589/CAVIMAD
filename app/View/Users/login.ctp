@@ -44,15 +44,15 @@
 				<br><br><br>
 			<div style="text-align: center" >
 				<h2>¿No estás registrado?</h2>
-			<form action="#">
-				<p>
-					
-							<?php echo $this->Html->link(__('Regístrate'), array('action' => 'add'), array(
-								'class' => 'btn btn-success',
-							)); ?>
-						</div>
-				</p>
-			</form>
+				<form action="#">
+					<p>
+						
+								<?php echo $this->Html->link(__('Regístrate'), array('action' => 'add'), array(
+									'class' => 'btn btn-success',
+								)); ?>
+					</p>
+				</form>
+			</div>
 		</div>
 	</div>
 	

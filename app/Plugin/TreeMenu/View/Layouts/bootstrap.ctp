@@ -87,7 +87,7 @@
                         <ul class="nav">                            
                             
                             <li class="dropdown <?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Main Demo <b class="caret"></b></a>
+                                <a href="#">Main Demo </a>
                                 <ul class="dropdown-menu">
                                     <li class=""><a href="<?php echo $this->Html->url('/admin/tree_menu/categories/index'); ?>"><?php echo __('Manage Categories'); ?></a></li>
                                     <li class=""><a href="<?php echo $this->Html->url('/admin/tree_menu/categories/sort'); ?>"><?php echo __('Sort Categories'); ?></a></li>

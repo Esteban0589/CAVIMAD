@@ -5,6 +5,15 @@
             <div class="row"><!-- row -->
                 
                 <div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
+                
+                <h2>Administracion de Categorias Taxonomicas</h2>
+                
+                <div class="conteiner">
+             
+                 <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
+                         <div class="btn btn-mini btn-link"><a href='/admin/tree_menu/categories/sort'>Arbol Taxonomico</a></div>
+                </div>
+                
         <div class="categories">
             <div class="span4" style="text-align: right;">
                                         <?php echo $this->Html->link(__('New') . ' ' . $humanizeAlias, array('action' => 'add', 'alias' => $alias), array('class' => 'btn btn-mini btn-primary', 'id' => 'addnew')); ?>

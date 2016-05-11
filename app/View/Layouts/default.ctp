@@ -44,12 +44,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                 -->
    
-   <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
+ <base href"https://clavimad-jimemachado.c9users.io/"/>
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
-     <base href="https://cavimad-julioczar0.c9users.io/"/>
+     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
 
   </head>
   
@@ -131,7 +131,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="" title="">Inicio</a>
                         </li>
                         <li>
-                            <a href="" title="">Catalogo</a>
+                            <a href="admin/tree_menu/categories/sort" title="">Catalogo</a>
                         </li>
                         <li>
                             <a href="" title="">Biomonitoreo</a>

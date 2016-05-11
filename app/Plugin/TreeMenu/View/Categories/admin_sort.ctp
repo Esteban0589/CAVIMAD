@@ -13,6 +13,13 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
             <div class="row"><!-- row -->
                 
                 <div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
+                <h2>Arbol Taxonomico</h2>
+                <div class="conteiner">
+             
+                 <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
+                         <div class="btn btn-mini btn-link"><a href='/admin/tree_menu/categories/index'>Administar Categorias</a></div>
+                </div>
+                
                 <script type="text/javascript">
                 
                 //Ext.BLANK_IMAGE_URL = '<?php //echo $html->url('/js/ext-2.0.1/resources/images/default/s.gif') ?>';

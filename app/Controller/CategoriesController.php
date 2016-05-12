@@ -140,4 +140,9 @@ class CategoriesController extends AppController {
 		// }
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public function advance_search()
+	{
+		
+	}
 }

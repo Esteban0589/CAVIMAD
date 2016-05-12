@@ -21,7 +21,7 @@ class UsersController extends AppController {
 		
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset','activate');
+        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset','activate','buscador');
     }
 /**
  * index method
@@ -605,6 +605,25 @@ class UsersController extends AppController {
  		}
  		
  	}
+ 	
+ 	
+ 	public function buscador() {
+		//$this->loadModel('User');
+		$term = null;
+		if(!empty($this->request->query['term'])){
+			$term=$this->request->query['term'];
+			$terms=explode(' ', trim($term));
+			$terms=array_diff($terms,array(''));
+			foreach($terms as $term){	
+				$conditions[] = array('User.username LIKE' => '%'. $term . '%');
+			}
+		
+		$usuario = $this->User->find('all', array('recursive'=>-1, 'fields' => array('User.username'), 'conditions'=> $conditions, 'limit' => 10));
+		debug($usuario);
+		}
+		echo json_encode($usuario);
+		$this->autoRender=false;
+	}
  	
 	
 }

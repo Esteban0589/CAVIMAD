@@ -21,7 +21,7 @@ class CategoriesController extends AppController {
 	
 	 public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('index','edit','delete');
+        $this->Auth->allow('index','edit','delete','buscar');
     }
 
 /**
@@ -140,4 +140,64 @@ class CategoriesController extends AppController {
 		// }
 		return $this->redirect(array('action' => 'index'));
 	}
+	public function buscador() {
+		$this->loadModel('User');
+		$term = null;
+		if(!empty($this->request->query['term'])){
+			$term=$this->request->query['term'];
+			$terms=explode(' ', trim($term));
+			$terms=array_diff($terms,array(''));
+			foreach($terms as $term){	
+				$conditions[] = array('User.username LIKE' => '%'. $term . '%');
+			}
+		
+		$usuario = $this->User->find('all', array('recursive'=>-1, 'fields' => array('User.username'), 'conditions'=>$conditions, 'limit' => 10));
+		
+		}
+		echo json_encode($usuario);
+		$this->autoRender=false;
+	
+		
+		// $term = null;
+		// if(!empty($this->request->query['term'])){
+		// 	$term=$this->request->query['term'];
+		// 	$terms=explode(' ', trim($term));
+		// 	$terms=array_diff($terms,array(''));
+		// 	foreach($terms as $term){
+		// 		//	$conditions[] = array('Users.username LIKE' => '%' .$term. '%');
+		// 		$conditions[] = array(
+		// 			"OR" => array(
+		// 				array('Users.username LIKE '=>'%'.$term.'%'),
+		// 				array('Users.id LIKE '=>'%'.$term.'%')));
+		// 	}
+		// 	$this->loadModel('User');
+		// 	$usuario = $this->User->find('all', array('recursive'=>-1, 'fields' => array('Users.username'), 'conditions'=>$conditions, 'limit' => 10));
+		// }
+		// echo json_encode($usuario);
+		// $this->autoRender=false;
+	}
+	
+	public function buscar() {
+		debug($this->request->query['Buscar']);
+			$datos=($this->request->query['Buscar']);
+		//debug($id);
+		if(($datos)){
+			$condition=explode(' ', trim($datos));					
+			$condition=array_diff($condition,array(''));		
+			//$this->loadModel(Category);
+			foreach($condition as $tconditions){
+				$conditions[] = array(
+				"OR" => array(
+					    array('Category.name LIKE '=>'%'.$tconditions.'%')));
+			}
+			$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
+			//debug($productss);
+			if(count($resultado)>0){
+				$this->set('resultados',$resultado);
+			}
+			debug($resultado);
+		
+		}
+	}
+	
 }

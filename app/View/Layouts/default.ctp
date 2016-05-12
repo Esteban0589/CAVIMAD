@@ -21,18 +21,37 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <!DOCTYPE html>
 
   <head>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script>
+        var basePath = " <?php echo Router::url('/'); ?>"
+    </script>
+    <script type="text/javascript" src="js/buscador.js"></script>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CAVIMAD</title>
     
-    <!-- Styles -->
     
+    <?php //echo $this->Html->script('jquery-2.1.1.min');?>
+    <?php //echo $this->Html->script('jquery-migrate-1.2.1.min');?>
+    <?php //echo $this->Html->script('jquery-ui.min');?>
+    <?php //echo $this->Html->script('buscador');?>
+    <!-- Styles -->
+
+    <?php echo $this->Html->css('jquery-ui.min.css');?>
     <?php echo $this->Html->css('font-awesome.min.css');?>
     <?php echo $this->Html->css('bootstrap.min.css');?>
     <?php echo $this->Html->css('dropdown-menu.css');?>
     <?php echo $this->Html->css('jquery.fancybox.css');?>
     <?php echo $this->Html->css('style.css');?>
+    
+    <?php echo $this->fetch('meta');?>
+    <?php echo $this->fetch('css');?>
+    <?php echo $this->fetch('script');?>
+    
     
     <!--Estos Css de abajo los quite porque estaban cargados arriba y de la manera de abajo-->
     <!--se jode algo que no permite cambiar el color de botones y me imagino que mas cosas-->
@@ -42,7 +61,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">         -->
    <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css">             -->
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
-   <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                 -->
+   <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                -->
    
    <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
@@ -50,6 +69,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
+     <base href="https://ingenieria2-kevinfl.c9users.io/"/>
 
   </head>
   
@@ -230,9 +250,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             
                 <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
                 
-                    <form action="#" id="top-searchform" method="get" role="search">
+                    <?php /*echo $this->Form->create('Users', array('type' => 'GET', 
+                    'class' => 'navbar-form navbar-left', 'url' => array('Controller' => 'users', 'action' => 'buscador'))); ?>
+                    <!--<div class = 'form-group'>-->
+                    <!--    <?php echo $this->Form->input('buscador', array('label' => false, 'div'=>false, 'id'=> 'buscador', 'class'=> 'form-control buscador', 'autocomplete'=>'off', 'placeholder'=>'Busqueda')) ?>-->
+                    <!--</div>-->
+                    <!--<?php echo $this->Form->button('Buscar', array('div'=>false, 'class'=> 'btn btn-primary')); ?>-->
+                    <!--<?php echo $this->Form->end(); */?>
+                    
+                    <form action="categories/buscar" id="top-searchform" method="get" role="Buscar">
                         <div class="input-group">
-                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
+                            <input type="text" name="Buscar" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
                         </div>
                     </form>
                     
@@ -375,13 +403,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     </div><!-- subfooter end -->
 
     <!-- jQuery -->
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>-->
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>-->
     
     <!-- Bootstrap -->
      <script src="js/bootstrap.min.js"></script>
      <script src="js/bootstrap.js"></script>
      <script src="js/npm.js"></script>
+     <script src="js/buscador.js"></script>
     
     <!-- Drop-down -->
      <script src="js/dropdown-menu.js"></script>

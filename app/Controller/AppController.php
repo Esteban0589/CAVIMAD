@@ -67,6 +67,7 @@ class AppController extends Controller {
 		$this->Cookie->httpOnly = true;
 		if (!$this->Auth->loggedIn() && $this->Cookie->read('remember_me_cookie')) {
 			$cookie = $this->Cookie->read('remember_me_cookie');
+			$this->loadModel("User");
 			$user = $this->User->find('first', array(
 			'conditions' => array(
 			'User.username' => $cookie['username'],

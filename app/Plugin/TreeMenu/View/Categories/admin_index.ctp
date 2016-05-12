@@ -43,7 +43,8 @@
                         <tr id="<?php echo $rowId; ?>" class="<?php echo $childClass; ?>">
                             <td>
                                 <?php
-                                echo $category['Category']['name']; //$this->Html->link($category['Category']['name'], array('action'=>'edit', $category['Category']['id']));
+                                echo $category['Category']['name'];
+                                //$this->Html->link($category['Category']['name'], array('action'=>'edit', $category['Category']['id']));
                                 ?>
                             </td>
                             <td style="text-align: center">

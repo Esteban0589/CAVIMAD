@@ -11,6 +11,8 @@ class CategoriesController extends TreeMenuAppController {
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
+    var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Genero');
+
     public function beforeFilter(){
         parent::beforeFilter();
 
@@ -101,6 +103,7 @@ class CategoriesController extends TreeMenuAppController {
 
         $parentCategories = $this->Category->_generateTreeList($alias);
         $this->set(compact('parentCategories'));
+        $this->set('classification', $this->classification);
     }
 
     /**

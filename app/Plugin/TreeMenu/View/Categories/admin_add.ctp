@@ -39,8 +39,8 @@
 										'after'=>$this->Form->error('slug', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
 										'label'=>false, 'class'=>'input-xlarge'));
-							echo $this->Form->input('published', array('div'=>'control-group', 'type'=>'checkbox','placeholder'=>'',
-										'before'=>'<label class="control-label">'.__('Publicarlo').'</label><div class="controls">',
+							echo $this->Form->input('published', array('div'=>'control-group', 'type'=>'checkbox','value'=>'0','placeholder'=>'',
+										'before'=>'<label class="control-label">'.__('Publicado').'</label><div class="controls">',
 										'after'=>$this->Form->error('published', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
 										'label'=>false, 'class'=>''));

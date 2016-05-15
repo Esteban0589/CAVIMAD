@@ -8,6 +8,8 @@ App::uses('AppModel', 'Model');
  */
 class Category extends AppModel {
 
+
+
 	var $actsAs = array(
 		'Tree'
 		);
@@ -66,6 +68,19 @@ class Category extends AppModel {
 		'ChildCategory' => array(
 			'className' => 'Category',
 			'foreignKey' => 'parent_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Picture' => array(
+			'className' => 'Picture',
+			'foreignKey' => 'categorie_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

@@ -178,26 +178,39 @@ class CategoriesController extends AppController {
 	}
 	
 	public function buscar() {
-		debug($this->request->query['Buscar']);
-			$datos=($this->request->query['Buscar']);
+		$datos=($this->request->query['Buscar']);
 		//debug($id);
 		if(($datos)){
+			$this->loadModel('Picture');
 			$condition=explode(' ', trim($datos));					
 			$condition=array_diff($condition,array(''));		
-			//$this->loadModel(Category);
 			foreach($condition as $tconditions){
 				$conditions[] = array(
-				"OR" => array(
-					    array('Category.name LIKE '=>'%'.$tconditions.'%')));
+					"OR" => array(
+					    array('Category.name LIKE '=>'%'.$tconditions.'%')
+					)
+					    
+				);
 			}
 			$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
-			//debug($productss);
+			$i = 0;
+			
+			foreach($resultado as $resultados){
+				if($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])){
+					if(count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id'])==1){
+						$myRandomNumber[]=0;	
+					}
+					else{
+						$myRandomNumber[] = rand(0,count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id']));
+					}
+					$resultado[$i]=$resultado[$i]+$myRandomNumber+$this->Picture->findByCategorie_id($resultado[$i]['Category']['id']);
+				}
+				$i++;
+			}
 			if(count($resultado)>0){
 				$this->set('resultados',$resultado);
 			}
 			debug($resultado);
-		
 		}
 	}
-	
 }

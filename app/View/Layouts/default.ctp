@@ -112,7 +112,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="" title="">Inicio</a>
                         </li>
                         <li>
-                            <a href="admin/tree_menu/categories/sort" title="">Catalogo</a>
+                            <a href="categories/sort" title="">Catalogo</a>
                         </li>
                         <li>
                             <a href="" title="">Biomonitoreo</a>

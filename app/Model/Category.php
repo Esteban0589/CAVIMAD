@@ -1,81 +1,107 @@
 <?php
-App::uses('AppModel', 'Model');
+
+App::uses('TreeMenuAppModel', 'TreeMenu.Model');
+
 /**
  * Category Model
  *
- * @property Category $ParentCategory
- * @property Category $ChildCategory
  */
-class Category extends AppModel {
+class Category extends TreeMenuAppModel {
 
-	var $actsAs = array(
-		'Tree'
-		);
+    public $actsAs = array('Tree',
+        'TreeMenu.Slug' => array('field' => 'name', 'slug_field' => 'slug', 'primary_key' => 'id', 'replacement' => '_', 'DBcheck' => true),
+    );
 
-
-
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'name' => array(
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public $validate = array(
+        'name' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'El nombre no debe estar vacío.',
+				// 'allowEmpty' => false,
+				// 'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'Ya existe otro nivel taxónomico con ese nombre.',
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Este campo solo permite letras y numeros.'
+            ),
+        ),
+        'description' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				'message' => 'El nombre no debe estar vacío.',
+				// 'allowEmpty' => false,
+				// 'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-	);
+			'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Este campo solo permite letras y numeros.'
+            ),
+        ),
 
-	// The Associations below have been created with all possible keys, those that are not needed can be removed
+    );
 
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'ParentCategory' => array(
-			'className' => 'Category',
-			'foreignKey' => 'parent_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
+    public function afterSave($created, $options = array()) {
+        parent::afterSave($created,$options);
 
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'ChildCategory' => array(
-			'className' => 'Category',
-			'foreignKey' => 'parent_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
+        Cache::clear();
+        clearCache();
+    }
+
+    public function afterDelete() {
+        parent::afterDelete();
+
+        Cache::clear();
+        clearCache();
+    }
+
+    public function getAllCategory($alias = null) {
+        if (($categories = Cache::read('getAllCategory_' . $alias)) === false) {
+            $conditions = array();
+            if ($alias) {
+                $conditions['Category.alias'] = $alias;
+            }else{
+                $conditions[] = 'Category.alias IS NULL';
+            }
+            $categories = $this->find('all', array('conditions' => $conditions,
+                'fields' => array('Category.id', 'Category.parent_id', 'Category.name', 'Category.published'),
+                'order' => array('Category.lft' => 'ASC')
+                    ));
+            Cache::write('getAllCategory_' . $alias, $categories);
+        }
+        return $categories;
+    }
+
+    public function _generateTreeList($alias = null) {
+        if (($categories = Cache::read('GenerateTreeList' . $alias)) === false) {
+            $conditions = null;
+            if ($alias) {
+                $conditions['Category.alias'] = $alias;
+            }else{
+                $conditions[] = 'Category.alias IS NULL';
+            }
+            $categories = $this->generateTreeList($conditions);
+            Cache::write('GenerateTreeList' . $alias, $categories);
+        }
+        return $categories;
+    }
 
 }

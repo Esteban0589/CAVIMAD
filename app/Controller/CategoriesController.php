@@ -73,8 +73,8 @@ class CategoriesController extends TreeMenuAppController {
             $this->set('title', Inflector::humanize($alias));
             $this->set('description', __('Manage').' '.Inflector::humanize($alias));
         }else{
-            $this->set('title', __('Category'));
-            $this->set('description', __('Manage Category'));
+            $this->set('title', __('Categoria'));
+            $this->set('description', __('Manejar categoria'));
         }
 
         $this->Category->recursive = 0;
@@ -93,11 +93,11 @@ class CategoriesController extends TreeMenuAppController {
             $this->Category->create();
             if($alias) $this->request->data['Category']['alias'] = $alias;
             if ($this->Category->save($this->request->data)) {
-                $this->Session->setFlash(__('Data has been saved'), 'TreeMenu.success');
+                $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
                 $this->redirect($alias);
             } else {
-                $this->Session->setFlash(__('Data could not be saved. Please, try again.'), 'TreeMenu.error');
+                $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
         }
 
@@ -115,24 +115,25 @@ class CategoriesController extends TreeMenuAppController {
     public function edit($id = null) {
         $this->Category->id = $id;
         if (!$this->Category->exists()) {
-            throw new NotFoundException(__('Invalid category'));
+            throw new NotFoundException(__('Categoria no valida'));
         }
         
         $alias = $this->categoryAlias;
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Category->save($this->request->data)) {
-                $this->Session->setFlash(__('Data has been saved'), 'success');
+                $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
                 //$this->redirect($this->__getPreviousUrl());
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
                 $this->redirect($alias);
             } else {
-                $this->Session->setFlash(__('Data could not be saved. Please, try again.'), 'error');
+                $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'error');
             }
         } else {
             $this->request->data = $this->Category->read(null, $id);
         }
         $parentCategories = $this->Category->_generateTreeList($alias);
-        $this->set(compact('parentCategories'));
+        $this->set(compact('parentCategories')); 
+        $this->set('classification', $this->classification);
     }
 
     /**
@@ -147,17 +148,17 @@ class CategoriesController extends TreeMenuAppController {
         }
         $this->Category->id = $id;
         if (!$this->Category->exists()) {
-            throw new NotFoundException(__('Invalid Data'));
+            throw new NotFoundException(__('Datos no validos'));
         }
         
         $alias = $this->categoryAlias;
         $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
         
         if ($this->Category->delete()) {
-            $this->Session->setFlash(__('Data deleted'), 'success');            
+            $this->Session->setFlash(__('Datos eliminados'), 'success');            
             $this->redirect($alias);
         }
-        $this->Session->setFlash(__('Data was not deleted'), 'error');
+        $this->Session->setFlash(__('Datos no eliminados'), 'error');
         $this->redirect($alias);
     }
 

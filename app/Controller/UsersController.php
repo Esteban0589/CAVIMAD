@@ -71,7 +71,7 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Para esta sección es necesario estar registrado.'));
 		}
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no valido'));
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));

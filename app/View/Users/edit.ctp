@@ -43,7 +43,7 @@
 	            		<?php echo $this->Form->input('Administrator.0.id'); ?>
 						<?php echo $this->Form->input('Administrator.0.specialty', array('class'=>'form-control','label'=>'Especialidad:')); ?>
 						<div>&nbsp</div>
-						<?php echo $this->Form->input('Administrator.0.publication', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','label'=>'Publicaciones:'));?>
+						<?php echo $this->Form->input('Administrator.0.publication', array('type'=>'textarea','class'=>'expanding','rows' => '5', 'cols' => '5','class'=>'form-control','label'=>'Publicaciones:'));?>
 						<div>&nbsp</div>
 						<?php echo $this->Form->input('Administrator.0.curriculum', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','label'=>'Curriculum:'));?>
 						<div>&nbsp</div>

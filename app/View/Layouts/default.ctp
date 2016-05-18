@@ -47,7 +47,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
  <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="https://cavimad-esteban0589.c9users.io"/>-->
+    <base href="https://cavimad-esteban0589.c9users.io"/>
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
 
@@ -65,7 +65,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             
                 <h1 class="k-logo">
                     <a href="" title="Catalogo Virtual de Macroinvertebrados de Agua Dulce">
-                        <img src="app/webroot/img/CavimaLogo.png" alt="UCR" width="250"; />
+                        <img src="app/webroot/img/CavimaLogo.png" alt="CAVIMAD" width="250"; />
                     </a>
                 </h1>
         	</div>

@@ -403,8 +403,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     </div><!-- subfooter end -->
 
     <!-- jQuery -->
-    <script src="js/jquery-2.1.1.min.js"></script>-->
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>-->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
     
     <!-- Bootstrap -->
      <script src="js/bootstrap.min.js"></script>

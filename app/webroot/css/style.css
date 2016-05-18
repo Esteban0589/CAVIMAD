@@ -107,6 +107,12 @@ a { -webkit-transition: 0.2s ease-in-out all; -moz-transition: 0.2s ease-in-out 
 a:link, a:visited { color: #82B204; text-decoration: none; }
 a:hover, a:focus { color: #111; outline: none; }
 a.moretag { font-size: 12px; text-transform: uppercase; }
+
+
+a12 { -webkit-transition: 0.2s ease-in-out all; -moz-transition: 0.2s ease-in-out all; -o-transition: 0.2s ease-in-out all; transition: 0.2s ease-in-out all; }
+a12:link, a12:visited { color: #002D6A; text-decoration: none; }
+a12:hover, a12:focus { color: #B2B2B2; outline: none; }
+a12.moretag { font-size: 12px; text-transform: uppercase; }
 /* == END font and links == */
 
 /* == titles, titles custom == */

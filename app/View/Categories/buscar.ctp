@@ -1,6 +1,6 @@
 <div class="container">
-	<br>
-    <h2 class="title-widget">Resultados de la búsqueda:</h2>
+    <h2><?php if($resultados!=null){ echo __('Resultados de la búsqueda:'); ?></h2>
+	
 
 	<div class="col-lg-12 col-md-12">
 		<?php foreach ($resultados as $resultado): ?>
@@ -23,33 +23,35 @@
 				
 				<div class="col-lg-9 col-md-9">
 					<!--Parte de textos-->
-					<h1 class="title-median"><a href="#" title="Nombre"><?php echo h($resultado['Category']['name']);?></a></h1>
+					<b style="color:#82B204"><?php echo h($resultado['Category']['name']);?></b>
 					<ul>
-						<li>
+						
+							<b>Descripción:</b>
 							<div>
-								<p>
-									
-									Descripción:<?php echo h($resultado['Category']['description']); ?>
+								<p style="text-indent:60px">
+									<?php echo h($resultado['Category']['description']); ?>
 								</p>
 							</div>
-						</li>
+						
 							<div>
-								Clasificación:<?php echo h($resultado['Category']['classification']); ?>
+								<b>Clasificación:</b><p style="text-indent:60px"><?php echo h($resultado['Category']['classification']); ?></p>
 							</div>
-							<a>
-						    	<?php 
-									echo $this->Html->link('<i class="glyphicon glyphicon-eye-open"></i>',
-									array('controller' => 'Category','action' => 'view',$resultado['Category']['id']),
-									array('escape' => false)
-									);
-								?>
-							</a> 
+							<div class="a12">
+								<a>
+							    	<?php 
+										echo $this->Html->link('<i class="glyphicon glyphicon-eye-open" style="font-size:25px" ></i>',
+										array('controller' => 'Category','action' => 'view',$resultado['Category']['id']),
+										array('escape' => false)
+										);
+									?>
+								</a> 
+							</div>
                     </ul>
                     <!--Cierra parte de textos-->
 				</div>
 				
-            <div class="col-lg-12 col-md-12"><br></div>
-		<?php endforeach; ?>
+            <div class="col-lg-12 col-md-12"></div>
+		<?php endforeach;} ?>
 
 	</div>
 </div>

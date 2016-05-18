@@ -12,17 +12,16 @@
 					?>
 					
 						<div class="thumbnail"> 
-							<a href="categories/view/".$resultado['Category']['id']>
-								<?php echo $this->Html->image('../files/category/image/' . $resultado['Picture']['image_dir'].'/'.'thumb_'.$resultado['Picture']['image']); ?>
-							</a>
+							<?php echo "<a href= 'categories/view/".$resultado['Category']['id']."'>"; ?>
+							<?php echo $this->Html->image('../files/category/image/' . $resultado['Picture']['image_dir'].'/'.'thumb_'.$resultado['Picture']['image']); ?>
+							<?php echo "</a>";?>
 						</div>
 					<?php }
 						else{ ?>
 							<div class="thumbnail"> 
-							<?php echo "<a href= 'categories/view/".$resultado['Category']['id']."'>"; ?>
+								<?php echo "<a href= 'categories/view/".$resultado['Category']['id']."'>"; ?>
 								<?php echo $this->Html->image('../files/category/default.PNG'); ?>
-							 <?php echo "</a>";?>
-							
+							 	<?php echo "</a>";?>
 							</div>
 					<?php
 						}	
@@ -47,16 +46,6 @@
 								</p>
 							</div>
 						
-							<div class="a12">
-								<a>
-							    	<?php 
-										echo $this->Html->link('<i class="glyphicon glyphicon-eye-open" style="font-size:25px" ></i>',
-										array('controller' => 'Category','action' => 'view',$resultado['Category']['id']),
-										array('escape' => false)
-										);
-									?>
-								</a> 
-							</div>
                     </ul>
                     <!--Cierra parte de textos-->
 				</div>

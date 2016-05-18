@@ -16,4 +16,4 @@
 ?>
 <?php echo $this->fetch('content'); ?>
 
-This email was sent using the CakePHP Framework, http://cakephp.org.
+	Este correo electrónico ha sido generado automáticamente por CAVIMAD, por lo que ningun mensaje enviado a esta dirección será respondida. Si usted no solicito ningún correo, por favor haga caso omiso del mismo.

@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
-       <?php echo $this->Html->css('font-awesome.min.css');?>
-    <?php echo $this->Html->css('bootstrap.min.css');?>
-    <?php echo $this->Html->css('dropdown-menu.css');?>
-    <?php echo $this->Html->css('jquery.fancybox.css');?>
-    <?php echo $this->Html->css('style.css');?>
     <body>
         
         <div id="k-body"><!-- content wrapper -->

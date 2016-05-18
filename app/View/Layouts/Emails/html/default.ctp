@@ -21,7 +21,9 @@
 </head>
 <body>
 	<?php echo $this->fetch('content'); ?>
-
-	<p>This email was sent using the <a href="http://cakephp.org">CakePHP Framework</a></p>
+	<br>
+	<br>
+	-------------------------------------------------------------------------------------------------------
+	<i><p><center></center>Este correo electrónico ha sido generado automáticamente por CAVIMAD, por lo que ningun mensaje enviado a esta dirección será respondida.  Si usted no solicito ningún correo, por favor haga caso omiso del mismo.</center></p></i>
 </body>
 </html>

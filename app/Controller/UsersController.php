@@ -478,7 +478,7 @@ class UsersController extends AppController {
                         $output =$this->send_mail($data);
 
                             if($output){
-                                $this->Flash->set('Correo electrónico enviado correctamente.');
+                                $this->Flash->success(__('Correo electrónico enviado correctamente.'));
                                 $this->redirect(array('controller'=>'users','action'=>'login'));
                             }
                             else {
@@ -519,7 +519,7 @@ class UsersController extends AppController {
              if(!empty($u))
              {
                  $this->User->id=$u['User']['id'];        
-                 
+
                  if(!empty($this->data))
                  {    
                      $this->User->data=$this->data;
@@ -528,13 +528,14 @@ class UsersController extends AppController {
                          
                      $this->User->data['User']['tokenhash']=$new_hash;
                      
-                     //Si los passwords ingresados son iguales.
-                     if($this->User->validates(array('fieldList' => array('password', 'repeat_password'))))
+                     //Si los passwords ingresados son iguales
+                     
+                     if($this->data['User']['password'] ==$this->data['User']['repeat_password'])
                      {
                          //Actualiza el usuario con la nueva contraseña.                   
                          if($this->User->savefield('password',$this->request->data['User']['password']))
                          {
-                             $this->Flash->set('La contraseña ha sido actualizada.');
+                             $this->Flash->success(__('La contraseña ha sido actualizada.'));
                              $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
                              $this->redirect(array('controller'=>'users','action'=>'login'));
                          }

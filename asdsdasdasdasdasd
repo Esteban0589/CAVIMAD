@@ -1,0 +1,33 @@
+/var/www/html# mv phpunit.phar app/Vendor/
+
+/var/www/html# mkdir app/tmp
+/var/www/html# mkdir app/tmp/cache
+/var/www/html# mkdir app/tmp/cache/persistent
+/var/www/html# mkdir app/tmp/cache/models
+/var/www/html# chmod -R 777 app/tmp/
+/var/www/html# a2enmod rewrite
+ 
+
+editar debug
+/var/www/html# nano app/Config/core.php
+
+cambiar base de datos a CAVIMADAWS
+/var/www/html# nano app/Config/database.php
+
+Poner la base en el default
+/var/www/html# nano app/View/Layouts/default.ctp
+
+/var/www/html# service apache2 restart
+
+
+/var/www/html# cd app/webroot/files/user/image/
+/var/www/html/app/webroot/files/user/image# ls
+11  14   158  18  20  25  27  29  34  38  46  52  8
+12  152  17   19  24  26  28  30  35  39  49  55  9
+/var/www/html/app/webroot/files/user/image# mv 158 ../
+/var/www/html/app/webroot/files/user/image# rm -rf *
+/var/www/html/app/webroot/files/user/image# ls
+/var/www/html/app/webroot/files/user/image# cd ..
+/var/www/html/app/webroot/files/user# cd ..
+/var/www/html/app/webroot/files/user# mv 158 image/
+

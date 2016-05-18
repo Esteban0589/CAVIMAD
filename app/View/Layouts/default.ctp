@@ -47,7 +47,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
  <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
-    <base href="https://cavimad-esteban0589.c9users.io"/>
+    <!--<base href="https://cavimad-esteban0589.c9users.io"/>-->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
 
@@ -61,13 +61,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     <div id="header" class="container"> 
         <div class="caption-content">
-           	<div id="k-site-logo" class="pull-left">
+            <div id="k-site-logo" class="list-inline pull-left">
             
                 <h1 class="k-logo">
                     <a href="" title="Catalogo Virtual de Macroinvertebrados de Agua Dulce">
                         <img src="app/webroot/img/CavimaLogo.png" alt="CAVIMAD" width="250"; />
                     </a>
                 </h1>
+                <a id="mobile-nav-switch" href="#drop-down"><span class="alter-menu-icon"></span></a>
         	</div>
             <ul class="list-inline pull-right">
                 <?php
@@ -80,7 +81,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     			else{
     			    
     			    ?>    
-    			    <li><h6><?php echo 'Bienvenido '.$current_user['name'];?></h6></li>
+    			    <li><h6><?php echo 'Hola '.$current_user['name'];?></h6></li>
                     <?php
     			    if($current_user['role']=='Administrador'){?>
     					<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>

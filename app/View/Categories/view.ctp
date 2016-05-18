@@ -1,6 +1,6 @@
 <div class="categories view">
 <h2><?php echo __('Category'); ?></h2>
-	<dl class="table table-condensed">
+	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($category['Category']['id']); ?>
@@ -52,7 +52,7 @@
 <div class="related">
 	<h3><?php echo __('Related Categories'); ?></h3>
 	<?php if (!empty($category['ChildCategory'])): ?>
-	<table  cellpadding = "0" cellspacing = "0" >
+	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Left'); ?></th>

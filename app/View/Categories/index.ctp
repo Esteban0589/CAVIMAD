@@ -30,11 +30,11 @@
             <table cellpadding="0" cellspacing="0" id="table-categories" class="table table-hover table-bordered table-condensed">
                 <thead>
                     <tr>
-                        <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de la Categoría'); ?></th>
-                        <!--<th class="header" style="text-align: center; width:150px"><?php echo __('Published'); ?></th>-->
-                        <th class="header" style="text-align: center; width:200px"><?php echo __('Clasificación'); ?></th>
-                        <th class="header"> <?php echo __('Descripción'); ?></th>
-                        <th class="header" style="text-align: center; width:200px"><?php echo __('Acciones'); ?></th>
+                        <th class="header" style="text-align: center; width:200px"><?php echo $this->Paginator->sort('Nombre de la Categoría'); ?></th>
+                        <!--<th class="header" style="text-align: center; width:150px"><?php echo $this->Paginator->sort('Published'); ?></th>-->
+                        <th class="header" style="text-align: center; width:200px"><?php echo $this->Paginator->sort('Clasificación'); ?></th>
+                        <th class="header"> <?php echo $this->Paginator->sort('Descripción'); ?></th>
+                        <th class="header" style="text-align: center; width:200px"><?php echo $this->Paginator->sort('Acciones'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,7 +74,17 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        
+        	<p align=center>
+					<?php
+					echo $this->Paginator->counter(array('format' => __('Página {:page} de {:pages}, mostrando {:current} resultados de {:count}')));?>	
+				</p>
+				<div class="paging" align=center>
+					<?php
+						echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
+						echo $this->Paginator->numbers(array('separator' => ''));
+						echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+					?>
+				</div>
             <?php
             echo $this->Html->script(array(        
                 '/tree_menu/js/treetable/jquery.treeTable.js'

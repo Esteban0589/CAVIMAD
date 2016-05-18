@@ -44,7 +44,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                 -->
    
- <base href"https://clavimad-jimemachado.c9users.io/"/>
+ <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
@@ -61,7 +61,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     <div id="header" class="container"> 
         <div class="caption-content">
-           	<div id="k-site-logo" class="pull-left">
+           	<div id="k-site-logo" class="list-inline pull-left">
             
                 <h1 class="k-logo">
                     <a href="" title="Catalogo Virtual de Macroinvertebrados de Agua Dulce">
@@ -85,7 +85,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     			else{
     			    
     			    ?>    
-    			    <li><h6><?php echo 'Bienvenido '.$current_user['name'];?></h6></li>
+    			    <li><h6><?php echo 'Hola '.$current_user['name'];?></h6></li>
                     <?php
     			    if($current_user['role']=='Administrador'){?>
     					<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>

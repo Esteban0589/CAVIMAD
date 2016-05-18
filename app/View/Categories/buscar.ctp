@@ -26,6 +26,11 @@
 					<b style="color:#82B204"><?php echo h($resultado['Category']['name']);?></b>
 					<ul>
 						
+							<div>
+								<b>Clasificación:</b><p style="text-indent:60px"><?php echo h($resultado['Category']['classification']); ?></p>
+							</div>
+							
+							
 							<b>Descripción:</b>
 							<div>
 								<p style="text-indent:60px">
@@ -33,9 +38,6 @@
 								</p>
 							</div>
 						
-							<div>
-								<b>Clasificación:</b><p style="text-indent:60px"><?php echo h($resultado['Category']['classification']); ?></p>
-							</div>
 							<div class="a12">
 								<a>
 							    	<?php 

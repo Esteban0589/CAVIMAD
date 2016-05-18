@@ -15,7 +15,7 @@ class CategoriesController extends TreeMenuAppController {
 
     public function beforeFilter(){
         parent::beforeFilter();
-
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -68,6 +68,7 @@ class CategoriesController extends TreeMenuAppController {
      */
     public function index() {
         $alias = $this->categoryAlias;
+        clearCache();
         if($alias){
             $alias = Inflector::slug($alias);
             $this->set('title', Inflector::humanize($alias));
@@ -123,11 +124,12 @@ class CategoriesController extends TreeMenuAppController {
         
         $alias = $this->categoryAlias;
         if ($this->request->is('post') || $this->request->is('put')) {
+            debug($this->request->data);
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
                 //$this->redirect($this->__getPreviousUrl());
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-                $this->redirect($alias);
+                // $this->redirect($alias);
             } else {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'error');
             }
@@ -198,6 +200,48 @@ class CategoriesController extends TreeMenuAppController {
         $this->set('title', __('Category'));
         $this->set('description', __('Sort Categories'));
     }
+    
+    public function buscar() {
+		$datos=($this->request->query['Buscar']);
+		if(($datos)){
+			$this->loadModel('Picture');
+			$condition=explode(' ', trim($datos));					
+			$condition=array_diff($condition,array(''));
+			if($condition){
+				foreach($condition as $tconditions){
+					$conditions[] = array(
+						"OR" => array(
+						    array('Category.name LIKE '=>'%'.$tconditions.'%')
+						)
+						    
+					);
+				}
+				$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
+				$i = 0;
+				foreach($resultado as $resultados){
+					if($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])){
+						if(count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id'])==1){
+							$myRandomNumber[]=0;	
+						}
+						else{
+							$myRandomNumber[] = rand(0,count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id']));
+						}
+						$resultado[$i]=$resultado[$i]+$myRandomNumber+$this->Picture->findByCategorie_id($resultado[$i]['Category']['id']);
+					}
+					$i++;
+				}
+				if(count($resultado)>0){
+					$this->set('resultados',$resultado);
+				}
+				else{
+					return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
+				}
+			}
+		}
+		else{
+			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
+		}
+	}
 
     public function admin_getnodes($alias=null) {
         $this->layout = 'ajax';

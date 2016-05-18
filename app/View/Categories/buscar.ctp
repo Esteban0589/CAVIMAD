@@ -11,10 +11,19 @@
 						if(count($resultado['Picture']['image_dir'])>0){
 					?>
 					
-						<div class="thumbnail"> <?php echo $this->Html->image('../files/category/image/' . $resultado['Picture']['image_dir'].'/'.'thumb_'.$resultado['Picture']['image']); ?></div>
+						<div class="thumbnail"> 
+							<a href="categories/view/".$resultado['Category']['id']>
+								<?php echo $this->Html->image('../files/category/image/' . $resultado['Picture']['image_dir'].'/'.'thumb_'.$resultado['Picture']['image']); ?>
+							</a>
+						</div>
 					<?php }
 						else{ ?>
-							<div class="thumbnail"> <?php echo $this->Html->image('../files/category/default.PNG'); ?></div>
+							<div class="thumbnail"> 
+							<?php echo "<a href= 'categories/view/".$resultado['Category']['id']."'>"; ?>
+								<?php echo $this->Html->image('../files/category/default.PNG'); ?>
+							 <?php echo "</a>";?>
+							
+							</div>
 					<?php
 						}	
 					?>
@@ -23,7 +32,7 @@
 				
 				<div class="col-lg-9 col-md-9">
 					<!--Parte de textos-->
-					<b style="color:#82B204"><?php echo h($resultado['Category']['name']);?></b>
+					<b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'Category','action' => 'view',$resultado['Category']['id']));?></b>
 					<ul>
 						
 							<div>

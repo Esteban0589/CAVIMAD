@@ -44,10 +44,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                 -->
    
- <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
+ <base href"https://clavimad-jimemachado.c9users.io/"/>
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="https://cavimad-esteban0589.c9users.io"/>-->
+    <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
 
@@ -68,7 +68,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         <img src="app/webroot/img/CavimaLogo.png" alt="UCR" width="250"; />
                     </a>
                 </h1>
+             <a id="mobile-nav-switch" href="#drop-down"><span class="alter-menu-icon"></span></a><!-- alternative menu button -->
+
         	</div>
+        	
+        	    
+        
             <ul class="list-inline pull-right">
                 <?php
     			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
@@ -91,10 +96,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     			<?php
     			}
     			?>
+    			
     		 
             </ul>
+            
         </div>
         
+    			   
     </div>
     
     <div id="k-head" ><!-- container + head wrapper -->
@@ -112,7 +120,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="" title="">Inicio</a>
                         </li>
                         <li>
-                            <a href="categories/sort" title="">Catalogo</a>
+                            <a href="admin/tree_menu/categories/sort" title="">Catalogo</a>
                         </li>
                         <li>
                             <a href="" title="">Biomonitoreo</a>
@@ -313,7 +321,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
      <script src="js/bootstrap.min.js"></script>
      <script src="js/bootstrap.js"></script>
      <script src="js/npm.js"></script>
-
+    
     <!-- Drop-down -->
      <script src="js/dropdown-menu.js"></script>
     

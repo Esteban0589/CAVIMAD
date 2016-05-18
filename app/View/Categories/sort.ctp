@@ -14,11 +14,11 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
             <div class="row"><!-- row -->
                 
                 <div class="col-lg-3 col-md-3"><!-- doc body wrapper -->
-                    <h2>Arbol Taxonomico</h2>
+                    <h2>Árbol Taxonómico</h2>
                     <div class="conteiner">
                  
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
-                             <div class="btn btn-mini btn-link"><a href='/categories/index'>Administar Categorias</a></div>
+                             <div class="btn btn-mini btn-link"><a href='/categories/index'>Administar Categorías</a></div>
                     </div>
                     
                     <script type="text/javascript">
@@ -120,7 +120,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     </script>
                      
                     <div id="tree-div" style="height:400px;"></div> 
-    
+                    <br>
                 </div> 
             </div>
         </div> 

@@ -11,7 +11,7 @@ class CategoriesController extends TreeMenuAppController {
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
-    var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Genero');
+    var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Género' => 'Género');
 
     public function beforeFilter(){
         parent::beforeFilter();
@@ -76,10 +76,13 @@ class CategoriesController extends TreeMenuAppController {
             $this->set('title', __('Categoria'));
             $this->set('description', __('Manejar categoria'));
         }
-
-        $this->Category->recursive = 0;
+        
+        $categoriesfind = $this->Category->find('all');
+        $this->set('allCategories', $categoriesfind);
+        
+      /*  $this->Category->recursive = 0;
         $categories = $this->Category->getAllCategory($alias);
-        $this->set('categories', $categories);
+        $this->set('categories', $categories);*/
     }
 
     /**

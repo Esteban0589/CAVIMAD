@@ -11,32 +11,32 @@
 					<ul class="breadcrumb">
 					    <li>
 					    	<!--Ruta del arbol-->
-							<?php echo $this->Html->link(__('Manejar niveles taxónomicos'), array('action'=>'index', 'alias'=>$alias));?>
+							<?php echo $this->Html->link(__('Manejar niveles taxonómicos'), array('action'=>'index', 'alias'=>$alias));?>
 							<span class="divider">/</span>
 						</li>
-					    <li class="active"><?php echo __('Agregar nivel taxónomico'); ?></li>
+					    <li class="active"><?php echo __('Agregar nivel taxonómico'); ?></li>
 					</ul>
 					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal'));?>
 					<fieldset class="col-lg-4 col-md-4" >
 						
 						<!--Titulo principal-->
-						<h2><?php echo __('Agregar nivel taxónomico'); ?></h2>
+						<h2><?php echo __('Agregar nivel taxonómico'); ?></h2>
 						<?php
 							
 							// Selector del padre
-							echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoria a la que pertenecera el nivel a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>array('0'=>__('Root')),
+							echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoría a la que pertenecera el nivel a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>array('0'=>__('Root')),
 										'before'=>'<label class="control-label">'.__('Padre').'</label><div class="controls">',
 										'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
 										'label'=>false, 'class'=>'form-control'));
 							// Escoger que tipo de nivel taxonomico es
-							echo $this->Form->input('classification', array('div'=>'control-group','title'=>'Escoja el tipo de nivel taxónomico','placeholder'=>'','options'=>$classification,
+							echo $this->Form->input('classification', array('div'=>'control-group','title'=>'Escoja el tipo de nivel taxonómico','placeholder'=>'','options'=>$classification,
 										'before'=>'<label class="control-label">'.__('Clasificación').'</label><div class="controls">',
 										'after'=>$this->Form->error('classification', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
 										'label'=>false, 'class'=>'form-control'));
 							// Nombre del nivel taxonomico
-							echo $this->Form->input('name', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxónomico',
+							echo $this->Form->input('name', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
 										'before'=>'<label class="control-label">'.__('Nombre').'</label><div class="controls">',
 										'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
@@ -48,7 +48,7 @@
 										'error' => array('attributes' => array('style' => 'display:none')),
 										'label'=>false, 'class'=>'form-control'));
 							//Campo de descipción
-							echo $this->Form->input('description', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese una breve descripción del nivel taxónomico ingresado. Campo de texto expandible',
+							echo $this->Form->input('description', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese una breve descripción del nivel taxonómico ingresado. Campo de texto expandible',
 										'before'=>'<label class="control-label">'.__('Descripción').'</label><div class="controls">',
 										'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),

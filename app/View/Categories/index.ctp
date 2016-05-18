@@ -27,7 +27,7 @@
             </div>
             <?php
             endif; ?>
-            <table cellpadding="0" cellspacing="0" id="table-categories" class="table table-striped table-bordered table-condensed">
+            <table cellpadding="0" cellspacing="0" id="table-categories" class="table table-hover table-bordered table-condensed">
                 <thead>
                     <tr>
                         <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de la Categoría'); ?></th>

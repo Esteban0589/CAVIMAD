@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-12">
 
 	<h2 title= "Lista de los colaboradores de la página"><?php echo __('Lista de Colaboradores'); ?></h2>
 			
@@ -29,7 +29,7 @@
 								<td><?php echo h($colaborador['User']['username']); ?>&nbsp;</td>
 								<td><?php echo h($colaborador['User']['institution']); ?>&nbsp;</td>
 								<td><?php echo h($colaborador['Administrator']['specialty']); ?>&nbsp;</td>
-								<td title= "Ir al perfil del colaborador" class="actions">
+								<td title= "Ir al perfil del colaborador" class="actions" style="text-align: right;">
 									<?php echo $this->Html->link(__('Ir al perfil'), array('action' => 'view', $colaborador['User']['id'])); ?>
 								</td>
 							</tr>

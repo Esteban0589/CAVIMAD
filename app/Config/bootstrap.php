@@ -111,3 +111,5 @@ CakeLog::config('error', array(
 ));
 CakePlugin::load('DebugKit');
 CakePlugin::load('Upload');
+CakePlugin::load('TreeMenu');
+

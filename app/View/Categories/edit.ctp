@@ -1,83 +1,72 @@
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<?php echo $this->Form->create('Category'); ?>
-			
-	        <fieldset>
-	        
-	        	<div class="page-header">
-	            	
-		            <h2><?php echo __('Editar Categoria'); ?></h2>
+ <div id="k-body"><!-- content wrapper -->
+    
+    	<div class="container"><!-- container -->
+        
+            <div class="row"><!-- row -->
+                
+				<div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
+						<div class="categories form">
+						<ul class="breadcrumb">
+						    <li>
+								<?php echo $this->Html->link(__('Manejar nivele taxonómico'), array('action'=>'index', 'alias'=>$alias));?>
+								<span class="divider">/</span>
+							</li>
+						    <li class="active"><?php echo __('Editar nivel taxonómico'); ?></li>
+						</ul>
+						<?php echo $this->Form->create('Category', array('class'=>'form-horizontal'));?>
+					<fieldset class="col-lg-4 col-md-4" >
+								<h2><?php echo __('Editar nivel taxonómico'); ?></h2>
+							<?php
+								echo $this->Form->input('id');
+								echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoría a la que pertenecera el nivel a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>__('Root'),
+											'before'=>'<label class="control-label">'.__('Padre').'</label><div class="controls">',
+											'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
+											'error' => array('attributes' => array('style' => 'display:none')),
+											'label'=>false, 'class'=>'form-control'));
+								echo $this->Form->input('classification', array('div'=>'control-group','title'=>'Escoja el tipo de nivel taxonómico','placeholder'=>'','options'=>$classification,
+										'before'=>'<label class="control-label">'.__('Clasificación').'</label><div class="controls">',
+										'after'=>$this->Form->error('classification', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
+										'error' => array('attributes' => array('style' => 'display:none')),
+										'label'=>false, 'class'=>'form-control'));
+								echo $this->Form->input('name', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
+											'before'=>'<label class="control-label">'.__('Nombre').'</label><div class="controls">',
+											'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
+											'error' => array('attributes' => array('style' => 'display:none')),
+											'label'=>false, 'class'=>'form-control'));
+								echo $this->Form->input('description', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese una breve descripción del nivel taxonómico ingresado. Campo de texto expandible',
+										'before'=>'<label class="control-label">'.__('Descripción').'</label><div class="controls">',
+										'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
+										'error' => array('attributes' => array('style' => 'display:none')),
+										'label'=>false));
+							
+											
+								echo $this->Form->input('slug', array('type'=>'hidden','div'=>'control-group','placeholder'=>'', 'readonly'=>true,
+											'before'=>'<label class="control-label">'.__('Slug').'</label><div class="controls">',
+											'after'=>$this->Form->error('slug', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
+											'error' => array('attributes' => array('style' => 'display:none')),
+											'label'=>false, 'class'=>'form-control'));
+											
+								echo $this->Form->input('published', array('div'=>'control-group', 'type'=>'hidden','placeholder'=>'',
+											'before'=>'<label class="control-label">'.__('Publicado').'</label><div class="controls">',
+											'after'=>$this->Form->error('published', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
+											'error' => array('attributes' => array('style' => 'display:none')),
+											'label'=>false, 'class'=>''));
+							?>
+						        <br>
+						        <div class="form-actions">
+						            <?php echo $this->Form->submit(__('Guardar'), array('class'=>'btn btn-primary', 'div'=>false,'title'=>'Guardar los datos ingresados'));?>            
+						            
+						            					            <!--La siguiente linea fue comentada debido a que el reset solamente limpia el formulario y no tiene mucho uso-->
 
-	            </div>
-	        	
-	        	
-				<?php echo $this->Form->input('name', array('label'=>'Nombre de la categoría','class'=>'form-control')); ?>
-				<?php echo $this->Form->input('description', array('label'=>'Descrición','class'=>'form-control')); ?>
-				<?php echo $this->Form->input('classification', array('label'=>'Clasificación','class'=>'form-control','options'=>$clasificacion)); ?>
-				<?php echo $this->Form->input('parent_id', array('label'=>'Padre','class'=>'form-control','options'=>$categories)); ?>
-				<?php echo $this->Form->input('id', array('label'=>false,'class'=>'form-control')); ?>
-				
-	        </fieldset>
-			<br>
-			
-			<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>
-		</div>
-    </div>
-</div>
-
-
-
-
-
-
-	    <!--        <div class="page-header">-->
-		   
-
-				<!--<?php echo $this->Form->input('Nombre', array('label'=>'Nombre de la categoría','class'=>'form-control')); ?>-->
-				<!--<?php echo $this->Form->input('id', array('label'=>false,'class'=>'form-control')); ?>-->
-			
-			<!--</fieldset>-->
-			<!--<?php echo $this->Form->end(array('label'=>'Editar', 'class'=>'btn btn-success')); ?>-->
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div class="categories form">-->
-<!--<?php echo $this->Form->create('Category'); ?>-->
-<!--	<fieldset>-->
-<!--		<legend><?php echo __('Edit Category'); ?></legend>-->
-<!--	<?php-->
-<!--		echo $this->Form->input('id');-->
-<!--		echo $this->Form->input('left');-->
-<!--		echo $this->Form->input('right');-->
-<!--		echo $this->Form->input('name');-->
-<!--		echo $this->Form->input('description');-->
-<!--		echo $this->Form->input('classification');-->
-<!--		echo $this->Form->input('parent_id');-->
-<!--	?>-->
-<!--	</fieldset>-->
-<!--<?php echo $this->Form->end(__('Submit')); ?>-->
-<!--</div>-->
-<!--<div class="actions">-->
-<!--	<h3><?php echo __('Actions'); ?></h3>-->
-<!--	<ul>-->
-
-<!--		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Category.id')), array('confirm' => __('Are you sure you want to delete # %s?', $this->Form->value('Category.id')))); ?></li>-->
-<!--		<li><?php echo $this->Html->link(__('List Categories'), array('action' => 'index')); ?></li>-->
-<!--		<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>-->
-<!--		<li><?php echo $this->Html->link(__('New Parent Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>-->
-<!--	</ul>-->
-<!--</div>-->
+						            <!--<?php echo $this->Form->reset(__('Cancel'), array('class'=>'btn', 'div'=>false));?>        </div>-->
+								<br>
+								<br>
+							</fieldset>
+							
+						<?php echo $this->Form->end();?>
+						</div>
+        </div> 
+     </div>
+    </div> 
+ </div>

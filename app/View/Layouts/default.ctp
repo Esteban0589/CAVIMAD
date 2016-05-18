@@ -63,13 +63,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                -->
    
-   <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
+ <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="https://cavimad-esteban0589.c9users.io/"/>-->
+    <!--<base href="https://cavimad-esteban0589.c9users.io"/>-->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
-     <base href="https://ingenieria2-kevinfl.c9users.io/"/>
+     <!--<base href="https://ingenieria2-kevinfl.c9users.io/"/>-->
 
   </head>
   
@@ -81,39 +81,40 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     <div id="header" class="container"> 
         <div class="caption-content">
-       	<div id="k-site-logo" class="pull-left">
-        
-            <h1 class="k-logo">
-                <a href="http://www.ucr.ac.cr" title="Pagina oficial Universidad de Costa Rica">
-                    <img src="app/webroot/img/logoUCR.png" alt="UCR" width="100"; />
-                </a>
-            </h1>
-    	</div>
-    </div>
-        <ul class="list-inline pull-right">
-            <?php
-			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
-		    ?>   
-				<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
-				<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
-			<?php
-			} 
-			else{
-			    
-			    ?>    
-			    <li><h6><?php echo 'Bienvenido '.$current_user['name'];?></h6></li>
+            <div id="k-site-logo" class="list-inline pull-left">
+            
+                <h1 class="k-logo">
+                    <a href="" title="Catalogo Virtual de Macroinvertebrados de Agua Dulce">
+                        <img src="app/webroot/img/CavimaLogo.png" alt="CAVIMAD" width="250"; />
+                    </a>
+                </h1>
+                <a id="mobile-nav-switch" href="#drop-down"><span class="alter-menu-icon"></span></a>
+        	</div>
+            <ul class="list-inline pull-right">
                 <?php
-			    if($current_user['role']=='Administrador'){?>
-					<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
-			    <?php
-			    }
-				?>
-					<li><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></li>
-			<?php
-			}
-			?>
-		 
-        </ul>
+    			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
+    		    ?>   
+    				<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
+    				<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
+    			<?php
+    			} 
+    			else{
+    			    
+    			    ?>    
+    			    <li><h6><?php echo 'Hola '.$current_user['name'];?></h6></li>
+                    <?php
+    			    if($current_user['role']=='Administrador'){?>
+    					<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
+    			    <?php
+    			    }
+    				?>
+    					<li><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></li>
+    			<?php
+    			}
+    			?>
+    		 
+            </ul>
+        </div>
         
     </div>
     
@@ -132,7 +133,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="" title="">Inicio</a>
                         </li>
                         <li>
-                            <a href="" title="">Catalogo</a>
+                            <a href="categories/sort" title="">Catalogo</a>
                         </li>
                         <li>
                             <a href="" title="">Biomonitoreo</a>

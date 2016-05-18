@@ -34,20 +34,11 @@
 							<b>Descripción:</b>
 							<div>
 								<p style="text-indent:60px">
-									<?php echo h($resultado['Category']['description']); ?>
+									<?php echo substr($resultado['Category']['description'],0,300); ?>
 								</p>
 							</div>
 						
-							<div class="a12">
-								<a>
-							    	<?php 
-										echo $this->Html->link('<i class="glyphicon glyphicon-eye-open" style="font-size:25px" ></i>',
-										array('controller' => 'Category','action' => 'view',$resultado['Category']['id']),
-										array('escape' => false)
-										);
-									?>
-								</a> 
-							</div>
+
                     </ul>
                     <!--Cierra parte de textos-->
 				</div>

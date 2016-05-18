@@ -105,7 +105,7 @@ p.error em {
 body { font-family: 'Open Sans', 'Myriad Pro', 'Helvetica',  sans-serif; font-size: 16px; font-weight: 300; line-height: 26px; color: #002D6A; }
 a { -webkit-transition: 0.2s ease-in-out all; -moz-transition: 0.2s ease-in-out all; -o-transition: 0.2s ease-in-out all; transition: 0.2s ease-in-out all; }
 a:link, a:visited { color: #82B204; text-decoration: none; }
-a:hover, a:focus { color: #111; outline: none; }
+a:hover, a:focus { color: #999; outline: none; }
 a.moretag { font-size: 12px; text-transform: uppercase; }
 
 
@@ -666,8 +666,8 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 .btn-warning:hover,.btn-warning:focus { background-color: #c8870d; }
 .btn-danger { background-color: #c84231; }
 .btn-danger:hover,.btn-danger:focus { background-color: #9d3426; }
-.btn-link { background-color: #FFF; color: #363636 !important; }
-.btn-link:hover,.btn-link:focus { background-color: #FFF; }
+.btn-link {  color: #363636 !important; }
+.btn-link:hover,.btn-link:focus {  }
 /* == END bootstrap buttons == */
 
 /* == bootstrap pagination == */

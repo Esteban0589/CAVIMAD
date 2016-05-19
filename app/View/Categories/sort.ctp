@@ -27,9 +27,9 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     
                     Ext.onReady(function(){
                     
-                        var getnodesUrl = '<?php echo $this->Html->url('/categories/getnodes/'.$alias);?>';
-                        var reorderUrl = '<?php echo $this->Html->url('/categories/reorder/') ?>';
-                        var reparentUrl = '<?php echo $this->Html->url('/categories/reparent/') ?>';
+                        var getnodesUrl = '<?php echo $this->Html->url('/admin/tree_menu/categories/getnodes/'.$alias);?>';
+                        var reorderUrl = '<?php echo $this->Html->url('/admin/tree_menu/categories/reorder/') ?>';
+                        var reparentUrl = '<?php echo $this->Html->url('/admin/tree_menu/categories/reparent/') ?>';
                     
                         var Tree = Ext.tree;
                     

@@ -243,7 +243,7 @@ class CategoriesController extends TreeMenuAppController {
 		}
 	}
 
-    public function getnodes($alias=null) {
+    public function admin_getnodes($alias=null) {
         $this->layout = 'ajax';
         // retrieve the node id that Ext JS posts via ajax
         $parent = isset($this->request->data['node']) ? intval($this->request->data['node']) : 0;
@@ -268,7 +268,7 @@ class CategoriesController extends TreeMenuAppController {
         $this->set(compact('nodes'));
     }
 
-    function reorder() {
+    function admin_reorder() {
         $this->autoRender = false;
         // retrieve the node instructions from javascript
         // delta is the difference in position (1 = next node, -1 = previous node)
@@ -288,7 +288,7 @@ class CategoriesController extends TreeMenuAppController {
         exit('1');
     }
 
-    function reparent() {
+    function admin_reparent() {
         $this->autoRender = false;
 
         $node = intval($this->request->data['node']);

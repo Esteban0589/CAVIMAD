@@ -278,9 +278,12 @@
                                             <input type="text" placeholder="Find a course..." autocomplete="off" class="form-control" id="find-course" name="find-course" />
                                             <span class="input-group-btn"><button type="submit" class="btn btn-default">GO!</button></span>
                                         </div>
-                                        <span class="help-block">* Enter course ID, title or the course instructor name</span>
+                                        <!--<span class="help-block">* Enter course ID, title or the course instructor name</span>-->
                                     </form>
-                                
+                                    <br>
+                                <!--<a href="/categories/advanced_search2" title="">Búsqueda Avanzada</a>-->
+                                <?php echo $this->Form->create('Category',  array('url' => array('controller' => 'categories', 'action' => 'advanced_search2'))); ?>
+                                <?php echo $this->Form->end(array('label'=>'Búsqueda avanzada', 'class'=>'btn btn-success'));?>
                                 </li><!-- widget end -->
                                 
                                 <li class="widget-container widget_text"><!-- widget -->

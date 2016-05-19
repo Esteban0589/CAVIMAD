@@ -52,6 +52,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php echo $this->fetch('css');?>
     <?php echo $this->fetch('script');?>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     
     <!--Estos Css de abajo los quite porque estaban cargados arriba y de la manera de abajo-->
     <!--se jode algo que no permite cambiar el color de botones y me imagino que mas cosas-->
@@ -65,7 +66,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    
  <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
-    <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
+    <base href="https://inge2-maricelmonge.c9users.io"/>
     <!--<base href="https://cavimad-esteban0589.c9users.io"/>-->
     <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
@@ -356,6 +357,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
     <!-- Theme -->
      <script src="js/theme.js"></script>
+    <?php
+    echo $this->Js->writeBuffer(); ?>
+    
     
   </body>
 </html>

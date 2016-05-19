@@ -7,7 +7,7 @@ App::uses('TreeMenuAppController', 'TreeMenu.Controller');
  * @property Category $Category
  */
 class CategoriesController extends TreeMenuAppController {
-    var $helpers = array('Html', 'Form', 'TreeMenu.Menu');
+    public $helpers = array('Html', 'Form', 'TreeMenu.Menu', 'Js');
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
@@ -322,4 +322,104 @@ class CategoriesController extends TreeMenuAppController {
         clearCache();
         exit('1');
     }
+    
+        ///Método de carga de la búsqueda avanzada.
+        public function advanced_search2()
+		{
+		    $this->loadModel('Administrator');
+		    //Carga todos los órdenes para en la varible $order.
+		    $order = $this->Category->find('list', array(
+          'conditions' => array('Category.classification' => 'Orden'),
+          'recursive' => -1));
+          //Estas variables se declaran en null pues se proceden a llenar con los métodos getDataFamily y getDataGenre.
+          $family=array(null);
+          $genre=array(null);
+          //Envía las variables a a la vista.
+         $this-> set (compact('categories', 'order'));
+         $this-> set (compact('categories', 'family'));
+         $this-> set (compact('categories', 'genre'));
+         $this-> set (compact('categories', 'colaborator'));
+	
+	
+    	}
+    	
+	///Método utilizado para refrescar las familias según el orden seleccionado. La actualización se realiza via javascript.
+	public function getDataFamily(){
+	    //Permite desplegar los resultados de ajax.
+	    $this->layout = 'ajax';
+	    //Si se trata de actualizar a través de get...
+	    if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+        //Recupera el orden seleccionado enviado por el método de javascript  y realiza la consulta para obtener todas las familias de ese orden en específico.
+        else{
+            $order=$this->request->data['order'];
+	        $family = $this->Category->find('list', array(
+            'conditions' => array('Category.parent_id' => $order),
+            'recursive' => -1));
+
+		    $this->set('family', $family);
+
+        } 
+    
+	}
+	
+	///Método utilizado para refrescar los géneros según el orden seleccionado. La actualización se realiza via javascript.
+	public function getDataGenre(){
+	     //Permite desplegar los resultados de ajax.
+	    $this->layout = 'ajax';
+	     //Si se trata de actualizar a través de get...
+	    if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+        //Recupera el género seleccionado enviado por el método de javascript  y realiza la consulta para obtener todos los géneros de esa familia en específico.
+        else{
+            $family=$this->request->data['family'];
+	        $genre = $this->Category->find('list', array(
+            'conditions' => array('Category.parent_id' => $family),
+            'recursive' => -1));
+
+		    $this->set('genre', $genre);
+
+        } 
+    
+	}
+	
+	///Busca un colaborador según el nombre, apellido o usuario.
+	  public function searchColaborator() {
+	      //Obtiene los datos de la búsqueda.
+		$data=($this->request->query['colaborator']);
+		//Sí no es nulo.
+		if(($data)){
+		    //Carga el modelo de usuarios.
+			$this->loadModel('User');
+			$condition=explode(' ', trim($data));					
+			$condition=array_diff($condition,array(''));
+			if($condition){
+				foreach($condition as $tconditions){
+					$conditions[] = array(
+						"OR" => array(
+						    array('User.name LIKE '=>'%'.$tconditions.'%'),
+						    array('User.lastname1 LIKE'=>'%'.$tconditions.'%'),
+						    array('User.username LIKE'=>'%'.$tconditions.'%')
+						)
+					);
+				}
+				$result=$this->User->find('all', array('recursive'=>0, 'conditions'=>$conditions));
+
+				if(count($result)>0){
+					$this->set('resultados',$result);
+				}
+				else{
+					return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
+				}
+			}
+		}
+		else{
+			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
+		}
+	}
+	
+	
+    
 }

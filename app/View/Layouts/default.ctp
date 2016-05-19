@@ -64,7 +64,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                -->
    
- <!--<base href"https://clavimad-jimemachado.c9users.io/"/>-->
+ <!--<base href"https://cavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <base href="https://inge2-maricelmonge.c9users.io"/>
     <!--<base href="https://cavimad-esteban0589.c9users.io"/>-->
@@ -82,39 +82,55 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     <div id="header" class="container"> 
         <div class="caption-content">
-            <div id="k-site-logo" class="list-inline pull-left">
-            
-                <h1 class="k-logo">
-                    <a href="" title="Catalogo Virtual de Macroinvertebrados de Agua Dulce">
-                        <img src="app/webroot/img/CavimaLogo.png" alt="CAVIMAD" width="250"; />
-                    </a>
-                </h1>
-                <a id="mobile-nav-switch" href="#drop-down"><span class="alter-menu-icon"></span></a>
-        	</div>
-            <ul class="list-inline pull-right">
-                <?php
-    			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
-    		    ?>   
-    				<li><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></li>
-    				<li><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></li>
-    			<?php
-    			} 
-    			else{
-    			    
-    			    ?>    
-    			    <li><h6><?php echo 'Hola '.$current_user['name'];?></h6></li>
+            <div class="col-md-12" style="padding: 0px;">
+                <div id="k-site-logo" class="list-inline pull-left col-md-3" style="padding: inherit;">
+                
+                    <h1 class="k-logo ">
+                        <a href="" title="Catalogo Virtual de Macroinvertebrados de Agua Dulce">
+                            <img src="app/webroot/img/CavimaLogo.png" alt="CAVIMAD" width="250"; />
+                        </a>
+                    </h1>
+                    <!--<a id="mobile-nav-switch" href="#drop-down"><span class="alter-menu-icon"></span></a>-->
+                    <a id="mobile-nav-switch" href="#drop-down"><img id="alter-menu-icon" src="img/menu.png"></a>
+            	</div>
+                <ul class="list-inline  col-md-9" style="padding: inherit;">
                     <?php
-    			    if($current_user['role']=='Administrador'){?>
-    					<li><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></li>
-    			    <?php
-    			    }
-    				?>
-    					<li><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></li>
-    			<?php
-    			}
-    			?>
-    		 
-            </ul>
+        			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
+        		    ?>  
+        		    <div class="col-md-8 col-sm-12"></div>
+        		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
+        				    <?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?>
+                    </div>
+        		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
+        				    <?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?>
+        			</div>
+        			<?php
+        			} 
+        			else{
+        			    
+        			    ?>    
+        		    <div class="col-md-6 col-sm-12" style="padding: inherit;"> </div>
+        		    <div class="col-lg-2 col-sm-12" style="padding: inherit; text-align: right;">
+        			        <h6 style="margin: 5px;"><?php echo 'Hola '.$current_user['name'];?>
+        			        </h6>
+                        <?php
+        			    if($current_user['role']=='Administrador'){?>
+        			</div>
+        		    <div class="col-lg-2 col-sm-12" style="padding: inherit;text-align: right;">
+        					    <?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?>
+        			    <?php
+        			    }
+        				?>
+        			</div>
+        		    <div class="col-lg-2 col-sm-12" style="padding: inherit;text-align: right;">
+        					    <?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?>
+        			</div>
+        			<?php
+        			}
+        			?>
+        		 
+                </ul>
+            </div>
         </div>
         
     </div>
@@ -125,7 +141,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     	    <div class="row"><!-- row -->
             
-        	<div class="col-lg-12">
 
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
@@ -168,8 +183,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         
             	</nav><!-- main navig end -->
             
-            </div>
-            
+
         </div><!-- row end -->
     
         </div>
@@ -197,7 +211,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </div>
                     </form>
                     
-                    <div id="bt-toggle-search" class="glyphicon glyphicon-search">
+                    <div id="bt-toggle-search" class="glyphicon glyphicon-search" style="font-size:1.3em;">
                         <!--<i class="s-open fa fa-search"></i>-->
                         <!--<i class="s-close fa fa-times"></i>-->
                     </div><!-- toggle search button -->

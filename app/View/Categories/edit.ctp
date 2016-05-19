@@ -34,7 +34,7 @@
 											'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 											'error' => array('attributes' => array('style' => 'display:none')),
 											'label'=>false, 'class'=>'form-control'));
-								echo $this->Form->input('description', array('type'=>'textarea','rows' => '5', 'cols' => '5','title'=>'Ingrese una breve descripción del nivel taxonómico ingresado. Campo de texto expandible',
+								echo $this->Form->input('description', array('type'=>'textarea','rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese una breve descripción del nivel taxonómico ingresado. Campo de texto expandible',
 										'before'=>'<label class="control-label">'.__('Descripción').'</label><div class="controls">',
 										'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),

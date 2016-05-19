@@ -15,9 +15,10 @@
                 </div>
                 
         <div class="categories">
-            <div class="span4" style="text-align: right;">
+            <div class="span4" style="text-align: left;">
                     <?php echo $this->Html->link(__('Nueva categoría'), array('action' => 'add', 'alias' => $alias), array('class' => 'btn btn-mini btn-primary', 'id' => 'addnew')); ?>
                  </div>
+                 <br>
             <?php if (isset($this->params['named']['alias'])):
             ?>
             <div class="alert alert-info">
@@ -26,7 +27,7 @@
             </div>
             <?php
             endif; ?>
-            <table cellpadding="0" cellspacing="0" id="table-categories" class="table table-striped table-bordered table-condensed">
+            <table cellpadding="0" cellspacing="0" id="table-categories" class="table table-hover table-bordered table-condensed">
                 <thead>
                     <tr>
                         <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de la Categoría'); ?></th>
@@ -63,8 +64,11 @@
             <!--                    </span>&nbsp;-->
             <!--                </td>-->
                             <td style="text-align: center">
-                                <?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'btn btn-mini btn-primary')); ?>
-                                <?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'btn btn-mini btn-danger'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+                            
+                                <?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?>
+                                <?php echo "" ?>
+                                <?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
+                                <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

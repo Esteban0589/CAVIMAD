@@ -11,9 +11,7 @@ class CategoriesController extends TreeMenuAppController {
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
-    
-    public $components = array('Paginator', 'Session','Flash');
-	var $roles = array('Administrador' => 'Administrador','Colaborador' => 'Colaborador','Usuario' => 'Usuario','Editor' => 'Editor');var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Género' => 'Género');
+    var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Género' => 'Género');
 
     public function beforeFilter(){
         parent::beforeFilter();
@@ -126,12 +124,11 @@ class CategoriesController extends TreeMenuAppController {
         
         $alias = $this->categoryAlias;
         if ($this->request->is('post') || $this->request->is('put')) {
-            debug($this->request->data);
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
                 //$this->redirect($this->__getPreviousUrl());
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-                // $this->redirect($alias);
+                $this->redirect($alias);
             } else {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'error');
             }

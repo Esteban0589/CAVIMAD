@@ -1,3 +1,4 @@
+
 <div class="container">
     <h2><?php if($resultados!=null){ echo __('Resultados de la búsqueda:'); ?></h2>
 	
@@ -5,7 +6,7 @@
 	<div class="col-lg-12 col-md-12">
 		<?php foreach ($resultados as $resultado): ?>
 			
-				<div class="col-lg-5 col-md-5">
+				<div class="col-lg-6 col-md-6">
 					<!--Parte del texto-->
 					<b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'Category','action' => 'view',$resultado['Category']['id']));?></b>
 					<ul>
@@ -23,7 +24,7 @@
 							</div>
                     </ul>
 				</div>
-					<div class="col-lg-2 col-md-2">
+				<div class="col-lg-2 col-md-2">
 					
 					<?php
 						if(!empty($resultado['Picture']['image_dir'])){
@@ -44,18 +45,24 @@
 					?>
 					<!--Parte de la foto Cierra-->
 				</div>
+				<div class="col-lg-4 col-md-4">
+				</div>
+				<div class="col-lg-12 col-md-12">
+				</div>
+				
 				
 				
 					<!--Parte de textos-->
 					
                     <!--Cierra parte de textos-->
+                    	<?php endforeach;} ?>
 				</div>
 				
-            <div class="col-lg-12 col-md-12"></div>
-		<?php endforeach;} ?>
+            <!--<div class="col-lg-12 col-md-12"></div>-->
+	
 
-	</div>
 </div>
+
 
 
 

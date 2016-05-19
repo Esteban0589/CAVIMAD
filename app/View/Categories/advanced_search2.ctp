@@ -88,7 +88,7 @@
    ?>   
    <div class = "col-md-4, col-sm-offset-2">
        <h1>Búsqueda avanzada</h1>
-       <?php echo $this->Form->create('Category'); ?>
+       <?php echo $this->Form->create('Category', array('url'=>'redirect_to_methods')); ?>
 
 <body onload="toggle_visibility_off()">
    <div title="Seleccione el tipo de búsqueda">
@@ -98,17 +98,14 @@
    </div>
    <div id="hide">
    <div class="colaboradores box">
-      <?php echo $this->Form->input('colaborator', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
+      <?php echo $this->Form->input('search1', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
       <br>
-     <?php echo $this->Form->end(array('label'=>'Buscar','controller'=>'Category','action'=>'search_colaborator')); ?>
+      <?php echo $this->Form->end(_('Buscar'));?>
      
 
    </div>
    <div class="documentos box">
-     
-      <?php echo $this->Form->input('documento', array('empty' => 'Seleccione un documento', 'options'=>array(null), 'label'=>'Documentos: '));?> 
-      <br>
-      <?php echo $this->Form->input('search', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
+      <?php echo $this->Form->input('search2', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
       <br>
       <?php echo $this->Form->end(_('Buscar'));?>
    </div>
@@ -123,7 +120,7 @@
       <br>
       <?php echo $this->Form->input('country', array('empty' => 'Seleccione un país', 'options'=>array('Belice','Costa Rica','El Salvador', 'Guatemala', 'Honduras','México','Panamá'), 'label'=>'País: '));?>
       <br>
-      <?php echo $this->Form->input('search', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
+      <?php echo $this->Form->input('search3', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
       <br>
       <?php echo $this->Form->end(_('Buscar'));?>
    </div>

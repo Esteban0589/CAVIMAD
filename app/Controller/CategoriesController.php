@@ -386,9 +386,46 @@ class CategoriesController extends TreeMenuAppController {
 	}
 	
 	///Busca un colaborador según el nombre, apellido o usuario.
-	  public function searchColaborator() {
+	public function search_colaborator($id=null) {
 	      //Obtiene los datos de la búsqueda.
-		$data=($this->request->query['colaborator']);
+		$data=($this->request->pass[0]);
+		//Sí no es nulo.
+		if($data){
+		    //Carga el modelo de usuarios.
+			$this->loadModel('User');
+			$condition=explode(' ', trim($data));					
+			$condition=array_diff($condition,array(''));
+			if($condition){
+			    $conditions[]=array("AND"=> array(
+						    array('User.role '=>'Colaborador')
+						));
+				foreach($condition as $tconditions){
+					$conditions[] = array(
+						"OR" => array(
+						    array('User.name LIKE '=>'%'.$tconditions.'%'),
+						    array('User.lastname1 LIKE'=>'%'.$tconditions.'%'),
+						    array('User.username LIKE'=>'%'.$tconditions.'%')
+						)
+					);
+				}
+				$result=$this->User->find('all', array('recursive'=>0, 'conditions'=>$conditions));
+				if(count($result)>0){
+					$this->set('resultados',$result);
+				}
+				else{
+					return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
+				}
+			}
+		}
+		else{
+			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
+		}
+	}
+	
+	  public function search_document($id=null) {
+	      //Obtiene los datos de la búsqueda.
+		$doc=($this->request->pass['0']);//tipo de documento
+		$search=$this->request->pass[1];//nombre del documento
 		//Sí no es nulo.
 		if(($data)){
 		    //Carga el modelo de usuarios.
@@ -421,5 +458,94 @@ class CategoriesController extends TreeMenuAppController {
 	}
 	
 	
+	
+	public function redirect_to_methods() {
+	    $asd=$this->request->data;
+	   // debug($this->request->data);
+	    if($this->request->data['Category']['drop1'] == 'colaboradores') {
+	        $this->redirect(array('controller' => 'categories','action' => 'search_colaborator',$asd['Category']['search1']));
+	        
+	       // $this->redirect(array('action'=>'search_colaborator'),$asd['colaborator']);
+	    } else if ($this->request->data['Category']['drop1'] == 'documentos') {
+	        $this->redirect(array('controller' => 'categories','action' => 'search_document',$asd['documento'],$asd['search2']));
+	    } else if ($this->request->data['Category']['drop1'] == 'nivel') {
+	        /*$prueba = array('search' = $this->request->data['Category']['search'])*/
+	       // debug($asd['search3']);
+	       if($asd['order']==null){
+	           $asd['order']=-1;
+	       }
+	       if($asd['family']==null){
+	           $asd['family']=-1;
+	       }
+	       if($asd['genre']==null){
+	           $asd['genre']=-1;
+	       }
+	       if($asd['country']==null){
+	           $asd['country']=-1;
+	       }
+	       if($asd['search3']==null){
+	           $asd['search3']=-1;
+	       }
+	       
+	        $this->redirect(array('controller'=>'categories','action'=>'search_data',$asd['order'],$asd['family'],$asd['genre'],$asd['country'],$asd['search3']));
+	    }
+	}
+	
+	public function search_data(){
+	    $this->loadModel('Picture');
+	    $conditions=array();
+	    
+	    $order=($this->request->pass[0]);//Nombre de orden.
+	    $family=$this->request->pass[1];//Nombre de familia.
+	    $genre=($this->request->pass[2]);//Nombre del género.
+	    $country=$this->request->pass[3];
+	    if($order!=-1&&$family==-1){
+	        $conditions[] = array("AND" => array(array('Category.id '=>$order)));
+	    }
+	    
+		if($family!=-1&&$genre==-1){
+		    $conditions[] = array("AND" => array(array('Category.id '=>$family)));
+	    }
+	    
+	    if($genre!=-1){
+	        $conditions[] = array("AND" => array(
+						    array('Category.id '=> $genre)));
+	    }
+	    
+		//Nombre del país.
+		if($country!=-1){
+	        $this->loadModel('Family');
+	        $this->loadModel('Gender');
+	        
+	        $conditions[] = array("AND" => array(
+	                        array('Gender.country '=> $country),
+	                        array('Gender.familie_id '=> 'Family.id'),
+	                        array('Family.cateogrie_id '=> 'Category.id')));
+	    }           
+	    
+	    
+	    $search3=$this->request->pass[4];//Termino de busqueda.
+	    if($search3!=-1&&$genre==-1){
+			$condition=explode(' ', trim($search3));					
+			$condition=array_diff($condition,array(''));
+	        foreach($condition as $tconditions){
+					$conditions[] = array("OR" => array(array('Category.name LIKE '=>'%'.$tconditions.'%')));
+				}
+	    }
+
+		if($order!=-1||$family!=-1||$genre!=-1||$country!=-1||$search3!=-1){
+			$result=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions));
+			if(count($result)>0){
+			    //debug($result);
+				$this->set('resultados',$result);
+			}
+			else{
+				return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
+			}
+		}
+		else{
+			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
+		}
+	}
     
 }

@@ -1,6 +1,3 @@
-<!--<?php foreach($family as $key => $value): ?>-->
-<!--<option value="<?php echo $key; ?>"><?php echo $value; ?></option>-->
-<!--<?php endforeach; ?>-->
 <script>
    //Este script se utiliza para esconder o mostrar secciones de dropdown según lo seleccionado.
    $(document).ready(function() {
@@ -101,15 +98,14 @@
    </div>
    <div id="hide">
    <div class="colaboradores box">
-      <!--<?php //echo $this->Form->create('Category',array('url' => 'searchColaborator')); ?>-->
-      <!--<?php //echo $this->Form->input('colaborador', array('empty' => 'Seleccione un colaborador', 'options'=>array(null), 'label'=>'Colaboradores: '));?>  -->
-      <!--<br>-->
-      <?php echo $this->Form->input('search', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: ', 'action'=>'search_colaborator'));?>
+      <?php echo $this->Form->input('colaborator', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
       <br>
-      <?php echo $this->Form->end(_('Buscar'));?>
+     <?php echo $this->Form->end(array('label'=>'Buscar','controller'=>'Category','action'=>'search_colaborator')); ?>
+     
+
    </div>
    <div class="documentos box">
-      
+     
       <?php echo $this->Form->input('documento', array('empty' => 'Seleccione un documento', 'options'=>array(null), 'label'=>'Documentos: '));?> 
       <br>
       <?php echo $this->Form->input('search', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
@@ -117,7 +113,7 @@
       <?php echo $this->Form->end(_('Buscar'));?>
    </div>
    <div class="nivel box">
-      <!--<?php //echo $this->Form->create('Category'); ?>-->
+      
       <?php echo $this->Form->input('order', array('empty' => 'Seleccione un orden', 'options'=>$order, 'label'=>'Orden: '));?>  
       <br>
       <?php

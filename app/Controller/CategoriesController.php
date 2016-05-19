@@ -203,6 +203,7 @@ class CategoriesController extends TreeMenuAppController {
     
     public function buscar() {
 		$datos=($this->request->query['Buscar']);
+		debug($this->request->query['Buscar']);
 		if(($datos)){
 			$this->loadModel('Picture');
 			$condition=explode(' ', trim($datos));					

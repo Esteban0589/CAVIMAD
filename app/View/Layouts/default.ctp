@@ -191,6 +191,29 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <!--<?php echo $this->Form->button('Buscar', array('div'=>false, 'class'=> 'btn btn-primary')); ?>-->
                     <!--<?php echo $this->Form->end(); */?>
                     
+
+<?php 		
+   /*//Permite realizar la actualización del dropdown de familia según un orden seleccionado.
+   //Obtiene el valor del dropdown order.
+   $this->Js->get('#Buscar');
+   //Si este cambia.
+   echo $this->Js->event('change', 
+      //Realiza un request que actualiza la variable family. Para esto llama al método getDataFamily.
+      $this->Js->request(array(
+          'controller'=>'PagesController',
+          'action'=>'autocomplebuscar'
+          ), array(
+          'update'=>'#Buscar',
+          'async' => true,
+          'method' => 'post',
+          'dataExpression'=>true,
+          'data'=> $this->Js->serializeForm(array(
+              'isForm' => true,
+              'inline' => true
+              ))
+          ))
+      );*/
+   ?>
                     <form action="categories/buscar" id="top-searchform" method="get" role="Buscar">
                         <div class="input-group">
                             <input type="text" name="Buscar" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />

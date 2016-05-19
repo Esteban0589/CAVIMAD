@@ -77,4 +77,19 @@ class PagesController extends AppController {
 			throw new NotFoundException();
 		}
 	}
+	
+	
+	public function autocomplebuscar()
+		{
+			$this->layout = 'ajax';
+		    $this->loadModel('Category');
+		    //Carga todos los órdenes para en la varible $order.
+		    $Buscar = $this->Category->find('list', array(
+          'conditions' => array('Category.classification LIKE '=>'%Buscar%'),
+          'recursive' => -1));
+          //Estas variables se declaran en null pues se proceden a llenar con los métodos getDataFamily y getDataGenre.
+          //Envía las variables a a la vista.
+         $this-> set (compact('PagesController', 'Buscar'));
+		}
+	
 }

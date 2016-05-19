@@ -25,8 +25,26 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     
                     //Ext.BLANK_IMAGE_URL = '<?php //echo $html->url('/js/ext-2.0.1/resources/images/default/s.gif') ?>';
                     
-                    Ext.onReady(function(){
+                         var getUserId = function()  
+                    { userId = null;
+                     $.ajax({
+                        type: "POST",
+                        url: "ajax.php", 
+                        async : false,  
+                            success: function(msg)
+                        {
+                            userId = msg;                   
+                        }
+                       });
+                    return userId;
+                    }
                     
+                    var userId = '<?php echo $this->Session->get('role') or ($_SESSION['role'] == null)  ?>';
+                    
+                    Ext.onReady(function(){
+                        
+                        
+                
                         var getnodesUrl = '<?php echo $this->Html->url('/admin/tree_menu/categories/getnodes/'.$alias);?>';
                         var reorderUrl = '<?php echo $this->Html->url('/admin/tree_menu/categories/reorder/') ?>';
                         var reparentUrl = '<?php echo $this->Html->url('/admin/tree_menu/categories/reparent/') ?>';

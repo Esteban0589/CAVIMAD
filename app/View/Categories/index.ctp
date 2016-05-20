@@ -53,16 +53,7 @@
                             <td><?php echo h($category['Category']['classification']); ?>&nbsp;</td>
                             <td><?php echo h($category['Category']['description']); ?>&nbsp;</td>
                             
-            <!--                <td style="text-align: center">-->
-            <!--                    <span style="cursor: pointer">-->
-            <!--                        <?php-->
-            <!--                        echo $this->Html->image('/tree_menu/img/allow-' . intval($category['Category']['published']) . '.png', array('onclick' => 'published.toggle("status-' . $category['Category']['id'] . '",-->
-        				<!--"' . $this->Html->url(array('action' => 'toggle', $category['Category']['id'], (int) $category['Category']['published'], "published")) . '");',-->
-            <!--                            'id' => 'status-' . $category['Category']['id']-->
-            <!--                        ));-->
-            <!--                        ?>-->
-            <!--                    </span>&nbsp;-->
-            <!--                </td>-->
+
                             <td style="text-align: center">
                             
                                 <?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?>

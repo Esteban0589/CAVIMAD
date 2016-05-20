@@ -17,7 +17,7 @@
 					<h5>Institución:</h5> <?php echo h($user['User']['institution']); ?>
 					<h5>Ocupación:</h5> <?php echo h($user['User']['occupation']); ?>
 						<?php if(($user['User']['role']=='Administrador')||($user['User']['role']=='Colaborador')): ?>
-					<h5>Escpecialidad:</h5> <?php echo h($user['Administrator']['0']['specialty']); ?>
+					<h5>Especialidad:</h5> <?php echo h($user['Administrator']['0']['specialty']); ?>
 					<h5>Publicaciones:</h5>
 						<p><?php echo nl2br(h($user['Administrator']['0']['publication'])); ?> </p>
 					<h5>Curriculum:</h5> 

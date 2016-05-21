@@ -15,6 +15,7 @@ class CategoriesController extends TreeMenuAppController {
 
     public function beforeFilter(){
         parent::beforeFilter();
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes');
 
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';

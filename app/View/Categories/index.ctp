@@ -1,7 +1,9 @@
  <div id="k-body"><!-- content wrapper -->
     
     	<div class="container"><!-- container -->
-        
+     
+            <?php if($_SESSION['role']=='Administrador'): ?>        
+            
             <div class="row"><!-- row -->
                 
                 <div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
@@ -16,7 +18,7 @@
                 
         <div class="categories">
             <div class="span4" style="text-align: left;">
-                    <?php echo $this->Html->link(__('Nueva categoría'), array('action' => 'add', 'alias' => $alias), array('class' => 'btn btn-mini btn-primary', 'id' => 'addnew')); ?>
+                    <?php echo $this->Html->link(__('Agregar taxón'), array('action' => 'add', 'alias' => $alias), array('class' => 'btn btn-mini btn-primary', 'id' => 'addnew')); ?>
                  </div>
                  <br>
             <?php if (isset($this->params['named']['alias'])):
@@ -30,10 +32,11 @@
             <table cellpadding="0" cellspacing="0" id="table-categories" class="table table-hover table-bordered table-condensed">
                 <thead>
                     <tr>
-                        <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de la Categoría'); ?></th>
+                        <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de taxón'); ?></th>
                         <!--<th class="header" style="text-align: center; width:150px"><?php echo __('Published'); ?></th>-->
                         <th class="header" style="text-align: center; width:200px"><?php echo __('Clasificación'); ?></th>
-                        <th class="header"> <?php echo __('Descripción'); ?></th>
+                        <!--Descripcion comentado porque se va a tener en al vista especifica de cada taxon-->
+                        <!--<th class="header"> <?php echo __('Descripción'); ?></th>-->
                         <th class="header" style="text-align: center; width:200px"><?php echo __('Acciones'); ?></th>
                     </tr>
                 </thead>
@@ -51,7 +54,9 @@
                                 ?>
                             </td>
                             <td><?php echo h($category['Category']['classification']); ?>&nbsp;</td>
-                            <td><?php echo h($category['Category']['description']); ?>&nbsp;</td>
+                            
+                        <!--Descripcion comentado porque se va a tener en al vista especifica de cada taxon-->
+                            <!--<td><?php echo h($category['Category']['description']); ?>&nbsp;</td>-->
                             
 
                             <td style="text-align: center">
@@ -80,5 +85,13 @@
         </div>
         </div> 
      </div>
+     
+            <?php endif; ?>
+		    <?php if($_SESSION['role']!='Administrador'): ?>
+            	<div class="alert alert-warning alert-dismissable">
+                	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>
+           		</div>
+   		<?php endif; ?>     
+     
     </div> 
  </div>

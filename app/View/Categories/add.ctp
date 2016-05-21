@@ -3,6 +3,8 @@
     
 	<div class="container"><!-- container -->
     
+    	<?php if($_SESSION['role']=='Administrador'): ?> 
+    	
         <div class="row"><!-- row -->
             
 			<div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
@@ -14,7 +16,7 @@
 							<?php echo $this->Html->link(__('Manejar niveles taxonómicos'), array('action'=>'index', 'alias'=>$alias));?>
 							<span class="divider">/</span>
 						</li>
-					    <li class="active"><?php echo __('Agregar nivel taxonómico'); ?></li>
+					    <li class="active"><?php echo __('Agregar taxón'); ?></li>
 					</ul>
 					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal'));?>
 					<fieldset class="col-lg-4 col-md-4" >
@@ -75,5 +77,13 @@
 					</div>
         	</div> 
      	</div>
+     	
+     	<?php endif; ?>
+		<?php if($_SESSION['role']!='Administrador'): ?>
+            	<div class="alert alert-warning alert-dismissable">
+                	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>
+           		</div>
+   		<?php endif; ?>     
+     	
     </div> 
  </div>

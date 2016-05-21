@@ -1,20 +1,24 @@
 
- <div id="k-body"><!-- content wrapper -->
+<div id="k-body"><!-- content wrapper -->
     
-    	<div class="container"><!-- container -->
-        
-            <div class="row"><!-- row -->
-                
-				<div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
-						<div class="categories form">
-						<ul class="breadcrumb">
+	<div class="container"><!-- container -->
+    
+    	<?php if($_SESSION['role']=='Administrador'): ?>
+    	
+        <div class="row"><!-- row -->
+            
+			<div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
+				<div class="categories form">
+					<ul class="breadcrumb">
 						    <li>
 								<?php echo $this->Html->link(__('Manejar nivele taxonómico'), array('action'=>'index', 'alias'=>$alias));?>
 								<span class="divider">/</span>
 							</li>
-						    <li class="active"><?php echo __('Editar nivel taxonómico'); ?></li>
+						    <li class="active">
+						    	<?php echo __('Editar nivel taxonómico'); ?>
+						    </li>
 						</ul>
-						<?php echo $this->Form->create('Category', array('class'=>'form-horizontal'));?>
+					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal'));?>
 					<fieldset class="col-lg-4 col-md-4" >
 								<h2><?php echo __('Editar nivel taxonómico'); ?></h2>
 							<?php
@@ -58,15 +62,23 @@
 						            <?php echo $this->Form->submit(__('Guardar'), array('class'=>'btn btn-primary', 'div'=>false,'title'=>'Guardar los datos ingresados'));?>            
 						            
 						            					            <!--La siguiente linea fue comentada debido a que el reset solamente limpia el formulario y no tiene mucho uso-->
-
+	
 						            <!--<?php echo $this->Form->reset(__('Cancel'), array('class'=>'btn', 'div'=>false));?>        </div>-->
 								<br>
 								<br>
+								</div>
 							</fieldset>
-							
-						<?php echo $this->Form->end();?>
-						</div>
-        </div> 
-     </div>
-    </div> 
- </div>
+						
+					<?php echo $this->Form->end();?>
+				</div> 
+			</div> 
+		</div>
+		
+		<?php endif; ?>
+		<?php if($_SESSION['role']!='Administrador'): ?>
+            	<div class="alert alert-warning alert-dismissable">
+                	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>
+           		</div>
+   		<?php endif; ?>     
+	</div> 
+</div>

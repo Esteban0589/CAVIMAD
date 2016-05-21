@@ -31,7 +31,7 @@
 				
 				<div class="col-lg-9 col-md-9">
 					<!--Parte de textos-->
-					<b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'Category','action' => 'view',$resultado['Category']['id']));?></b>
+					<b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'categories','action' => 'view',$resultado['Category']['id']));?></b>
 					<ul>
 						
 							<div>

@@ -18,7 +18,9 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     <div class="conteiner">
                  
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
-                             <div class="btn btn-mini btn-link"><a href='/categories/index'>Administar Categorías</a></div>
+                     <?php if($_SESSION['role']=='Administrador'): ?>
+                             <div class="btn btn-mini btn-link"><a href='/categories/index'>Administar Taxonomía</a></div>
+                    <?php endif; ?>
                     </div>
                     
                     <script type="text/javascript">

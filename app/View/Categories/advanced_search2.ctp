@@ -85,44 +85,59 @@
               ))
           ))
       );
-   ?>   
-   <div class = "col-md-4, col-sm-offset-2">
-       <h1>Búsqueda avanzada</h1>
-       <?php echo $this->Form->create('Category', array('url'=>'redirect_to_methods')); ?>
+   ?>
+   
+
+<div class="container"><!-- container -->
+
+   <div class="row"><!-- row -->
+         
+   <h1>Búsqueda avanzada</h1>
+   <?php echo $this->Form->create('Category', array('url'=>'redirect_to_methods')); ?>
 
 <body onload="toggle_visibility_off()">
+<div class = "col-md-4">
+   
    <div title="Seleccione el tipo de búsqueda">
-      <?php echo $this->Form->input('drop1',array('empty'=>'Seleccione una opción','options' => array('colaboradores' => 'Colaboradores', 'documentos' => 'Documentos', 'nivel'=>'Nivel Taxonómico'), 'id'=>'drop1', 'label' => 'Seleccione el tipo de búsqueda: '));?>
+      <?php echo $this->Form->input('drop1',array('empty'=>'Seleccione una opción','class'=>'form-control','options' => array('colaboradores' => 'Colaboradores', 'documentos' => 'Documentos', 'nivel'=>'Nivel Taxonómico'), 'id'=>'drop1', 'label' => 'Seleccione el tipo de búsqueda: '));?>
       <br>
       
    </div>
    <div id="hide">
-   <div class="colaboradores box">
-      <?php echo $this->Form->input('search1', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
-      <br>
-      <?php echo $this->Form->end(_('Buscar'));?>
-     
-
+      <div class="colaboradores box">
+         <?php echo $this->Form->input('search1', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?>
+         <br>
+         <?php echo $this->Form->end(_('Buscar'));?>
+         <br>
+      </div>
+      <div class="documentos box">
+         <?php echo $this->Form->input('search2', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?>
+         <br>
+         <?php echo $this->Form->end(_('Buscar'));?>
+         <br>
+      </div>
+      <div class="nivel box">
+         
+         <?php echo $this->Form->input('order', array('empty' => 'Seleccione un orden','class'=>'form-control', 'options'=>$order, 'label'=>'Orden: '));?>  
+         <br>
+         <?php
+            echo $this->Form->input('family', array('empty' => 'Seleccione una familia','class'=>'form-control', 'options'=>$family, 'label'=>'Familia: '));?>
+         <br>
+         <?php echo $this->Form->input('genre', array('empty' => 'Seleccione un género','class'=>'form-control', 'options'=>$genre, 'label'=>'Género: '));?>
+         <br>
+         <?php echo $this->Form->input('country', array('empty' => 'Seleccione un país','class'=>'form-control', 'options'=>array('Belice','Costa Rica','El Salvador', 'Guatemala', 'Honduras','México','Panamá'), 'label'=>'País: '));?>
+         <br>
+         <?php echo $this->Form->input('search3', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?>
+         <br>
+         <?php echo $this->Form->end(_('Buscar'));?>
+         <br>
+      </div>
    </div>
-   <div class="documentos box">
-      <?php echo $this->Form->input('search2', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
-      <br>
-      <?php echo $this->Form->end(_('Buscar'));?>
-   </div>
-   <div class="nivel box">
-      
-      <?php echo $this->Form->input('order', array('empty' => 'Seleccione un orden', 'options'=>$order, 'label'=>'Orden: '));?>  
-      <br>
-      <?php
-         echo $this->Form->input('family', array('empty' => 'Seleccione una familia', 'options'=>$family, 'label'=>'Familia: '));?>
-      <br>
-      <?php echo $this->Form->input('genre', array('empty' => 'Seleccione un género', 'options'=>$genre, 'label'=>'Género: '));?>
-      <br>
-      <?php echo $this->Form->input('country', array('empty' => 'Seleccione un país', 'options'=>array('Belice','Costa Rica','El Salvador', 'Guatemala', 'Honduras','México','Panamá'), 'label'=>'País: '));?>
-      <br>
-      <?php echo $this->Form->input('search3', array('placeholder' => 'Escriba las palabras clave', 'label'=>'Búsqueda: '));?>
-      <br>
-      <?php echo $this->Form->end(_('Buscar'));?>
-   </div>
-   </div>
+</div>
+<div class = "col-md-12">
+</div>
 </body>
+
+
+      </div>
+   </div>

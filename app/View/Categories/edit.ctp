@@ -20,7 +20,7 @@
 						</ul>
 					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal'));?>
 					<fieldset class="col-lg-4 col-md-4" >
-								<h2><?php echo __('Editar nivel taxonómico'); ?></h2>
+								<h2><?php echo __('Editar taxón'); ?></h2>
 							<?php
 								echo $this->Form->input('id');
 								echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoría a la que pertenecera el nivel a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>__('Root'),

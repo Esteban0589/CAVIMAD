@@ -110,8 +110,23 @@ class CategoriesController extends TreeMenuAppController {
         $this->set('classification', $this->classification);
     }
 
+
     /**
-     * admin_edit method
+     * view method
+     *
+     * @param string $id
+     * @return void
+     */
+    public function view($id = null) {
+        if (!$this->Category->exists($id)) {
+			throw new NotFoundException(__('Taxón no valido'));
+		}
+		
+		$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+
+	}
+    /**
+     * edit method
      *
      * @param string $id
      * @return void
@@ -141,7 +156,7 @@ class CategoriesController extends TreeMenuAppController {
     }
 
     /**
-     * admin_delete method
+     * delete method
      *
      * @param string $id
      * @return void
@@ -547,5 +562,8 @@ class CategoriesController extends TreeMenuAppController {
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
 	}
+	
+	
+	
     
 }

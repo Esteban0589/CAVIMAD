@@ -99,7 +99,7 @@ class CategoriesController extends TreeMenuAppController {
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-                $this->redirect($alias);
+                $this->redirect(array('controller' => 'categories','action' => 'sort'));
             } else {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
@@ -143,7 +143,7 @@ class CategoriesController extends TreeMenuAppController {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
                 //$this->redirect($this->__getPreviousUrl());
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-                $this->redirect($alias);
+                $this->redirect(array('controller' => 'categories','action' => 'sort'));
             } else {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'error');
             }
@@ -175,10 +175,10 @@ class CategoriesController extends TreeMenuAppController {
         
         if ($this->Category->delete()) {
             $this->Session->setFlash(__('Datos eliminados'), 'success');            
-            $this->redirect($alias);
+            $this->redirect(array('controller' => 'categories','action' => 'sort'));
         }
         $this->Session->setFlash(__('Datos no eliminados'), 'error');
-        $this->redirect($alias);
+        $this->redirect(array('controller' => 'categories','action' => 'sort'));
     }
 
     /**

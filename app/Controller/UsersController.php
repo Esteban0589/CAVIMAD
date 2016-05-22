@@ -129,11 +129,6 @@ class UsersController extends AppController {
         	$var=$this->User->findByUsername($this->request->data['User']['username']);
         	//Se revisa si el usuario buscado ya ha sido debidamente activado
         	if($var['User']['activated']==true){
-    	        // if($this->Auth->login() ){
-    	        // 	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
-		           // $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
-		           // return $this->redirect(array('controller' => 'pages','action' => 'display'));
-    	        // }
  
   	        	//Se procede a realizar el login mediante Auth
     	        if($this->Auth->login() ){
@@ -170,6 +165,7 @@ class UsersController extends AppController {
     public function logout() {
 	   	// Borra la cookie en caso de que exista
         $this->Cookie->delete('remember_me_cookie');
+        // Borra las variables de sesion
 	    $this->Session->destroy();
         return $this->redirect($this->Auth->logout());
     }
@@ -178,15 +174,15 @@ class UsersController extends AppController {
 			$this->request->data = $id;
 	}
 	
-	/**
-	 * edit method
-	 *
-	 * Función que maneja el módulo de editar un usuario.
-	 * 
-	 * @throws NotFoundException
-	 * @param string $id - Contiene el id del usuario que se va a editar.
-	 * @return void
-	 */
+  /**
+      * edit method
+      * Este método modifica el perfil de usuario.
+      *
+      * @throws NotFoundException
+      * @param string $id Recibe el $id del usuario.
+      *
+      * @return void
+      */
 	public function edit($id = null) {
 		//Se carga el modelo Administrator
 		$this->loadModel('Administrator');
@@ -222,8 +218,8 @@ class UsersController extends AppController {
 			}
 
 		} else {
+			//Vuelve a cargar el usuario.
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
 			$this->request->data = $this->User->find('first', $options);
 		}
 	
@@ -279,11 +275,12 @@ class UsersController extends AppController {
 						return $this->redirect(array('action' => 'index', $id));
 					}
 				} else {
+					//Se notifica que  no se han realizado los cambios
 					$this->Flash->error(__('El rol no se ha podido actualizar.'));
 				}
 			} else {
+				//Vuelve a cargar el usuario.
 				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-				//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
 				$this->request->data = $this->User->find('first', $options);
 			}
 		}
@@ -316,6 +313,7 @@ class UsersController extends AppController {
 				$this->Flash->error(__('El cambio no se realizó correctamente.'));
 			}
 		} else {
+			//Vuelve a cargar el usuario.
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
@@ -339,6 +337,7 @@ class UsersController extends AppController {
 			//Se procede a redirgir al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		//Guarda en role la variable $this->roles
 		$this->set('role', $this->roles);
 		if ($this->request->is('post')) {
 			//Se crea un nuevo usuario
@@ -396,27 +395,33 @@ class UsersController extends AppController {
 	 */
 	public function activate($token=null)
 	{
+		//Se verifica si ya hay una sesión activa
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
+			//Se le notifica al usuario que ya se encuentra registrado
 			throw new NotFoundException(__('Sesión activa.'));
+			//Se procede a redirgir al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		//Se declara que la busqueda no se debe de realizar recursivamente.
 		$this->User->recursive=-1;
+		//Pregunta si recibe algun token.
         if(!empty($token))
         {
             $u=$this->User->findBytokenhash($token);
+            //Verifica si existe dicho token en la base.
            if(!empty($u))
             {
-                $this->User->data=$u;        
+                $this->User->data=$u;   
+                //Carga los datos del usuario dueño de dicho token.
                 if(!empty($this->User->data))
                 {    
                 	//Crea un nuevo token.
-                    $new_hash=sha1($u['User']['username'].rand(0,100));					
-                        
+                    $new_hash=sha1($u['User']['username'].rand(0,100));		
                     $this->User->data['User']['tokenhash']=$new_hash;
                     //Si no se ha activado el usuario en cuestión.
                     if($this->User->data['User']['activated'] == (false)) 
                     {
-                    	
+                    	//Modifica la tupla 'activated' correspondiente al estado de activacion del usuario.
                         $this->User->data['User']['activated'] = (true);   
                         if($this->User->data['User']['activated'] == (true))
                         {
@@ -426,13 +431,13 @@ class UsersController extends AppController {
                            		$this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
 								return $this->redirect(array('controller' => 'pages','action' => 'display'));
                            	} else {
+                           		//En caso de error, avisa que no se pudo activar.
 								$this->Flash->error(__('El usuario no pudo ser activado, intente de nuevo'));
 							}
-                            // $this->Flash->set('Se activó su cuenta correctamente.');
-                            // return $this->redirect(array('action'=>'login'));
                         }
                     }
                     else{
+                    	//Existe una incoherencia en la base o esta activado, se redirige a 'login'
                         $this->Flash->set('errors',$this->User->invalidFields());
                         return $this->redirect(array('action'=>'login'));
                         }
@@ -440,6 +445,7 @@ class UsersController extends AppController {
             }
             else
             {
+            	//En de intentar acceder varias veces con un mismo token, se le notifica que no es posible.
                  $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
                  return $this->redirect(array('action'=>'login'));
             }
@@ -544,6 +550,7 @@ class UsersController extends AppController {
         //Si los datos ingresados no son vacíos.
         if(!empty($this->data))
         {
+        	//Verifica que ingresara el email.
             if(empty($this->data['User']['email']))
             {
                  $this->Flash->set('Por favor ingrese su dirección de correo electrónico con la cual se registró.');
@@ -716,11 +723,13 @@ class UsersController extends AppController {
  				$this->User->id = $pass['User']['id'];
  				if($this->User->savefield('password',$this->request->data['User']['repeat_password']))
  				{
+ 					//En caso de que lograra modificar la contraseña, se devuelve a su perfil.
                     $this->Flash->success(__('La contraseña ha sido actualizada.'));
 					return $this->redirect(array('action' => 'edit',$pass['User']['id']));
  				}
  				 else 
  				 {
+ 				 	//En caso de que no lograra moficar su contraseña, se le notifica.
 					$this->Flash->error(__('Imposible actualizar la contraseña. Contacte al administrador del sitio.'));
 					return $this->redirect(array('action' => 'edit',$pass['User']['id']));
  				 }

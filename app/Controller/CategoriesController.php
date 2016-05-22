@@ -12,7 +12,15 @@ class CategoriesController extends TreeMenuAppController {
 
     var $categoryAlias = null;
     var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Género' => 'Género');
-
+    
+    /**
+	 * beforeFilter method
+	 * 
+	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa.
+	 * @param string $alias
+	 * @return void
+	 */	
+    
     public function beforeFilter(){
         parent::beforeFilter();
         $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes');
@@ -36,16 +44,19 @@ class CategoriesController extends TreeMenuAppController {
     }
         /**
      * Get_menu_Categories method
-     *
+     *  
+     * método encargado de traer todas las categorías en el menú
+     * 
      * @param string $alias
      * @return $categories
      */
 
     public function get_menu_categories(){
         $this->autoRender  = false;
-        
+        // lee al caché para un fácil acceso en todo caso las carga
         $alias = $this->categoryAlias;
         $categories = Cache::read('get_menu_categories_'.$alias);
+        // si las condición de categorías es publicada y cumple el alias retorna la categoría
         if(empty($categories)){
             $conditions = array('Category.published'=>1);
             if($alias){
@@ -69,6 +80,8 @@ class CategoriesController extends TreeMenuAppController {
     
     /**
      * admin_index method
+     * 
+     * Metodo encargado de la generación del index de categorías
      *
      * @return void
      */
@@ -84,7 +97,7 @@ class CategoriesController extends TreeMenuAppController {
             $this->set('title', __('Categoria'));
             $this->set('description', __('Manejar categoria'));
         }
-        
+        // busca todas las categorías
         $categoriesfind = $this->Category->find('all');
         $this->set('allCategories', $categoriesfind);
         
@@ -96,12 +109,14 @@ class CategoriesController extends TreeMenuAppController {
     /**
      * admin_add method
      *
+     * método para agregar una nueva categoría
+     * 
      * @return void
      */
     public function add() {
         $alias = $this->categoryAlias;
         if ($this->request->is('post')) {
-            // se crea una categoria
+            // se crea una categoría
             $this->Category->create();
             // en base a eso se le asigna un alias
             if($alias) $this->request->data['Category']['alias'] = $alias;
@@ -115,7 +130,8 @@ class CategoriesController extends TreeMenuAppController {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
         }
-
+        
+        // busca el padre de las categorías y genera el arbol
         $parentCategories = $this->Category->_generateTreeList($alias);
         $this->set(compact('parentCategories'));
         $this->set('classification', $this->classification);
@@ -125,31 +141,37 @@ class CategoriesController extends TreeMenuAppController {
     /**
      * view method
      *
+     * metodo de visualización de cada categoría 
+     * 
      * @param string $id
      * @return void
      */
     public function view($id = null) {
-        //Si la categoria buscada no existe se notifica mediante un mensaje de error
+        //Si el taxón buscado no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
 		}
-	
+	    // despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
 		$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
 
 	}
     /**
      * edit method
      *
+     * método para la edición de cada categoría
+     * 
      * @param string $id
      * @return void
      */
     public function edit($id = null) {
         $this->Category->id = $id;
+        //Si la categoría buscada no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists()) {
-            throw new NotFoundException(__('Categoria no valida'));
+            throw new NotFoundException(__('Taxón no valido'));
         }
         
         $alias = $this->categoryAlias;
+        // si el alias es editado correctamente notifica con un mensaje 
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
@@ -157,11 +179,13 @@ class CategoriesController extends TreeMenuAppController {
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
                 $this->redirect($alias);
             } else {
+                //  si los datos no son guardados correctamente notifica con un mensaje de error
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'error');
             }
         } else {
             $this->request->data = $this->Category->read(null, $id);
         }
+        // busca el padre de las categorías y genera el árbol
         $parentCategories = $this->Category->_generateTreeList($alias);
         $this->set(compact('parentCategories')); 
         $this->set('classification', $this->classification);
@@ -170,6 +194,8 @@ class CategoriesController extends TreeMenuAppController {
     /**
      * delete method
      *
+     * método encargado de eliminar categorías
+     * 
      * @throws NotFoundException
      * @param string $id
      * @return void
@@ -178,16 +204,16 @@ class CategoriesController extends TreeMenuAppController {
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
-        // se trae el id de la categoria
+        // se trae el id de la categoría
         $this->Category->id = $id;
-        //Si la categoria a buscar no existe se notifica mediante un mensaje de error
+        //Si la categoría a buscar no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists()) {
             throw new NotFoundException(__('Datos no validos'));
         }
         // segun el alias de las categorias se despliegan segun un orden indexado 
         $alias = $this->categoryAlias;
         $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-        // segun la categoria seleccionada se eliminan los datos
+        // según la categoría seleccionada se eliminan los datos
         //Si se logran eliminar los datos se notifica mediante un mensaje 
         if ($this->Category->delete()) {
             $this->Session->setFlash(__('Datos eliminados'), 'success');            
@@ -198,18 +224,24 @@ class CategoriesController extends TreeMenuAppController {
         $this->redirect($alias);
     }
 
-    /**git 
+    /**
      *  Active/Inactive
      *
+     * método encargado de el depliegue de las imágenes
+     * 
      * @param int $id
      * @param int $status
+     * 
      */
+     
     public function admin_toggle($id, $status, $field = 'published') {
         $this->autoRender = false;
 
         if ($id) {
+            
             $status = ($status) ? 0 : 1;
             $data['Category'] = array('id' => $id, $field => $status);
+            // si todas las categoías estan correctamente guardadas y validadas les asigna la imágen
             if ($this->Category->saveAll($data['Category'], array('validate' => false))) {
                 $link = ($this->base) ? FULL_BASE_URL .$this->base.'/' : '/';
                 $plugin = Inflector::underscore($this->plugin);
@@ -232,10 +264,21 @@ class CategoriesController extends TreeMenuAppController {
         $this->set('description', __('Sort Categories'));
     }
     
+    
+     /**
+     *  Buscar
+     *
+     * método encargado de la busque (query)
+     * 
+     * @return void
+     * 
+     */
+    
     public function buscar() {
 		$datos=($this->request->query['Buscar']);
 // 		debug($this->request->query['Buscar']);
 		if(($datos)){
+		    // carga la imágen del modelo
 			$this->loadModel('Picture');
 			$condition=explode(' ', trim($datos));					
 			$condition=array_diff($condition,array(''));
@@ -248,35 +291,43 @@ class CategoriesController extends TreeMenuAppController {
 						    
 					);
 				}
+				// de  los resultado de la búsqueda, busque recursivamente todos que cumplan las condiciones
 				$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
 				$i = 0;
+				// para cada resultado encontrado por categoría según el id regrese la categoría y la imagen
 				foreach($resultado as $resultados){
 					if($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])){
 						if(count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id'])==1){
 							$myRandomNumber[]=0;	
 						}
 						else{
+						    // sino realizar un número aleatorio para encontrar lo solicitado
 							$myRandomNumber[] = rand(0,count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id']));
 						}
 						$resultado[$i]=$resultado[$i]+$myRandomNumber+$this->Picture->findByCategorie_id($resultado[$i]['Category']['id']);
 					}
 					$i++;
 				}
+				// si el conteo del resultado es mayor a 0, coloque el resultado
 				if(count($resultado)>0){
 					$this->set('resultados',$resultado);
 				}
 				else{
+				    // sino que regrese mensaje que error a no encotrar elemntos de búsqueda
 					return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
 				}
 			}
 		}
 		else{
+		    // sino que mensaje por un critorio inválido
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
 	}
 	    /**
      * admin_getnodes method
      *
+     * método encargado de cargar los nodos en el arbol conforme se despliegan
+     * 
      * @param  $alias
      * @return void
      */
@@ -308,6 +359,8 @@ class CategoriesController extends TreeMenuAppController {
 
     /**
      * admin_reorder method
+     * 
+     * método encargado de reordenar el árbol cuando se utiliza el drag and drop
      *
      * @param  $node
      * @return void
@@ -320,7 +373,8 @@ class CategoriesController extends TreeMenuAppController {
 
         $node = intval($this->request->data['node']);
         $delta = intval($this->request->data['delta']);
-
+        
+        // si eel nodo el movido hacia arriba/abajo reacomode nodo
         if ($delta > 0) {
             $this->Category->moveDown($node, abs($delta));
         } elseif ($delta < 0) {
@@ -333,6 +387,16 @@ class CategoriesController extends TreeMenuAppController {
         exit('1');
     }
 
+    /**
+     *  Admin_reparent 
+     *
+     * método encargado el reacomodo del nodo del padre cuando este es movido
+     * 
+     * @param int $noto
+     * @param int $parent
+     * @param int $position
+     * 
+     */
     function admin_reparent() {
         $this->autoRender = false;
 

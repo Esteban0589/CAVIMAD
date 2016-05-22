@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://cavimad.biologia.ucr.ac.cr/" />
+<title>Eliminar taxon</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Eliminar taxon</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Iniciar sesión</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=UserUsername</td>
+	<td>Esteban0589</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=UserPassword</td>
+	<td>Esteban0589</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Catalogo</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=#node-213 &gt; td</td>
+	<td>Prueba</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[@onclick='if (confirm(&quot;Est\u00e1 seguro de que desea eliminar # Prueba?&quot;)) { document.post_57411cdf3cdf4362720683.submit(); } event.returnValue = false; return false;']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Administar Taxonomía</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@onclick='if (confirm(&quot;Est\u00e1 seguro de que desea eliminar # Potamocarcinus?&quot;)) { document.post_57411f00e7aad279852541.submit(); } event.returnValue = false; return false;']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Está seguro de que desea eliminar # Prueba?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Está seguro de que desea eliminar # Potamocarcinus?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.alert.alert-success</td>
+	<td>× Datos eliminados</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Cerrar sesión</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

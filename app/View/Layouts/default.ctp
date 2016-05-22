@@ -195,7 +195,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         
         	<div class="row"><!-- row -->
             
-                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+                <div id="k-top-search" class="col-lg-10 clearfix"><!-- top search -->
                 
                     <?php /*echo $this->Form->create('Users', array('type' => 'GET', 
                     'class' => 'navbar-form navbar-left', 'url' => array('Controller' => 'users', 'action' => 'buscador'))); ?>
@@ -229,9 +229,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
       );*/
    ?>
                     <form action="categories/buscar" id="top-searchform" method="get" role="Buscar">
-                        <div class="input-group">
+                        
                             <input type="text" name="Buscar" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
-                        </div>
+
                     </form>
                     
                     <div id="bt-toggle-search" class="glyphicon glyphicon-search" style="font-size:1.3em;">
@@ -240,6 +240,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </div><!-- toggle search button -->
                 
                 </div><!-- top search end -->
+                
+                 <div class="input-group col-lg-2">
+                            <?php echo $this->Form->create('Category',  array('url' => array('controller' => 'categories', 'action' => 'advanced_search2'))); ?>
+                                <?php echo $this->Form->end(array('label'=>'Búsqueda avanzada', 'class'=>'btn btn-success'));?>
+                        </div>
             
             	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
                 

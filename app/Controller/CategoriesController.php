@@ -15,7 +15,7 @@ class CategoriesController extends TreeMenuAppController {
 
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort');
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -99,7 +99,7 @@ class CategoriesController extends TreeMenuAppController {
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-                $this->redirect(array('controller' => 'categories','action' => 'sort'));
+                $this->redirect($alias);
             } else {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
@@ -143,7 +143,7 @@ class CategoriesController extends TreeMenuAppController {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
                 //$this->redirect($this->__getPreviousUrl());
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-                $this->redirect(array('controller' => 'categories','action' => 'sort'));
+                $this->redirect($alias);
             } else {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'error');
             }
@@ -175,13 +175,13 @@ class CategoriesController extends TreeMenuAppController {
         
         if ($this->Category->delete()) {
             $this->Session->setFlash(__('Datos eliminados'), 'success');            
-            $this->redirect(array('controller' => 'categories','action' => 'sort'));
+            $this->redirect($alias);
         }
         $this->Session->setFlash(__('Datos no eliminados'), 'error');
-        $this->redirect(array('controller' => 'categories','action' => 'sort'));
+        $this->redirect($alias);
     }
 
-    /**
+    /**git 
      *  Active/Inactive
      *
      * @param int $id

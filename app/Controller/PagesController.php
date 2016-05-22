@@ -87,7 +87,8 @@ class PagesController extends AppController {
       */
 	public function autocomplebuscar()
 		{
-			//$this->layout = 'ajax';
+			//Permite desplegar los resultados de ajax.
+			$this->layout = 'ajax';
 			//Carga la tabla de categorias.
 		    $this->loadModel('Category');
 		    //Carga todos los órdenes para en la varible $order.

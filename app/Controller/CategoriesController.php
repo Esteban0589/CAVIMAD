@@ -68,6 +68,7 @@ class CategoriesController extends TreeMenuAppController {
      */
     public function index() {
         $alias = $this->categoryAlias;
+        //Limpia el cache.
         clearCache();
         if($alias){
             $alias = Inflector::slug($alias);
@@ -158,6 +159,7 @@ class CategoriesController extends TreeMenuAppController {
     /**
      * delete method
      *
+     * @throws NotFoundException
      * @param string $id
      * @return void
      */
@@ -338,7 +340,14 @@ class CategoriesController extends TreeMenuAppController {
         exit('1');
     }
     
-        ///Método de carga de la búsqueda avanzada.
+    /**
+      * advanced_search2 method
+      *
+      * Método que carga la busqueda avanzada.
+      * 
+      *
+      * @return void
+      */
         public function advanced_search2()
 		{
 		    $this->loadModel('Administrator');
@@ -354,15 +363,20 @@ class CategoriesController extends TreeMenuAppController {
          $this-> set (compact('categories', 'family'));
          $this-> set (compact('categories', 'genre'));
          $this-> set (compact('categories', 'colaborator'));
-	
-	
     	}
     	
-	///Método utilizado para refrescar las familias según el orden seleccionado. La actualización se realiza via javascript.
+    /**
+      * getDataFamily method
+      *
+      * Método utilizado para refrescar las familias según el orden seleccionado. La actualización se realiza via javascript.
+      * 
+      *
+      * @return void
+      */
 	public function getDataFamily(){
 	    //Permite desplegar los resultados de ajax.
 	    $this->layout = 'ajax';
-	    //Si se trata de actualizar a través de get...
+	    //Si se trata de actualizar a través de get.
 	    if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
@@ -372,18 +386,24 @@ class CategoriesController extends TreeMenuAppController {
 	        $family = $this->Category->find('list', array(
             'conditions' => array('Category.parent_id' => $order),
             'recursive' => -1));
-
 		    $this->set('family', $family);
 
         } 
     
 	}
 	
-	///Método utilizado para refrescar los géneros según el orden seleccionado. La actualización se realiza via javascript.
+	/**
+      * getDataGenre method
+      *
+      * Método utilizado para refrescar los géneros según el orden seleccionado. La actualización se realiza via javascript.
+      * 
+      *
+      * @return void
+      */
 	public function getDataGenre(){
 	     //Permite desplegar los resultados de ajax.
 	    $this->layout = 'ajax';
-	     //Si se trata de actualizar a través de get...
+	     //Si se trata de actualizar a través de get.
 	    if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
@@ -393,14 +413,19 @@ class CategoriesController extends TreeMenuAppController {
 	        $genre = $this->Category->find('list', array(
             'conditions' => array('Category.parent_id' => $family),
             'recursive' => -1));
-
 		    $this->set('genre', $genre);
-
         } 
     
 	}
 	
-	///Busca un colaborador según el nombre, apellido o usuario.
+	/**
+      * search_colaborator method
+      *
+      * Busca un colaborador según el nombre, apellido o usuario.
+      * 
+      *
+      * @return void
+      */
 	public function search_colaborator($id=null) {
 	      //Obtiene los datos de la búsqueda.
 		$data=($this->request->pass[0]);
@@ -408,9 +433,11 @@ class CategoriesController extends TreeMenuAppController {
 		if($data){
 		    //Carga el modelo de usuarios.
 			$this->loadModel('User');
+			//Separa la string que se manda por espacios y se guarda en un array, elimina espacios sobrantes.
 			$condition=explode(' ', trim($data));					
 			$condition=array_diff($condition,array(''));
 			if($condition){
+			    //Crea un array con las condiciones para buscar por colaborador.
 			    $conditions[]=array("AND"=> array(
 						    array('User.role '=>'Colaborador')
 						));
@@ -423,11 +450,13 @@ class CategoriesController extends TreeMenuAppController {
 						)
 					);
 				}
+				//Busca en la base según el array anteriormente creado.
 				$result=$this->User->find('all', array('recursive'=>0, 'conditions'=>$conditions));
 				if(count($result)>0){
 					$this->set('resultados',$result);
 				}
 				else{
+				    //En caso de que no existan resultados, se le comunica al usuario.
 					return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
 				}
 			}
@@ -437,17 +466,27 @@ class CategoriesController extends TreeMenuAppController {
 		}
 	}
 	
-	  public function search_document($id=null) {
-	      //Obtiene los datos de la búsqueda.
+	/**
+      * search_document method
+      *
+      * Busca un documento.
+      * 
+      * @param int $id
+      * @return void
+      */
+    public function search_document($id=null) {
+        //Obtiene los datos de la búsqueda.
 		$doc=($this->request->pass['0']);//tipo de documento
 		$search=$this->request->pass[1];//nombre del documento
 		//Sí no es nulo.
 		if(($data)){
 		    //Carga el modelo de usuarios.
 			$this->loadModel('User');
+			//Separa la string que se manda por espacios y se guarda en un array, elimina espacios sobrantes.
 			$condition=explode(' ', trim($data));					
 			$condition=array_diff($condition,array(''));
 			if($condition){
+			    //Crea un array con las condiciones para buscar por documento.
 				foreach($condition as $tconditions){
 					$conditions[] = array(
 						"OR" => array(
@@ -457,8 +496,8 @@ class CategoriesController extends TreeMenuAppController {
 						)
 					);
 				}
+				//Busca en la base según el array anteriormente creado.
 				$result=$this->User->find('all', array('recursive'=>0, 'conditions'=>$conditions));
-
 				if(count($result)>0){
 					$this->set('resultados',$result);
 				}
@@ -473,19 +512,26 @@ class CategoriesController extends TreeMenuAppController {
 	}
 	
 	
-	
+	/**
+      * redirect_to_methods method
+      *
+      * Redirecciona datos especificos de un solo form segun el tipo de búsqueda
+      * que quiera, sea por colaboradores, docomentos o el nombre de algún taxon.
+      * 
+      * @return void
+      */
 	public function redirect_to_methods() {
 	    $asd=$this->request->data;
-	   // debug($this->request->data);
+	    //Si selecciono buscar colaboradores que mande unicamente el input search1(nombre).
 	    if($this->request->data['Category']['drop1'] == 'colaboradores') {
 	        $this->redirect(array('controller' => 'categories','action' => 'search_colaborator',$asd['Category']['search1']));
 	        
-	       // $this->redirect(array('action'=>'search_colaborator'),$asd['colaborator']);
 	    } else if ($this->request->data['Category']['drop1'] == 'documentos') {
+	        //Si selecciono buscar documentos que mande unicamente el input search2(nombre) y el tipo de documento.
 	        $this->redirect(array('controller' => 'categories','action' => 'search_document',$asd['documento'],$asd['search2']));
 	    } else if ($this->request->data['Category']['drop1'] == 'nivel') {
-	        /*$prueba = array('search' = $this->request->data['Category']['search'])*/
-	       // debug($asd['search3']);
+	        //Si selecciono buscar por categorias que mande unicamente sus input correspondientes.
+	        //en caso de no mandar pertenenciente a este, mandar un -1 para la búsqueda.
 	       if($asd['order']==null){
 	           $asd['order']=-1;
 	       }
@@ -501,11 +547,19 @@ class CategoriesController extends TreeMenuAppController {
 	       if($asd['search3']==null){
 	           $asd['search3']=-1;
 	       }
-	       
 	        $this->redirect(array('controller'=>'categories','action'=>'search_data',$asd['order'],$asd['family'],$asd['genre'],$asd['country'],$asd['search3']));
 	    }
 	}
 	
+	/**
+      * search_data method
+      *
+      * Busca un dato en el árbol de taxones según el nombre, orden, familia, género 
+      * o familia.
+      * 
+      * 
+      * @return void
+      */
 	public function search_data(){
 	    $this->loadModel('Picture');
 	    $conditions=array();
@@ -514,14 +568,15 @@ class CategoriesController extends TreeMenuAppController {
 	    $family=$this->request->pass[1];//Nombre de familia.
 	    $genre=($this->request->pass[2]);//Nombre del género.
 	    $country=$this->request->pass[3];
+	    //Nombre del orden si lo mando.
 	    if($order!=-1&&$family==-1){
 	        $conditions[] = array("AND" => array(array('Category.id '=>$order)));
 	    }
-	    
+	    //Nombre de la familia si la mando.
 		if($family!=-1&&$genre==-1){
 		    $conditions[] = array("AND" => array(array('Category.id '=>$family)));
 	    }
-	    
+	    //Nombre del genero si lo mando.
 	    if($genre!=-1){
 	        $conditions[] = array("AND" => array(
 						    array('Category.id '=> $genre)));
@@ -539,7 +594,7 @@ class CategoriesController extends TreeMenuAppController {
 	    }           
 	    
 	    
-	    $search3=$this->request->pass[4];//Termino de busqueda.
+	    $search3=$this->request->pass[4];//Término de busqueda.
 	    if($search3!=-1&&$genre==-1){
 			$condition=explode(' ', trim($search3));					
 			$condition=array_diff($condition,array(''));

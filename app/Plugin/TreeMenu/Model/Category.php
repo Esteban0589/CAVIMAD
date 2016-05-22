@@ -19,15 +19,36 @@ class Category extends TreeMenuAppModel {
      */
     public $validate = array(
         'name' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				'message' => 'El nombre no debe estar vacío.',
+				// 'allowEmpty' => false,
+				// 'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'Ya existe otro nivel taxónomico con ese nombre.',
+				// 'allowEmpty' => false,
+				// 'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Este campo solo permite letras y numeros.'
             ),
         ),
+        'description' => array(
+			'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Este campo solo permite letras y numeros.'
+            ),
+        ),
+
     );
 
     public function afterSave($created, $options = array()) {

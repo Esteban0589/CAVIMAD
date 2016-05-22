@@ -577,7 +577,9 @@ textarea { resize: none; }
 /* == END bootstrap forms == */
 
 /* == bootstrap alerts == */
-.alert { border-radius: 0; font-size: 14px; }
+.alert { background-color:#f2dede;
+	border-color:#ebccd1;
+	color:#a94442;}
 .alert-default { background-color: rgba( 0, 0, 0, 0.05 ); }
 .close-me { color: inherit; position: relative; right: -21px; top: -2px; background: none; border: none; cursor: pointer; padding: 0; float: right; font-size: 21px; font-weight: bold; line-height: 1; opacity: 0.2; text-shadow: 0 1px 0 #FFF; }
 .close-me:hover { opacity: 1; }

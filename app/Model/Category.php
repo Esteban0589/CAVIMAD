@@ -17,47 +17,48 @@ class Category extends TreeMenuAppModel {
      *
      * @var array
      */
-    public $validate = array(
-        'name' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				'message' => 'El nombre no debe estar vacío.',
-				// 'allowEmpty' => false,
-				// 'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'unique' => array(
-				'rule' => array('isUnique'),
-				'message' => 'Ya existe otro nivel taxónomico con ese nombre.',
-				// 'allowEmpty' => false,
-				// 'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
-                'required' => true,
-                'message' => 'Este campo solo permite letras y numeros.'
-            ),
-        ),
-        'description' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				'message' => 'El nombre no debe estar vacío.',
-				// 'allowEmpty' => false,
-				// 'required' => true,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
-                'required' => true,
-                'message' => 'Este campo solo permite letras y numeros.'
-            ),
-        ),
+    //  Lo comente porque no lo estaba usando... creo que el que esta usando es el modelo de plugin/tree... Esteban
+//     public $validate = array(
+//         'name' => array(
+// 			'notBlank' => array(
+// 				'rule' => array('notBlank'),
+// 				'message' => 'El nombre no debe estar vacío.',
+// 				// 'allowEmpty' => false,
+// 				// 'required' => true,
+// 				//'last' => false, // Stop validation after this rule
+// 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+// 			),
+// 			'unique' => array(
+// 				'rule' => array('isUnique'),
+// 				'message' => 'Ya existe otro nivel taxónomico con ese nombre.',
+// 				// 'allowEmpty' => false,
+// 				// 'required' => true,
+// 				//'last' => false, // Stop validation after this rule
+// 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+// 			),
+// 			'alphaNumeric' => array(
+//                 'rule' => 'alphaNumeric',
+//                 'required' => true,
+//                 'message' => 'Este campo solo permite letras y numeros.'
+//             ),
+//         ),
+//         'description' => array(
+// 			'notBlank' => array(
+// 				'rule' => array('notBlank'),
+// 				'message' => 'El nombre no debe estar vacío.',
+// 				// 'allowEmpty' => false,
+// 				// 'required' => true,
+// 				//'last' => false, // Stop validation after this rule
+// 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+// 			),
+// 			'alphaNumeric' => array(
+//                 'rule' => 'alphaNumeric',
+//                 'required' => true,
+//                 'message' => 'Este campo solo permite letras y numeros.'
+//             ),
+//         ),
 
-    );
+//     );
 
     public function afterSave($created, $options = array()) {
         parent::afterSave($created,$options);

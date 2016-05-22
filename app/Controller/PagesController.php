@@ -78,10 +78,17 @@ class PagesController extends AppController {
 		}
 	}
 	
-	
+	  /**
+      * autocompletebuscar method
+      * 
+      * Método no implementado para usar el autocompletar de js.
+      * 
+      * @return void
+      */
 	public function autocomplebuscar()
 		{
-			$this->layout = 'ajax';
+			//$this->layout = 'ajax';
+			//Carga la tabla de categorias.
 		    $this->loadModel('Category');
 		    //Carga todos los órdenes para en la varible $order.
 		    $Buscar = $this->Category->find('list', array(

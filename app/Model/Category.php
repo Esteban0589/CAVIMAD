@@ -108,6 +108,13 @@ class Category extends TreeMenuAppModel {
         clearCache();
     }
 
+    /**
+     * getAllCategories method
+     *
+     * @param string $alias
+     * @return $categories
+     */
+    
     public function getAllCategory($alias = null) {
         if (($categories = Cache::read('getAllCategory_' . $alias)) === false) {
             $conditions = array();
@@ -124,6 +131,14 @@ class Category extends TreeMenuAppModel {
         }
         return $categories;
     }
+
+    /**
+     * generateTreeList method
+     *
+     * @param string $alias
+     * @return $categories
+     */
+    pub
 
     public function _generateTreeList($alias = null) {
         if (($categories = Cache::read('GenerateTreeList' . $alias)) === false) {

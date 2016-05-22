@@ -95,13 +95,17 @@ class CategoriesController extends TreeMenuAppController {
     public function add() {
         $alias = $this->categoryAlias;
         if ($this->request->is('post')) {
+            // se crea una categoria
             $this->Category->create();
+            // en base a eso se le asigna un alias
             if($alias) $this->request->data['Category']['alias'] = $alias;
+            //Si los datos son creados correctamente se notifica mediante un mensaje 
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
                 $this->redirect($alias);
             } else {
+                //Si los datos no se guadados correctamente se notifica mediante un mensaje de error
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
         }
@@ -119,10 +123,11 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
     public function view($id = null) {
+        //Si la categoria buscada no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
 		}
-		
+	
 		$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
 
 	}
@@ -167,18 +172,22 @@ class CategoriesController extends TreeMenuAppController {
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
+        // se trae el id de la categoria
         $this->Category->id = $id;
+        //Si la categoria a buscar no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists()) {
             throw new NotFoundException(__('Datos no validos'));
         }
-        
+        // segun el alias de las categorias se despliegan segun un orden indexado 
         $alias = $this->categoryAlias;
         $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-        
+        // segun la categoria seleccionada se eliminan los datos
+        //Si se logran eliminar los datos se notifica mediante un mensaje 
         if ($this->Category->delete()) {
             $this->Session->setFlash(__('Datos eliminados'), 'success');            
             $this->redirect($alias);
         }
+        //Si no se logran borar los datos  se notifica mediante un mensaje de error
         $this->Session->setFlash(__('Datos no eliminados'), 'error');
         $this->redirect($alias);
     }

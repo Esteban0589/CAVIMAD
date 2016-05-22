@@ -112,15 +112,18 @@ class AdministratorsController extends AppController {
  */
 	public function delete($id = null) {
 		$this->Administrator->id = $id;
+		//Si el administrador a buscar no existe se notifica mediante un mensaje de error
 		if (!$this->Administrator->exists()) {
 			throw new NotFoundException(__('Invalid administrator'));
 		}
 		$this->request->allowMethod('post', 'delete');
-		if ($this->Administrator->delete()) {
+		//Si el adminstrador se pudo borrar se notifica mediante un mensaje
 			$this->Flash->success(__('The administrator has been deleted.'));
 		} else {
+			//Si administrador no se pudo eliminra se notifica mediante un mensaje de error
 			$this->Flash->error(__('The administrator could not be deleted. Please, try again.'));
 		}
+		// si la accion es completada redirecciona al index de administradores
 		return $this->redirect(array('action' => 'index'));
 	}
 }

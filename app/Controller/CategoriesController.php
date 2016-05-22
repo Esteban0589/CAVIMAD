@@ -34,6 +34,12 @@ class CategoriesController extends TreeMenuAppController {
             $this->Auth->allow('*');
         }
     }
+        /**
+     * Get_menu_Categories method
+     *
+     * @param string $alias
+     * @return $categories
+     */
 
     public function get_menu_categories(){
         $this->autoRender  = false;
@@ -268,6 +274,12 @@ class CategoriesController extends TreeMenuAppController {
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
 	}
+	    /**
+     * admin_getnodes method
+     *
+     * @param  $alias
+     * @return void
+     */
 
     public function admin_getnodes($alias=null) {
         $this->layout = 'ajax';
@@ -293,6 +305,13 @@ class CategoriesController extends TreeMenuAppController {
         // send the nodes to our view
         $this->set(compact('nodes'));
     }
+
+    /**
+     * admin_reorder method
+     *
+     * @param  $node
+     * @return void
+     */
 
     function admin_reorder() {
         $this->autoRender = false;

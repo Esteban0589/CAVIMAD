@@ -673,18 +673,21 @@ class UsersController extends AppController {
                          }
                      }
                      else{
+                     	//Si el error se da al no ser las contraseñas iguales se le notifica al usuario
                          $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
                          }
                  }
              }
              else
              {
+             	//Si se trata de acceder con un enlace ya usado o expirado notifica al usuario y redirige al login
                   $this->Flash->set('Token corrupto. Por favor revise su enlace autogenerado. El enlace solo funciona una única vez.');
                   $this->redirect(array('controller'=>'users','action'=>'login'));
              }
          }
          else
-         {
+         {	
+         	//Si el uruario trata de acceder a con un token invalido se lo notifica y redirige al login
              $this->Flash->set('Token inválido, intente de nuevo.');
              $this->redirect(array('controller'=>'users','action'=>'login'));
          }
@@ -736,12 +739,14 @@ class UsersController extends AppController {
  			}
  			else
  			{
+ 				//Si las contraseñas ingresadas no son iguales notifica al usuario
  				$this->Flash->error(__('Las contraseñas ingresadas no son iguales.'));
 				return $this->redirect(array('action' => 'edit',$pass['User']['id']));
  			}
  		}
  		else
- 		{
+ 		{ 
+ 				//Si la contraseña no corresponde a la contraseña gusrdada notifica al usuario con un mensaje de error
  				$this->Flash->error(__('La contraseña ingresada no es igual a la almacenada en el sistema.'));
  				return $this->redirect(array('action' => 'edit',$pass['User']['id']));
  		}

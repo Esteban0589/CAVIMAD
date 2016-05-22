@@ -1,36 +1,58 @@
 <?php			
-//return $this->debugController($this->request->data);
 
 App::uses('AppController', 'Controller');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
  * Users Controller
+ * 
+ * Esta clase contiene los métodos para el manejo de de usuarios.
  *
  * @property User $User
  * @property PaginatorComponent $Paginator
  */
 class UsersController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator', 'Session','Flash');
+	
+	/**
+	 * Roles
+	 * 
+	 * Arreglo con los tipos de rol que se manejarán para los usuarios
+	 * @var array
+	 */
 	var $roles = array('Administrador' => 'Administrador','Colaborador' => 'Colaborador','Usuario' => 'Usuario','Editor' => 'Editor');
-		
+	
+	/**
+	 * beforeFilter method
+	 * 
+	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa.
+	 *
+	 * @return void
+	 */	
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout', 'login', 'viewManagers','forgot_password', 'reset','activate','buscador');
+        //Métodos a los cuales se permite llamar
+        $this->Auth->allow('add','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador');
     }
-/**
- * index method
- *
- * @return void
- */
+    
+	/**
+	 * index method
+	 * 
+	 * Devuelve todos los usuarios que existen en la base de datos.
+	 *
+	 * @throws NotFoundException
+	 * @return void
+	 */
 	public function index() {
+		//Se revisa si existe una sesión activa, y si el usuario es administrador
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador' ) ) {
-			throw new NotFoundException(__('Usuario invalido.'));
+			//Si el usuario no es un administrador no se le permite el acceso
+			throw new NotFoundException(__('Usuario inválido.'));
 		}
 		$this->set('role', $this->roles);
 		$this->User->recursive = 0;
@@ -43,58 +65,77 @@ class UsersController extends AppController {
 	}
 
 
-/**
- * viewManagers method
- * 
- * Devuelve la lista de colaboradores de la página
- *
- * @return void
- */
-	public function viewManagers() {
+	/**
+	 * viewManagers method
+	 * 
+	 * Devuelve la lista de colaboradores de la página.
+	 *
+	 * @return void
+	 */
+	public function view_colaboradores() {
+		//se carga el modelo Administrator para manipular el arreglo correspondiente
 		$this->loadModel('Administrator');
 		$this->User->recursive = 0;
+		//Se guarda en $users la búsqueda de los usuarios que tienen role = 'Colaborador', y se envían a la vista lo susuarios encontrados dentro de 'users'
 		$this->set('users', $users = $this->User->find('all', array('conditions' => array('User.role' => 'Colaborador'))));
+		//Se buscan los datos correspondientes al modelo Administrator que le corresponden a los colaboradores, y se envían a la vista a través de 'colaboradores'
 		$this->set('colaboradores', $colaboradores = $this->Administrator->find('all'));
 	}
 	
-
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 * 
+	 * Permite recuperar los datos de un usuario en específico.
+	 *
+	 * @throws NotFoundException
+	 * @param string $id - Contiene el id del usuario que se va a desplegar.
+	 * @return void
+	 */
 	public function view($id = null) {
+		//Se revisa primero si hay una sesión activa
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null)  ) {
+			//Si no hay una sesión activa, no se le permite continuar a ver los datos de algún usuario
 			throw new NotFoundException(__('Para esta sección es necesario estar registrado.'));
 		}
+		//Si el usuario a buscar no existe se notifica mediante un mensaje de error
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Usuario no valido'));
+			throw new NotFoundException(__('Usuario no válido'));
 		}
+		//Se busca el usuario mediante el $id recibido
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		//Se envían a la vista los datos correspondientes al usuario buscado
 		$this->set('user', $this->User->find('first', $options));
 	}
 
 
-
+	/**
+	 * login method
+	 * 
+	 * Función que maneja el control de inicio de sesión
+	 *
+	 * @return void
+	 */
     public function login() {
+    	//Se revisa primero en la variable $_SESSION si ya hay una sesión activa
     	if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
-			 $this->Flash->error(__('Su sesión ya esta activa.'));
-			//throw new NotFoundException(__('Sesión activa.'));
+    		//Si ya hay una sesión activa, se le notifica al usuario que ya ha iniciado sesión
+			$this->Flash->error(__('Su sesión ya esta activa.'));
+			//Se le redirige al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		//Primero se chequea que 'data' no esté vacío
         if( !(empty($this->data))){
+        	//Se guarda en $var el usuario recuperado a partir del 'username' solicitado en 'data'
         	$var=$this->User->findByUsername($this->request->data['User']['username']);
-        	
+        	//Se revisa si el usuario buscado ya ha sido debidamente activado
         	if($var['User']['activated']==true){
     	        // if($this->Auth->login() ){
     	        // 	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
 		           // $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
 		           // return $this->redirect(array('controller' => 'pages','action' => 'display'));
     	        // }
-    	        
+ 
+  	        	//Se procede a realizar el login mediante Auth
     	        if($this->Auth->login() ){
     	            // Si se selecciona la opción para recordar
     	            if ($this->request->data['User']['remember_me'] == 1) {
@@ -104,57 +145,79 @@ class UsersController extends AppController {
     	                //Escribe la cookie
     	                $this->Cookie->write('remember_me_cookie', $this->request->data['User'], true, '1 weeks'); //if user select remember me, the cookie will be saved in his browser for 1 week.
 					}
+					//Se guarda en $_SESSION el rol del usuario que ha iniciado sesión
     	        	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
+    	        	//Se guarda en $_SESSION el username del usuario que ha iniciado sesión
 		            $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
+		            //Se procede a redirigir al home de la página
 		            return $this->redirect(array('controller' => 'pages','action' => 'display'));
 				}
-    	    	return $this->Flash->error(__('Usuario o contraseña invalida.'));
+				//Si el login falla se le notifica al usuario que algún dato es inválido
+    	    	return $this->Flash->error(__('Usuario o contraseña inválida.'));
     	    }
+    	    //Si el usuario no ha sido acivado previo al login, se le notifica mediante un error
     	    return $this->Flash->error(__('Usuario no activado.'));
         }
     }
     
+    /**
+	 * logout method
+	 * 
+	 * Función que maneja el control de cierre de sesión
+	 *
+	 * @return void
+	 */
     public function logout() {
 	   	// Borra la cookie en caso de que exista
         $this->Cookie->delete('remember_me_cookie');
 	    $this->Session->destroy();
         return $this->redirect($this->Auth->logout());
     }
-    
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
  
- public function debugController($id) {
-		$this->request->data = $id;
+	public function debugController($id) {
+			$this->request->data = $id;
 	}
 	
+	/**
+	 * edit method
+	 *
+	 * Función que maneja el módulo de editar un usuario.
+	 * 
+	 * @throws NotFoundException
+	 * @param string $id - Contiene el id del usuario que se va a editar.
+	 * @return void
+	 */
 	public function edit($id = null) {
+		//Se carga el modelo Administrator
 		$this->loadModel('Administrator');
+		//Se verifica si el usuario ha ingresado sesión
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null)  ) {
+			//Si no hay una sesión activa, no se le permite continuar
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
+			//Se le redirige al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
 		
-		
+		//Si revis si el usuario a buscar existe
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Usuario no valido'));
+			//Si el usuario no existe se tira la siguiente excepción
+			throw new NotFoundException(__('Usuario no válido'));
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
-			//debug($this->request->data['User']);
+			//Se guardan los datos correspondientes al usuario
 			if ($this->User->saveAll($this->request->data['User'])) {
+				//Se chequea si el usuario es un administrador o un colaborador
 				if($_SESSION['role'] == 'Administrador' || $_SESSION['role'] == 'Colaborador') {
+					//En este caso se guardan también los datos correspondientes al modelo Administrator
 					$this->Administrator->saveAll($this->request->data['Administrator']);
 				}
+				//Se notifica que los cambios han sido realizados
 				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+				//Se redirige a la vista view del usuario en la sesión activa
 				return $this->redirect(array('action' => 'view',$id));
 			} else {
+				//En el caso de que no se puedan guardar los datos, se notifica mediante un error
 				$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevo'));
 			}
 
@@ -166,97 +229,121 @@ class UsersController extends AppController {
 	
 	}
 	
-	
-		public function editrol($id = null) {
-
+	/**
+	 * editrol method
+	 *
+	 * Función para realizar el cambio de rol de un usuario registrado.
+	 * 
+	 * @throws NotFoundException
+	 * @param string $id - Contiene el id del usuario que se le va a editar el rol.
+	 * @return void
+	 */
+	public function editrol($id = null) {
+		//Se verifica que exista una sesión activa
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null ) ) {
+			//Se maneja la excepción en caso de que no haya un usuario en la sesión
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
+			//Se redirige al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		//Se chequea que el usuario a buscar existe
 		if (!$this->User->exists($id)) {
+			//Caso contrario se llama a la excepción
 			throw new NotFoundException(__('Usuario no valido'));
 		}
+		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
 		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
 			if ($this->request->is(array('post', 'put'))) {
+				//Se guardan los datos del usuario
 				if ($this->User->saveAll($this->request->data)) {
-					
-					
+					//Se busca si el usuario al cual se le modificará el rol es un posible administrador o colaborador
 					if(empty($this->User->Administrator->find('first',array('conditions' => array('Administrator.user_id' => $this->request->data['User']['id']))))){
 						$this->request->data['Administrator']['user_id'] = $this->request->data['User']['id'];
+						//Se guardan los datos correspondientes el modelo Administrator en el caso de que el usuario editado sea un administrador o colaborador
 						if ($this->User->Administrator->save($this->request->data)){
+							//Se notifica que se han realizado los cambios correctamente al modificar el rol
 							$this->Flash->success(__('El rol ha sido actualizado correctamente.'));
+							//Se redirige al index de usuarios, mostrando todos los usuarios de la página
 							return $this->redirect(array('action' => 'index', $id));
-							
 						}
-						else{
+						else {
+							//Se notifica al usuario en caso de que no se logre guardar los cambios
 							$this->Flash->success(__('El rol no se puedo actualizar.'));
-						return $this->redirect(array('action' => 'index', $id));
+							//Se redirige al index de usuarios, mostrando todos los usuarios de la página
+							return $this->redirect(array('action' => 'index', $id));
 						}
 					}
 					else{
+						//Se notifica que se han realizado los cambios
 						$this->Flash->success(__('El rol ha sido actualizado.'));
 						return $this->redirect(array('action' => 'index', $id));
 					}
-					
-					
-					
 				} else {
 					$this->Flash->error(__('El rol no se ha podido actualizar.'));
 				}
-	
 			} else {
 				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 				//$options2 = array('conditions' => array('Administrator.' . $this->Administrator->foreingKey => $user_id));
 				$this->request->data = $this->User->find('first', $options);
 			}
-			
 		}
-	
 	}
 
+	/**
+	 * editactivated method
+	 *
+	 * Función para realizar el cambio de un usuario, ya sea para habilitar o deshabilitar la cuenta.
+	 * 
+	 * @throws NotFoundException
+	 * @param string $id - Contiene el id del usuario que se va a modificar.
+	 * @return void
+	 */
 	public function editactivated($id = null) {
-		
+		//Se revisa si el usuario existe
 		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+			//Caso contrario se llama a la excepción
+			throw new NotFoundException(__('Usuario no válido'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			//Se guardan los cambios al usuario
 			if ($this->User->save($this->request->data)) {
+				//Se notifica que el estado de la cuenta se modificó correctamente
 				$this->Flash->success(__('Se cambio correctamente el estado de la cuenta.'));
+				//Se redirige al index de usuarios
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				//En el caso contrario, se notifica al usuario que los cambios no se pudieron realizar
+				$this->Flash->error(__('El cambio no se realizó correctamente.'));
 			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
-
 		}
 	
 	}
 	
-	
-	// public function editrol($id = null) {
-	// 	if (!$this->User->exists($id)) {
-	// 		throw new NotFoundException(__('Invalid user'));
-	// 	}
-	// 	$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-	// 	$this->set('user', $this->User->find('first', $options));
-	// }
-	
-	
+
 	/**
- * add method
- *
- * @return void
- */
+	 * add method
+	 *
+	 * Función que maneja la insersión de un nuevo usuario.
+	 * 
+	 * @throws NotFoundException
+	 * @return void
+	 */
 	public function add() {
+		//Se verifica si ya hay una sesión activa
 		if (  (!empty($_SESSION['role'])) && ($_SESSION['role'] != null)  ) {
+			//Se le notifica al usuario que ya se encuentra registrado
 			throw new NotFoundException(__('Ya estás registrado.'));
+			//Se procede a redirgir al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
 		$this->set('role', $this->roles);
 		if ($this->request->is('post')) {
+			//Se crea un nuevo usuario
 			$this->User->create();
+			//Se guardan los datos del nuevo usuario
 			if ($this->User->save($this->request->data)) {
 				//Si el usuario creado no está activado.
 				if ($this->User->activaded == 0){
@@ -268,11 +355,11 @@ class UsersController extends AppController {
 	                $ms=$url;
 	                $ms=wordwrap($ms,1000);
 					//Envía el correo de activación de cuenta.
-					 $data = array();
-					 $user_data = array();
-	                 $user_data['name'] = $this->request->data['User']['name'];
-	                 $user_data['ms'] = $ms;
-	                 $this->set('user_data', $user_data);  
+					$data = array();
+					$user_data = array();
+	                $user_data['name'] = $this->request->data['User']['name'];
+	                $user_data['ms'] = $ms;
+	                $this->set('user_data', $user_data);  
 	                        $data['to'] = $this->request->data['User']['email'];
 	                        $data['subject'] = 'Activación de cuenta';
 	                        $data['body'] = array('user_data' => $user_data);
@@ -280,23 +367,33 @@ class UsersController extends AppController {
 	                        $output =$this->send_mail($data);
 	
 	                            if($output){
+	                            	//Se notifica al usuario que la cuenta fue creada con éxito
 	                                $this->Flash->success(__('El usuario ha sido creado. Por favor verifique su correo electrónico para activar su cuenta.'));
 	                          		return $this->redirect(array('controller'=>'pages','action' => 'display'));
 	                            }
 	                            else {
+	                            	//Se le notifica el usuario en el caso de que un error el intentar enviar el correo de activación
 	                            	$this->Flash->set('Hubo un error al enviar el correo electrónico. Por favor intente nuevamente en unos minutos.');
 	                            	delete_without_flash($this->request->data['User']['id']);
-	                            	
 	                            }
 				}
 			} 
 			 else {
+			 	//Se le notifica al usuario que verifique que los datos sean correctos en el caso de que no se pueda agregar el usuario
 				$this->Flash->error(__('El usuario no pudo ser registrado. Por favor confirmar que los datos sean válidos.'));
 			}
 		}
 	}
 	
-	//Permite activar un usuario en la base de datos a través de un link generado automáticamente.
+	/**
+	 * activate method
+	 *
+	 * Permite activar un usuario en la base de datos a través de un link generado automáticamente.
+	 * 
+	 * @throws NotFoundException
+	 * @params $token
+	 * @return void
+	 */
 	public function activate($token=null)
 	{
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
@@ -352,39 +449,49 @@ class UsersController extends AppController {
             $this->Flash->set('Token inválido, intente de nuevo.');
             $this->redirect(array('action'=>'login'));
         }
-    
 	}
-	
-	
-	
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * Permite eliminar un usuario de la base de datos.
+	 * 
+	 * @throws NotFoundException
+	 * @param string $id - Contiene el id del usuario que se va a eliminar.
+	 * @return void
+	 */
 	public function delete($id = null) {
+		//Se verifica si el usuario no es un administrador
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador')) {
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
+			//Si el usuario no existe se maneja la siguiente excepción
 			throw new NotFoundException(__('Usuario inválido.'));
 		}
 		$this->request->allowMethod('post', 'delete');
+		//Se elimina el usuario
 		if ($this->User->delete()) {
+			//Se notifica que el usuario ha sido eliminado correctamente
 			$this->Flash->success(__('El usuario fue eliminado.'));
 		} else {
-			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
+			//Si hubo un error, se notifica al usuario que no se pudo realizar la operación
+			$this->Flash->error(__('El usuario no pudo ser eliminado. Inténtelo nuevamente.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
 	
-	//Envía un correo eléctronico según la plantilla deseada.
-	
+	/**
+	 * send_mail method
+	 *
+	 * Envía un correo eléctronico según la plantilla deseada.
+	 * 
+	 * @throws NotFoundException
+	 * @param $email_data
+	 * @return void
+	 */
 	public function send_mail($email_data = null)
 	{
 		$Email = new CakeEmail();
@@ -417,11 +524,19 @@ class UsersController extends AppController {
             }
 	}
 	
-	
-	//Genera un token y envía un correo electrónico para reiniciar la contraseña.
+	/**
+	 * forgot_password method
+	 *
+	 * Genera un token y envía un correo electrónico para reiniciar la contraseña.
+	 * 
+	 * @throws NotFoundException
+	 * @return void
+	 */
 	public function forgot_password()
 	{
+		//Verifica si hay una sesión activa primero
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null)  ) {
+			//Si la sesión se encuentra activa se maneja la expeción
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -450,8 +565,6 @@ class UsersController extends AppController {
                         $url = Router::url( array('controller'=>'Users','action'=>'reset'), true ).'/'.$key.'#'.$hash;
                         $ms=$url;
                         
-                        
-                        
                         $ms=wordwrap($ms,1000);
                         
                         $fu['User']['tokenhash']=$key;
@@ -470,7 +583,6 @@ class UsersController extends AppController {
 		                $user_data['ms'] = $ms;
                         $this->set('user_data', $user_data);  
 	                        
-            
                         $data['to'] = $fu['User']['email'];
                         $data['subject'] = 'Reinicio de contraseña';
                         $data['body'] = array('user_data' => $user_data);
@@ -478,20 +590,24 @@ class UsersController extends AppController {
                         $output =$this->send_mail($data);
 
                             if($output){
+                            	//Se notifica al usuario si el correo fue enviado correctamente
                                 $this->Flash->success(__('Correo electrónico enviado correctamente.'));
                                 $this->redirect(array('controller'=>'users','action'=>'login'));
                             }
                             else {
+                            	//En el caso de algún error, se le notifica al usuario que el correo no pudo ser enviado
                             	$this->Flash->set('Hubo un error al enviar el correo electrónico. Por favor intente nuevamente en unos minutos.');
                             }
                         }
                         else{
-                             $this->Flash->set("Error al generar enlace para reinicio de contraseña.");
+                        	//Si el error se da al generar el enlace, se le notifica al usuario
+                            $this->Flash->set("Error al generar enlace para reinicio de contraseña.");
                         }
                     }
                     else
                     {
-                         $this->Flash->set('La cuenta aún no está activada, por favor proceda a activar su cuenta.');
+                    	//Se le notifica al usuario que la cuenta todavía no ha sido activada en el respectivo caso
+                        $this->Flash->set('La cuenta aún no está activada, por favor proceda a activar su cuenta.');
                     }
                 }
                 else
@@ -502,9 +618,18 @@ class UsersController extends AppController {
         }    
 	}
 	
- 	//Reinicia la contraseña según un hash agregado anteriormente.
+	/**
+	 * reset method
+	 *
+	 * Reinicia la contraseña según un hash agregado anteriormente.
+	 * 
+	 * @throws NotFoundException
+	 * @param $token
+	 * @return void
+	 */
  	public function reset($token=null)
  	{
+ 		 //Se verifica si ya existe una sesión activa
          if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null ) ) {
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
@@ -559,7 +684,14 @@ class UsersController extends AppController {
      
  	}
  	
- 	//Método que permite a un usuario cambiar su contraseña.
+ 	/**
+	 * new_password method
+	 *
+	 * Método que permite a un usuario cambiar su contraseña.
+	 * 
+	 * @throws NotFoundException
+	 * @return void
+	 */
  	public function new_password()
  	{
  		$this->User->recursive=-1;
@@ -606,25 +738,4 @@ class UsersController extends AppController {
  		}
  		
  	}
- 	
- 	
- 	public function buscador() {
-		//$this->loadModel('User');
-		$term = null;
-		if(!empty($this->request->query['term'])){
-			$term=$this->request->query['term'];
-			$terms=explode(' ', trim($term));
-			$terms=array_diff($terms,array(''));
-			foreach($terms as $term){	
-				$conditions[] = array('User.username LIKE' => '%'. $term . '%');
-			}
-		
-		$usuario = $this->User->find('all', array('recursive'=>-1, 'fields' => array('User.username'), 'conditions'=> $conditions, 'limit' => 10));
-		debug($usuario);
-		}
-		echo json_encode($usuario);
-		$this->autoRender=false;
-	}
- 	
-	
 }

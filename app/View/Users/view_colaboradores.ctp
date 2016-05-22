@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-12">
 
-	<h2 title= "Lista de los colaboradores de la página"><?php echo __('Lista de Colaboradores'); ?></h2>
+	<h2 title= "Lista de los colaboradores de la página"><?php echo __('Lista de colaboradores'); ?></h2>
 			
 		<div class="row small k-equal-height"><!-- row -->
                               

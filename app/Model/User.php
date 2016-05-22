@@ -3,20 +3,28 @@ App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
  * User Model
+ * 
+ * Modelo que contiene las validaciones de los campos de User y las relaciones que existan con otros modelos.
  *
  * @property Administrator $Administrator
  * @property Picture $Picture
  */
 class User extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+	/**
+	 * Display field
+	 *
+	 * @var string
+	 */
 	public $displayField = 'name';
 
- public $actsAs = array(
+	/**
+	 * actsAs
+	 * 
+	 * Manejo de las imágenes de los usuarios
+	 * @var array
+	 */
+ 	public $actsAs = array(
         'Upload.Upload' => array(
             'image' => array(
                 'fields' => array(
@@ -34,14 +42,14 @@ class User extends AppModel {
     );
 
 
-/**
- * Validation rules
- *
- * @var array
- */
+	/**
+	 * Reglas para la validacion de los campos del modelo
+	 *
+	 * @var array
+	 */
 	public $validate = array(
-		
 		'name' => array(
+			//Verifica que el nombre del usuario no sea vacío
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El nombre no debe estar vacío.',
@@ -50,6 +58,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el tamaño del nombre no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 20),
 				'message' => 'El nombre debe tener más de 20 caracteres.',
@@ -60,6 +69,7 @@ class User extends AppModel {
 			),
 		),
 		'lastname1' => array(
+			//Verifica que el primer apellido del usuario no sea vacío
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El primer apellido no debe ser vacío.',
@@ -68,6 +78,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el tamaño del primer apellido no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 30),
 				'message' => 'El primer apellido no debe tener más de 30 caracteres.',
@@ -86,6 +97,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),*/
+			//Verifica que el tamaño del primer apellido no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 30),
 				'message' => 'El segundo apellido no debe tener más de 30 caracteres.',
@@ -96,6 +108,7 @@ class User extends AppModel {
 			),
 		),
 		'email' => array(
+			//Verifica que el email corresponda al formato de un correo electrónico válido
 			'email' => array(
 				'rule' => array('email'),
 				'message' => 'Por favor ingresar un correo electrónico válido.',
@@ -104,6 +117,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el email del usuario no sea vacío
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El email no debe estar vacío.',
@@ -112,6 +126,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el email del usuario no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 50),
 				'message' => 'El email no debe tener más de 50 caracteres.',
@@ -120,6 +135,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el email del usuario no haya sido ingresado anteriomente
 			'unique' => array(
 				'rule' => array('isUnique'),
 				'message' => 'El correo electrónico ya ha sido registrado.',
@@ -130,6 +146,7 @@ class User extends AppModel {
 			),
 		),
 		'country' => array(
+			//Verifica que el país no sea vacío
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Este campo no debe estar vacío.',
@@ -138,6 +155,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el país ingresado no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 20),
 				'message' => 'Este campo no debe contener más de 20 caracteres.',
@@ -148,6 +166,7 @@ class User extends AppModel {
 			),
 		),
 		'state' => array(
+			//Verifica que el estado no sea vacío
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Este campo no debe estar vacío.',
@@ -156,6 +175,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el estado no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 60),
 				'message' => 'Este campo no debe contener más de 60 caracteres.',
@@ -166,6 +186,7 @@ class User extends AppModel {
 			),
 		),
 		'city' => array(
+			//Verifica que la ciudad no sea vacía
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Este campo no debe estar vacío.',
@@ -174,6 +195,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que la ciudad no supere el máximo establecido de caracteres
 			'maxLength' => array(
 				'rule' => array('maxLength', 60),
 				'message' => 'Este campo no debe contener más de 60 caracteres.',
@@ -184,6 +206,7 @@ class User extends AppModel {
 			),
 		),
 		'username' => array(
+			//Verifica que el nombre de usuario no sea vacío
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'El nombre de usuario no debe estar vacío.',
@@ -192,6 +215,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el nombre de usuario sea alfanumérico
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
 				'message' => 'El nombre de usuario debe ser alfanumérico.',
@@ -200,6 +224,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que el nombre de usuario no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 20),
 				'message' => 'El nombre de usuario no debe contener más de 20 caracteres.',
@@ -208,6 +233,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que le nombre de usuario no haya sido ingresado anteriormente
 			'unique' => array(
 				'rule' => array('isUnique'),
 				'message' => 'El nombre de usuario elegido ya está siendo utilizado.',
@@ -218,6 +244,7 @@ class User extends AppModel {
 			),
 		),
 		'password' => array(
+			//Verifica que la contraseña no sea vacía
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				'message' => 'Contraseña no debe ser vacía.',
@@ -226,6 +253,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que la contraseña sea aceptada por la expresión regular definida
 			'regex' => array(
 				//Restringe que la contraseña contenga al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.
 				'rule' => '(^[a-zA-Z0-9_]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@\[a-zA-Z0-9]*]*)',
@@ -237,6 +265,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que la contraseña no supere el máximo de caracteres establecido
 			'maxLength' => array(
 				'rule' => array('maxLength', 16),
 				'message' => 'La contraseña no debe contener más de 16 caracteres.',
@@ -245,6 +274,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			//Verifica que la contraseña no sea menor al mínimo de caracteres establecido
 			'minLength' => array(
 				'rule' => array('minLength', 6),
 				'message' => 'La contraseña no debe contener menos de 6 caracteres.',
@@ -353,6 +383,14 @@ class User extends AppModel {
 		)
 	);
 	
+	/**
+	 * beforeSave method
+	 * 
+	 * Realiza la encriptación de la contraseña antes de guardar los datos en la base de datos.
+	 *
+	 * @param array $options
+	 * @return void
+	 */
 	public function beforeSave($options = array()) {
 	    if (isset($this->data[$this->alias]['password'])) {
 	        $passwordHasher = new BlowfishPasswordHasher();

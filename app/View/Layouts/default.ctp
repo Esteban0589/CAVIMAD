@@ -155,7 +155,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="" title="">Biomonitoreo</a>
                         </li>
                         <li>
-                            <a href="users/viewManagers" title="">Colaboradores</a>
+                            <a href="users/view_colaboradores" title="">Colaboradores</a>
                         </li>
                         <li>
                             <a href="" title="">Referencias</a>

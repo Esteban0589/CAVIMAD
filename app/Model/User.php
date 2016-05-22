@@ -43,7 +43,7 @@ class User extends AppModel {
 
 
 	/**
-	 * Reglas para la validacion de los campos del modelo
+	 * Reglas para la validación de los campos del modelo
 	 *
 	 * @var array
 	 */
@@ -341,7 +341,7 @@ class User extends AppModel {
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * hasMany associations
+ * Relación con el modelo de Administrator.
  *
  * @var array
  */
@@ -363,7 +363,7 @@ class User extends AppModel {
 
 
 /**
- * hasAndBelongsToMany associations
+ * Relación con el modelo Picture
  *
  * @var array
  */

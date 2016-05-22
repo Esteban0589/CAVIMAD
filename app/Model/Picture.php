@@ -2,12 +2,21 @@
 App::uses('AppModel', 'Model');
 /**
  * Picture Model
+ * 
+ * Modelo que contiene las validaciones de los campos de Pictures y sus relaciones con los otros modelos.
  *
  * @property Categorie $Categorie
  * @property User $User
  */
+ 
 class Picture extends AppModel {
-
+	
+	/**
+	 * actsAs
+	 * 
+	 * Manejo de las imágenes de las categorías
+	 * @var array
+	 */
 
 	public $actsAs = array(
         'Upload.Upload' => array(
@@ -29,7 +38,7 @@ class Picture extends AppModel {
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
+ * Relación del modelo de pictures con el modelo de categorías.
  *
  * @var array
  */
@@ -44,7 +53,7 @@ class Picture extends AppModel {
 	);
 
 /**
- * hasAndBelongsToMany associations
+ * Relación del modelo de pictures con el modelo de usuarios.
  *
  * @var array
  */

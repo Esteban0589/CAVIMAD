@@ -1,19 +1,27 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Family Model
+
+ /**
+ * Family  Model
+ * 
+ * Modelo que contiene las validaciones de los campos de Family y sus relaciones con los otros modelos.
  *
  * @property Categorie $Categorie
+ * 
  */
+ 
+ 
 class Family extends AppModel {
 
 /**
- * Validation rules
+ * Reglas de validación para los distintos campos del modelo.
  *
  * @var array
  */
 	public $validate = array(
+		
 		'characteristic' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
 				//'message' => 'Your custom message here',
@@ -24,6 +32,7 @@ class Family extends AppModel {
 			),
 		),
 		'bibliography' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
 				//'message' => 'Your custom message here',
@@ -34,6 +43,7 @@ class Family extends AppModel {
 			),
 		),
 		'author' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
 				//'message' => 'Your custom message here',
@@ -44,6 +54,7 @@ class Family extends AppModel {
 			),
 		),
 		'globaldistribution' => array(
+			//Verifica que la distribución global no sea vacía
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -54,6 +65,7 @@ class Family extends AppModel {
 			),
 		),
 		'habitat' => array(
+			//Verifica que el hábitat no sea vacía
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -68,7 +80,7 @@ class Family extends AppModel {
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
+ * Relación del modelo de géneros con el modelo de categorías.
  *
  * @var array
  */

@@ -77,7 +77,13 @@ p.error em {
 	padding: 0.8em;
 	margin: 1em 0;
 }
-
+.help-inline
+{
+	background-color:#f2dede;
+	border-color:#ebccd1;
+	color:#a94442;
+	/*border-top-color:#e4b9c0*/
+}
 
 /**  Actions  **/
 .actions ul {

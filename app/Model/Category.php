@@ -4,9 +4,20 @@ App::uses('TreeMenuAppModel', 'TreeMenu.Model');
 
 /**
  * Category Model
+ * 
+ * Modelo que contiene las validaciones de los campos de Categories y sus relaciones con los otros modelos.
  *
  */
+
+ 
 class Category extends TreeMenuAppModel {
+    
+    /**
+	 * actsAs
+	 * 
+	 * Manejo de campos que se despliegan del árbol.
+	 * @var array
+	 */
 
     public $actsAs = array('Tree',
         'TreeMenu.Slug' => array('field' => 'name', 'slug_field' => 'slug', 'primary_key' => 'id', 'replacement' => '_', 'DBcheck' => true),
@@ -67,7 +78,7 @@ class Category extends TreeMenuAppModel {
     }
 
 /**
- * hasMany associations
+ * Relaciones del modelo Category con los hijos de las categorias del padre y con el modelo de Pictures.
  *
  * @var array
  */
@@ -109,12 +120,15 @@ class Category extends TreeMenuAppModel {
     }
 
     /**
-     * getAllCategories method
-     *
-     * @param string $alias
-     * @return $categories
-     */
-    
+      * getAllCategory method
+      *
+      * Método que obtiene todas las categorias existentes. 
+      * 
+      *
+      * @return void
+      */
+
+
     public function getAllCategory($alias = null) {
         if (($categories = Cache::read('getAllCategory_' . $alias)) === false) {
             $conditions = array();
@@ -123,6 +137,7 @@ class Category extends TreeMenuAppModel {
             }else{
                 $conditions[] = 'Category.alias IS NULL';
             }
+            //Obtiene desde la base de datos todas las categorias existentes con los campos de id, parent_id, name, published.
             $categories = $this->find('all', array('conditions' => $conditions,
                 'fields' => array('Category.id', 'Category.parent_id', 'Category.name', 'Category.published'),
                 'order' => array('Category.lft' => 'ASC')
@@ -133,12 +148,13 @@ class Category extends TreeMenuAppModel {
     }
 
     /**
-     * generateTreeList method
-     *
-     * @param string $alias
-     * @return $categories
-     */
-    pub
+      * getAllCategory method
+      *
+      * Método que genera toda la lista de categorias que contiene el árbol.
+      * 
+      *
+      * @return void
+      */
 
     public function _generateTreeList($alias = null) {
         if (($categories = Cache::read('GenerateTreeList' . $alias)) === false) {

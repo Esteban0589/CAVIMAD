@@ -19,7 +19,12 @@ class UsersController extends AppController {
 	 */
 	public $components = array('Paginator', 'Session','Flash');
 	
-	/** @var $roles - Arreglo con los tipos de rol que se manejarán para los usuarios */
+	/**
+	 * Roles
+	 * 
+	 * Arreglo con los tipos de rol que se manejarán para los usuarios
+	 * @var array
+	 */
 	var $roles = array('Administrador' => 'Administrador','Colaborador' => 'Colaborador','Usuario' => 'Usuario','Editor' => 'Editor');
 	
 	/**

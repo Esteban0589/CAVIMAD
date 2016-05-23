@@ -18,7 +18,7 @@
 						    	<?php echo __('Editar nivel taxonómico'); ?>
 						    </li>
 						</ul>
-					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal'));?>
+					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal','onsubmit' => "return confirm(\"Recuerde que la clasificación debe de tener congruencia con respecto a su padre\");"));?>
 					<fieldset class="col-lg-4 col-md-4" >
 								<h2><?php echo __('Editar taxón'); ?></h2>
 							<?php
@@ -59,9 +59,12 @@
 							?>
 						        <br>
 						        <div class="form-actions">
-						            <?php echo $this->Form->submit(__('Guardar'), array('class'=>'btn btn-primary', 'div'=>false,'title'=>'Guardar los datos ingresados'));?>            
+						            <!--<?php echo $this->Form->submit(__('Guardar'), array('class'=>'btn btn-primary', 'div'=>false,'title'=>'Guardar los datos ingresados'));?>            -->
+        							<?php echo $this->Form->end(array('label'=>'Guardar datos', 'class'=>'btn btn-primary')); ?>
+
 						            
-						            					            <!--La siguiente linea fue comentada debido a que el reset solamente limpia el formulario y no tiene mucho uso-->
+						            
+						            <!--La siguiente linea fue comentada debido a que el reset solamente limpia el formulario y no tiene mucho uso-->
 	
 						            <!--<?php echo $this->Form->reset(__('Cancel'), array('class'=>'btn', 'div'=>false));?>        </div>-->
 								<br>

@@ -1,1 +1,4 @@
-<div id="<?php echo h($key) ?>Message" class="message success"><?php echo h($message) ?></div>
+<div class="alert alert-success">
+<button data-dismiss="alert" class="close" type="button">×</button>
+<?php echo $message; ?>
+</div>

@@ -22,22 +22,29 @@ a{
 <div class="container">
 	<div class="row">
 		<div class="page-header">
-			<div class="col col-sm-12">
-				
-				<div class="col col-sm-1">
-					<?php if($_SESSION['role']=='Administrador'): ?>
-					<div title ="Editar el taxón"><?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil')); ?></div>
-		            <div title ="Eliminar el taxón"><?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?></div>
-					<?php endif; ?>
-
-				</div>
-
-				<div class="col col-sm-11">
+			<div class="col col-sm-7">
+				<?php if($_SESSION['role']=='Administrador'): ?>
+				<div class="col col-sm-7">
 					<h2 style="margin: 0px;"> <?php echo $category['Category']['name']; ?>	</h2>
 				</div>
 				
+				<?php if($_SESSION['role']=='Administrador'): ?>
+				<div class="col col-sm-5">
+					<h5 style="margin: 0px;"> Edición de Taxón	
+					
+					<?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+
+		            <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el taxón",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+					<?php endif; ?>
+					</h5>
+
+				</div>
+
+				<?php endif; ?>
 					
 			</div>
+			
+			
 		<div class="row">
 
 			<div class="col col-sm-7">

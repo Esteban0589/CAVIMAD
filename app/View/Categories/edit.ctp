@@ -23,7 +23,7 @@
 								<h2><?php echo __('Editar taxón'); ?></h2>
 							<?php
 								echo $this->Form->input('id');
-								echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoría a la que pertenecera el nivel a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>__('Root'),
+								echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoría a la que pertenecera el taxón a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>__('Root'),
 											'before'=>'<label class="control-label">'.__('Padre').'</label><div class="controls">',
 											'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 											'error' => array('attributes' => array('style' => 'display:none')),
@@ -33,7 +33,7 @@
 										'after'=>$this->Form->error('classification', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
 										'label'=>false, 'class'=>'form-control'));
-								echo $this->Form->input('name', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
+								echo $this->Form->input('name', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del taxón',
 											'before'=>'<label class="control-label">'.__('Nombre').'</label><div class="controls">',
 											'after'=>$this->Form->error('name', array(), array('wrap' => 'span', 'class' => 'help-inline')).'</div>',
 											'error' => array('attributes' => array('style' => 'display:none')),

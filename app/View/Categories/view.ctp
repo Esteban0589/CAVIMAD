@@ -26,8 +26,8 @@ a{
 				
 				<div class="col col-sm-1">
 					<?php if($_SESSION['role']=='Administrador'): ?>
-					<?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil')); ?>
-		            <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+					<div title ="Editar el taxón"><?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil')); ?></div>
+		            <div title ="Eliminar el taxón"><?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?></div>
 					<?php endif; ?>
 
 				</div>

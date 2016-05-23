@@ -8,7 +8,7 @@
 			
 				<div class="col-lg-6 col-md-6">
 					<!--Parte del texto-->
-					<b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'Category','action' => 'view',$resultado['Category']['id']));?></b>
+					<div title ="Seleccione para ir a la vista completa de la información del taxón"><b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'Category','action' => 'view',$resultado['Category']['id']));?></b></div>
 					<ul>
 						
 							<div>

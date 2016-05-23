@@ -11,7 +11,7 @@
 					<ul>
 						
 							<div>
-							    <b>Nombre de usuario: </b><?php echo "<a href= 'users/view/".$resultado['User']['id']."'>"; ?><?php echo h($resultado['User']['username']); ?><?php echo "</a>";?><br>
+							    <b>Nombre de usuario: </b><div title ="Seleccione para ir a la vista completa de la información del usuario"><?php echo "<a href= 'users/view/".$resultado['User']['id']."'>"; ?><?php echo h($resultado['User']['username']); ?></div><?php echo "</a>";?><br>
 								<b>Nombre: </b><?php echo h($resultado['User']['name']); ?> <?php echo h($resultado['User']['lastname1']); ?><p style="text-indent:60px"></p>
 							</div>
 							

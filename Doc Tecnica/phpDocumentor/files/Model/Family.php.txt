@@ -1,0 +1,97 @@
+<?php
+App::uses('AppModel', 'Model');
+
+ /**
+ * Family  Model
+ * 
+ * Modelo que contiene las validaciones de los campos de Family y sus relaciones con los otros modelos.
+ *
+ * @property Categorie $Categorie
+ * 
+ */
+ 
+ 
+class Family extends AppModel {
+
+/**
+ * Reglas de validación para los distintos campos del modelo.
+ *
+ * @var array
+ */
+	public $validate = array(
+		
+		'characteristic' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'bibliography' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'author' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'globaldistribution' => array(
+			//Verifica que la distribución global no sea vacía
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'habitat' => array(
+			//Verifica que el hábitat no sea vacía
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+	);
+
+	// The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * Relación del modelo de géneros con el modelo de categorías.
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Categorie' => array(
+			'className' => 'Categorie',
+			'foreignKey' => 'categorie_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+}
+

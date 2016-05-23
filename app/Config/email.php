@@ -93,7 +93,7 @@ class EmailConfig {
 		'host' => 'ssl://smtp.gmail.com',
 		'timeout' => 30,
 		'port' => 465,
-		'username' => 'cavimad.cr@gmail.com',  //El correo y la contraseña hay que cambiarlos, esta cuenta es la que utilicé el semestre pasado.
+		'username' => 'cavimad.cr@gmail.com',  
 		'password' => 'zoertwjsitfxkjtr',
 		'transport' => 'Smtp'
 	);

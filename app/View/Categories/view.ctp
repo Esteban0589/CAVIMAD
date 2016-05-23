@@ -23,7 +23,6 @@ a{
 	<div class="row">
 		<div class="page-header">
 			<div class="col col-sm-7">
-				<?php if($_SESSION['role']=='Administrador'): ?>
 				<div class="col col-sm-7">
 					<h2 style="margin: 0px;"> <?php echo $category['Category']['name']; ?>	</h2>
 				</div>
@@ -35,7 +34,6 @@ a{
 					<?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 
 		            <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el taxón",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
-					<?php endif; ?>
 					</h5>
 
 				</div>

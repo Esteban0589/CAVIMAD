@@ -62,10 +62,9 @@
 
                             <td style="text-align: center">
                             
-                               	<div title ="Vista completa de la información del taxón"> <?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?></div>
-                                <?php echo "" ?>
-                                <div title ="Editar el taxón"><?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?></div>
-                                <div title ="Eliminar el taxón"><?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?></div>
+                               	<?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Vista completa de la información del taxón','class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?><?php echo "" ?>
+                                <?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Editar el taxón','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
+                                <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

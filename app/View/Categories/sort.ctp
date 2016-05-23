@@ -19,7 +19,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                  
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
                         <?php if($_SESSION['role']=='Administrador'): ?>
-                        <div class="btn btn-mini btn-link"><a href='/categories/index'>Administar Taxonomía</a></div>
+                        <div class="btn btn-mini btn-link" title="Ingresar a la sección para administrar los niveles taxonómicos"><a href='/categories/index'>Administar Taxonomía</a></div>
                         <?php endif; ?>
                     </div>
                     
@@ -121,7 +121,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     
                     </script>
                      
-                    <div id="tree-div" style="height:400px;"></div> 
+                    <div id="tree-div" title="Despliega los distintos niveles taxonómicos." style="height:400px;"></div> 
                     <br>
                 </div> 
             </div>

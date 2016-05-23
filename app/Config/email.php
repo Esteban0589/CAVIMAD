@@ -93,8 +93,8 @@ class EmailConfig {
 		'host' => 'ssl://smtp.gmail.com',
 		'timeout' => 30,
 		'port' => 465,
-		'username' => 'mundofelizoficial@gmail.com',  //El correo y la contraseña hay que cambiarlos, esta cuenta es la que utilicé el semestre pasado.
-		'password' => 'zdqxxjoctilvaygo',
+		'username' => 'cavimad.cr@gmail.com',  //El correo y la contraseña hay que cambiarlos, esta cuenta es la que utilicé el semestre pasado.
+		'password' => 'zoertwjsitfxkjtr',
 		'transport' => 'Smtp'
 	);
 	//Método que permite utilizar una cuenta de SMTP2 para el envío automático de correos electrónicos.

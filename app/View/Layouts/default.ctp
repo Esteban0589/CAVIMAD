@@ -99,10 +99,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         		    ?>  
         		    <div class="col-md-8 col-sm-12"></div>
         		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
-        				    <div title = "Ingresar con su usuario"><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></div>
+        				    <div title = "Ingrese con su usuario."><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></div>
                     </div>
         		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
-        				    <div title = "Crear una nueva cuenta"><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></div>
+        				    <div title = "Crea una nueva cuenta."><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></div>
         			</div>
         			<?php
         			} 
@@ -117,13 +117,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         			    if($current_user['role']=='Administrador'){?>
         			</div>
         		    <div class="col-lg-2 col-sm-12" style="padding: inherit;text-align: right;">
-        					    <div title ="Administrar pagina web"><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></div>
+        					    <div title ="Dirige a la sección de administración."><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></div>
         			    <?php
         			    }
         				?>
         			</div>
         		    <div class="col-lg-2 col-sm-12" style="padding: inherit;text-align: right;">
-        					    <div title ="Cerrar sesión actual."><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></div>
+        					    <div title ="Cierra la sesión actual."><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></div>
         			</div>
         			<?php
         			}

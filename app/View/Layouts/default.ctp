@@ -68,7 +68,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="https://cavimad-esteban0589.c9users.io"/>-->
-    <!--<base href="https://cavimad---aivaco.c9users.io/"/>-->
+    <!---<base href="https://cavimad-aivaco.c9users.io/"/>-->
      <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
      <!--<base href="https://ingenieria2-kevinfl.c9users.io/"/>-->
 
@@ -99,10 +99,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         		    ?>  
         		    <div class="col-md-8 col-sm-12"></div>
         		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
-        				    <?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?>
+        				    <div title = "Ingrese con su usuario."><?php echo $this->Html->link(' Iniciar sesión',array('controller' => 'users', 'action' => 'login'));?></div>
                     </div>
         		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
-        				    <?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?>
+        				    <div title = "Crea una nueva cuenta."><?php echo $this->Html->link('Registrarse',array('controller' => 'users', 'action' => 'add'));?></div>
         			</div>
         			<?php
         			} 
@@ -117,13 +117,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         			    if($current_user['role']=='Administrador'){?>
         			</div>
         		    <div class="col-lg-2 col-sm-12" style="padding: inherit;text-align: right;">
-        					    <?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?>
+        					    <div title ="Dirige a la sección de administración."><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></div>
         			    <?php
         			    }
         				?>
         			</div>
         		    <div class="col-lg-2 col-sm-12" style="padding: inherit;text-align: right;">
-        					    <?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?>
+        					    <div title ="Cierra la sesión actual."><?php echo $this->Html->link('Cerrar sesión',array('controller' => 'users', 'action' => 'logout'));?></div>
         			</div>
         			<?php
         			}
@@ -149,22 +149,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <a href="" title="">Inicio</a>
                         </li>
                         <li>
-                            <a href="categories/sort" title="">Catalogo</a>
+                            <div = "Accesa al catálogo."><a href="categories/sort" title="">Catálogo</a></div>
                         </li>
                         <li>
-                            <a href="" title="">Biomonitoreo</a>
+                             <div = "Accesa a la sección de biomonitoreo."><a href="" title="">Biomonitoreo</a></div>
                         </li>
                         <li>
-                            <a href="users/viewManagers" title="">Colaboradores</a>
+                             <div = "Accesa a la sección de colaboradores."><a href="users/view_colaboradores" title="">Colaboradores</a></div>
                         </li>
                         <li>
-                            <a href="" title="">Referencias</a>
+                             <div = "Accesa a la sección de referencias."><a href="" title="">Referencias</a></div>
                         </li>
                         <li>
-                            <a href="" title="">Sobre nosotros</a>
+                             <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
                         </li>
                         <li>
-                            <a href="" title="">Contactenos</a>
+                             <div = "Si desea enviarnos un mensaje."><a href="" title="">Contáctenos</a></div>
                         </li>
                         
                         <li>
@@ -172,9 +172,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         
-                                    <?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?>
-                                    <?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?>
-                                    <?php echo $this->Html->link('Cerrar sesion',array('controller' => 'users', 'action' => 'logout'));?>
+                                    <div title = "Ver mi perfil."><?php echo $this->Html->link('Ver Perfil',array('controller' => 'users', 'action' => 'view', $current_user['id']));?></div>
+                                    <div title = "Dirige a la sección de editar perfil."><?php echo $this->Html->link('Editar Perfil',array('controller' => 'users', 'action' => 'edit', $current_user['id']));?></div>
+                                    <div title = "Cierra la sesión activa de la página."><?php echo $this->Html->link('Cerrar sesion',array('controller' => 'users', 'action' => 'logout'));?></div>
                             <?php     }     ?>
                                 </ul>   
                         </li>
@@ -230,7 +230,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    ?>
                     <form action="categories/buscar" id="top-searchform" method="get" role="Buscar">
                         
-                            <input type="text" name="Buscar" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" />
+                           <div title = "Búsqueda general."><input type="text" name="Buscar" id="sitesearch" class="form-control" autocomplete="off" placeholder="Digite las palabras por las cuales desea buscar" /></div>
 
                     </form>
                     

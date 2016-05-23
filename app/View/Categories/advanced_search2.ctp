@@ -105,31 +105,30 @@
    </div>
    <div id="hide">
       <div class="colaboradores box">
-         <?php echo $this->Form->input('search1', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?>
+         <div title="Introduzca las palabras con las que quiere hacer la búsqueda"><?php echo $this->Form->input('search1', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?></div>
          <br>
-         <?php echo $this->Form->end(_('Buscar'));?>
+         <?php echo $this->Form->end(array('label'=>'Buscar', 'class'=>'btn btn-success', 'title'=>'Busca los datos')); ?>
          <br>
       </div>
       <div class="documentos box">
-         <?php echo $this->Form->input('search2', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?>
+         <div title="Introduzca las palabras con las que quiere hacer la búsqueda"><?php echo $this->Form->input('search2', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?></div>
          <br>
-         <?php echo $this->Form->end(_('Buscar'));?>
+         <?php echo $this->Form->end(array('label'=>'Buscar', 'class'=>'btn btn-success', 'title'=>'Busca los datos')); ?>
          <br>
       </div>
       <div class="nivel box">
          
-         <?php echo $this->Form->input('order', array('empty' => 'Seleccione un orden','class'=>'form-control', 'options'=>$order, 'label'=>'Orden: '));?>  
+         <div title="Seleccione el orden por el que quiere filtar la búsqueda"><?php echo $this->Form->input('order', array('empty' => 'Seleccione un orden','class'=>'form-control', 'options'=>$order, 'label'=>'Orden: '));?> </div>
          <br>
-         <?php
-            echo $this->Form->input('family', array('empty' => 'Seleccione una familia','class'=>'form-control', 'options'=>$family, 'label'=>'Familia: '));?>
+         <div title="Seleccione la familia por la que quiere filtar la búsqueda"> <?php echo $this->Form->input('family', array('empty' => 'Seleccione una familia','class'=>'form-control', 'options'=>$family, 'label'=>'Familia: '));?></div>
          <br>
-         <?php echo $this->Form->input('genre', array('empty' => 'Seleccione un género','class'=>'form-control', 'options'=>$genre, 'label'=>'Género: '));?>
+         <div title="Seleccione el género por el que quiere filtar la búsqueda"><?php echo $this->Form->input('genre', array('empty' => 'Seleccione un género','class'=>'form-control', 'options'=>$genre, 'label'=>'Género: '));?></div>
          <br>
-         <?php echo $this->Form->input('country', array('empty' => 'Seleccione un país','class'=>'form-control', 'options'=>array('Belice','Costa Rica','El Salvador', 'Guatemala', 'Honduras','México','Panamá'), 'label'=>'País: '));?>
+         <div title="Seleccione el país por el que quiere filtar la búsqueda"><?php echo $this->Form->input('country', array('empty' => 'Seleccione un país','class'=>'form-control', 'options'=>array('Belice','Costa Rica','El Salvador', 'Guatemala', 'Honduras','México','Panamá'), 'label'=>'País: '));?></div>
          <br>
-         <?php echo $this->Form->input('search3', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?>
+         <div title="Introduzca las palabras con las que quiere hacer la búsqueda"><?php echo $this->Form->input('search3', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?></div>
          <br>
-         <?php echo $this->Form->end(_('Buscar'));?>
+         <?php echo $this->Form->end(array('label'=>'Buscar', 'class'=>'btn btn-success', 'title'=>'Busca los datos')); ?>
          <br>
       </div>
    </div>

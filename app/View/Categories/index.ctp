@@ -13,13 +13,14 @@
                 <div class="conteiner">
              
                  <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
-                         <div class="btn btn-mini btn-link"><a href='categories/sort'>Árbol Taxonómico</a></div>
+                         <div title="Abre el árbol taxónomico"><div class="btn btn-mini btn-link"><a href='categories/sort'>Árbol Taxonómico</a></div></div>
                 </div>
                 
         <div class="categories">
+            <div title="Sección para agregar un nuevo nivel taxonómico">
             <div class="span4" style="text-align: left;">
                     <?php echo $this->Html->link(__('Agregar taxón'), array('action' => 'add', 'alias' => $alias), array('class' => 'btn btn-mini btn-primary', 'id' => 'addnew')); ?>
-                 </div>
+                 </div></div>
                  <br>
             <?php if (isset($this->params['named']['alias'])):
             ?>
@@ -61,10 +62,10 @@
 
                             <td style="text-align: center">
                             
-                                <?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?>
+                               	<div title ="Vista completa de la información del taxón"> <?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?></div>
                                 <?php echo "" ?>
-                                <?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
-                                <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+                                <div title ="Editar el taxón"><?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?></div>
+                                <div title ="Eliminar el taxón"><?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?></div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

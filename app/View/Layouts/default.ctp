@@ -47,6 +47,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php echo $this->Html->css('dropdown-menu.css');?>
     <?php echo $this->Html->css('jquery.fancybox.css');?>
     <?php echo $this->Html->css('style.css');?>
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+
     
     <?php echo $this->fetch('meta');?>
     <?php echo $this->fetch('css');?>
@@ -402,6 +404,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
     <!-- Theme -->
      <script src="js/theme.js"></script>
+     
+     <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+     
     <?php
     echo $this->Js->writeBuffer(); ?>
     

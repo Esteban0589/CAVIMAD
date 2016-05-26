@@ -34,7 +34,8 @@
 					                <th>Nombre de usuarios</th>
 					                <th>Rol</th>
 					                <th>Estado</th>
-					                <th>Acciones</th>
+					                <th>Editar rol</th>
+					                
 					            </tr>
 					        </thead>
 					        <tbody>
@@ -57,9 +58,11 @@
 										<td class="actions" >
 											<?php echo $this->Html->link(__('Editar rol'), array('action' => 'editrol', $user['User']['id'])); ?>
 										</td>
-										<td class="actions" align=center>
-											<?php echo $this->Html->link(__('Activación'), array('action' => 'editactivated', $user['User']['id'])); ?>
-										</td>
+										
+										<!--Esto lo comente porque tenemos que ver como vamos a manejar la deshabilitacion y habilitacion de usuarios-->
+										<!--<td class="actions" align=center>-->
+										<!--	<?php echo $this->Html->link(__('Activación'), array('action' => 'editactivated', $user['User']['id'])); ?>-->
+										<!--</td>-->
 									</tr>
 								<?php endforeach; ?> 
 

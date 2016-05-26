@@ -8,6 +8,7 @@
         'print',
         'excel', 
         'pdf',
+        'copy',
         
     ]
 	    });

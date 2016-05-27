@@ -79,5 +79,11 @@
    		<?php endif; ?>     
 		
 	</div>
+	<style>
+		.dataTables_filter label, .dataTables_filter input {
+			float: right;
+			line-height: 40px;
+		}
+	</style>
 </div>
 

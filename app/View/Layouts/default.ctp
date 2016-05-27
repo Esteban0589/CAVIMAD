@@ -21,13 +21,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <!DOCTYPE html>
 
   <head>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script>
-        var basePath = " <?php echo Router::url('/'); ?>"
-    </script>
-    <script type="text/javascript" src="js/buscador.js"></script>
+    <!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>-->
+    <!--<script src="js/jquery-migrate-1.2.1.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/jquery-ui.min.js"></script>-->
+    <!--<script>-->
+    <!--    var basePath = " <?php echo Router::url('/'); ?>"-->
+    <!--</script>-->
+    <!--<script type="text/javascript" src="js/buscador.js"></script>-->
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +47,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php echo $this->Html->css('dropdown-menu.css');?>
     <?php echo $this->Html->css('jquery.fancybox.css');?>
     <?php echo $this->Html->css('style.css');?>
-    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+    <?php echo $this->Html->css('../DataTables/datatables.css');?>
+    <!--<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>-->
+
 
     
     <?php echo $this->fetch('meta');?>
@@ -389,7 +392,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!-- Bootstrap -->
      <script src="js/bootstrap.min.js"></script>
      <script src="js/bootstrap.js"></script>
-     <script src="js/npm.js"></script>
+     <!--<script src="js/npm.js"></script>-->
      <script src="js/buscador.js"></script>
     
     <!-- Drop-down -->
@@ -405,7 +408,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!-- Theme -->
      <script src="js/theme.js"></script>
      
-     <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+     <!--<script type="text/javascript" src="DataTables/datatables.min.js"></script>-->
+     <script type="text/javascript" src="DataTables/datatables.js"></script>
      
     <?php
     echo $this->Js->writeBuffer(); ?>

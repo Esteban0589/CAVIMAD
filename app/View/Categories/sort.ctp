@@ -34,7 +34,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     <div class="conteiner">
                  
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
-                        <?php if($_SESSION['role']=='Administrador'): ?>
+                        <?php if($this->Session->read('role') =='Administrador'): ?>
                         <div class="btn btn-mini btn-link" title="Ingresar a la sección para administrar los niveles taxonómicos"><a href='/categories/index'>Administar Taxonomía</a></div>
                         <?php endif; ?>
                     </div>

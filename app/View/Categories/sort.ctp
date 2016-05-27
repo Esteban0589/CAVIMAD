@@ -1,3 +1,19 @@
+<script type="text/javascript">
+//$( document ).ready(function() {
+    function cargar(id)
+	{
+		$.ajax({
+			type: 'GET',
+			url: 'admin/categories/cargar/' + id,
+			success: function (data) {
+				$('#secciones').html(data);
+			},
+		});
+	}
+//});
+</script>
+
+
 <?php echo $this->Html->css(array('/tree_menu/css/extjs/ext-all'));?>
 <?php echo $this->Html->script(array('/tree_menu/js/extjs/ext-base','/tree_menu/js/extjs/ext-all'));?>
 <style type="text/css">
@@ -124,6 +140,9 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     <div id="tree-div" title="Despliega los distintos niveles taxonómicos." style="height:400px;"></div> 
                     <br>
                 </div> 
+                <div id="secciones">
+                    
+                </div>
             </div>
         </div> 
  </div>

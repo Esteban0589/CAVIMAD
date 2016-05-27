@@ -23,7 +23,7 @@ class CategoriesController extends TreeMenuAppController {
     
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes');
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes','admin_cargar');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -357,6 +357,22 @@ class CategoriesController extends TreeMenuAppController {
         $this->set(compact('nodes'));
     }
 
+
+    /**
+     * admin_cargar method
+     *
+     * método que devuelve el código HTML de secciones
+     * 
+     * @param  $id
+     * @return void
+     */
+
+    public function admin_cargar($id) {
+        $this->layout = 'ajax';
+
+        // send the nodes to our view
+        $this->set(compact('category'));
+    }
     /**
      * admin_reorder method
      * 

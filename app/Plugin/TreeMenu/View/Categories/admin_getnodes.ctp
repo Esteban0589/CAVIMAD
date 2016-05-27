@@ -7,7 +7,9 @@ foreach ($nodes as $node){
         "text" => $node['Category']['name'],
         "id" => $node['Category']['id'],
         "cls" => "folder",
-        "leaf" => ($node['Category']['lft'] + 1 == $node['Category']['rght'])
+        "leaf" => ($node['Category']['lft'] + 1 == $node['Category']['rght']),
+        "href" => 'javascript:cargar('.$node['Category']['id'].');'
+
     );
 }
 

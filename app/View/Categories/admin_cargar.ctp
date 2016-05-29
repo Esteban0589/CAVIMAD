@@ -29,7 +29,7 @@ a{
 			<!--Imagen a la izq con 3 columnas-->
 			<div class="col col-sm-3">
 				<?php
-				if(count($category['Picture']['image_dir'])>0){
+				if((!empty($category['Picture']['image_dir']))&&(count($category['Picture']['image_dir'])>0) ){
 				?>
 					<div class="thumbnail"> 
 						<?php echo "<a href= 'categories/view/".$category['Category']['id']."'>"; ?>
@@ -64,10 +64,12 @@ a{
 	</div>
 	<!--En este row veremos los taxones asociados con su imagen y una pequeña decripcion-->
 	<div class="row">
-		<h2>
+		<h2 style = "margin: 0px;">
 			Taxones asociados
-		</h2>	
-		
+		</h2>
+		<?php
+		debug($sons);
+		?>
 		
 	</div>
 </div>

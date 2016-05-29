@@ -9,8 +9,6 @@
       							 e.style.display = 'block';
    						
    						if ($("#drop1 :selected").text() == 'Colaboradores' ) {
-   							
-   
    							$(".box").hide();
                       			$(".colaboradores").show();
                       			$(".submit").show();

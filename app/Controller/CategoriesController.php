@@ -624,19 +624,19 @@ class CategoriesController extends TreeMenuAppController {
 	    } else if ($this->request->data['Category']['drop1'] == 'nivel') {
 	        //Si selecciono buscar por categorias que mande unicamente sus input correspondientes.
 	        //en caso de no mandar pertenenciente a este, mandar un -1 para la búsqueda.
-	       if($asd['order']==null){
+	       if($asd['order']==null||$asd['order']=='Seleccione un orden'){
 	           $asd['order']=-1;
 	       }
-	       if($asd['family']==null){
+	       if($asd['family']==null||$asd['family']=='Seleccione una familia'){
 	           $asd['family']=-1;
 	       }
-	       if($asd['genre']==null){
+	       if($asd['genre']==null||$asd['genre']=='Seleccione un género'){
 	           $asd['genre']=-1;
 	       }
-	       if($asd['country']==null){
+	       if($asd['country']==null||$asd['country']=='Seleccione un país'){
 	           $asd['country']=-1;
 	       }
-	       if($asd['search3']==null){
+	       if($asd['search3']==null||$asd['search3']=='Escriba las palabras clave'){
 	           $asd['search3']=-1;
 	       }
 	        $this->redirect(array('controller'=>'categories','action'=>'search_data',$asd['order'],$asd['family'],$asd['genre'],$asd['country'],$asd['search3']));
@@ -659,46 +659,63 @@ class CategoriesController extends TreeMenuAppController {
 	    $order=($this->request->pass[0]);//Nombre de orden.
 	    $family=$this->request->pass[1];//Nombre de familia.
 	    $genre=($this->request->pass[2]);//Nombre del género.
-	    $country=$this->request->pass[3];
-	    //Nombre del orden si lo mando.
-	    if($order!=-1&&$family==-1){
-	        $conditions[] = array("AND" => array(array('Category.id '=>$order)));
-	    }
-	    //Nombre de la familia si la mando.
-		if($family!=-1&&$genre==-1){
-		    $conditions[] = array("AND" => array(array('Category.id '=>$family)));
-	    }
-	    //Nombre del genero si lo mando.
-	    if($genre!=-1){
-	        $conditions[] = array("AND" => array(
-						    array('Category.id '=> $genre)));
-	    }
-	    
-		//Nombre del país.
-		if($country!=-1){
-	        $this->loadModel('Family');
-	        $this->loadModel('Gender');
-	        
-	        $conditions[] = array("AND" => array(
-	                        array('Gender.country '=> $country),
-	                        array('Gender.familie_id '=> 'Family.id'),
-	                        array('Family.cateogrie_id '=> 'Category.id')));
-	    }           
-	    
-	    
-	    $search3=$this->request->pass[4];//Término de busqueda.
-	    if($search3!=-1&&$genre==-1){
-			$condition=explode(' ', trim($search3));					
-			$condition=array_diff($condition,array(''));
-	        foreach($condition as $tconditions){
-					$conditions[] = array("OR" => array(array('Category.name LIKE '=>'%'.$tconditions.'%')));
-				}
-	    }
-
+	    $country=$this->request->pass[3];//Nombre del pais
+	    $search3=$this->request->pass[4];//Nombre a buscar.
+	    $allChildren = $this->Category->children($order);
+        
+        
+        if($search3!=-1){
+            $condition=explode(' ', trim($search3));
+            $condition=array_diff($condition,array(''));
+            if($family!=-1){
+                $result2 = $this->Category->children($family);
+            }
+            else{
+                if($order!=-1){
+                   $result2 = $this->Category->children($order);
+                }
+            }
+            $i=0;
+            foreach($result2 as $result1){  
+                foreach($condition as $tconditions){
+                    if((stripos(" ".$result1['Category']['name'],$tconditions))!=false  && $result2[$i]['Category']['name']!=-1){
+                          $result[]=$result1;
+                        $result2[$i]['name']=-1;
+                    }
+                    $i++;
+                }
+            }
+          /*  if($country!=-1){
+                $this->loadModel('Family');
+                $this->loadModel('Gender');
+                $conditions[] = array("AND" => array(
+                    array('Gender.familie_id '=> 'Family.id'),
+                    array('Family.cateogrie_id '=> 'Category.parent_id')));
+                    $conditions[] = array("AND" => array(array('Category.id '=>$family)));
+            }*/
+        }
+        else{
+            if($genre!=-1){
+                $result = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$genre)));
+                
+            }
+            else{
+                if($family!=-1){
+                    $result = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$family)));
+                    $result = $result + $this->Category->children($family);
+                    
+                }
+                else{
+                    if($order!=-1){
+                        $result = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$order)));
+                        $result = $result + $this->Category->children($order);
+                    }
+                }
+            }
+        }
 		if($order!=-1||$family!=-1||$genre!=-1||$country!=-1||$search3!=-1){
-			$result=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions));
+		//	$result=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions));
 			if(count($result)>0){
-			    //debug($result);
 				$this->set('resultados',$result);
 			}
 			else{

@@ -1,3 +1,21 @@
+ <script>
+	$(document).ready(function() {
+	    $('#example').DataTable( {
+	         dom: 'Bfrtip',
+	         colReorder: true,
+    buttons: [
+        'colvis',
+        'print',
+        'excel', 
+        'pdf',
+        'copy',
+        
+    ]
+	    });
+});
+</script>
+ 
+ 
  <div id="k-body"><!-- content wrapper -->
     
     	<div class="container"><!-- container -->
@@ -30,7 +48,7 @@
             </div>
             <?php
             endif; ?>
-            <table cellpadding="0" cellspacing="0" id="table-categories" class="table table-hover table-bordered table-condensed">
+				<table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de taxón'); ?></th>
@@ -83,6 +101,12 @@
                 });
             </script>
         </div>
+        <style>
+    		.dataTables_filter label, .dataTables_filter input {
+    			float: right;
+    			line-height: 40px;
+    		}
+    	</style>
         </div> 
      </div>
      

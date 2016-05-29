@@ -1,3 +1,36 @@
+<script type="text/javascript">
+//$( document ).ready(function() {
+   $(document).ready(function() {
+        $.ajax({
+            url: "categories/catalogo/", 
+            success: function(result){
+            $("#secciones").html(result);
+        }});
+    });
+    
+    
+    function cargar(id)
+	{
+		$.ajax({
+			type: 'GET',
+			url: 'admin/categories/cargar/' + id,
+			success: function (data) {
+				$('#secciones').html(data);
+			},
+		});
+	}
+    function catalogo()
+    {
+        $.ajax({
+            url: "categories/catalogo/", 
+            success: function(result){
+            $("#secciones").html(result);
+        }});
+    }
+//});
+</script>
+
+
 <?php echo $this->Html->css(array('/tree_menu/css/extjs/ext-all'));?>
 <?php echo $this->Html->script(array('/tree_menu/js/extjs/ext-base','/tree_menu/js/extjs/ext-all'));?>
 <style type="text/css">
@@ -13,12 +46,13 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
         
             <div class="row"><!-- row -->
                 
+                <!--Parte contenedora del arbol-->
                 <div class="col-lg-3 col-md-3"><!-- doc body wrapper -->
                     <h2>Árbol Taxonómico</h2>
                     <div class="conteiner">
                  
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
-                        <?php if($_SESSION['role']=='Administrador'): ?>
+                        <?php if($this->Session->read('role') =='Administrador'): ?>
                         <div class="btn btn-mini btn-link" title="Ingresar a la sección para administrar los niveles taxonómicos"><a href='/categories/index'>Administar Taxonomía</a></div>
                         <?php endif; ?>
                     </div>
@@ -124,6 +158,13 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     <div id="tree-div" title="Despliega los distintos niveles taxonómicos." style="height:400px;"></div> 
                     <br>
                 </div> 
+                
+                <!--Parte a refrescar-->
+                <a href="javascript:catalogo()" >  <h2 >Catalogo virtual</h2> </a>
+                <div id="secciones" class="col-lg-9 col-md-9">
+                </div>
             </div>
         </div> 
  </div>
+ 
+

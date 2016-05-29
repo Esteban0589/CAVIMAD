@@ -23,7 +23,7 @@ class CategoriesController extends TreeMenuAppController {
     
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes');
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes','admin_cargar','catalogo');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -153,6 +153,7 @@ class CategoriesController extends TreeMenuAppController {
 		}
 	    // despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
 		$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
 
 	}
     /**
@@ -357,6 +358,41 @@ class CategoriesController extends TreeMenuAppController {
         $this->set(compact('nodes'));
     }
 
+
+    /**
+     * admin_cargar method
+     *
+     * método que devuelve el código HTML de secciones
+     * 
+     * @param  $id
+     * @return void
+     */
+
+    public function admin_cargar($id) {
+
+        // send the nodes to our view
+    	$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
+        $this->layout = 'ajax';
+
+    }
+    /**
+     * catalogo method
+     *
+     * método que devuelve el código HTML original de secciones(como de primer entrada(shortcuts)) 
+     * 
+     * @param  $id
+     * @return void
+     */
+
+    public function catalogo($id=null) {
+        $this->layout = 'ajax';
+
+        // send the nodes to our view
+    }
+    
+    
+    
     /**
      * admin_reorder method
      * 

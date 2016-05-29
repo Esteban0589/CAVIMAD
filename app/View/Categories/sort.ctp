@@ -1,5 +1,14 @@
 <script type="text/javascript">
 //$( document ).ready(function() {
+   $(document).ready(function() {
+        $.ajax({
+            url: "categories/catalogo/", 
+            success: function(result){
+            $("#secciones").html(result);
+        }});
+    });
+    
+    
     function cargar(id)
 	{
 		$.ajax({
@@ -10,6 +19,14 @@
 			},
 		});
 	}
+    function catalogo()
+    {
+        $.ajax({
+            url: "categories/catalogo/", 
+            success: function(result){
+            $("#secciones").html(result);
+        }});
+    }
 //});
 </script>
 
@@ -29,6 +46,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
         
             <div class="row"><!-- row -->
                 
+                <!--Parte contenedora del arbol-->
                 <div class="col-lg-3 col-md-3"><!-- doc body wrapper -->
                     <h2>Árbol Taxonómico</h2>
                     <div class="conteiner">
@@ -140,9 +158,56 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     <div id="tree-div" title="Despliega los distintos niveles taxonómicos." style="height:400px;"></div> 
                     <br>
                 </div> 
+                
+                <!--Parte a refrescar-->
+                <a href="javascript:catalogo()" >  <h2 >Catalogo virtual</h2> </a>
                 <div id="secciones">
-                    
                 </div>
             </div>
         </div> 
  </div>
+ 
+
+<style>
+
+
+div.thumbnail{
+  display: inline-block;
+  height: auto;
+  margin: 0 1em 1em 0;
+  position: relative;
+  width: auto;
+}
+
+span.text-content span {
+  overflow: hidden;
+    max-width: 207px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;
+    -webkit-line-clamp: 13;
+    -webkit-box-orient: vertical;
+  
+}
+span.text-content {
+    
+  background: rgba(0,0,0,0.5);
+  color: white;
+  cursor: pointer;
+  display: table;
+  height: 212px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 207px;
+  opacity: 0;
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  -o-transition: opacity 500ms;
+  transition: opacity 500ms;
+}
+
+div.thumbnail:hover span.text-content {
+  opacity: 1;
+}
+</style>

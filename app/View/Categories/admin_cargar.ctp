@@ -1,1 +1,1 @@
-<p>$category</p>
+<p>casa</p>

@@ -153,6 +153,7 @@ class CategoriesController extends TreeMenuAppController {
 		}
 	    // despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
 		$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
 
 	}
     /**
@@ -373,6 +374,23 @@ class CategoriesController extends TreeMenuAppController {
         // send the nodes to our view
         $this->set(compact('category'));
     }
+    /**
+     * catalogo method
+     *
+     * método que devuelve el código HTML original de secciones(como de primer entrada(shortcuts)) 
+     * 
+     * @param  $id
+     * @return void
+     */
+
+    public function catalogo($id=null) {
+        $this->layout = 'ajax';
+
+        // send the nodes to our view
+    }
+    
+    
+    
     /**
      * admin_reorder method
      * 

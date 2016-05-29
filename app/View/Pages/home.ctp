@@ -6,9 +6,9 @@
         
         	<div class="container"><!-- Contenedor-->
                 
-                <h1>CAVIMAD<small><div>Catálogo Virtual sobre Macroinvertebrados Dulceacuícolas de Centroamérica</div></small></h1>
+                <h1>CAVIMAD<small><div>Intro</div></small></h1>
                 <p>
-                Este catálogo fue creado por investigadores que trabajan con Macroinvertebrados Dulceacuícolas con el fin de proporcionar información sobre la taxonomía, ecología, biología y distribución de los diferentes órdenes, familias y géneros de este grupo de organismos en la región Centroamericana.
+                Curabitur fringilla, massa sit amet ultricies iaculis, nisi lorem faucibus justo, eu interdum odio nunc eu lorem. Aliquam auctor id augue posuere. Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus.
                 </p>
                 
                 <div class="row no-gutter fullwidth"><!-- row -->
@@ -338,12 +338,15 @@
                         
                         </div><!-- inner custom column end -->
                         
+                        
+                    </div><!-- content wrapper end -->
+                        
                     </div><!-- misc wrapper end -->
                 
                 </div><!-- row end -->
             
             </div><!-- container end -->
         
-        </div><!-- content wrapper end -->
+       
     </body>
 </html>

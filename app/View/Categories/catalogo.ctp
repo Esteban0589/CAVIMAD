@@ -1,8 +1,8 @@
- <div class="container">
+ <div class="container" style=" width: initial;">
                         <div class="box first">
                             <div class="row">
                                 
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         
                     						 	<h4>Windows Phone development</h4>
@@ -17,7 +17,7 @@
                 						</div>                            
                                     </div>
                                 </div><!--/.col-md-4-->
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         
                     						 	<h4>Windows Phone development</h4>
@@ -31,7 +31,7 @@
                 						</div>                            
                                     </div>
                                 </div><!--/.col-md-4-->
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         
                     						 	<h4>Windows Phone development</h4>
@@ -45,7 +45,7 @@
                 						</div>                            
                                     </div>
                                 </div><!--/.col-md-4-->
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         
                                         <div class="thumbnail"> 
@@ -59,7 +59,7 @@
                     						 	<h4>Windows Phone development</h4>
                                     </div>
                                 </div><!--/.col-md-4-->
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         
                                         <div class="thumbnail"> 
@@ -73,7 +73,7 @@
                     						 	<h4>Windows Phone development</h4>
                                     </div>
                                 </div><!--/.col-md-4-->
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         
                                         <div class="thumbnail"> 

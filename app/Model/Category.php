@@ -108,9 +108,22 @@ class Category extends TreeMenuAppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'Logbook' => array(
+			'className' => 'Logbook',
+			'foreignKey' => 'categorie_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
-        
+      
 
     public function afterDelete() {
         parent::afterDelete();

@@ -358,6 +358,19 @@ class User extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'Logbook' => array(
+			'className' => 'Logbook',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 
@@ -382,6 +395,7 @@ class User extends AppModel {
 			'finderQuery' => '',
 		)
 	);
+
 	
 	/**
 	 * beforeSave method

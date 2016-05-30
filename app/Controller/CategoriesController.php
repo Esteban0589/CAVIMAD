@@ -7,7 +7,7 @@ App::uses('TreeMenuAppController', 'TreeMenu.Controller');
  * @property Category $Category
  */
 class CategoriesController extends TreeMenuAppController {
-    public $helpers = array('Html', 'Form', 'TreeMenu.Menu', 'Js');
+    public $helpers = array('Html', 'Form', 'TreeMenu.Menu', 'Js', 'Time');
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
@@ -120,22 +120,35 @@ class CategoriesController extends TreeMenuAppController {
             $this->Category->create();
             // en base a eso se le asigna un alias
             if($alias) $this->request->data['Category']['alias'] = $alias;
-            //Si los datos son creados correctamente se notifica mediante un mensaje 
+            //Si los datos son creados correctamente se notifica mediante un mensaje
             if ($this->Category->save($this->request->data)) {
+                //Este bloque se encarga de cargar el modelo Logbook, crea los datos necesarios dentro del arreglo al que Lookgbook 
+                //le realizará un save en la base de datos
+                $this->loadModel('Logbook');
+                $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+				$invDate = $dateNow->format('Y-m-d H:i:s');
+				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+				'categorie_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." agregó la categoría ".$this->request->data['Category']['name']."." ,
+				'modified'=> $invDate));
+				$this->Logbook->create();
+				$this->Logbook->save($data);
+				
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-                $this->redirect($alias);
+           //     $this->redirect($alias);
             } else {
                 //Si los datos no se guadados correctamente se notifica mediante un mensaje de error
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
         }
         
-        // busca el padre de las categorías y genera el arbol
-        $parentCategories = $this->Category->_generateTreeList($alias);
-        $this->set(compact('parentCategories'));
-        $this->set('classification', $this->classification);
+            // busca el padre de las categorías y genera el arbol
+            $parentCategories = $this->Category->_generateTreeList($alias);
+            $this->set(compact('parentCategories'));
+            $this->set('classification', $this->classification);
     }
+    
 
 
     /**
@@ -175,6 +188,17 @@ class CategoriesController extends TreeMenuAppController {
         // si el alias es editado correctamente notifica con un mensaje 
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Category->save($this->request->data)) {
+                
+                $this->loadModel('Logbook');
+                $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+				$invDate = $dateNow->format('Y-m-d H:i:s');
+				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+				'categorie_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó la categoría ".$this->request->data['Category']['name']."." ,
+				'modified'=> $invDate));
+				$this->Logbook->create();
+				$this->Logbook->save($data);
+                
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
                 //$this->redirect($this->__getPreviousUrl());
                 $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
@@ -478,6 +502,7 @@ class CategoriesController extends TreeMenuAppController {
       */
         public function advanced_search2()
 		{
+		    
 		    $this->loadModel('Administrator');
 		    //Carga todos los órdenes para en la varible $order.
 		    $order = $this->Category->find('list', array(
@@ -763,7 +788,4 @@ class CategoriesController extends TreeMenuAppController {
 		}
 	}
 	
-	
-	
-    
 }

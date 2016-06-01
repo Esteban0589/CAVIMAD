@@ -64,8 +64,8 @@
 						</ul>
 						
 						<?php echo $this->Form->create('Category', array('class'=>'form-horizontal','onsubmit' => "return confirm(\"Recuerde que la clasificación debe de tener congruencia con respecto a su padre\");"));?>
-
-						<fieldset class="col-lg-4 col-md-4" >
+						<div class="col-lg-4 col-md-4" >
+							<fieldset>
 							
 							<!--Titulo principal-->
 							<h2><?php echo __('Agregar nivel taxonómico'); ?></h2>
@@ -156,13 +156,12 @@
 								</div>
 							</div>
 							
-							<?php echo $this->Form->end(array('label'=>'Crear Taxón', 'class'=>'btn btn-primary')); ?>
-							<br>
-							<br>
 						</fieldset>
+						<?php echo $this->Form->end(array('label'=>'Crear Taxón', 'class'=>'btn btn-primary')); ?>
+							<br>
+							<br>
+						</div>
 
-						<?php echo $this->Form->end();?>
-							
 						<!--</div>-->
 		    	</div> 
 		 	</div>

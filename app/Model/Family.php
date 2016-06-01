@@ -80,13 +80,13 @@ class Family extends AppModel {
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * Relación del modelo de géneros con el modelo de categorías.
+ * Relación del modelo de familia con el modelo de categorías.
  *
  * @var array
  */
 	public $belongsTo = array(
-		'Categorie' => array(
-			'className' => 'Categorie',
+		'Category' => array(
+			'className' => 'Category',
 			'foreignKey' => 'categorie_id',
 			'conditions' => '',
 			'fields' => '',

@@ -41,13 +41,7 @@ class Category extends TreeMenuAppModel {
                 'message' => 'Este campo solo permite letras y numeros.'
             ),
         ),
-        'description' => array(
-			'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
-                'required' => true,
-                'message' => 'Este campo solo permite letras y numeros.'
-            ),
-        ),
+        
 
     );
 

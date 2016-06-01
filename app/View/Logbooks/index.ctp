@@ -30,7 +30,6 @@
 					            <tr>
 					                <th>Usuario</th>
 					                <th>Nombre del usuario</th>
-					                <th>Taxón</th>
 					                <th>Descripción del cambio</th>
 					                <th>Fecha de modificación</th>
 					            </tr>
@@ -40,7 +39,6 @@
 												<tr>
 													<td><?php echo h($logbook['User']['username']); ?>&nbsp;</td>
 													<td><?php echo h($logbook['User']['name']." ".$logbook['User']['lastname1']." ".$logbook['User']['lastname2']); ?>&nbsp;</td>
-													<td><?php echo h($logbook['Category']['name']); ?>&nbsp;</td>
 													<td><?php echo h($logbook['Logbook']['description']); ?>&nbsp;</td>
 													<td><?php echo h($logbook['Logbook']['modified']); ?>&nbsp;</td>
 												</tr>

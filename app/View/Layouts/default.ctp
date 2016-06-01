@@ -174,7 +174,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         <li>
                              <div = "Si desea enviarnos un mensaje."><a href="" title="">Contáctenos</a></div>
                         </li>
-                        
+                        <li>
+                            <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
+                        </li>
                         <li>
                             <?php if(!empty($_SESSION['role'])){    ?>  
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
@@ -249,10 +251,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 
                 </div><!-- top search end -->
                 
-                 <div class="input-group col-lg-2">
-                            <?php echo $this->Form->create('Category',  array('url' => array('controller' => 'categories', 'action' => 'advanced_search2'))); ?>
-                                <?php echo $this->Form->end(array('label'=>'Búsqueda avanzada', 'class'=>'btn btn-success'));?>
-                        </div>
+                 
             
             	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
                 

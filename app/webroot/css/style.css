@@ -597,7 +597,7 @@ img.alignright {
 /* main links */
 
 #drop-down-left > li {
-    margin-left: 50px;
+    margin-left: 4%;
 }
 #drop-down-left > li:first-child {
     /*margin-left: 0;*/

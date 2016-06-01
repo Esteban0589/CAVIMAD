@@ -737,7 +737,6 @@ class CategoriesController extends TreeMenuAppController {
 	    $genre=($this->request->pass[2]);//Nombre del género.
 	    $country=$this->request->pass[3];//Nombre del pais
 	    $search3=$this->request->pass[4];//Nombre a buscar.
-	    $allChildren = $this->Category->children($order);
         
         
         if($search3!=-1){
@@ -752,14 +751,27 @@ class CategoriesController extends TreeMenuAppController {
                 }
             }
             $i=0;
-            foreach($result2 as $result1){  
-                foreach($condition as $tconditions){
-                    if((stripos(" ".$result1['Category']['name'],$tconditions))!=false  && $result2[$i]['Category']['name']!=-1){
-                          $result[]=$result1;
-                        $result2[$i]['name']=-1;
+            if(count($result2)>0){
+                foreach($result2 as $result1){  
+                    foreach($condition as $tconditions){
+                        if((stripos(" ".$result1['Category']['name'],$tconditions))!=false  && $result2[$i]['Category']['name']!=-1){
+                              $result[]=$result1;
+                            $result2[$i]['name']=-1;
+                        }
+                        $i++;
                     }
-                    $i++;
                 }
+            }
+            else{
+                foreach($condition as $tconditions){
+    					$conditions[] = array(
+    						"OR" => array(
+    						    array('Category.name LIKE '=>'%'.$tconditions.'%')
+    						)
+    						    
+    					);
+    				}
+                    $result = $this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions));
             }
           /*  if($country!=-1){
                 $this->loadModel('Family');

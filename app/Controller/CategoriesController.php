@@ -248,7 +248,7 @@ class CategoriesController extends TreeMenuAppController {
 		$invDate = $dateNow->format('Y-m-d H:i:s');
 		$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
 		'categorie_id' =>  $id ,
-		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." elimino la categoría ".$this->Category->findById($id)['Category']['name']."." ,
+		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." eliminó la categoría ".$this->Category->findById($id)['Category']['name']."." ,
 		'modified'=> $invDate));
 		
 		if ($this->Category->delete()) {
@@ -316,7 +316,6 @@ class CategoriesController extends TreeMenuAppController {
     
     public function buscar() {
 		$datos=($this->request->query['Buscar']);
-// 		debug($this->request->query['Buscar']);
 		if(($datos)){
 		    // carga la imágen del modelo
 			$this->loadModel('Picture');
@@ -336,20 +335,40 @@ class CategoriesController extends TreeMenuAppController {
 				$i = 0;
 				// para cada resultado encontrado por categoría según el id regrese la categoría y la imagen
 				foreach($resultado as $resultados){
-					if($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])){
-						if(count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id'])==1){
-							$myRandomNumber[]=0;	
+				    $catId = $resultado[$i]['Category']['id'];
+				    $idConditions[] = array(
+                        "OR" => array(
+            				array('Picture.phylo_id'    => $catId),
+            				array('Picture.subphylo_id' => $catId),
+            				array('Picture.class_id'    => $catId),
+            				array('Picture.subclass_id' => $catId),
+            				array('Picture.subclass_id' => $catId),
+            				array('Picture.order_id'    => $catId),
+            				array('Picture.suborder_id' => $catId),
+            				array('Picture.family_id'   => $catId),
+            				array('Picture.subfamily_id' => $catId),
+            				array('Picture.genre_id'    => $catId),
+            				array('Picture.subgenre_id' => $catId)
+            			)
+                    );
+					if($this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions))){
+					    $pics = $this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions));
+						if(count($pics)==1){
+						    //debug($resultado);
+							$myRandomNumber=0;	
 						}
 						else{
 						    // sino realizar un número aleatorio para encontrar lo solicitado
-							$myRandomNumber[] = rand(0,count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id']));
+							$myRandomNumber = rand(0,count($pics));
 						}
-						$resultado[$i]=$resultado[$i]+$myRandomNumber+$this->Picture->findByCategorie_id($resultado[$i]['Category']['id']);
+						$resultado[$i]=$resultado[$i]+$pics[$myRandomNumber];
+						//debug($resultado);
 					}
 					$i++;
 				}
+				//debug(count($resultado[1]['Picture']['id']));
 				// si el conteo del resultado es mayor a 0, coloque el resultado
-				if(count($resultado)>0){debug($resultado);
+				if(count($resultado)>0){
 					$this->set('resultados',$resultado);
 				}
 				else{

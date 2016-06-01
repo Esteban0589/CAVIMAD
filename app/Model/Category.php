@@ -96,7 +96,7 @@ class Category extends TreeMenuAppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Picture' => array(
+		/*'Picture' => array(
 			'className' => 'Picture',
 			'foreignKey' => 'categorie_id',
 			'dependent' => false,
@@ -108,7 +108,7 @@ class Category extends TreeMenuAppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
+		),*/
 		'Logbook' => array(
 			'className' => 'Logbook',
 			'foreignKey' => 'categorie_id',

@@ -66,7 +66,7 @@ class UsersController extends AppController {
 
 
 	/**
-	 * viewManagers method
+	 * viewColaboradores method
 	 * 
 	 * Devuelve la lista de colaboradores de la página.
 	 *

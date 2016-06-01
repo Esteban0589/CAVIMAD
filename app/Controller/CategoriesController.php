@@ -349,7 +349,7 @@ class CategoriesController extends TreeMenuAppController {
 					$i++;
 				}
 				// si el conteo del resultado es mayor a 0, coloque el resultado
-				if(count($resultado)>0){
+				if(count($resultado)>0){debug($resultado);
 					$this->set('resultados',$resultado);
 				}
 				else{

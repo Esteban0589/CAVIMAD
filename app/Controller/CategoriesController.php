@@ -70,13 +70,7 @@ class CategoriesController extends TreeMenuAppController {
 
         return $categories;
     }
-    
-    /**
-     * index method
-     */
-    public function indexNormal(){
-       
-    }
+
     
     /**
      * admin_index method
@@ -142,7 +136,6 @@ class CategoriesController extends TreeMenuAppController {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
         }
-        
             // busca el padre de las categorías y genera el arbol
             $parentCategories = $this->Category->_generateTreeList($alias);
             $this->set(compact('parentCategories'));
@@ -240,13 +233,26 @@ class CategoriesController extends TreeMenuAppController {
         $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
         // según la categoría seleccionada se eliminan los datos
         //Si se logran eliminar los datos se notifica mediante un mensaje 
-        if ($this->Category->delete()) {
+        
+        $this->loadModel('Logbook');
+        $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+		$invDate = $dateNow->format('Y-m-d H:i:s');
+		$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+		'categorie_id' =>  $id ,
+		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." elimino la categoría ".$this->Category->findById($id)['Category']['name']."." ,
+		'modified'=> $invDate));
+		
+		if ($this->Category->delete()) {
+		    $this->Logbook->create();
+		    $this->Logbook->save($data);
             $this->Session->setFlash(__('Datos eliminados'), 'success');            
             $this->redirect($alias);
         }
-        //Si no se logran borar los datos  se notifica mediante un mensaje de error
-        $this->Session->setFlash(__('Datos no eliminados'), 'error');
-        $this->redirect($alias);
+        else{
+            //Si no se logran borar los datos  se notifica mediante un mensaje de error
+            $this->Session->setFlash(__('Datos no eliminados'), 'error');
+            $this->redirect($alias);
+        }
     }
 
     /**

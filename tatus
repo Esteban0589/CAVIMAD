@@ -1,0 +1,25 @@
+[1mdiff --git a/app/View/Layouts/default.ctp b/app/View/Layouts/default.ctp[m
+[1mindex cb88484..36e9c9c 100644[m
+[1m--- a/app/View/Layouts/default.ctp[m
+[1m+++ b/app/View/Layouts/default.ctp[m
+[36m@@ -69,13 +69,13 @@[m [m$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())[m
+    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->[m
+    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                -->[m
+    [m
+[31m- <!--<base href"https://cavimad-jimemachado.c9users.io/"/>-->[m
+[31m-    <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->[m
+[31m-    <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->[m
+[31m-    <!--<base href="https://cavimad2-esteban0589.c9users.io/"/>-->[m
+[31m-    <!---<base href="https://cavimad-aivaco.c9users.io/"/>-->[m
+[31m-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->[m
+[31m-     <base href="https://ingenieria2-kevinfl.c9users.io/"/>[m
+[32m+[m[32m <!--<base href"http://cavimad-jimemachado.c9users.io/"/>-->[m
+[32m+[m[32m    <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->[m
+[32m+[m[32m    <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->[m
+[32m+[m[32m    <base href="http://cavimad2-esteban0589.c9users.io/"/>[m
+[32m+[m[32m    <!---<base href="http://cavimad-aivaco.c9users.io/"/>-->[m
+[32m+[m[32m     <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->[m
+[32m+[m[32m     <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->[m
+      [m
+          <!--<base href="http://cavimad.biologia.ucr.ac.cr/"/>-->[m
+ [m

@@ -1,41 +1,45 @@
-<style>
-.democlass {
-        display: block;
-
-}
-.hidden {
-        display: none;
-
-}
-</style>
 <script>
    //Este script se utiliza para esconder o mostrar secciones de dropdown según lo seleccionado.
    $(document).ready(function() {
-   	
-	   	$("#drop1").change(function(){
-	        $(this).find("option:selected").each(function(){
-	            if($(this).attr("value")=="Familia"){
-					document.getElementById("familia").setAttribute("class", "democlass"); 
-					document.getElementById("genero").setAttribute("class", "hidden"); 
-	            }
-	            else if($(this).attr("value")=="Genero"){
-	                document.getElementById("familia").setAttribute("class", "hidden"); 
-   					document.getElementById("genero").setAttribute("class", "democlass"); 
-	            }
-	            else{
-	                document.getElementById("familia").setAttribute("class", "hidden");
-		            document.getElementById("genero").setAttribute("class", "hidden");
-	            }
-	        });
-	    }).change();
+   			$("#drop1").change(function() {
+   
+   						// $('#log').text("");
+   							$(".box").hide();
+   								var e = document.getElementById("hide");
+      							 e.style.display = 'block';
+   						
+   						if ($("#drop1 :selected").text() == 'Familia' ) {
+   							
+   
+   							$(".box").hide();
+                      			$(".familia").show();
+               
+
+   						}
+   						if ($("#drop1 :selected").text() == 'Genero' ) {
+   							$(".box").hide();
+                      			$(".genero").show();
+                      			
+   						}
+   						$(".submit").show();
+
+   						
+   						
+     				}
+     				);
+   
    });
-   	
-   	
-   	
+   
+</script>
+<script type="text/javascript">
+   function toggle_visibility_off() {
+      var e = document.getElementById("hide");
+      e.style.display = 'none';
+   }
+   
 </script>
 
-
-<body>
+<body onload="toggle_visibility_off()">
 
  <div id="k-body"><!-- content wrapper -->
     
@@ -98,16 +102,14 @@
 										'label'=>false, 'class'=>''));
 								// Este publis se asigno oculto debido a que la funcionalidad del plugin no esta clara.
 							?>
-							
-									<div id="familia" class="hidden" >
+								<div id="hide">
+									<div class="familia box">
 										<?php echo $this->Form->input('Family.0.id'); ?>
-										<?php echo $this->Form->input('Family.0.author', array('required' => false,'div'=>'control-group','style' => 'display:inherit','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
+										<?php echo $this->Form->input('Family.0.author', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
 										'before'=>'<label class="control-label">'.__('Fam').'</label><div class="controls">',
 										'after'=>$this->Form->error('Family.0.author', array(), array('wrap' => 'span', 'class' => 'error-message')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
-										'label'=>false, 'class'=>'form-control' ));?>
-										ASDASDSADSADSAD
-										SADASD
+										'label'=>false, 'class'=>'form-control'));?>
 										
 									
 										
@@ -116,11 +118,9 @@
 										
 										
 									</div>
-									
-									
-									<div id="genero" class="hidden" >
+									<div class="genero box">
 										<?php echo $this->Form->input('Gender.0.id'); ?>
-										<?php echo $this->Form->input('Gender.0.author', array('required' => false,'div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
+										<?php echo $this->Form->input('Gender.0.author', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
 										'before'=>'<label class="control-label">'.__('Gen').'</label><div class="controls">',
 										'after'=>$this->Form->error('Gender.0.author', array(), array('wrap' => 'span', 'class' => 'error-message')).'</div>',
 										'error' => array('attributes' => array('style' => 'display:none')),
@@ -128,7 +128,8 @@
 											
 										<br>
 									</div>
-
+								</div>
+							
 							
 							
 							<br>

@@ -43,13 +43,13 @@ class Picture extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Category' => array(
+		/*'Category' => array(
 			'className' => 'Category',
 			'foreignKey' => 'categorie_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		)*/
 	);
 
 /**

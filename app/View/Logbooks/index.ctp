@@ -40,7 +40,7 @@
 													<td><?php echo h($logbook['User']['username']); ?>&nbsp;</td>
 													<td><?php echo h($logbook['User']['name']." ".$logbook['User']['lastname1']." ".$logbook['User']['lastname2']); ?>&nbsp;</td>
 													<td><?php echo h($logbook['Logbook']['description']); ?>&nbsp;</td>
-													<td><?php echo h($logbook['Logbook']['modified']); ?>&nbsp;</td>
+													<td><?php echo substr(h($logbook['Logbook']['modified']),0,10)." a las ".substr(h($logbook['Logbook']['modified']),10); ?>&nbsp;</td>
 												</tr>
 										<?php endforeach; ?>
 					            

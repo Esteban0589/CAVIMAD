@@ -5,7 +5,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="center">
                     
-						 	<h4 style = "margin: 0px;">Windows Phone development</h4>
+						 	<h4 style = "margin: 0px;">Insectos</h4>
                     <div class="thumbnail"> 
 
 							<?php echo "<a href= 'categories/view/68'>"; ?>
@@ -20,7 +20,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="center">
                     
-						 	<h4 style = "margin: 0px;">Windows Phone development</h4>
+						 	<h4 style = "margin: 0px;">Crustáceos </h4>
                     <div class="thumbnail"> 
 
 							<?php echo "<a href= 'categories/view/68'>"; ?>
@@ -34,7 +34,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="center">
                     
-						 	<h4 style = "margin: 0px;">Windows Phone development</h4>
+						 	<h4 style = "margin: 0px;">Ácaros  </h4>
                     <div class="thumbnail"> 
 
 							<?php echo "<a href= 'categories/view/68'>"; ?>
@@ -48,7 +48,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="center">
                     
-				 	<h4 style = "margin: 0px;">Windows Phone development</h4>
+				 	<h4 style = "margin: 0px;">Molúscos  </h4>
                     <div class="thumbnail"> 
 
 							<?php echo "<a href= 'categories/view/68'>"; ?>
@@ -62,7 +62,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="center">
                     
-				 	<h4 style = "margin: 0px;">Windows Phone development</h4>
+				 	<h4 style = "margin: 0px;">Sanguijuelas  </h4>
                     <div class="thumbnail"> 
 
 							<?php echo "<a href= 'categories/view/68'>"; ?>
@@ -76,7 +76,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="center">
                     
-				 	<h4 style = "margin: 0px;">Windows Phone development</h4>
+				 	<h4 style = "margin: 0px;">Otros  </h4>
                     <div class="thumbnail"> 
 
 							<?php echo "<a href= 'categories/view/68'>"; ?>

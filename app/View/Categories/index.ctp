@@ -49,45 +49,45 @@
             <?php
             endif; ?>
 				<table id="example" class="display" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de taxón'); ?></th>
-                        <!--<th class="header" style="text-align: center; width:150px"><?php echo __('Published'); ?></th>-->
-                        <th class="header" style="text-align: center; width:200px"><?php echo __('Clasificación'); ?></th>
-                        <!--Descripcion comentado porque se va a tener en al vista especifica de cada taxon-->
-                        <!--<th class="header"> <?php echo __('Descripción'); ?></th>-->
-                        <th class="header" style="text-align: center; width:200px"><?php echo __('Acciones'); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($allCategories as $category):
-                        $rowId = "node-" . $category['Category']['id'];
-                        $childClass = (intval($category['Category']['parent_id']) > 0) ? "child-of-node-" . $category['Category']['parent_id'] : "";
-                        ?>
-                        <tr id="<?php echo $rowId; ?>" class="<?php echo $childClass; ?>">
-                            <td>
-                                <?php
-                                echo $category['Category']['name'];
-                                //$this->Html->link($category['Category']['name'], array('action'=>'edit', $category['Category']['id']));
-                                ?>
-                            </td>
-                            <td><?php echo h($category['Category']['classification']); ?>&nbsp;</td>
-                            
-                        <!--Descripcion comentado porque se va a tener en al vista especifica de cada taxon-->
-                            <!--<td><?php echo h($category['Category']['description']); ?>&nbsp;</td>-->
-                            
-
-                            <td style="text-align: center">
-                            
-                               	<?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Vista completa de la información del taxón','class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?><?php echo "" ?>
-                                <?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Editar el taxón','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
-                                <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
-                            </td>
+                    <thead>
+                        <tr>
+                            <th class="header" style="text-align: center; width:200px"><?php echo __('Nombre de taxón'); ?></th>
+                            <!--<th class="header" style="text-align: center; width:150px"><?php echo __('Published'); ?></th>-->
+                            <th class="header" style="text-align: center; width:200px"><?php echo __('Clasificación'); ?></th>
+                            <!--Descripcion comentado porque se va a tener en al vista especifica de cada taxon-->
+                            <!--<th class="header"> <?php echo __('Descripción'); ?></th>-->
+                            <th class="header" style="text-align: center; width:200px"><?php echo __('Acciones'); ?></th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($allCategories as $category):
+                            $rowId = "node-" . $category['Category']['id'];
+                            $childClass = (intval($category['Category']['parent_id']) > 0) ? "child-of-node-" . $category['Category']['parent_id'] : "";
+                            ?>
+                            <tr id="<?php echo $rowId; ?>" class="<?php echo $childClass; ?>">
+                                <td>
+                                    <?php
+                                    echo $category['Category']['name'];
+                                    //$this->Html->link($category['Category']['name'], array('action'=>'edit', $category['Category']['id']));
+                                    ?>
+                                </td>
+                                <td><?php echo h($category['Category']['classification']); ?>&nbsp;</td>
+                                
+                            <!--Descripcion comentado porque se va a tener en al vista especifica de cada taxon-->
+                                <!--<td><?php echo h($category['Category']['description']); ?>&nbsp;</td>-->
+                                
+    
+                                <td style="text-align: center">
+                                
+                                   	<?php echo $this->Html->link(__(''), array('action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Vista completa de la información del taxón','class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?><?php echo "" ?>
+                                    <?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Editar el taxón','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
+                                    <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
         
             <?php
             echo $this->Html->script(array(        

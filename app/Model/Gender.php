@@ -14,6 +14,62 @@ class Gender extends AppModel {
  * @var array
  */
 	public $validate = array(
+		'characteristic' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'bibliography' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'author' => array(
+			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'globaldistribution' => array(
+			//Verifica que la distribución global no sea vacía
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'habitat' => array(
+			//Verifica que el hábitat no sea vacía
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+
 		'biologyandecology' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -33,10 +89,10 @@ class Gender extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'Familie' => array(
-			'className' => 'Familie',
-			'foreignKey' => 'familie_id',
+		public $belongsTo = array(
+		'Category' => array(
+			'className' => 'Category',
+			'foreignKey' => 'categorie_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -44,7 +100,7 @@ class Gender extends AppModel {
 	);
 
 /**
- * hasMany associations
+ * Relación del modelo de género con el modelo de categorías.
  *
  * @var array
  */

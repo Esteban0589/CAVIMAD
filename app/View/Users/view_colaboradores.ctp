@@ -54,7 +54,7 @@
 					            
 					        </tbody>
 					    </table>
-				</div>
+					</div>
 				<style>
 					.dataTables_filter label, .dataTables_filter input {
 						float: right;

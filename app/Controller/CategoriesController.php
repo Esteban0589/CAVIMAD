@@ -11,7 +11,7 @@ class CategoriesController extends TreeMenuAppController {
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
-    var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Género' => 'Género');
+    var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Genero');
     
     /**
 	 * beforeFilter method
@@ -42,6 +42,10 @@ class CategoriesController extends TreeMenuAppController {
             $this->Auth->allow('*');
         }
     }
+    
+    public function debugController($id) {
+			$this->request->data = $id;
+	}
         /**
      * Get_menu_Categories method
      *  
@@ -116,6 +120,7 @@ class CategoriesController extends TreeMenuAppController {
     public function add() {
         $alias = $this->categoryAlias;
         if ($this->request->is('post')) {
+            // return $this->debugController($this->request->data);
             // se crea una categoría
             $this->Category->create();
             // en base a eso se le asigna un alias
@@ -153,7 +158,11 @@ class CategoriesController extends TreeMenuAppController {
 		}
 	    // despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
 		$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
-		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
+		
+		//$pic=$this->set('category', $this->Picture->find('all', array('conditions' => array('Picture.category_id' => $id))));
+		
+		$this->layout = 'ajax';
+
 
 	}
     /**
@@ -177,7 +186,7 @@ class CategoriesController extends TreeMenuAppController {
             if ($this->Category->save($this->request->data)) {
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'success');
                 //$this->redirect($this->__getPreviousUrl());
-                $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
+                $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
                 $this->redirect($alias);
             } else {
                 //  si los datos no son guardados correctamente notifica con un mensaje de error

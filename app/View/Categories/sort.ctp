@@ -27,6 +27,14 @@
             $("#secciones").html(result);
         }});
     }
+    function view(id)
+    {
+        $.ajax({
+            url: 'categories/view/'+id, 
+            success: function(result){
+            $("#secciones").html(result);
+        }});
+    }
 //});
 </script>
 
@@ -54,6 +62,8 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
                         <?php if($this->Session->read('role') =='Administrador'): ?>
                         <div class="btn btn-mini btn-link" title="Ingresar a la sección para administrar los niveles taxonómicos"><a href='/categories/index'>Administar Taxonomía</a></div>
+                        <div class="btn btn-mini btn-link" title="Agregar nivel taxonómico"><a href='/categories/add'>Agregar Taxón</a></div>
+                        
                         <?php endif; ?>
                     </div>
                     

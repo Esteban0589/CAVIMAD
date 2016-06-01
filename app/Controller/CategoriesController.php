@@ -75,7 +75,6 @@ class CategoriesController extends TreeMenuAppController {
         return $categories;
     }
 
-    
     /**
      * admin_index method
      * 
@@ -112,9 +111,10 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
     public function add() {
+        $this->loadModel('Family');
+        $this->loadModel('Gender');
         $alias = $this->categoryAlias;
         if ($this->request->is('post')) {
-            // return $this->debugController($this->request->data);
             // se crea una categoría
             $this->Category->create();
             // en base a eso se le asigna un alias
@@ -123,6 +123,19 @@ class CategoriesController extends TreeMenuAppController {
             if ($this->Category->save($this->request->data)) {
                 //Este bloque se encarga de cargar el modelo Logbook, crea los datos necesarios dentro del arreglo al que Lookgbook 
                 //le realizará un save en la base de datos
+                //return $this->debugController('salvo en modelo normal');
+                if($this->request->data['Category']['classification'] == 'Familia'){
+                    $this->request->data['Family']['0']['categorie_id']= $this->Category->id;
+                // 	return $this->debugController($this->request->data);
+                	$this->Family->saveAll($this->request->data['Family']['0']);
+                	
+
+                }
+                if($this->request->data['Category']['classification'] == 'Genero'){
+                    $this->request->data['Gender']['0']['categorie_id']= $this->Category->id;
+                	$this->Gender->saveAll($this->request->data['Gender']['0']);
+                }
+                
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
@@ -134,8 +147,8 @@ class CategoriesController extends TreeMenuAppController {
 				$this->Logbook->save($data);
 				
                 $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
-                $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
-           //     $this->redirect($alias);
+                $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+                $this->redirect($alias);
             } else {
                 //Si los datos no se guadados correctamente se notifica mediante un mensaje de error
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
@@ -147,8 +160,6 @@ class CategoriesController extends TreeMenuAppController {
             $this->set('classification', $this->classification);
     }
     
-
-
     /**
      * view method
      *
@@ -179,6 +190,7 @@ class CategoriesController extends TreeMenuAppController {
      * @param string $id
      * @return void
      */
+     
     public function edit($id = null) {
         $this->Category->id = $id;
         //Si la categoría buscada no existe se notifica mediante un mensaje de error
@@ -239,7 +251,7 @@ class CategoriesController extends TreeMenuAppController {
         }
         // segun el alias de las categorias se despliegan segun un orden indexado 
         $alias = $this->categoryAlias;
-        $alias = ($alias) ? array('action' => 'index', 'alias'=>$alias) : array('action' => 'index');
+        $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
         // según la categoría seleccionada se eliminan los datos
         //Si se logran eliminar los datos se notifica mediante un mensaje 
         
@@ -263,7 +275,6 @@ class CategoriesController extends TreeMenuAppController {
             $this->redirect($alias);
         }
     }
-
     /**
      *  Active/Inactive
      *
@@ -313,7 +324,6 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      * 
      */
-    
     public function buscar() {
 		$datos=($this->request->query['Buscar']);
 		if(($datos)){
@@ -382,7 +392,8 @@ class CategoriesController extends TreeMenuAppController {
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
 	}
-	    /**
+	
+	/**
      * admin_getnodes method
      *
      * método encargado de cargar los nodos en el arbol conforme se despliegan
@@ -390,7 +401,6 @@ class CategoriesController extends TreeMenuAppController {
      * @param  $alias
      * @return void
      */
-
     public function admin_getnodes($alias=null) {
         $this->layout = 'ajax';
         // retrieve the node id that Ext JS posts via ajax
@@ -425,7 +435,6 @@ class CategoriesController extends TreeMenuAppController {
      * @param  $id
      * @return void
      */
-
     public function admin_cargar($id) {
 
         // send the nodes to our view
@@ -434,6 +443,7 @@ class CategoriesController extends TreeMenuAppController {
         $this->layout = 'ajax';
 
     }
+    
     /**
      * catalogo method
      *
@@ -442,14 +452,11 @@ class CategoriesController extends TreeMenuAppController {
      * @param  $id
      * @return void
      */
-
     public function catalogo($id=null) {
         $this->layout = 'ajax';
 
         // send the nodes to our view
     }
-    
-    
     
     /**
      * admin_reorder method
@@ -459,7 +466,6 @@ class CategoriesController extends TreeMenuAppController {
      * @param  $node
      * @return void
      */
-
     function admin_reorder() {
         $this->autoRender = false;
         // retrieve the node instructions from javascript
@@ -534,8 +540,7 @@ class CategoriesController extends TreeMenuAppController {
       *
       * @return void
       */
-        public function advanced_search2()
-		{
+    public function advanced_search2(){
 		    
 		    $this->loadModel('Administrator');
 		    //Carga todos los órdenes para en la varible $order.

@@ -96,9 +96,22 @@ class Category extends TreeMenuAppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'Gender' => array(
+			'className' => 'Gender',
+			'foreignKey' => 'category_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Picture' => array(
 			'className' => 'Picture',
-			'foreignKey' => 'categorie_id',
+			'foreignKey' => 'category_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -111,7 +124,7 @@ class Category extends TreeMenuAppModel {
 		),
 		'Logbook' => array(
 			'className' => 'Logbook',
-			'foreignKey' => 'categorie_id',
+			'foreignKey' => 'category_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

@@ -14,14 +14,15 @@ a{
     font-size:25px; 
     padding: 5px;
 }
-
+h5   {margin: 0px;}
+.texto{margin-bottom: 15px;}
 
 </style>
 
 
-<div class="container" style=" width: initial;">
+<div class="container" >
 	<div class="row">
-			<div class="page-header">
+		<div class="page-header">
 			<div class="col col-sm-12" style=" padding-left: 0px;">
 				<!--<div class="col col-sm-7">-->
 					<h2 style="margin: 0px;"> <?php echo $category['Category']['name']; ?>	</h2>
@@ -159,6 +160,9 @@ a{
 	</div>
 </div>
 
+
+<?php
+			
 
 
 

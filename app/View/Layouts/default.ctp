@@ -69,13 +69,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                -->
    
- <!--<base href"https://cavimad-jimemachado.c9users.io/"/>-->
-    <!--<base href="https://cakebiolo-andres25fg-1.c9users.io/"/>-->
-    <!--<base href="https://inge2-maricelmonge.c9users.io"/>-->
+ <!--<base href"http://cavimad-jimemachado.c9users.io/"/>-->
+    <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
+    <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad2-esteban0589.c9users.io/"/>-->
-    <!---<base href="https://cavimad-aivaco.c9users.io/"/>-->
-     <!--<base href="https://cavimad-julioczar0.c9users.io/"/>-->
-     <!--<base href="https://ingenieria2-kevinfl.c9users.io/"/>-->
+    <!---<base href="http://cavimad-aivaco.c9users.io/"/>-->
+     <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
+     <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->
 
          <!--<base href="http://cavimad.biologia.ucr.ac.cr/"/>-->
 

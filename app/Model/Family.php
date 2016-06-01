@@ -87,7 +87,7 @@ class Family extends AppModel {
 	public $belongsTo = array(
 		'Category' => array(
 			'className' => 'Category',
-			'foreignKey' => 'categorie_id',
+			'foreignKey' => 'category_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

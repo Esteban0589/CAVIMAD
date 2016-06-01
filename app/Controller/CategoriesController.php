@@ -23,7 +23,7 @@ class CategoriesController extends TreeMenuAppController {
     
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','sort','admin_getnodes','admin_cargar','catalogo');
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','view2','sort','admin_getnodes','admin_cargar','catalogo');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -125,22 +125,23 @@ class CategoriesController extends TreeMenuAppController {
                 //le realizará un save en la base de datos
                 //return $this->debugController('salvo en modelo normal');
                 if($this->request->data['Category']['classification'] == 'Familia'){
-                    $this->request->data['Family']['0']['categorie_id']= $this->Category->id;
-                // 	return $this->debugController($this->request->data);
+                    $this->request->data['Family']['0']['category_id']= $this->Category->id;
+                //	return $this->debugController($this->request->data);
                 	$this->Family->saveAll($this->request->data['Family']['0']);
                 	
 
                 }
                 if($this->request->data['Category']['classification'] == 'Genero'){
-                    $this->request->data['Gender']['0']['categorie_id']= $this->Category->id;
+                    $this->request->data['Gender']['0']['category_id']= $this->Category->id;
                 	$this->Gender->saveAll($this->request->data['Gender']['0']);
+                	//return $this->debugController($this->request->data);
                 }
                 
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-				'categorie_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
 				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." agregó la categoría ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
@@ -169,19 +170,67 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
     public function view($id = null) {
+        $this->loadModel('Family');
+        $this->loadModel('Gender');
         //Si el taxón buscado no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
 		}
 	    // despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
-		$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+	    $taxon = $this->Category->find('first', array('conditions' => array('Category.id' => $id)));
+		$this->set('category', $taxon);
 		
+		if ($taxon['Category']['classification'] == 'Familia'){
+		    $familiaDatos = $this->Family->find('first', array('conditions' => array('Family.category_id' => $taxon['Category']['id'])));
+		    $this->set('datosFamilia', $familiaDatos['Family']);
+		}
+		if ($taxon['Category']['classification'] == 'Genero'){
+		    
+		    $generoDatos = $this->Gender->find('first', array('conditions' => array('Gender.category_id' => $taxon['Category']['id'])));
+		    $this->set('datosGenero', $generoDatos['Gender']);
+		    
+		}
 		//$pic=$this->set('category', $this->Picture->find('all', array('conditions' => array('Picture.category_id' => $id))));
 		
 		$this->layout = 'ajax';
 
 
 	}
+	
+	/**
+     * view2 method
+     *
+     * metodo de visualización en una pantalla individual
+     * 
+     * @param string $id : taxon  a visualizar
+     * 
+     * @return void
+     */
+    public function view2($id = null) {
+        $this->loadModel('Family');
+        $this->loadModel('Gender');
+        //Si el taxón buscado no existe se notifica mediante un mensaje de error
+        if (!$this->Category->exists($id)) {
+			throw new NotFoundException(__('Taxón no valido'));
+		}
+	    // despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
+	    $taxon = $this->Category->find('first', array('conditions' => array('Category.id' => $id)));
+		$this->set('category', $taxon);
+		if ($taxon['Category']['classification'] == 'Familia'){
+		    $familiaDatos = $this->Family->find('first', array('conditions' => array('Family.category_id' => $taxon['Category']['id'])));
+		    $this->set('datosFamilia', $familiaDatos['Family']);
+		}
+		if ($taxon['Category']['classification'] == 'Genero'){
+		    
+		    $generoDatos = $this->Gender->find('first', array('conditions' => array('Gender.category_id' => $taxon['Category']['id'])));
+		    $this->set('datosGenero', $generoDatos['Gender']);
+		    
+		}
+	}
+	
+	
+	
+	
     /**
      * edit method
      *
@@ -207,7 +256,7 @@ class CategoriesController extends TreeMenuAppController {
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-				'categorie_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
 				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó la categoría ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
@@ -259,7 +308,7 @@ class CategoriesController extends TreeMenuAppController {
         $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 		$invDate = $dateNow->format('Y-m-d H:i:s');
 		$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-		'categorie_id' =>  $id ,
+		'category_id' =>  $id ,
 		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." elimino la categoría ".$this->Category->findById($id)['Category']['name']."." ,
 		'modified'=> $invDate));
 		
@@ -346,15 +395,15 @@ class CategoriesController extends TreeMenuAppController {
 				$i = 0;
 				// para cada resultado encontrado por categoría según el id regrese la categoría y la imagen
 				foreach($resultado as $resultados){
-					if($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])){
-						if(count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id'])==1){
+					if($this->Picture->findBycategory_id($resultado[$i]['Category']['id'])){
+						if(count($this->Picture->findBycategory_id($resultado[$i]['Category']['id'])['Picture']['id'])==1){
 							$myRandomNumber[]=0;	
 						}
 						else{
 						    // sino realizar un número aleatorio para encontrar lo solicitado
-							$myRandomNumber[] = rand(0,count($this->Picture->findByCategorie_id($resultado[$i]['Category']['id'])['Picture']['id']));
+							$myRandomNumber[] = rand(0,count($this->Picture->findBycategory_id($resultado[$i]['Category']['id'])['Picture']['id']));
 						}
-						$resultado[$i]=$resultado[$i]+$myRandomNumber+$this->Picture->findByCategorie_id($resultado[$i]['Category']['id']);
+						$resultado[$i]=$resultado[$i]+$myRandomNumber+$this->Picture->findBycategory_id($resultado[$i]['Category']['id']);
 					}
 					$i++;
 				}

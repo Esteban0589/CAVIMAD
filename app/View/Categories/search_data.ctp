@@ -1,4 +1,3 @@
-
 <div class="container">
     <h2><?php if($resultados!=null){ echo __('Resultados de la búsqueda:'); ?></h2>
 	

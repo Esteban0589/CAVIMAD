@@ -125,7 +125,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         			    if($current_user['role']=='Administrador'){?>
         			</div>
         		    <div class="col-lg-2 col-sm-12" style="padding: inherit;text-align: right;">
-        					    <div title ="Dirige a la sección de administración."><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'index'));?></div>
+        					    <div title ="Dirige a la sección de administración."><?php echo $this->Html->link('Panel de control',array('controller' => 'users', 'action' => 'controlpanel'));?></div>
         			    <?php
         			    }
         				?>

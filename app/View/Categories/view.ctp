@@ -97,15 +97,14 @@ a{
 				<div class= "texto"><?php echo nl2br(h($category['Category']['description'])); ?></div>
 				<h5>Características:</h5> 
 				<div class= "texto"><?php echo nl2br(h($datosFamilia['characteristic'])); ?></div>
-				<h5>Biología & Ecología:</h5> 
-				<div class= "texto"><?php echo nl2br(h($datosFamilia['biologyandecology'])); ?></div>
 				<h5>Hábitat:</h5> 
 				<div class= "texto"><?php echo nl2br(h($datosFamilia['habitat'])); ?></div>
 				<h5>Distribución global:</h5> 
 				<div class= "texto"><?php echo nl2br(h($datosFamilia['globaldistribution'])); ?></div>
 				<h5>Observaciones adicionales:</h5> 
 				<div class= "texto"><?php echo nl2br(h($datosFamilia['observation'])); ?></div>
-				<h5>Descargable de especies:</h5> 
+				<button type="button" class="btn btn-default btn-lg "  style=" margin: 20px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="font-size:25px;padding: 10px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Generos relacionados</button>
+				
 			</div>
 			<?php	} ?>
 			

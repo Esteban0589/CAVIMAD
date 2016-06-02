@@ -63,7 +63,7 @@
                                     <div class="conteiner">
                                         <div title="Modifica las fotos del inicio.">
                                             <div class="btn btn-mini btn-link">
-                                                <a href='index'>
+                                                <a href='home_pictures'>
                                                     Administrar fotos de portada
                                                 </a>
                                             </div>

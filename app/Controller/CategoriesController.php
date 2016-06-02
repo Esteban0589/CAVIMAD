@@ -593,6 +593,7 @@ class CategoriesController extends TreeMenuAppController {
     public function advanced_search2(){
 		    
 		    $this->loadModel('Administrator');
+		    $this->loadModel('Pictures');
 		    //Carga todos los órdenes para en la varible $order.
 		    $order = $this->Category->find('list', array(
           'conditions' => array('Category.classification' => 'Orden'),

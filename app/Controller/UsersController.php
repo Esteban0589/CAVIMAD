@@ -82,7 +82,8 @@ class UsersController extends AppController {
 	public function view_colaboradores() {
 		//se carga el modelo Administrator para manipular el arreglo correspondiente
 		$this->loadModel('Administrator');
-		$this->User->recursive = 0;
+		clearCache();
+		//$this->User->recursive = 0;
 		//Se guarda en $users la búsqueda de los usuarios que tienen role = 'Colaborador', y se envían a la vista lo susuarios encontrados dentro de 'users'
 		$this->set('users', $users = $this->User->find('all', array('conditions' => array('User.role' => 'Colaborador'))));
 		//Se buscan los datos correspondientes al modelo Administrator que le corresponden a los colaboradores, y se envían a la vista a través de 'colaboradores'

@@ -17,30 +17,13 @@
                     
                         <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
                         
-                            <ol class="carousel-indicators"><!-- Indicators -->
-                                <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-featured" data-slide-to="1"></li>
-                                <li data-target="#carousel-featured" data-slide-to="2"></li>
-                                <li data-target="#carousel-featured" data-slide-to="3"></li>
-                                <li data-target="#carousel-featured" data-slide-to="4"></li>
-                            </ol><!-- Indicators end -->
+                         
                         
                             <div class="carousel-inner"><!-- Wrapper for slides -->
                             
+                            
+                            
                                 <div class="item active">
-                                    <!--<img src="img/slide-1.jpg" alt="Image slide 3" />-->
-                                    <img src="img/dragonfly-slider.jpg" alt="Image slide 3" />
-                                    <div class="k-carousel-caption pos-1-3-right scheme-dark">
-                                    	<div class="caption-content">
-                                            <h5 class="caption-title">Learning makes us stronger for life</h5>
-                                            <p>
-                                            	Este es el texto correspondiente a la imagen a la Imagen #1 del carrousel.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="item">
                                     <img src="img/img2.jpg" alt="Image slide 2" />
                                     <div class="k-carousel-caption pos-1-3-left scheme-light">
                                     	<div class="caption-content">
@@ -51,53 +34,44 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="item">
-                                    <img src="img/img3.jpg" alt="Image slide 1" />
-                                    <div class="k-carousel-caption pos-1-3-right scheme-dark">
+                            
+                                 <?php 
+                                 $i=0;
+                                 foreach ($imagenesPortada as $imagen):
+                                //  debug($imagen['HomePicture']['title']);
+                                //  debug($imagen['HomePicture']['description']);
+                                //  debug($imagen['HomePicture']['image']);
+                                //  debug($imagen['HomePicture']['image_dir']);
+                                 ?>
+                                 <div class="item">
+                                     <?php echo $this->Html->image('../files/home_picture/image/'.$imagen['HomePicture']['image_dir'] . '/' .$imagen['HomePicture']['image'], array('class' => 'img-thumbnail img-responsive','style'=>'height: 404px; width: 100%;'));  ?>
+                                    
+                                    
+                                    <div 
+                                        <?php
+                                            if ($imagen['HomePicture']['position'] == 1){
+                                            echo "class=\"k-carousel-caption pos-1-3-right scheme-dark\"";
+                                            }elseif ($imagen['HomePicture']['position'] == 1){
+                                                
+                                            }elseif ($imagen['HomePicture']['position'] == 1){
+                                                
+                                            }elseif ($imagen['HomePicture']['position'] == 1){
+                                                
+                                            }
+                                        
+                                        ?>
+                                    >
                                     	<div class="caption-content">
-                                            <h5 class="caption-title">Learning makes us stronger for life</h5>
+                                            <h5 class="caption-title"> <?php echo $imagen['HomePicture']['title']?> </h5>
                                             <p>
-                                            	La imagen #3 tiene otro estilo dentro de este carrousel. 
-                                            </p>
-                                            <p>
-                                            	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
+                                            	<?php echo $imagen['HomePicture']['description']?>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="item">
-                                    <div class="img">
-                                        <img src="img/img4.jpg" alt="Image slide 4" />
-                                        <div class="k-carousel-caption pos-1-3-left scheme-light">
-                                        	<div class="caption-content">
-                                                <h5 class="caption-title">Learning makes us stronger for life</h5>
-                                                <p>
-                                                	Descripción que acompaña la imagen #4
-                                                </p>
-                                                <p>
-                                                	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="item">
-                                    <img src="img/img5.jpg" alt="Image slide 5" />
-                                    <div class="k-carousel-caption pos-c-2-3 scheme-dark no-bg">
-                                    	<div class="caption-content">
-                                            <h5 class="caption-title title-giant">Learning makes us stronger for life</h5>
-                                            <p>
-                                            	Finalmente, la imagen #5 termina la galería del carrousel. 
-                                            </p>
-                                            <p>
-                                            	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                 
+                                 
+                                 <?php endforeach; ?>
                                 
                             </div><!-- Wrapper for slides end -->
                         
@@ -112,7 +86,7 @@
                     
                 </div><!-- row end -->
                 
-             <!--   <div class="row no-gutter"><!-- row -->-->
+                <div class="row no-gutter"><!-- row -->
                     
              <!--       <div class="col-lg-4 col-md-4"><!-- upcoming events wrapper -->-->
                     	
@@ -278,10 +252,10 @@
              <!--                               <input type="text" placeholder="Find a course..." autocomplete="off" class="form-control" id="find-course" name="find-course" />-->
              <!--                               <span class="input-group-btn"><button type="submit" class="btn btn-default">GO!</button></span>-->
              <!--                           </div>-->
-                                        <!--<span class="help-block">* Enter course ID, title or the course instructor name</span>-->
+             <!--                           <span class="help-block">* Enter course ID, title or the course instructor name</span>-->
              <!--                       </form>-->
              <!--                       <br>-->
-                                <!--<a href="/categories/advanced_search2" title="">Búsqueda Avanzada</a>-->
+             <!--                   <a href="/categories/advanced_search2" title="">Búsqueda Avanzada</a>-->
                                 
              <!--                   </li><!-- widget end -->-->
                                 
@@ -340,7 +314,7 @@
                         
              <!--       </div><!-- misc wrapper end -->-->
                 
-             <!--   </div><!-- row end -->-->
+                </div><!-- row end -->
             <br>
             <br>
             <br>

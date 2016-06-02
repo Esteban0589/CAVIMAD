@@ -102595,7 +102595,7 @@ $.extend( DataTable.ext.buttons, {
 		return {
 			extend: 'collection',
 			text: function ( dt ) {
-				return dt.i18n( 'buttons.colvis', 'Column visibility' );
+				return dt.i18n( 'buttons.colvis', 'Columnas Visibles' );
 			},
 			className: 'buttons-colvis',
 			buttons: [ {
@@ -104914,7 +104914,7 @@ DataTable.ext.buttons.copyHtml5 = {
 	className: 'buttons-copy buttons-html5',
 
 	text: function ( dt ) {
-		return dt.i18n( 'buttons.copy', 'Copy' );
+		return dt.i18n( 'buttons.copy', 'Copiar' );
 	},
 
 	action: function ( e, dt, button, config ) {
@@ -104949,10 +104949,10 @@ DataTable.ext.buttons.copyHtml5 = {
 				hiddenDiv.remove();
 
 				dt.buttons.info(
-					dt.i18n( 'buttons.copyTitle', 'Copy to clipboard' ),
+					dt.i18n( 'buttons.copyTitle', 'Copiado en el portapapeles' ),
 					dt.i18n( 'buttons.copySuccess', {
-							1: "Copied one row to clipboard",
-							_: "Copied %d rows to clipboard"
+							1: "Se copió una fila en el portapapeles",
+							_: "Se copiaron %d filas en el portapapeles"
 						}, exportData.rows ),
 					2000
 				);
@@ -104964,12 +104964,12 @@ DataTable.ext.buttons.copyHtml5 = {
 
 		// Otherwise we show the text box and instruct the user to use it
 		var message = $('<span>'+dt.i18n( 'buttons.copyKeys',
-				'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>'+
-				'To cancel, click this message or press escape.' )+'</span>'
+				'Presiones <i>ctrl</i> o <i>\u2318</i> + <i>C</i> para copiar la tabla<br>en su portapapeles.<br><br>'+
+				'Para cancelar, de click en este mensaje o presione escape.' )+'</span>'
 			)
 			.append( hiddenDiv );
 
-		dt.buttons.info( dt.i18n( 'buttons.copyTitle', 'Copy to clipboard' ), message, 0 );
+		dt.buttons.info( dt.i18n( 'buttons.copyTitle', 'Copiar en el portapapeles' ), message, 0 );
 
 		// Select the text so when the user activates their system clipboard
 		// it will copy that text
@@ -105475,7 +105475,7 @@ DataTable.ext.buttons.print = {
 	className: 'buttons-print',
 
 	text: function ( dt ) {
-		return dt.i18n( 'buttons.print', 'Print' );
+		return dt.i18n( 'buttons.print', 'Imprimir' );
 	},
 
 	action: function ( e, dt, button, config ) {

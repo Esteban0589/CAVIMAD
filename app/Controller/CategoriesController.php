@@ -405,7 +405,7 @@ class CategoriesController extends TreeMenuAppController {
             				array('Picture.order_id'    => $catId),
             				array('Picture.suborder_id' => $catId),
             				array('Picture.family_id'   => $catId),
-            				array('Picture.subfamily_id' => $catId),
+            				array('Picture.subfamily_id'=> $catId),
             				array('Picture.genre_id'    => $catId),
             				array('Picture.subgenre_id' => $catId)
             			)
@@ -420,10 +420,11 @@ class CategoriesController extends TreeMenuAppController {
 						    // sino realizar un número aleatorio para encontrar lo solicitado
 							$myRandomNumber = rand(0,count($pics));
 						}
-						$resultado[$i]=$resultado[$i]+$pics[$myRandomNumber];
-						//debug($resultado);
+						$pics = $pics[$myRandomNumber];
+						$resultado[$i]=$resultado[$i]+$pics;
 					}
 					$i++;
+					unset($idConditions);
 				}
 				//debug(count($resultado[1]['Picture']['id']));
 				// si el conteo del resultado es mayor a 0, coloque el resultado

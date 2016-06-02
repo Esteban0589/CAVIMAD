@@ -1,32 +1,38 @@
 <div class="container">
 	<div class="homePictures view">
-	<h2><?php echo __('Imagen de portada'); ?></h2>
-		<dl>
-			<dt><h5><?php echo __('Título'); ?></h5></dt>
-			<dd>
-				<?php echo h($homePicture['HomePicture']['title']); ?>
-				&nbsp;
-			</dd>
-			<dt><h5><?php echo __('Descripción'); ?></h5></dt>
-			<dd>
-				<?php echo h($homePicture['HomePicture']['description']); ?>
-				&nbsp;
-			</dd>
-			<dt><h5><?php echo __('Imagen'); ?></h5></dt>
-			<dd>
-				<?php echo $this->Html->image('../files/home_picture/image/'.$homePicture['HomePicture']['image_dir'] . '/thumb_' .$homePicture['HomePicture']['image'], array('class' => 'img-thumbnail img-responsive'));  ?>
-				&nbsp;
-			</dd>
-
-		</dl>
+		<?php if($this->Session->read('role') =='Administrador'): ?>
+			<h2>
+				<?php echo __('Imagen de portada'); ?>
+				<?php echo $this->Html->link(__(''), array('action' => 'add'), array('class' => 'glyphicon glyphicon-upload','title' =>'Agregar imagen', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+				<?php echo $this->Html->link(__(''), array('action' => 'edit', $homePicture['HomePicture']['id']), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar imagen', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+				<?php echo $this->Html->link(__(''), array('action' => 'index'), array('class' => 'glyphicon glyphicon-th-large','title' =>'Ir a galeria', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+				<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $homePicture['HomePicture']['id']), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar imagen de portada",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $homePicture['HomePicture']['id'])); ?>
+					
+			</h2>
+			<dl>
+				<dt><h5><?php echo __('Título'); ?></h5></dt>
+				<dd>
+					<?php echo h($homePicture['HomePicture']['title']); ?>
+					&nbsp;
+				</dd>
+				<dt><h5><?php echo __('Descripción'); ?></h5></dt>
+				<dd>
+					<?php echo h($homePicture['HomePicture']['description']); ?>
+					&nbsp;
+				</dd>
+				<dt><h5><?php echo __('Imagen'); ?></h5></dt>
+				<dd>
+					<?php echo $this->Html->image('../files/home_picture/image/'.$homePicture['HomePicture']['image_dir'] . '/thumb_' .$homePicture['HomePicture']['image'], array('class' => 'img-thumbnail img-responsive'));  ?>
+					&nbsp;
+				</dd>
+	
+			</dl>
+		<?php endif; ?>
+		<?php if($this->Session->read('role') !='Administrador'): ?>
+        	<div class="alert alert-warning alert-dismissable">
+                 <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
+           </div>
+       <?php endif; ?> 
 	</div>
-	<div class="actions">
-		<h3><?php echo __('Acciones'); ?></h3>
-		<ul>
-			<li><?php echo $this->Html->link(__('Editar imagen'), array('action' => 'edit', $homePicture['HomePicture']['id']),array('title'=>'Editar detalles de la imagen actual')); ?> </li>
-			<li><?php echo $this->Form->postLink(__('Eliminar imagen'), array('action' => 'delete', $homePicture['HomePicture']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $homePicture['HomePicture']['id']))); ?> </li>
-			<li><?php echo $this->Html->link(__('Ver galeria'), array('action' => 'index'),array('title'=>'Ver todas las imagenes de portada')); ?> </li>
-			<li><?php echo $this->Html->link(__('Agregar imagen'), array('action' => 'add'),array('title'=>'Agregar imagen de portada a galeria')); ?> </li>
-		</ul>
-	</div>
+	
 </div>

@@ -9,14 +9,17 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class HomePicturesController extends AppController {
-
+	
 /**
  * Components
  *
  * @var array
  */
 	public $components = array('Paginator', 'Flash', 'Session');
+		
 
+	
+	
 /**
  * index method
  *
@@ -51,11 +54,16 @@ class HomePicturesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->HomePicture->create();
 			if ($this->HomePicture->save($this->request->data)) {
-				$this->Flash->success(__('The home picture has been saved.'));
+				$this->Flash->success(__('La imagen a sigo salvada.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The home picture could not be saved. Please, try again.'));
+				$this->Flash->error(__('La imagen no pudo ser salvada. Intentelo otra vez.'));
 			}
+		}
+		else{
+			$position = array(0 => 'Omitir comentario de imagen',1 => 'Abajo a la derecha',2 => 'Abajo a la izquierda');
+
+			$this->set('position',$position);
 		}
 	}
 
@@ -72,14 +80,17 @@ class HomePicturesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->HomePicture->save($this->request->data)) {
-				$this->Flash->success(__('The home picture has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Flash->success(__('La imagen a sigo salvada.'));
+				 $this->redirect(array('action' => 'index'));
+		debug($this->request->data);
 			} else {
-				$this->Flash->error(__('The home picture could not be saved. Please, try again.'));
+				$this->Flash->error(__('La imagen no pudo ser salvada. Intentelo otra vez.'));
 			}
 		} else {
 			$options = array('conditions' => array('HomePicture.' . $this->HomePicture->primaryKey => $id));
+			$position = array(0 => 'Omitir comentario de imagen',1 => 'Abajo a la derecha',2 => 'Abajo a la izquierda');
 			$this->request->data = $this->HomePicture->find('first', $options);
+			$this->set('position',$position);
 		}
 	}
 
@@ -97,9 +108,9 @@ class HomePicturesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->HomePicture->delete()) {
-			$this->Flash->success(__('The home picture has been deleted.'));
+			$this->Flash->success(__('La imagen a sigo Eliminada.'));
 		} else {
-			$this->Flash->error(__('The home picture could not be deleted. Please, try again.'));
+			$this->Flash->error(__('La imagen no fue eliminada. Intentelo nuevamente'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

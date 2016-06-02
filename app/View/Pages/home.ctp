@@ -24,13 +24,14 @@
                             
                             
                                 <div class="item active">
-                                    <img src="img/img2.jpg" alt="Image slide 2" />
-                                    <div class="k-carousel-caption pos-1-3-left scheme-light">
+                                    <img src="img/img5.jpg" alt="Image slide 5" />
+                                    <div class="k-carousel-caption pos-c-2-3 scheme-dark no-bg">
                                     	<div class="caption-content">
-                                            <h5 class="caption-title">Learning makes us stronger for life</h5>
+                                            <h5 class="caption-title title-giant">CAVIMAD</h5>
                                             <p>
-                                            	Imagen #2, observe que bonito que se el carrousel.
+                                            	Catálogo Virtual sobre Macroinvertebrados Dulceacuícolas de Centroamérica 
                                             </p>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -38,28 +39,18 @@
                                  <?php 
                                  $i=0;
                                  foreach ($imagenesPortada as $imagen):
-                                //  debug($imagen['HomePicture']['title']);
-                                //  debug($imagen['HomePicture']['description']);
-                                //  debug($imagen['HomePicture']['image']);
-                                //  debug($imagen['HomePicture']['image_dir']);
                                  ?>
                                  <div class="item">
-                                     <?php echo $this->Html->image('../files/home_picture/image/'.$imagen['HomePicture']['image_dir'] . '/' .$imagen['HomePicture']['image'], array('class' => 'img-thumbnail img-responsive','style'=>'height: 404px; width: 100%;'));  ?>
+                                     <?php echo $this->Html->image('../files/home_picture/image/'.$imagen['HomePicture']['image_dir'] . '/' .$imagen['HomePicture']['image'], array('style'=>'height: 404px; width: 100%;'));  ?>
                                     
                                     
                                     <div 
                                         <?php
                                             if ($imagen['HomePicture']['position'] == 1){
                                             echo "class=\"k-carousel-caption pos-1-3-right scheme-dark\"";
-                                            }elseif ($imagen['HomePicture']['position'] == 1){
-                                                
-                                            }elseif ($imagen['HomePicture']['position'] == 1){
-                                                
-                                            }elseif ($imagen['HomePicture']['position'] == 1){
-                                                
-                                            }
-                                        
-                                        ?>
+                                            }elseif ($imagen['HomePicture']['position'] == 2){
+                                                echo "class=\"k-carousel-caption pos-1-3-left scheme-light\"";
+                                            }else{  echo "style=\"display: none;\"";}?>
                                     >
                                     	<div class="caption-content">
                                             <h5 class="caption-title"> <?php echo $imagen['HomePicture']['title']?> </h5>

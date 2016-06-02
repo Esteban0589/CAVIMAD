@@ -19,6 +19,6 @@
 </p>
 <?php 
 	if (Configure::read('debug') > 0):	
-		echo $this->element('Error en la base de datos, para reeditar este mensaje ingrese a app/view/error/pdo_error.ctp');
+		echo $this->element('Error en la base de datos');
 	endif;
 ?>

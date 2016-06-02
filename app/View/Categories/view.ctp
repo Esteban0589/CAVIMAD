@@ -89,6 +89,8 @@ a{
 				<?php
 					}	
 				?>
+				
+				
 			</div>
 			<div class="col col-sm-7">
 				<h5>Clasificacion</h5> 
@@ -103,7 +105,7 @@ a{
 				<div class= "texto"><?php echo nl2br(h($datosFamilia['globaldistribution'])); ?></div>
 				<h5>Observaciones adicionales:</h5> 
 				<div class= "texto"><?php echo nl2br(h($datosFamilia['observation'])); ?></div>
-				<button type="button" class="btn btn-default btn-lg "  style=" margin: 20px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="font-size:25px;padding: 10px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Generos relacionados</button>
+				<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Generos relacionados</button>
 				
 			</div>
 			<?php	} ?>

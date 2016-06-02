@@ -63,6 +63,13 @@ class UsersController extends AppController {
 			$this->set('users', $this->Paginator->paginate());
 		}
 	}
+	
+	public function controlpanel() {
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador' ) ) {
+			//Si el usuario no es un administrador no se le permite el acceso
+			throw new NotFoundException(__('Usuario inválido.'));
+		}
+	}
 
 
 	/**

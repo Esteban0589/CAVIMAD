@@ -28,16 +28,16 @@
                                     <div title="Abre el árbol taxónomico.">
                                         <div class="btn btn-mini btn-link">
                                             <a href='categories/index'>
-                                                Administrar catalogo
+                                                Administrar catálogo
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="conteiner">
-                                    <div title="Muestra la estadistica de la página.">
+                                    <div title="Muestra las estadística de la página.">
                                         <div class="btn btn-mini btn-link">
                                             <a href='index'>
-                                                Estadisticas
+                                                Estadísticas
                                             </a>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                         <div title="Abre la bitácora de CAVIMAD.">
                                             <div class="btn btn-mini btn-link">
                                                 <a href='logbooks'>
-                                                    Bitacora
+                                                    Bitácora
                                                 </a>
                                             </div>
                                         </div>

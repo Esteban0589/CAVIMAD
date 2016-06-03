@@ -34,7 +34,7 @@ class LogbooksController extends AppController {
 		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
 			//Limpia el cache.
         	clearCache();
-			$logbooks = $this->Logbook->find('all', array('order' => array('Logbook.modified' => 'DESC')));
+			$logbooks = $this->Logbook->find('all', array('order' => array('Logbook.modified' => 'desc')));
 			$this->set('logbooks', $logbooks);
 		} else {
 			$this->Flash->error(__('No tiene el permiso suficiente para acceder a esta sección.'));

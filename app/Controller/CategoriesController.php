@@ -439,7 +439,7 @@ class CategoriesController extends TreeMenuAppController {
 						}
 						else{
 						    // sino realizar un número aleatorio para encontrar lo solicitado
-							$myRandomNumber = rand(0,count($pics));
+							$myRandomNumber = rand(0,count($pics)-1);
 						}
 						$pics = $pics[$myRandomNumber];
 						$resultado[$i]=$resultado[$i]+$pics;
@@ -900,6 +900,44 @@ class CategoriesController extends TreeMenuAppController {
 		if($order!=-1||$family!=-1||$genre!=-1||$country!=-1||$search3!=-1){
 		//	$result=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions));
 			if(count($result)>0){
+			    $i = 0;
+			    $this->loadModel('Picture');
+			    //debug($result);
+			    foreach($result as $results){
+				    $catId = $result[$i]['Category']['id'];
+				    $idConditions[] = array(
+                        "OR" => array(
+            				array('Picture.phylo_id'    => $catId),
+            				array('Picture.subphylo_id' => $catId),
+            				array('Picture.class_id'    => $catId),
+            				array('Picture.subclass_id' => $catId),
+            				array('Picture.subclass_id' => $catId),
+            				array('Picture.order_id'    => $catId),
+            				array('Picture.suborder_id' => $catId),
+            				array('Picture.family_id'   => $catId),
+            				array('Picture.subfamily_id'=> $catId),
+            				array('Picture.genre_id'    => $catId),
+            				array('Picture.subgenre_id' => $catId)
+            			)
+                    );
+					if($this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions))){
+					    $pics = $this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions));
+					    //debug($pics);
+						if(count($pics)==1){
+						    //debug($resultado);
+							$myRandomNumber=0;	
+						}
+						else{
+						    // sino realizar un número aleatorio para encontrar lo solicitado
+							$myRandomNumber = rand(0,count($pics)-1);
+						}
+						$pics = $pics[$myRandomNumber];
+						$result[$i]=$result[$i]+$pics;
+					}
+					$i++;
+					unset($idConditions);
+				}
+				//debug($result);
 				$this->set('resultados',$result);
 			}
 			else{

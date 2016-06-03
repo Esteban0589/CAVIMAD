@@ -43,9 +43,9 @@ class CategoriesController extends TreeMenuAppController {
         }
     }
     
-    public function debugController($id) {
+    /*public function debugController($id) {
 			$this->request->data = $id;
-	}
+	}*/
         /**
      * Get_menu_Categories method
      *  
@@ -241,6 +241,8 @@ class CategoriesController extends TreeMenuAppController {
      */
      
     public function edit($id = null) {
+        $this->loadModel('Family');
+        $this->loadModel('Gender');
         $this->Category->id = $id;
         //Si la categoría buscada no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists()) {
@@ -249,15 +251,26 @@ class CategoriesController extends TreeMenuAppController {
         
         $alias = $this->categoryAlias;
         // si el alias es editado correctamente notifica con un mensaje 
+        
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Category->save($this->request->data)) {
-                
+
+                if($this->request->data['Category']['classification']=='Familia'){
+                    $this->request->data['Family']['0']['category_id']= $this->Category->id;
+                	$this->Family->saveAll($this->request->data['Family']['0']);
+
+                }
+                if($this->request->data['Category']['classification'] == 'Genero'){
+                    $this->request->data['Gender']['0']['category_id']= $this->Category->id;
+                	$this->Gender->saveAll($this->request->data['Gender']['0']);
+                }
+
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
 				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
-				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó la categoría ".$this->request->data['Category']['name']."." ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó ".$this->request->data['Category']['classification']." ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
 				$this->Logbook->save($data);

@@ -80,7 +80,7 @@ class HomePicturesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->HomePicture->save($this->request->data)) {
-				$this->Flash->success(__('La imagen ha sigo salvada.'));
+				$this->Flash->success(__('La imagen ha sido salvada.'));
 				 $this->redirect(array('action' => 'index'));
 		debug($this->request->data);
 			} else {
@@ -108,7 +108,7 @@ class HomePicturesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->HomePicture->delete()) {
-			$this->Flash->success(__('La imagen ha sigo Eliminada.'));
+			$this->Flash->success(__('La imagen ha sido Eliminada.'));
 		} else {
 			$this->Flash->error(__('La imagen no fue eliminada. Intentelo nuevamente'));
 		}

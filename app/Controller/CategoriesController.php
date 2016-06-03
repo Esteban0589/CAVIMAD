@@ -256,13 +256,13 @@ class CategoriesController extends TreeMenuAppController {
             if ($this->Category->save($this->request->data)) {
 
                 if($this->request->data['Category']['classification']=='Familia'){
-                    $this->request->data['Family']['0']['category_id']= $this->Category->id;
-                	$this->Family->saveAll($this->request->data['Family']['0']);
+                    $this->request->data['Family']['category_id']= $this->Category->id;
+                	$this->Family->saveAll($this->request->data['Family']);
 
                 }
                 if($this->request->data['Category']['classification'] == 'Genero'){
-                    $this->request->data['Gender']['0']['category_id']= $this->Category->id;
-                	$this->Gender->saveAll($this->request->data['Gender']['0']);
+                    $this->request->data['Gender']['category_id']= $this->Category->id;
+                	$this->Gender->saveAll($this->request->data['Gender']);
                 }
 
                 $this->loadModel('Logbook');
@@ -284,7 +284,15 @@ class CategoriesController extends TreeMenuAppController {
                 $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'error');
             }
         } else {
+            
             $this->request->data = $this->Category->read(null, $id);
+            $genero = $this->Gender->find('first', array('recursive'=>-1,'conditions' => array('Gender.category_id' => $id)));
+            $family = $this->Family->find('first', array('recursive'=>-1,'conditions' => array('Family.category_id' => $id)));
+            //debug($genero['Gender'] );
+            $this->request->data['Family'] = $family['Family'];
+            $this->request->data['Gender'] = $genero['Gender'];
+            //$this->request->data=$this->Gender->read(null, $genero['Gender']);
+            
         }
         // busca el padre de las categorías y genera el árbol
         $parentCategories = $this->Category->_generateTreeList($alias);

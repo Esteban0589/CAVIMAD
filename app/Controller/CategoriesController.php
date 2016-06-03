@@ -257,7 +257,7 @@ class CategoriesController extends TreeMenuAppController {
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
 				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
-				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó la categoría ".$this->request->data['Category']['name']."." ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó ".$this->request->data['Category']['classification']." ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
 				$this->Logbook->save($data);

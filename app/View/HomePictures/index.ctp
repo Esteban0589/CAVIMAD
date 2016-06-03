@@ -47,8 +47,8 @@
 				<td class="col-lg-6"><?php echo $this->Html->image('../files/home_picture/image/'.$homePicture['HomePicture']['image_dir'] . '/' .$homePicture['HomePicture']['image'], array('class' => 'img-thumbnail img-responsive','style'=>'height: 200px; width: 100%;'));  ?></td>
 				<td class="actions col-lg-2">
 					<?php echo $this->Html->link(__(''), array('action' => 'view', $homePicture['HomePicture']['id']), array('title'=>'Ver todos los detalles de la imagen','class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?>
-					<?php echo $this->Html->link(__(''), array('action' => 'edit', $homePicture['HomePicture']['id']),array('title'=>'Editar la informacion de la imagen','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
-					<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $homePicture['HomePicture']['id']), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Esta seguro que desea eliminar # %s?', $homePicture['HomePicture']['id'])); ?>
+					<?php echo $this->Html->link(__(''), array('action' => 'edit', $homePicture['HomePicture']['id']),array('title'=>'Editar la información de la imagen','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
+					<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $homePicture['HomePicture']['id']), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Atención se va a eliminar la imagen # %s', $homePicture['HomePicture']['id'])); ?>
                   
 
 				</td>

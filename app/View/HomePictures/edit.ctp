@@ -8,14 +8,11 @@
 						<br>
 						<h1>
 							<?php echo __('Editar imagen de portada'); ?>
-							<?php echo $this->Html->link(__(''), array('action' => 'index'), array('class' => 'glyphicon glyphicon-th-large','title' =>'Ir a galeria', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
-							<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $this->request->data['HomePicture']['id']), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar imagen de portada",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $this->request->data['HomePicture']['id'])); ?>
-				
-							</h1>
+						</h1>
 						<?php
 							echo $this->Form->input('id',array('class'=>'form-control'));
-							echo $this->Form->input('title',array('class'=>'form-control','label'=>'Título','title'=>'Ingrese el titulo de la imagen'));
-							echo $this->Form->input('description',array('class'=>'form-control','label'=>'Descripcíon','rows' => '5', 'cols' => '5','title'=>'Ingrese una descripcion de la imagen' ));
+							echo $this->Form->input('title',array('class'=>'form-control','label'=>'Título','title'=>'Ingrese el título de la imagen'));
+							echo $this->Form->input('description',array('class'=>'form-control','label'=>'Descripcíon','rows' => '5', 'cols' => '5','title'=>'Ingrese una descripción de la imagen' ));
 							echo $this->Form->input('picture', array('class'=>'form-control','type'=>'file','label'=>'Imagen','title'=>'Seleccione la imagen a cargar' ));
 							echo $this->Form->input('picture_dir',array('type'=>'hidden'));
 						?>
@@ -28,9 +25,13 @@
 					<br>
 					<br>
 					<br>
+					<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $this->request->data['HomePicture']['id']), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar imagen de galeria",'style'=>'color: #860000; font-size:25px; padding: 5px;'), __('Atención se va a eliminar la imagen # %s?', $this->request->data['HomePicture']['id'])); ?>
+					<?php echo $this->Html->link(__(''), array('action' => 'index'), array('class' => 'glyphicon glyphicon-th-large','title' =>'Ir a galeria', 'style'=>'color: #3891D4; font-size:25px; padding: 5px;')); ?>
 					<td><?php echo $this->Html->image('../files/home_picture/image/'.$this->request->data['HomePicture']['image_dir'] . '/thumb_' .$this->request->data['HomePicture']['image'], array('class' => 'img-thumbnail img-responsive'));  ?></td>
 				</div>
 			<?php endif; ?>
+			
+			
 			<?php if($this->Session->read('role') !='Administrador'): ?>
         	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>

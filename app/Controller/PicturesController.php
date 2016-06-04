@@ -31,10 +31,11 @@ class PicturesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$this->loadModel('Gender');
+		$idCategoriaenGender = $this->Gender->find('first', array('conditions' => array('Gender.category_id' => $id)));
+		$id = $idCategoriaenGender['Gender']['id'];
 		$fotosGenero = $this->Picture->find('all', array('conditions' => array('Picture.genre_id' => $id)));
-		if (empty($fotosGenero)) {
-			throw new NotFoundException(__('Taxón no válido'));
-		}
+		// return debug($fotosGenero);
 		$this->set('pictures', $fotosGenero);
 		$this->set('id', $id);
 		
@@ -132,8 +133,9 @@ class PicturesController extends AppController {
 			if ($this->Picture->save($this->request->data)) {
 				
 				$this->Flash->success(__('The picture has been saved.'));
-				
-				return $this->redirect(array('action' => 'view',$this->request->data['Picture']['genre_id']));
+				$idCategoriaenGender = $this->Gender->find('first', array('conditions' => array('Gender.id' => $this->request->data['Picture']['genre_id'])));
+				$id = $idCategoriaenGender['Gender']['category_id'];
+				return $this->redirect(array('action' => 'view',$id));
 			} else {
 				$this->Flash->error(__('The picture could not be saved. Please, try again.'));
 			}

@@ -410,6 +410,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
      <!--<script type="text/javascript" src="DataTables/datatables.min.js"></script>-->
      <script type="text/javascript" src="DataTables/datatables.js"></script>
      
+      <!--Mapa-->
+     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
+     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
+     
     <?php
     echo $this->Js->writeBuffer(); ?>
     

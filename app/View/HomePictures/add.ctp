@@ -8,7 +8,7 @@
 					<br>
 					<h1>
 						<?php echo __('Agregar imagen de portada'); ?>
-						<?php echo $this->Html->link(__(''), array('action' => 'index'), array('class' => 'glyphicon glyphicon-th-large','title' =>'Ir a galeria', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+						<?php echo $this->Html->link(__('Galeria), array('action' => 'index'), array('class' => 'glyphicon glyphicon-th-large','title' =>'Ir a galeria', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 						
 					</h1>
 				<?php

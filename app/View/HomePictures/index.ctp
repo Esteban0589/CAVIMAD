@@ -21,7 +21,7 @@
 		<?php if($this->Session->read('role') =='Administrador'): ?>
 		<h2>
 			<?php echo __('Galeria de fotos de portada'); ?>
-			<?php echo $this->Html->link(__(''), array('action' => 'add'), array('class' => 'glyphicon glyphicon-upload','title' =>'Agregar imagen', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+			<?php echo $this->Html->link(__('Agregar imagen'), array('action' => 'add'), array('class' => 'glyphicon glyphicon-upload','title' =>'Agregar imagen', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 			
 		</h2>
 		<div class="col-lg-12 ">

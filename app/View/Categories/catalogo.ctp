@@ -100,7 +100,8 @@
             
             span.text-content span {
               overflow: hidden;
-                max-width: 207px;
+                max-width: 100%;
+    			height: inherit;
                 text-overflow: ellipsis;
                 display: -webkit-box;
                 line-height: 16px;
@@ -109,16 +110,15 @@
               
             }
             span.text-content {
-                
               background: rgba(0,0,0,0.5);
               color: white;
               cursor: pointer;
               display: table;
-              height: 212px;
+              height: inherit;
               left: 0;
               position: absolute;
               top: 0;
-              width: 207px;
+              width: 100%;
               opacity: 0;
               -webkit-transition: opacity 500ms;
               -moz-transition: opacity 500ms;

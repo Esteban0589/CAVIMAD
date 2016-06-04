@@ -15,7 +15,13 @@ a{
     padding: 5px;
 }
 h5   {margin: 0px;}
-.texto{margin-bottom: 15px;}
+.texto{margin-bottom: 15px;
+	
+	
+	
+	
+	
+}
 
 </style>
 
@@ -58,8 +64,15 @@ h5   {margin: 0px;}
 							</div>
 						<?php }	else{ ?>
 							<div class="thumbnail"> 
+
+								<?php echo "<a href= ''>"; ?>
 								<?php echo $this->Html->image('../files/category/default.PNG'); ?>
-							</div>
+							 	<?php echo "</a>";?>
+	                            <span class="text-content"><span>					<?php echo $this->Html->link(__('Ir a galeria'), array('controller'=>'pictures','action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('title' =>'Ir a galeria de fotos', 'style'=>'color: #FFFFFF;    font-size:25px; ')); ?>
+  </span></span>
+						 	
+						</div>   
+							
 						<?php } ?>
 					</div>
 					<!--Campo para el mapa-->
@@ -133,6 +146,43 @@ h5   {margin: 0px;}
 				
 			</div>
 		</div>
+		<style>
+            
+            
+            span.text-content span {
+              overflow: hidden;
+                max-width: 100%;
+                    padding: 100px;
+    			height: inherit;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                line-height: 16px;
+                -webkit-line-clamp: 13;
+                -webkit-box-orient: vertical;
+              
+            }
+            span.text-content {
+                text-align: center;
+              background: rgba(0,0,0,0.5);
+              color: white;
+              cursor: pointer;
+              display: table;
+              height: 212px;
+              left: 0;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              opacity: 0;
+              -webkit-transition: opacity 500ms;
+              -moz-transition: opacity 500ms;
+              -o-transition: opacity 500ms;
+              transition: opacity 500ms;
+            }
+            
+            div.thumbnail:hover span.text-content {
+              opacity: 1;
+            }
+            </style>
 	</div>
 </div>
 

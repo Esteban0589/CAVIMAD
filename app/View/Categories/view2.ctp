@@ -27,7 +27,7 @@ h5   {margin: 0px;}
 
 
 <div class="container" >
-			<div class="row">
+		<div class="row">
 			<div class="page-header">
 				<div class="col col-sm-12" style=" padding-left: 0px;">
 					<!--<div class="col col-sm-7">-->
@@ -101,7 +101,7 @@ h5   {margin: 0px;}
 					      );
 					   ?>
 					
-					<div class = container style = >
+					<div class = "container" style="width: 100%;" >
 					 <meta charset='utf-8' />
 					    <title></title>
 					    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
@@ -383,6 +383,8 @@ h5   {margin: 0px;}
             div.thumbnail:hover span.text-content {
               opacity: 1;
             }
+            
+            
             </style>
 	</div>
 

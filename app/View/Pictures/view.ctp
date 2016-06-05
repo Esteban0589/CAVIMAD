@@ -60,9 +60,13 @@
 		
 
 					<?php foreach ($pictures as $picture): ?>
+						<div class = "col-lg-3">
+							<?php echo $this->Html->image('../files/picture/image/'.$picture['Picture']['image_dir'] .'/'.'thumb_'.$picture['Picture']['image'], array('class' => 'img-thumbnail img-responsive'));  ?>
+							
+							<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $picture['Picture']['id']), array('required'=>'required','title'=>'Eliminar imagen de genero','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $picture['Picture']['image'])); ?>
+							
+						</div>
 
-							<?php echo $this->Html->image('../files/picture/image/'.$picture['Picture']['image_dir'] .'/'.'thumb_'.$picture['Picture']['image'], array('class' => 'img-thumbnail img-responsive col-lg-3'));  ?>
-		
 						
 					<?php endforeach; ?>
 			</div>

@@ -54,6 +54,7 @@ h5   {margin: 0px;}
 				<div class="row">
 					<!--Compo contenedor de imagen y mapa-->
 					<div class="col col-sm-5">
+						<!--Contenedor de la imagen-->
 						<div class="row">
 						
 							<?php
@@ -65,11 +66,10 @@ h5   {margin: 0px;}
 							<?php }	else{ ?>
 								<div class="thumbnail"> 
 	
-									<?php echo "<a href= ''>"; ?>
 									<?php echo $this->Html->image('../files/category/default.PNG'); ?>
-								 	<?php echo "</a>";?>
-		                            <span class="text-content"><span>					<?php echo $this->Html->link(__('Ir a galeria'), array('controller'=>'pictures','action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('title' =>'Ir a galeria de fotos', 'style'=>'color: #FFFFFF;    font-size:25px; ')); ?>
-	  </span></span>
+		                            <span class="text-content"><span>
+		                            	<?php echo $this->Html->link(__('Ir a galeria'), array('controller'=>'pictures','action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('title' =>'Ir a galeria de fotos', 'style'=>'color: #FFFFFF;    font-size:25px; ')); ?>
+	  								</span></span>
 							 	
 							</div>   
 								

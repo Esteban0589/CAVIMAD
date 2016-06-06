@@ -1,0 +1,104 @@
+<?php
+App::uses('AppController', 'Controller');
+/**
+ * CountryGenders Controller
+ *
+ * @property CountryGender $CountryGender
+ * @property PaginatorComponent $Paginator
+ */
+class CountryGendersController extends AppController {
+
+/**
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator');
+
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function index() {
+		$this->CountryGender->recursive = 0;
+		$this->set('countryGenders', $this->Paginator->paginate());
+	}
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->CountryGender->exists($id)) {
+			throw new NotFoundException(__('Invalid country gender'));
+		}
+		$options = array('conditions' => array('CountryGender.' . $this->CountryGender->primaryKey => $id));
+		$this->set('countryGender', $this->CountryGender->find('first', $options));
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->CountryGender->create();
+			if ($this->CountryGender->save($this->request->data)) {
+				$this->Flash->success(__('The country gender has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('The country gender could not be saved. Please, try again.'));
+			}
+		}
+	}
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function edit($id = null) {
+		if (!$this->CountryGender->exists($id)) {
+			throw new NotFoundException(__('Invalid country gender'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->CountryGender->save($this->request->data)) {
+				$this->Flash->success(__('The country gender has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('The country gender could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('CountryGender.' . $this->CountryGender->primaryKey => $id));
+			$this->request->data = $this->CountryGender->find('first', $options);
+		}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->CountryGender->id = $id;
+		if (!$this->CountryGender->exists()) {
+			throw new NotFoundException(__('Invalid country gender'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->CountryGender->delete()) {
+			$this->Flash->success(__('The country gender has been deleted.'));
+		} else {
+			$this->Flash->error(__('The country gender could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+}

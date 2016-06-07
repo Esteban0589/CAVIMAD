@@ -86,8 +86,8 @@ a{
 					    zoom: 3.2
 					});
 					map.on('load', function () {
-					     //var countries = <?php //echo json_encode($countries); ?>;
-					    var countries = [1];
+					     var countries = <?php echo json_encode($countries); ?>;
+					    //var countries = [1];
 					    // Añade las capas de los países de América Central y les  brinda el diseño a las mismas.
 					 map.addSource('belize', {
 					        'type': 'geojson',

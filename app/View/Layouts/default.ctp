@@ -73,7 +73,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad2-esteban0589.c9users.io/"/>-->
-    <base href="http://cavimad-aivaco.c9users.io/"/>
+    <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
      <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
      <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->
 
@@ -409,6 +409,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
      
      <!--<script type="text/javascript" src="DataTables/datatables.min.js"></script>-->
      <script type="text/javascript" src="DataTables/datatables.js"></script>
+     <!--Mapa-->
+     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
+	 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
      
     <?php
     echo $this->Js->writeBuffer(); ?>

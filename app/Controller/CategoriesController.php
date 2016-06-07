@@ -172,6 +172,7 @@ class CategoriesController extends TreeMenuAppController {
     public function view($id = null) {
         $this->loadModel('Family');
         $this->loadModel('Gender');
+        $this->loadModel('CountryGender');
         //Si el taxón buscado no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
@@ -183,11 +184,79 @@ class CategoriesController extends TreeMenuAppController {
 		if ($taxon['Category']['classification'] == 'Familia'){
 		    $familiaDatos = $this->Family->find('first', array('conditions' => array('Family.category_id' => $taxon['Category']['id'])));
 		    $this->set('datosFamilia', $familiaDatos['Family']);
+		    
+		     //Recibe el id de la tabla categoría de un género.
+    	    $id_category = $taxon['Category']['id'];
+    	    
+    	    //Este arreglo contendrá los id's de cada país en el cuál hay especies del género.
+            $countries = [];
+    	    //Obtiene el id del género según su id de categoría.
+    	    $id_gender = $this->Category->find('all', array('recursive' => -1,'conditions' => array('Category.parent_id' => $id_category)));
+    	    //debug($id_gender[0]['Category']['id']);
+    	    
+    	    for ($j = 0; $j<count($id_gender); $j++)
+            {
+                $id_tabgen = $this->Gender->find('first',array('recursive'=>-1,'conditions'=>array('Gender.category_id'=>$id_gender[$j]['Category']['id'])));
+                  //debug($id_tabgen['Gender']['id']);
+                  //Obtiene la lista de países en donde hay especies del género. 
+                $info_countries = $this->CountryGender->find('first',array('recursive'=>-1, 'conditions'=>array('CountryGender.gender_id '=>$id_tabgen['Gender']['id'])));
+                    //debug($info_countries);
+                 //Si se encuentra en el país, se añade el id al arreglo.
+            
+                 if($info_countries["CountryGender"]["belize"] && !in_array(1,$countries))
+                    array_push($countries,1);
+                if($info_countries["CountryGender"]["costa_rica"] && !in_array(2,$countries))
+                    array_push($countries,2);
+                if($info_countries["CountryGender"]["el_salvador"] && !in_array(3,$countries))
+                    array_push($countries,3);
+                if($info_countries["CountryGender"]["guatemala"] && !in_array(4,$countries))
+                    array_push($countries,4);
+                if($info_countries["CountryGender"]["honduras"] && !in_array(5,$countries))
+                    array_push($countries,5);
+                if($info_countries["CountryGender"]["mexico"] && !in_array(6,$countries))
+                    array_push($countries,6);
+                if($info_countries["CountryGender"]["nicaragua"] && !in_array(7,$countries))
+                    array_push($countries,7);
+                if($info_countries["CountryGender"]["panama"] && !in_array(8,$countries))
+                    array_push($countries,8);
+
+            }
+		    $this->set('countries',$countries);
 		}
 		if ($taxon['Category']['classification'] == 'Genero'){
 		    
 		    $generoDatos = $this->Gender->find('first', array('conditions' => array('Gender.category_id' => $taxon['Category']['id'])));
 		    $this->set('datosGenero', $generoDatos['Gender']);
+		    
+		    //Recibe el id de la tabla categoría de un género.
+    	    $id_category = $taxon['Category']['id'];
+    	    
+    	    //Obtiene el id del género según su id de categoría.
+    	    $id_gender = $this->Gender->find('first', array('recursive' => -1,'conditions' => array('Gender.category_id' => $id_category)));
+             
+            //Obtiene la lista de países en donde hay especies del género.    
+            $info_countries = $this->CountryGender->find('first',array('recursive'=>-1, 'conditions'=>array('CountryGender.gender_id '=>$id_gender['Gender']['id'])));
+            //Este arreglo contendrá los id's de cada país en el cuál hay especies del género.
+            $countries = [];
+            //Si se encuentra en el país, se añade el id al arreglo.
+            if($info_countries["CountryGender"]["belize"])
+                array_push($countries,1);
+            if($info_countries["CountryGender"]["costa_rica"])
+                array_push($countries,2);
+            if($info_countries["CountryGender"]["el_salvador"])
+                array_push($countries,3);
+            if($info_countries["CountryGender"]["guatemala"])
+                array_push($countries,4);
+            if($info_countries["CountryGender"]["honduras"])
+                array_push($countries,5);
+            if($info_countries["CountryGender"]["mexico"])
+                array_push($countries,6);
+            if($info_countries["CountryGender"]["nicaragua"])
+                array_push($countries,7);
+            if($info_countries["CountryGender"]["panama"])
+                array_push($countries,8);
+    		//debug($countries);
+		    $this->set('countries',$countries);
 		    
 		}
 		//$pic=$this->set('category', $this->Picture->find('all', array('conditions' => array('Picture.category_id' => $id))));

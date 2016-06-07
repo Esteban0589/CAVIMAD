@@ -78,17 +78,16 @@ a{
 					
 					<div id='map'style='width: 100%; height: 200px;'></div>
 					<script>
-					mapboxgl.accessToken = 'pk.eyJ1IjoiamltZSIsImEiOiJjaXAzN2VpMzEwMDBibGdtM3Vlb2k1anUxIn0.zCvEQPOBMWFDf1cqsR8XDg';
+					mapboxgl.accessToken ='pk.eyJ1IjoiamltZSIsImEiOiJjaW9zeDdlNmwwMDlndG9tNWE5NmE5M3FiIn0.3e3j-uzVc-1BFZqwMdoNeQ';
 					var map = new mapboxgl.Map({
 					    container: 'map',
 					    style: 'mapbox://styles/mapbox/streets-v8',
 					    center: [-87.82470703125, 14.136575651477944],
 					    zoom: 3.2
 					});
-					  
-					
 					map.on('load', function () {
-					     var countries = <?php echo json_encode($countries); ?>;
+					     //var countries = <?php //echo json_encode($countries); ?>;
+					    var countries = [1];
 					    // Añade las capas de los países de América Central y les  brinda el diseño a las mismas.
 					 map.addSource('belize', {
 					        'type': 'geojson',
@@ -308,26 +307,6 @@ a{
 					<?php	} ?>
 					<br>
 				</div>
-
-				
-
-			</div>
-			<div class="col col-sm-7">
-				<h5>Clasificacion</h5> 
-				<div class= "texto"><?php echo h($category['Category']['classification']); ?></div>
-				<h5>Descripción:</h5> 
-				<div class= "texto"><?php echo nl2br(h($category['Category']['description'])); ?></div>
-				<h5>Características:</h5> 
-				<div class= "texto"><?php echo nl2br(h($datosGenero['characteristic'])); ?></div>
-				<h5>Biología & Ecología:</h5> 
-				<div class= "texto"><?php echo nl2br(h($datosGenero['biologyandecology'])); ?></div>
-				<h5>Hábitat:</h5> 
-				<div class= "texto"><?php echo nl2br(h($datosGenero['habitat'])); ?></div>
-				<h5>Distribución global:</h5> 
-				<div class= "texto"><?php echo nl2br(h($datosGenero['globaldistribution'])); ?></div>
-				<h5>Observaciones adicionales:</h5> 
-				<div class= "texto"><?php echo nl2br(h($datosGenero['observation'])); ?></div>
-				<h5>Descargable de especies:</h5> 
 			</div>
 		</div>
 	</div>

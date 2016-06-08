@@ -238,47 +238,47 @@
                                 
                                 	<h1 class="title-titan">Búsqueda</h1>
                                     
-                                     <form action="categories/buscar" id="course-finder" method="get" role="Ingresa lo que deseas buscar">
+                                     <form action="categories/buscar" id="course-finder" method="get" role="Ingrese el nombre de taxón que desea buscar">
                         
-                                       <div title = "Búsqueda general."><input type="text" name="Buscar" id="sitesearch" class="form-control" autocomplete="off" placeholder="Ingresa lo que deseas buscar" />
+                                       <div title = "Búsqueda general sobre el catálogo"><input type="text" name="Buscar" id="sitesearch" class="form-control" autocomplete="off" placeholder="Ingrese el nombre del taxón que desea buscar" />
                                              <span class="input-group-btn"><button type="submit" class="btn btn-default">BUSCAR!</button></span>
                                            </div>     
                                     </form>
-                                    <span class="help-block">* Ingrese el nombre de espécimen que desea buscar</span>
+
                     
                    
                                 
                                     <br>
-                                <a href="/categories/advanced_search2" title="">Búsqueda Avanzada</a>
+                                <a href="/categories/advanced_search2" title="Continuar para realizar una búsqueda con mayor profundidad">Búsqueda Avanzada</a>
                                 
                                 </li><!-- widget end -->
-                                <div title = "Ingrese con su usuario."></div>
+                                <div title = "Ingrese con su usuario"></div>
                     </div>
                                 <li class="widget-container widget_text"><!-- widget -->
                                 
-                                	<a href="/users/add" class="custom-button cb-green" title="Click para registrarse">
+                                	<a href="/users/add" class="custom-button cb-green" title="Click para registrarse a la comunidad">
                                     	<i class="custom-button-icon fa fa-check-square-o"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Registrarse</span>
-                                            <span class="custom-button-tagline">Uneté a la comunidad cuando quieras</span>
+                                            <span class="custom-button-tagline">Únase a la comunidad cuando desee</span>
                                         </span>
                                         <em></em>
                                     </a>
                                     
-                                	<a href='/users/login' class="custom-button cb-gray" title="Ingrese con su usuario.">
+                                	<a href='/users/login' class="custom-button cb-gray" title="Ingrese con su usuario y contraseña">
                                     	<i class="custom-button-icon fa  fa-play-circle-o"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Iniciar Sesión</span>
-                                            <span class="custom-button-tagline">Estamos felices de que regresaras</span>
+                                            <span class="custom-button-tagline">Estamos felices con su regreso</span>
                                         </span>
                                         <em></em>
                                     </a>
                                     
-                                	<a href="#" class="custom-button cb-yellow" title="Contactese con nosotros">
+                                	<a href="#" class="custom-button cb-yellow" title="Contáctese con nosotros">
                                     	<i class="custom-button-icon fa  fa-leaf"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Contacto</span>
-                                            <span class="custom-button-tagline">Nos gusta saber lo pienzas</span>
+                                            <span class="custom-button-tagline">Contáctenos para tener mayor información</span>
                                         </span>
                                         <em></em>
                                     </a>

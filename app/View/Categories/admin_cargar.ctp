@@ -64,12 +64,12 @@ a{
 			<!--Campo para tipo y descripcion. Toma las 9columans restantes de este row-->
 			<div class="col col-sm-9">
 		    
-				<h5 style = "margin: 0px; ">Clasificacion</h5> 
+				<h5 style = "margin: 0px; ">Clasificación</h5> 
 				<?php echo h($category['Category']['classification']); ?>
 				<h5 style = "margin: 0px; ">Descripción:</h5> 
 				<?php echo substr($category['Category']['description'],0,300); ?> 
 				
-				<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $category['Category']['id']?>)" >...mas</a>
+				<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $category['Category']['id']?>)" >...más</a>
 				
 				<br>
 			</div>
@@ -123,7 +123,7 @@ a{
 						<!--Nombre descripcion de taxón-->
 						<td class="col col-sm-6">
 							<?php echo substr($son['Category']['description'],0,200); ?> 
-							<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >...mas</a>
+							<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >...más</a>
 
 						</td>
 						<!--Acciones-->

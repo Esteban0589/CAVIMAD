@@ -20,6 +20,7 @@
 								<p style="text-indent:60px">
 									<?php echo substr($resultado['Category']['description'],0,300); ?>
 								</p>
+								<?php echo "<a href= 'categories/view2/".$resultado['Category']['id']."'>...ver más</a>"; ?>
 							</div>
                     </ul>
 				</div>

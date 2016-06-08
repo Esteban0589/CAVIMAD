@@ -12,14 +12,14 @@
 					?>
 					
 						<div class="thumbnail"> 
-							<?php echo "<a href= 'categories/view/".$resultado['Category']['id']."'>"; ?>
+							<?php echo "<a href= 'categories/view2/".$resultado['Category']['id']."'>"; ?>
 							<?php echo $this->Html->image('../files/category/image/' . $resultado['Picture']['image_dir'].'/'.'thumb_'.$resultado['Picture']['image']); ?>
 							<?php echo "</a>";?>
 						</div>
 					<?php }
 						else{ ?>
 							<div class="thumbnail"> 
-								<?php echo "<a href= 'categories/view/".$resultado['Category']['id']."'>"; ?>
+								<?php echo "<a href= 'categories/view2/".$resultado['Category']['id']."'>"; ?>
 								<?php echo $this->Html->image('../files/category/default.PNG'); ?>
 							 	<?php echo "</a>";?>
 							</div>
@@ -43,7 +43,10 @@
 							<div>
 								<p style="text-indent:60px">
 									<?php echo substr($resultado['Category']['description'],0,300); ?>
+									
 								</p>
+								
+								<?php echo "<a href= 'categories/view2/".$resultado['Category']['id']."'>...ver más</a>"; ?>
 							</div>
                     </ul>
                     <!--Cierra parte de textos-->

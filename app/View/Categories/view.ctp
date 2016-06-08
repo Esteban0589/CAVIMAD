@@ -63,7 +63,7 @@ a{
 					</div>
 					<!--Campo para el mapa-->
 					<div class="row">
-						Mapa de ubicacion
+						Mapa de ubicación
 			<div class = "container" style = "width: 100%">
 					 <meta charset='utf-8' />
 					    <title></title>
@@ -262,14 +262,14 @@ a{
 				
 					<!--Vista en caso de que sea taxon != de Familia o Genero-->
 					<?php if($category['Category']['classification']!='Familia' && $category['Category']['classification']!='Genero'){?>	
-						<h5>Clasificacion</h5> <?php echo h($category['Category']['classification']); ?>
+						<h5>Clasificación</h5> <?php echo h($category['Category']['classification']); ?>
 						<h5>Descripción:</h5> <?php echo nl2br(h($category['Category']['description'])); ?>
 					<?php	} ?>
 					
 					
 					<!--Vista en caso de que sea taxon ==  Familia -->
 					<?php if($category['Category']['classification']=='Familia'){?>	
-						<h5>Clasificacion</h5> 
+						<h5>Clasificación</h5> 
 						<div class= "texto"><?php echo h($category['Category']['classification']); ?></div>
 						<h5>Descripción:</h5> 
 						<div class= "texto"><?php echo nl2br(h($category['Category']['description'])); ?></div>
@@ -281,7 +281,7 @@ a{
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['globaldistribution'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['observation'])); ?></div>
-						<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Generos relacionados</button>
+						<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Géneros relacionados</button>
 						
 					<?php	} ?>
 					
@@ -289,7 +289,7 @@ a{
 					<!--Vista en caso de que sea taxon ==  Genero -->
 					<?php if($category['Category']['classification']=='Genero'){?>
 					<!--seccion para la foto y el mapa-->
-						<h5>Clasificacion</h5> 
+						<h5>Clasificación</h5> 
 						<div class= "texto"><?php echo h($category['Category']['classification']); ?></div>
 						<h5>Descripción:</h5> 
 						<div class= "texto"><?php echo nl2br(h($category['Category']['description'])); ?></div>

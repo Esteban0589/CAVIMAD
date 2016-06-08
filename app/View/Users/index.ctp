@@ -35,6 +35,7 @@
 					                <th>Rol</th>
 					                <th>Estado</th>
 					                <th>Editar rol</th>
+					                <th>Habilitar/Deshabilitar</th>
 					                
 					            </tr>
 					        </thead>
@@ -50,15 +51,31 @@
 										<td><?php if(($user['User']['activated'])==1){ 
 														echo 'Activo';
 													}else{
-														echo 'Inactivo';
-													} 
+														if(($user['User']['activated'])==2){ 
+														echo 'Deshabilitado';
+														}else{
+															echo 'Inactivo';
+														} 
+													}
 										
 											?>&nbsp;
 										</td>
 										<td class="actions" >
 											<?php echo $this->Html->link(__('Editar rol'), array('action' => 'editrol', $user['User']['id'])); ?>
 										</td>
+										<td class="actions" >
+											<?php if(($user['User']['activated'])==1){ 
+														echo $this->Html->link(__('Deshabilitar'), array('action' => 'habdes', $user['User']['id']));
+													}else{
+														if(($user['User']['activated'])==2){ 
+															echo $this->Html->link(__('Habilitar'), array('action' => 'habdes', $user['User']['id']));
+														}else{
+															echo 'Inactivo';
+														} 
+													}
 										
+											?>
+										</td>
 										<!--Esto lo comente porque tenemos que ver como vamos a manejar la deshabilitacion y habilitacion de usuarios-->
 										<!--<td class="actions" align=center>-->
 										<!--	<?php echo $this->Html->link(__('Activación'), array('action' => 'editactivated', $user['User']['id'])); ?>-->

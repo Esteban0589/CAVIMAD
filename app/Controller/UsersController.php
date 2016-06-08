@@ -136,7 +136,7 @@ class UsersController extends AppController {
         	//Se guarda en $var el usuario recuperado a partir del 'username' solicitado en 'data'
         	$var=$this->User->findByUsername($this->request->data['User']['username']);
         	//Se revisa si el usuario buscado ya ha sido debidamente activado
-        	if($var['User']['activated']==true){
+        	if($var['User']['activated']==1){
  
   	        	//Se procede a realizar el login mediante Auth
     	        if($this->Auth->login() ){
@@ -159,7 +159,7 @@ class UsersController extends AppController {
     	    	return $this->Flash->error(__('Usuario o contraseña inválida.'));
     	    }
     	    //Si el usuario no ha sido acivado previo al login, se le notifica mediante un error
-    	    return $this->Flash->error(__('Usuario no activado.'));
+    	    return $this->Flash->error(__('Usuario no activado o deshabilitado. Si el problema persiste, contactar al administrador.'));
         }
     }
     
@@ -246,14 +246,14 @@ class UsersController extends AppController {
 		//Se verifica que exista una sesión activa
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null ) ) {
 			//Se maneja la excepción en caso de que no haya un usuario en la sesión
-			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
+			throw new NotFoundException(__('Es necesario estar registrado para esta sección.'));
 			//Se redirige al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
 		//Se chequea que el usuario a buscar existe
 		if (!$this->User->exists($id)) {
 			//Caso contrario se llama a la excepción
-			throw new NotFoundException(__('Usuario no valido'));
+			throw new NotFoundException(__('Usuario no válido'));
 		}
 		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
 		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
@@ -291,6 +291,53 @@ class UsersController extends AppController {
 				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 				$this->request->data = $this->User->find('first', $options);
 			}
+		}
+	}
+	
+	public function habdes($id = null) {
+		//Se verifica que exista una sesión activa
+		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null ) ) {
+			//Se maneja la excepción en caso de que no haya un usuario en la sesión
+			throw new NotFoundException(__('Es necesario estar registrado para esta sección.'));
+			//Se redirige al home de la página
+			return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		}
+		//Se chequea que el usuario a buscar existe
+		if (!$this->User->exists($id)) {
+			//Caso contrario se llama a la excepción
+			throw new NotFoundException(__('Usuario no válido'));
+		}
+		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
+		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador') && ($this->request->is(array('post', 'put')))){
+			$conditions = array(
+						"AND" => array(
+						    array('User.id '=>$id),
+						    array('User.role '=>'Administrador')
+						)
+					);
+			
+			if(empty($this->User->find('first',array('conditions' =>$conditions )))) {
+				//Se guardan los cambios al usuario
+				if ($this->User->save($this->request->data)) {
+					//Se notifica que el estado de la cuenta se modificó correctamente
+					$this->Flash->success(__('Se cambio correctamente el estado de la cuenta.'));
+					//Se redirige al index de usuarios
+				//	debug($this->User->save($this->request->data));
+					return $this->redirect(array('action' => 'index'));
+				} else {
+					//En el caso contrario, se notifica al usuario que los cambios no se pudieron realizar
+					$this->Flash->error(__('El cambio no se realizó correctamente.'));
+				}
+			}
+			else{
+				$this->Flash->success(__('Un administrador no puede habilitar o deshabilitar a otro administrador.'));
+				//Se redirige al index de usuarios
+				return $this->redirect(array('action' => 'index'));
+			}
+		} else {
+			//Vuelve a cargar el usuario.
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
 		}
 	}
 

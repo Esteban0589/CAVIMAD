@@ -170,7 +170,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                 </div> 
                 
                 <!--Parte a refrescar-->
-                <a href="javascript:catalogo()" >  <h2 >Catalogo virtual</h2> </a>
+                <a href="javascript:catalogo()" >  <h2 >Catálogo virtual</h2> </a>
                 <div id="secciones" class="col-lg-9 col-md-9">
                 </div>
             </div>

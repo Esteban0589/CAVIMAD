@@ -42,6 +42,7 @@ h5   {margin: 0px;}
 					<?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 	
 		            <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el taxón",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+
 					</h5>
 	
 				<!--</div>-->
@@ -298,7 +299,7 @@ h5   {margin: 0px;}
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['globaldistribution'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['observation'])); ?></div>
-						<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Géneros relacionados</button>
+						<!--<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Géneros relacionados</button>-->
 						
 					<?php	} ?>
 					
@@ -320,9 +321,13 @@ h5   {margin: 0px;}
 						<div class= "texto"><?php echo nl2br(h($datosGenero['globaldistribution'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosGenero['observation'])); ?></div>
-						<h5>Descargable de especies:</h5> 
-        				<?php echo $this->Html->link('PDF especies', array('controller' => 'categories', 'action' => 'viewdown', $datosGenero['id'],true));?>
-					<?php	} ?>
+						<!--<h5>Descargable de especies:</h5> -->
+        				<!--<?php echo $this->Html->link('PDF especies', array('controller' => 'categories', 'action' => 'viewdown', $datosGenero['id'],true));?>-->
+						<?php	} ?>
+					
+					
+						<?php echo $this->Html->link('Ir a galería', array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']));?>
+					
 					<br>
 				</div>
 				

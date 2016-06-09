@@ -27,6 +27,7 @@
 					<div class="row">
 						<?php if($this->Session->read('role') =='Administrador'): ?>
 							<div class="pictures form col-md-6">
+						<?php if($id != null): ?>
 						<?php echo $this->Form->create('Picture', array('url'=>'add','type'=>'file', 'novalidate'=>'novalidate')); ?>
 						
 						<!--$this->Form->create('Category', array('url'=>'redirect_to_methods')-->
@@ -49,6 +50,7 @@
 							</fieldset>
 							<br>
 							<?php echo $this->Form->end(array('label'=>'Guardar imagen', 'class'=>'btn btn-success','title'=>'Guardar imagen en galeria')); ?>
+						<?php endif; ?>
 						</div>
 						<?php endif; ?>
 							  

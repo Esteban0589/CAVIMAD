@@ -111,7 +111,14 @@ class Gender extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+	/*	'CountryGender' => array(
+			'className' => 'CountryGender',
+			'foreignKey' => 'gender_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),*/
 	);
 
 /**
@@ -122,6 +129,19 @@ class Gender extends AppModel {
 	public $hasMany = array(
 		'Species' => array(
 			'className' => 'Species',
+			'foreignKey' => 'gender_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'CountryGender' => array(
+			'className' => 'CountryGender',
 			'foreignKey' => 'gender_id',
 			'dependent' => false,
 			'conditions' => '',

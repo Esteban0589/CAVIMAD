@@ -32,10 +32,21 @@ class PicturesController extends AppController {
  */
 	public function view($id = null) {
 		$this->loadModel('Gender');
-		$idCategoriaenGender = $this->Gender->find('first', array('conditions' => array('Gender.category_id' => $id)));
+		$this->loadModel('Family');
+		$this->loadModel('Category');
+		//$cat = $this->Category->find(array('conditions' => array('Category.id' => $id)));
+		//$this->set('category', $cat);
+
+		$idCategoriaenGender = $this->Gender->find('first',array('conditions' => array('Gender.category_id' => $id)));
+		/*if($idCategoriaenGender == null) {
+			$idCategoriaenFamily = $this->Family->find('first',array('conditions' => array('Gender.category_id' => $id)));
+		}*/
+		
+		
 		$id = $idCategoriaenGender['Gender']['id'];
 		$fotosGenero = $this->Picture->find('all', array('conditions' => array('Picture.genre_id' => $id)));
 		// return debug($fotosGenero);
+		//debug($fotosGenero);
 		$this->set('pictures', $fotosGenero);
 		$this->set('id', $id);
 		

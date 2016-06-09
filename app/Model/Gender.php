@@ -13,7 +13,22 @@ class Gender extends AppModel {
  *
  * @var array
  */
+
 	public $validate = array(
+		'report' => array(
+        'rule1' => array(
+            'rule'    => array(
+            'extension',array('pdf')),
+            'message' => 'Please upload pdf file only'
+         ),
+        'rule2' => array(
+            'rule'    => array('fileSize', '<=', '4MB'),
+            'message' => 'File must be less than 4MB'
+        )
+    ),
+		
+		
+		
 		'characteristic' => array(
 			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
 			'alphaNumeric' => array(
@@ -96,7 +111,14 @@ class Gender extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+	/*	'CountryGender' => array(
+			'className' => 'CountryGender',
+			'foreignKey' => 'gender_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),*/
 	);
 
 /**
@@ -107,6 +129,19 @@ class Gender extends AppModel {
 	public $hasMany = array(
 		'Species' => array(
 			'className' => 'Species',
+			'foreignKey' => 'gender_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'CountryGender' => array(
+			'className' => 'CountryGender',
 			'foreignKey' => 'gender_id',
 			'dependent' => false,
 			'conditions' => '',

@@ -38,7 +38,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
-        $this->Auth->allow('add','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador','about','contact');
+        $this->Auth->allow('add','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador','about','contact','form_contact');
     }
     
 	/**

@@ -26,7 +26,7 @@
                                 
                                 <div class="news-body">
                                 
-                                    <p>
+                                    <p align="justify">
                                     Estamos felices de recibir todos sus correos electrónicos. Por favor, use este formulario para enviarnos sus comentarios, sugerencias, dudas u opiniones. O bien, si prefiere, envíenos un correo a la dirección electrónica
                                     <strong><a href="mailto:cavimad.cr@gmail.com"> cavimad.cr@gmail.com </a></strong> y trataremos de responderle con la mayor brevedad posible. 
                                     </p>
@@ -50,7 +50,7 @@
                                     <h6>Escríbanos</h6>
                                     
                                     <form id="contactform" method="post" action="users/form_contact">
-                                    	<!--<?//php echo $this->Form->create('Users', array('class'=>'form-horizontal');?>-->
+                                    	
                                         <div class="row"><!-- starts row -->
                                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                 <label for="contactName"><span class="required">*</span> Nombre</label>
@@ -65,7 +65,7 @@
                                         <div class="row"><!-- starts row -->
                                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                 <label for="contactPhone">Número telefónico</label>
-                                                <!--<input type="number" aria-required="true" size="30" value="" name="contactPhone" id="contactPhone" class="form-control" placeholder = "Opcional" />-->
+                                                <input type="number" aria-required="true" size="30" value="" name="contactPhone" id="contactPhone" class="form-control" placeholder = "Opcional" />
                                             </div>
                                         </div><!-- ends row -->
                                         

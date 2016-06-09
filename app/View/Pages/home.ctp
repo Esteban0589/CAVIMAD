@@ -264,7 +264,7 @@
                                     	<i class="custom-button-icon fa fa-check-square-o"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Registrarse</span>
-                                            <span class="custom-button-tagline">Únase a la comunidad cuando desee</span>
+                                            <span class="custom-button-tagline">Únase a la comunidad cuando desee.</span>
                                         </span>
                                         <em></em>
                                     </a>
@@ -273,16 +273,16 @@
                                     	<i class="custom-button-icon fa  fa-play-circle-o"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Iniciar Sesión</span>
-                                            <span class="custom-button-tagline">Estamos felices con su regreso</span>
+                                            <span class="custom-button-tagline">Estamos felices con su regreso.</span>
                                         </span>
                                         <em></em>
                                     </a>
                                     
-                                	<a href="#" class="custom-button cb-yellow" title="Contáctese con nosotros">
+                                	<a href="users/contact" class="custom-button cb-yellow" title="Contáctese con nosotros">
                                     	<i class="custom-button-icon fa  fa-leaf"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Contacto</span>
-                                            <span class="custom-button-tagline">Contáctenos para tener mayor información</span>
+                                            <span class="custom-button-tagline">Contáctenos para tener mayor información.</span>
                                         </span>
                                         <em></em>
                                     </a>

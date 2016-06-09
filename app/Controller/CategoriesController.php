@@ -966,6 +966,8 @@ class CategoriesController extends TreeMenuAppController {
       */
 	public function search_data(){
 	    $this->loadModel('Picture');
+	    $this->loadModel('Gender');
+	    $this->loadModel('CountryGender');
 	    $conditions=array();
 	    
 	    $order=($this->request->pass[0]);//Nombre de orden.
@@ -979,7 +981,40 @@ class CategoriesController extends TreeMenuAppController {
             $condition=explode(' ', trim($search3));
             $condition=array_diff($condition,array(''));
             if($family!=-1){
-                $result2 = $this->Category->children($family);
+                $result3 = $this->Category->children($family);
+                
+                if($country!=-1){
+                        $i = 0;
+                        $i2= 0;
+                        foreach($result3 as $results){
+                            $catId = $result3[$i]['Category']['id'];
+                            $var = $this->Gender->find('all',array('recursive'=>0, 'conditions'=>array('Gender.category_id '=> $catId)));
+                            if(count($var)>0){
+                                $CondPaises[] = array(
+                                    "AND" => array(
+                                        array('CountryGender.'.$country    => 1),
+                                        array('CountryGender.gender_id'    => $var[0]['Gender']['id']),
+                                    )
+                                );
+                                if(count($this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises)))>0){
+                                    $result2[$i2] = $result3[$i] + $this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises))[0];
+                                    $i2++;
+                                    
+                                }
+                            }
+        			        unset($catId);
+        			        unset($CondPaises);
+        			        unset($var);
+        			        $i++;
+        			    }
+                    }
+                    else{
+                        $result2=$result3;
+                    }
+                
+                
+                
+                
             }
             else{
                 if($order!=-1){
@@ -1009,25 +1044,56 @@ class CategoriesController extends TreeMenuAppController {
     				}
                     $result = $this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions));
             }
-          /*  if($country!=-1){
-                $this->loadModel('Family');
-                $this->loadModel('Gender');
-                $conditions[] = array("AND" => array(
-                    array('Gender.familie_id '=> 'Family.id'),
-                    array('Family.cateogrie_id '=> 'Category.parent_id')));
-                    $conditions[] = array("AND" => array(array('Category.id '=>$family)));
-            }*/
         }
         else{
             if($genre!=-1){
-                $result = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$genre)));
-                
-            }
+                $result = $this->Gender->find('all',array('recursive'=>0, 'conditions'=>array('Gender.category_id '=>$genre)));
+				if($country=!-1){
+    				$CondPaises[] = array(
+                        "AND" => array(
+                			array('CountryGender.'.$country    => 1),
+                			array('CountryGender.gender_id'    => $result[0]['Gender']['id']),
+                		)
+                    );
+                    $result[0] = $result[0]+ $this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises))[0];
+				}
+				    
+			}
             else{
                 if($family!=-1){
-                    $result = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$family)));
-                    $result = $result + $this->Category->children($family);
                     
+                    $result2 = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$family)));
+                    $result2 = $result2 + $this->Category->children($family);
+                    if($country!=-1){
+                        $i = 0;
+                        $i2= 0;
+                        foreach($result2 as $results){
+                            $catId = $result2[$i]['Category']['id'];
+                            $var = $this->Gender->find('all',array('recursive'=>0, 'conditions'=>array('Gender.category_id '=> $catId)));
+                            if(count($var)>0){
+                                $CondPaises[] = array(
+                                    "AND" => array(
+                                        array('CountryGender.'.$country    => 1),
+                                        array('CountryGender.gender_id'    => $var[0]['Gender']['id']),
+                                    )
+                                );
+                                if(count($this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises)))>0){
+                                    $result[$i2] = $result2[$i] + $this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises))[0];
+                                    $i2++;
+                                    
+                                }
+                            }
+        			        unset($catId);
+        			        unset($CondPaises);
+        			        unset($var);
+        			        $i++;
+        			    }
+        			    debug($result);
+        			//    debug($result2);
+                    }
+                    else{
+                        $result=$result2;
+                    }
                 }
                 else{
                     if($order!=-1){

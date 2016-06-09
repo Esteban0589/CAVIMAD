@@ -2,6 +2,7 @@
 
 App::uses('AppController', 'Controller');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
+
 /**
  * Users Controller
  * 
@@ -37,7 +38,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
-        $this->Auth->allow('add','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador');
+        $this->Auth->allow('add','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador','about','contact');
     }
     
 	/**
@@ -418,7 +419,7 @@ class UsersController extends AppController {
 	                        $data['subject'] = 'Activación de cuenta';
 	                        $data['body'] = array('user_data' => $user_data);
 	                        $data['template'] = 'activate_account';
-	                        $output =$this->send_mail($data);
+	                        $output =$t0his->send_mail($data);
 	
 	                            if($output){
 	                            	//Se notifica al usuario que la cuenta fue creada con éxito
@@ -557,24 +558,34 @@ class UsersController extends AppController {
 	{
 		$Email = new CakeEmail();
         $Email->config('gmail');
-        $Email_to = $email_data['to'];
-		$Email_subject = $email_data['subject'];
-		$Email_template = $email_data['template'];
-		
-		$Email->to($email_data['to']);
-		$Email->subject($email_data['subject']);
-		$Email->template('$Email_template');
-		$Email->from('cavimad@noreply.com');
-		$Email->template($email_data['template']);
-		//Los parámetros para envíos pueden ser un arreglo o parámetro simple. En caso de querer actualizar los datos enviados (variables), actualizar este 
-		//código.
-		if (!empty($email_data['body']['user_data']))
+        
+		if(empty($email_data['name']))
 		{
-			$Email->viewVars (array('user_data' => $email_data['body']['user_data']));
+			$Email->to($email_data['to']);
+			$Email->subject($email_data['subject']);
+			$Email->template('$Email_template');
+			$Email->from('cavimad@noreply.com');
+			$Email->template($email_data['template']);
+			//Los parámetros para envíos pueden ser un arreglo o parámetro simple. En caso de querer actualizar los datos enviados (variables), actualizar este 
+			//código.
+			if (!empty($email_data['body']['user_data']))
+			{
+				$Email->viewVars (array('user_data' => $email_data['body']['user_data']));
+			}
+			else
+			{
+				$Email->viewVars (array('ms' => $email_data['body']['ms']));
+			}
 		}
 		else
 		{
-			$Email->viewVars (array('ms' => $email_data['body']['ms']));
+			//En caso de que sea un correo hacia los administradores del sitio.
+			$Email->to($email_data['to']);
+			$Email->subject($email_data['subject']);
+			$Email->template('$Email_template');
+			$Email->from($email_data['from']);
+			$Email->template($email_data['template']);
+			$Email->viewVars (array('user_data' => $email_data['body']['user_data']));
 		}
 		$Email-> emailFormat ('html');
 		if ($Email->send())   
@@ -638,7 +649,7 @@ class UsersController extends AppController {
                         //Parámetros para enviar el correo eletrónico.
                         $this->set('ms', $ms);    
                                                                     
-                        $data = array();
+                       
                         $data = array();
                         $user_data = array();
 		                $user_data['name'] = $fu['User']['name'];
@@ -678,6 +689,59 @@ class UsersController extends AppController {
                 }
             }
         }    
+	}
+	
+	
+	/**
+	 * contact method
+	 *
+	 * Permite al usuario enviar un correo electronico a los administradores del sitio.
+	 * 
+	 * @throws NotFoundException
+	 * @params $token
+	 * @return void
+	 */
+	public function contact(){
+		//Se verifica que exista una sesión activa
+		// if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null ) ) {
+		// 	//Se maneja la excepción en caso de que no haya un usuario en la sesión
+		// 	throw new NotFoundException(__('Es necesario estar registrado para esta sección.'));
+		// 	//Se redirige al home de la página
+		// 	return $this->redirect(array('controller' => 'pages','action' => 'display'));
+		// }
+
+	}
+	
+	public function form_contact(){
+		
+		//$User = $this->User->read(null,$id);
+		$data = array();
+		$user_data = array();
+		$data['to'] = 'cavimad.cr@gmail.com';
+		$data['subject'] = $this->request->data['contactSubject'];
+		$user_data['from'] = $this->request->data['email'];
+		$user_data['phone'] = $this->request->data['contactPhone'];
+		$user_data['body'] = $this->request->data['comments'];
+		$user_data['name'] = $this->request->data['name'];
+		$this->set('user_data', $user_data);  
+		$data['body'] = array('user_data' => $user_data);
+		$data['template'] = 'contact';  
+		//debug($this->request->data);
+		$output =$this->send_mail($data);
+
+        if($output){
+          	//Se notifica al usuario si el correo fue enviado correctamente
+              $this->Flash->success(__('Muchas gracias, su comentario se envío correctamente.'));
+              $this->redirect(array('controller' => 'pages','action' => 'display'));
+        }
+        else {
+          	//En el caso de algún error, se le notifica al usuario que el correo no pudo ser enviado
+          $this->Flash->set('Hubo un error al procesar su comentario. Por favor intente nuevamente en unos minutos.');
+          $this->redirect(array('controller'=>'users','action'=>'contact'));
+        	
+        }
+		
+
 	}
 	
 	/**

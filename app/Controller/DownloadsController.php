@@ -31,6 +31,32 @@ class DownloadsController extends AppController{
     $this->Session->setFlash(__('Unable to add your Report.'));
     }
  }
+ 
+ 
+      public function add2() {
+      $this->loadModel('Category');
+         if ($this->request->is('post')) {
+            //return debug($this->request->data);
+            $this->Download->create();
+        if(empty($this->data['Download']['report']['name'])){
+            unset($this->request->data['Download']['report']);
+        }
+        if(!empty($this->data['Download']['report']['name'])){
+           $file=$this->data['Download']['report'];
+           $file['name']=$this->sanitize($file['name']);
+           $this->request->data['Download']['report'] = time().$file['name'];
+          
+            if($this->Download->save($this->request->data)) {
+                move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. time().$file['name']);  
+                //$this->Session->setFlash(__('Your Report has been saved.'));
+                return $this->redirect(array('controller'=>'Categories','action' => 'add'));
+            
+             }
+         }
+        $this->Session->setFlash(__('Unable to add your Report.'));
+        }
+    }
+ 
     
     function sanitize($string, $force_lowercase = true, $anal = false) {
     $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]","}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;","â€”", "â€“", ",", "<",">", "/", "?");

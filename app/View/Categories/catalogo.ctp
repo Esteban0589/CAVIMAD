@@ -8,11 +8,11 @@
 						 	<h4 style = "margin: 0px;">Insectos</h4>
                     <div class="thumbnail"> 
 
-							<?php echo "<a href= 'categories/view/68'>"; ?>
+							<?php echo "<a href= 'categories/view2/68'>"; ?>
 							<?php echo $this->Html->image('../files/category/default.PNG'); ?>
 						 	<?php echo "</a>";?>
 						 	
-                            <span class="text-content"><span>Descripcion de enlace especifico  </span></span>
+                            <span class="text-content"><span>Descripción de enlace específico  </span></span>
 					 	
 					</div>                            
                 </div>
@@ -23,10 +23,10 @@
 						 	<h4 style = "margin: 0px;">Crustáceos </h4>
                     <div class="thumbnail"> 
 
-							<?php echo "<a href= 'categories/view/68'>"; ?>
+							<?php echo "<a href= 'categories/view2/68'>"; ?>
 							<?php echo $this->Html->image('../files/category/default.PNG'); ?>
 						 	<?php echo "</a>";?>
-                            <span class="text-content"><span>Descripcion de enlace especifico  </span></span>
+                            <span class="text-content"><span>Descripción de enlace específico </span></span>
 					 	
 					</div>                            
                 </div>
@@ -37,10 +37,10 @@
 						 	<h4 style = "margin: 0px;">Ácaros  </h4>
                     <div class="thumbnail"> 
 
-							<?php echo "<a href= 'categories/view/68'>"; ?>
+							<?php echo "<a href= 'categories/view2/68'>"; ?>
 							<?php echo $this->Html->image('../files/category/default.PNG'); ?>
 						 	<?php echo "</a>";?>
-                            <span class="text-content"><span>Descripcion de enlace especifico  </span></span>
+                            <span class="text-content"><span>Descripción de enlace específico  </span></span>
 					 	
 					</div>                            
                 </div>
@@ -51,10 +51,10 @@
 				 	<h4 style = "margin: 0px;">Molúscos  </h4>
                     <div class="thumbnail"> 
 
-							<?php echo "<a href= 'categories/view/68'>"; ?>
+							<?php echo "<a href= 'categories/view2/68'>"; ?>
 							<?php echo $this->Html->image('../files/category/default.PNG'); ?>
 						 	<?php echo "</a>";?>
-                            <span class="text-content"><span>Descripcion de enlace especifico  </span></span>
+                            <span class="text-content"><span>Descripción de enlace específico  </span></span>
 					 	
 					</div>                            
                 </div>
@@ -65,10 +65,10 @@
 				 	<h4 style = "margin: 0px;">Sanguijuelas  </h4>
                     <div class="thumbnail"> 
 
-							<?php echo "<a href= 'categories/view/68'>"; ?>
+							<?php echo "<a href= 'categories/view2/68'>"; ?>
 							<?php echo $this->Html->image('../files/category/default.PNG'); ?>
 						 	<?php echo "</a>";?>
-                            <span class="text-content"><span>Descripcion de enlace especifico  </span></span>
+                            <span class="text-content"><span>Descripción de enlace específico  </span></span>
 					 	
 					</div>                            
                 </div>
@@ -79,10 +79,10 @@
 				 	<h4 style = "margin: 0px;">Otros  </h4>
                     <div class="thumbnail"> 
 
-							<?php echo "<a href= 'categories/view/68'>"; ?>
+							<?php echo "<a href= 'categories/view2/68'>"; ?>
 							<?php echo $this->Html->image('../files/category/default.PNG'); ?>
 						 	<?php echo "</a>";?>
-                            <span class="text-content"><span>Descripcion de enlace especifico  </span></span>
+                            <span class="text-content"><span>Descripción de enlace específico  </span></span>
 					 	
 					</div>                            
                 </div>

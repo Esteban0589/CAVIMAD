@@ -164,7 +164,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                              <div = "Accesa a la sección de colaboradores."><a href="users/view_colaboradores" title="">Colaboradores</a></div>
                         </li>
                         <li>
-                             <div = "Accesa a la sección de referencias."><a href="" title="">Referencias</a></div>
+                             <div = "Accesa a la sección de referencias."><a href="downloads/index" title="">Referencias</a></div>
                         </li>
                         <li>
                              <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>

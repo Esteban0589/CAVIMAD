@@ -123,7 +123,7 @@ a{
 						<!--Nombre descripcion de taxón-->
 						<td class="col col-sm-6">
 							<?php echo substr($son['Category']['description'],0,200); ?> 
-							<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >...más</a>
+							<a style="color: #FFFFFF;padding: inherit;" title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >...más</a>
 
 						</td>
 						<!--Acciones-->
@@ -143,10 +143,12 @@ a{
     <?php if($category['Category']['classification'] =='Genero'): ?>
     <button title=\"Ver perfil principal de taxón\" class="btn btn-mini btn-primary col col-sm-2">
     	
-    	<a style="color: #FFFFFF;" href="javascript:view(<?php echo $category['Category']['id']?>)" >
+    	<a style="color: #FFFFFF;padding: inherit;" href="javascript:view(<?php echo $category['Category']['id']?>)" >
     		Ver perfil
     	</a>
     	<!--<button title=\"Ver perfil principal de taxón\" class="btn btn-mini btn-primary col col-sm-2"  href="javascript:view(<?php echo $category['Category']['id']?>)"  > </button>-->
     </button>
+    	<br>
+    	<br>
     <?php endif; ?>
 </div>

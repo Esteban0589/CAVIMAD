@@ -175,6 +175,7 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
+        $this->loadModel('Picture');
         //Si el taxón buscado no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
@@ -183,6 +184,55 @@ class CategoriesController extends TreeMenuAppController {
 	    $taxon = $this->Category->find('first', array('conditions' => array('Category.id' => $id)));
 		$this->set('category', $taxon);
 		
+		$clasificacion = $taxon['Category']['classification'];
+		$ids=$taxon['Category']['id'];
+		//return debug($ids);
+		//debug($clasificacion);
+				switch ($clasificacion) {
+				    case "Filo":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.phylo_id' => $ids)));
+				        break;
+				    case "Subfilo":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subphylo_id' => $ids)));
+				        break;
+				    case "Clase":
+				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.class_id' => $ids)));
+				        break;
+				    case "Subclase":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subclass_id' => $ids)));
+				        break;
+				    case "Orden":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.order_id' => $ids)));
+				        break;  
+				    case "Suborden":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.suborder_id' => $ids)));
+				        break;
+				    case "Familia":
+				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.family_id' => $ids)));
+				        break;
+				    case "Subfamilia":
+				         $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subfamily_id' => $ids)));
+				        break;
+				    case "Genero":
+				     $consTem = $this->Gender->find('all', array('recursive' => -1,'conditions' => array('Gender.category_id' => $ids)));
+		             $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.genre_id' => $consTem[0]['Gender']['id'])));
+				        break;
+				    case "Subgenero":
+				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subgenre_id' => $ids)));
+				        break;
+				    default:
+				        // no haga nada
+				} //Cierra switch
+                
+                //return debug($imagenesTaxon);
+        		$pics=[];
+        		for ($j = 0; $j<count($imagenesTaxon); $j++)
+                    {
+                        array_push($pics, $imagenesTaxon);
+                    }
+                //return debug($pics);
+                $this->set('pics',$pics);
+
 		if ($taxon['Category']['classification'] == 'Familia'){
 		    $familiaDatos = $this->Family->find('first', array('conditions' => array('Family.category_id' => $taxon['Category']['id'])));
 		    $this->set('datosFamilia', $familiaDatos['Family']);

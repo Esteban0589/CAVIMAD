@@ -61,9 +61,13 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                  
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
                         <?php if($this->Session->read('role') =='Administrador'): ?>
-                        <div class="btn btn-mini btn-link" title="Ingresar a la sección para administrar los niveles taxonómicos"><a href='/categories/index'>Administar Taxonomía</a></div>
-                        <div class="btn btn-mini btn-link" title="Agregar nivel taxonómico"><a href='/categories/add'>Agregar Taxón</a></div>
-                        
+                            <div class="btn btn-mini btn-link" title="Ingresar a la sección para administrar los niveles taxonómicos" style="background-color: #3891d4;color: white;margin-bottom: 10px;">
+                                <a style= "color: white;" href='/categories/index'>
+                                    Administar Taxonomía
+                                </a>
+                            </div>
+                            <div class="btn btn-mini btn-link" title="Agregar nivel taxonómico" style="background-color: #3891d4;color: white;margin-bottom: 10px;" ><a style= "color: white;" href='/categories/add'>Agregar Taxón</a></div>
+                            <br>
                         <?php endif; ?>
                     </div>
                     
@@ -165,7 +169,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                     
                     </script>
                      
-                    <div id="tree-div" title="Despliega los distintos niveles taxonómicos." style="height:400px;"></div> 
+                    <div id="tree-div" title="Despliega los distintos niveles taxonómicos." style="height:400px;padding-top: 10px;"></div> 
                     <br>
                 </div> 
                 

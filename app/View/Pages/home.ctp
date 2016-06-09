@@ -23,46 +23,50 @@
                             
                             
                             
-                                <div class="item active">
-                                    <img src="img/img5.jpg" alt="Image slide 5" />
-                                    <div class="k-carousel-caption pos-c-2-3 scheme-dark no-bg">
-                                    	<div class="caption-content">
-                                            <h5 class="caption-title title-giant">CAVIMAD</h5>
-                                            <p>
-                                            	Catálogo Virtual sobre Macroinvertebrados Dulceacuícolas de Centroamérica 
-                                            </p>
+                                <!--<div class="item active">-->
+                                <!--    <img src="img/img5.jpg" alt="Image slide 5" />-->
+                                <!--    <div class="k-carousel-caption pos-c-2-3 scheme-dark no-bg">-->
+                                <!--    	<div class="caption-content">-->
+                                <!--            <h5 class="caption-title title-giant">CAVIMAD</h5>-->
+                                <!--            <p>-->
+                                <!--            	Catálogo Virtual sobre Macroinvertebrados Dulceacuícolas de Centroamérica -->
+                                <!--            </p>-->
                                             
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--        </div>-->
+                                <!--    </div>-->
+                                <!--</div>-->
                             
                                  <?php 
+                                 $y=true;
                                  $i=0;
                                  foreach ($imagenesPortada as $imagen):
                                  ?>
-                                 <div class="item">
-                                     <?php echo $this->Html->image('../files/home_picture/image/'.$imagen['HomePicture']['image_dir'] . '/' .$imagen['HomePicture']['image'], array('style'=>'height: 404px; width: 100%;'));  ?>
+                                 <?php if($y){?>
+                                    <div class="item active">
+                                 <?php $y=false; 
+                                 } else { ?>
+                                     <div class="item">
+                                 <?php } ?>
                                     
-                                    
-                                    <div 
-                                        <?php
-                                            if ($imagen['HomePicture']['position'] == 1){
-                                            echo "class=\"k-carousel-caption pos-1-3-right scheme-dark\"";
-                                            }elseif ($imagen['HomePicture']['position'] == 2){
-                                                echo "class=\"k-carousel-caption pos-1-3-left scheme-light\"";
-                                            }else{  echo "style=\"display: none;\"";}?>
-                                    >
-                                    	<div class="caption-content">
-                                            <h5 class="caption-title"> <?php echo $imagen['HomePicture']['title']?> </h5>
-                                            <p>
-                                            	<?php echo $imagen['HomePicture']['description']?>
-                                            </p>
+                                         <?php echo $this->Html->image('../files/home_picture/image/'.$imagen['HomePicture']['image_dir'] . '/' .$imagen['HomePicture']['image'], array('style'=>'height: 404px; width: 100%;'));  ?>
+                                        
+                                        <div 
+                                            <?php
+                                                if ($imagen['HomePicture']['position'] == 1){
+                                                echo "class=\"k-carousel-caption pos-1-3-right scheme-dark\"";
+                                                }elseif ($imagen['HomePicture']['position'] == 2){
+                                                    echo "class=\"k-carousel-caption pos-1-3-left scheme-light\"";
+                                                }else{  echo "style=\"display: none;\"";}?>
+                                        >
+                                        	<div class="caption-content">
+                                                <h5 class="caption-title"> <?php echo $imagen['HomePicture']['title']?> </h5>
+                                                <p>
+                                                	<?php echo $imagen['HomePicture']['description']?>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                 
-                                 
-                                 <?php endforeach; ?>
+                                 <?php  endforeach; ?>
                                 
                             </div><!-- Wrapper for slides end -->
                         

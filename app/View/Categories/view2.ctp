@@ -47,34 +47,43 @@ h5   {margin: 0px;}
 				<!--</div>-->
 	
 				<?php endif; ?>
-					
+
 			</div>
 			
 			
 			<div class="row">
 				<!--Compo contenedor de imagen y mapa-->
 				<div class="col col-sm-5">
-					<div class="row">
-					
-						<?php
-						if((!empty($category['Picture']['image_dir']))&&(count($category['Picture']['image_dir'])>0) ){
-						?>
-							<div class="thumbnail"> 
-								<?php echo $this->Html->image('../files/category/image/' . $category['Picture']['image_dir'].'/'.'thumb_'.$category['Picture']['image']); ?>
-							</div>
-						<?php }	else{ ?>
-							<div class="thumbnail"> 
+				            <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
-								<?php echo "<a href= ''>"; ?>
-								<?php echo $this->Html->image('../files/category/default.PNG'); ?>
-							 	<?php echo "</a>";?>
-	                            <span class="text-content"><span>					<?php echo $this->Html->link(__('Ir a galeria'), array('controller'=>'pictures','action' => 'view', $category['Category']['id'], 'alias'=>$alias), array('title' =>'Ir a galeria de fotos', 'style'=>'color: #FFFFFF;    font-size:25px; ')); ?>
-  </span></span>
-						 	
-						</div>   
-							
-						<?php } ?>
-					</div>
+                            <div class="carousel-inner"><!-- Wrapper for slides -->
+                                 <?php 
+                                 $y=true;
+                                 $i=0;
+                                 foreach ($pics as $imagen):
+                                 ?>
+                                 <?php if($y){?>
+                                    <div class="item active">
+                                 <?php $y=false; 
+                                 } else { ?>
+                                     <div class="item">
+                                 <?php } ?>
+                                    
+                                     <?php echo $this->Html->image('../files/picture/image/' . $imagen[0]['Picture']['image_dir'].'/'.$imagen[0]['Picture']['image']); ?>
+                                    </div>
+                                 <?php  endforeach; ?>
+
+                                
+                            </div><!-- Wrapper for slides end -->
+                        
+
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                            <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                            <!-- Controls end -->
+                            
+                        </div><!-- featured posts slider wrapper end -->
+                        
 					<!--Campo para el mapa-->
 					<div class="row">
 						Mapa de ubicación
@@ -312,6 +321,7 @@ h5   {margin: 0px;}
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosGenero['observation'])); ?></div>
 						<h5>Descargable de especies:</h5> 
+        				<?php echo $this->Html->link('PDF especies', array('controller' => 'categories', 'action' => 'viewdown', $datosGenero['id'],true));?>
 					<?php	} ?>
 					<br>
 				</div>

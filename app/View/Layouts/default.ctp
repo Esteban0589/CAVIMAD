@@ -71,9 +71,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    
  <!--<base href"http://cavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
-    <!--<base href="http://cavimad2-maricelmonge.c9users.io"/>-->
+    <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad2-esteban0589.c9users.io/"/>-->
-    <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
+    <!---<base href="http://cavimad-aivaco.c9users.io/"/>-->
      <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
      <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->
 
@@ -140,7 +140,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 </ul>
             </div>
         </div>
-        
     </div>
     
     <div id="k-head" ><!-- container + head wrapper -->
@@ -149,7 +148,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     	    <div class="row"><!-- row -->
             
-
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
@@ -172,7 +170,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                              <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
                         </li>
                         <li>
-                             <div = "Si desea enviarnos un mensaje."><a href="" title="">Contáctenos</a></div>
+                             <div = "Si desea enviarnos un mensaje."><a href="users/contact" title="">Contáctenos</a></div>
                         </li>
                         <li>
                             <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
@@ -192,8 +190,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </ul>
         
             	</nav><!-- main navig end -->
-            
-
         </div><!-- row end -->
     
         </div>
@@ -409,13 +405,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
      
      <!--<script type="text/javascript" src="DataTables/datatables.min.js"></script>-->
      <script type="text/javascript" src="DataTables/datatables.js"></script>
-     <!--Mapa-->
-     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
-	 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
      
     <?php
     echo $this->Js->writeBuffer(); ?>
-    
     
   </body>
 </html>

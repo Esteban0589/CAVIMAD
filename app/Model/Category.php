@@ -23,6 +23,20 @@ class Category extends TreeMenuAppModel {
         'TreeMenu.Slug' => array('field' => 'name', 'slug_field' => 'slug', 'primary_key' => 'id', 'replacement' => '_', 'DBcheck' => true),
     );
 
+
+    public $validate = array(
+    'report' => array(
+        'rule1' => array(
+            'rule'    => array(
+            'extension',array('pdf')),
+            'message' => 'Please upload pdf file only'
+         ),
+        'rule2' => array(
+            'rule'    => array('fileSize', '<=', '4MB'),
+            'message' => 'File must be less than 4MB'
+        )
+    )
+);
     /**
      * Validation rules
      *

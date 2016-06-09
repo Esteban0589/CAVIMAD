@@ -249,8 +249,6 @@
                                            </div>     
                                     </form>
 
-                    
-                   
                                 
                                     <br>
                                 <a href="/categories/advanced_search2" title="Continuar para realizar una búsqueda con mayor profundidad">Búsqueda Avanzada</a>
@@ -259,35 +257,30 @@
                                 <div title = "Ingrese con su usuario"></div>
                     </div>
                                 <li class="widget-container widget_text"><!-- widget -->
-                                
                                 	<a href="/users/add" class="custom-button cb-green" title="Click para registrarse a la comunidad">
                                     	<i class="custom-button-icon fa fa-check-square-o"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Registrarse</span>
-                                            <span class="custom-button-tagline">Únase a la comunidad cuando desee.</span>
+                                            <span class="custom-button-tagline">Únase a la comunidad cuando lo desee.</span>
                                         </span>
-                                        <em></em>
-                                    </a>
-                                    
-                                	<a href='/users/login' class="custom-button cb-gray" title="Ingrese con su usuario y contraseña">
+                                        <em></em> 
+                                    </a></li>
+                                <li><a href='/users/login' class="custom-button cb-gray" title="Ingrese con su usuario y contraseña">
                                     	<i class="custom-button-icon fa  fa-play-circle-o"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Iniciar Sesión</span>
                                             <span class="custom-button-tagline">Estamos felices con su regreso.</span>
                                         </span>
                                         <em></em>
-                                    </a>
-                                    
-                                	<a href="users/contact" class="custom-button cb-yellow" title="Contáctese con nosotros">
+                                </li></a>
+                                <li><a href="users/contact" class="custom-button cb-yellow" title="Contáctese con nosotros">
                                     	<i class="custom-button-icon fa  fa-leaf"></i>
                                         <span class="custom-button-wrap">
                                         	<span class="custom-button-title">Contacto</span>
                                             <span class="custom-button-tagline">Contáctenos para tener mayor información.</span>
                                         </span>
                                         <em></em>
-                                    </a>
-                            
-                                
+                                </li></a>
                             </ul><!-- widgets end -->
                         
                         </div><!-- inner custom column end -->

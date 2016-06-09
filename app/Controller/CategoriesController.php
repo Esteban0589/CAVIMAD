@@ -651,6 +651,7 @@ class CategoriesController extends TreeMenuAppController {
 				}
 				// de  los resultado de la búsqueda, busque recursivamente todos que cumplan las condiciones
 				$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
+				debug($resultado);
 				$i = 0;
 				// para cada resultado encontrado por categoría según el id regrese la categoría y la imagen
 				foreach($resultado as $resultados){
@@ -1207,9 +1208,11 @@ class CategoriesController extends TreeMenuAppController {
 			if(count($result)>0){
 			    $i = 0;
 			    $this->loadModel('Picture');
+			    
 			    //debug($result);
 			    foreach($result as $results){
-				    $catId = $result[$i]['Category']['id'];
+			        
+				    $catId = $result[$i]['Gender']['id'];
 				    $idConditions[] = array(
                         "OR" => array(
             				array('Picture.phylo_id'    => $catId),
@@ -1225,6 +1228,7 @@ class CategoriesController extends TreeMenuAppController {
             				array('Picture.subgenre_id' => $catId)
             			)
                     );
+                    debug($idConditions);
 					if($this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions))){
 					    $pics = $this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions));
 					    //debug($pics);
@@ -1242,7 +1246,7 @@ class CategoriesController extends TreeMenuAppController {
 					$i++;
 					unset($idConditions);
 				}
-				//debug($result);
+				debug($result);
 				$this->set('resultados',$result);
 			}
 			else{

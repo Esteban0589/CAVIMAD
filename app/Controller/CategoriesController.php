@@ -129,7 +129,6 @@ class CategoriesController extends TreeMenuAppController {
                 //	return $this->debugController($this->request->data);
                 	$this->Family->saveAll($this->request->data['Family']['0']);
                 	
-
                 }
                 if($this->request->data['Category']['classification'] == 'Genero'){
                     $this->request->data['Gender']['0']['category_id']= $this->Category->id;
@@ -161,6 +160,9 @@ class CategoriesController extends TreeMenuAppController {
             $this->set('classification', $this->classification);
     }
     
+
+
+    
     /**
      * view method
      *
@@ -169,7 +171,7 @@ class CategoriesController extends TreeMenuAppController {
      * @param string $id
      * @return void
      */
-    public function view($id = null) {
+ public function view($id = null) {
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
@@ -219,7 +221,6 @@ class CategoriesController extends TreeMenuAppController {
                     array_push($countries,7);
                 if($info_countries["CountryGender"]["panama"] && !in_array(8,$countries))
                     array_push($countries,8);
-
             }
 		    $this->set('countries',$countries);
 		}
@@ -262,8 +263,6 @@ class CategoriesController extends TreeMenuAppController {
 		//$pic=$this->set('category', $this->Picture->find('all', array('conditions' => array('Picture.category_id' => $id))));
 		
 		$this->layout = 'ajax';
-
-
 	}
 	
 	/**
@@ -278,15 +277,61 @@ class CategoriesController extends TreeMenuAppController {
     public function view2($id = null) {
         $this->loadModel('Family');
         $this->loadModel('Gender');
+        $this->loadModel('Picture');
         $this->loadModel('CountryGender');
         //Si el taxón buscado no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
-		}
-	    // despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
-	    $taxon = $this->Category->find('first', array('conditions' => array('Category.id' => $id)));
-	    //debug($taxon);
-		$this->set('category', $taxon);
+		}  
+		// despliega las categorías según lo primero que encuentre en la base y que cumplan la condion del id solicitado.
+		    $taxon = $this->Category->find('first', array('conditions' => array('Category.id' => $id)));
+		 	$this->set('category', $taxon);
+		    $clasificacion = $taxon['Category']['classification'];
+				switch ($clasificacion) {
+				    case "Filo":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.phylo_id' => $id)));
+				        break;
+				    case "Subfilo":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subphylo_id' => $id)));
+				        break;
+				    case "Clase":
+				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.class_id' => $id)));
+				        break;
+				    case "Subclase":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subclass_id' => $id)));
+				        break;
+				    case "Orden":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.order_id' => $id)));
+				        break;  
+				    case "Suborden":
+				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.suborder_id' => $id)));
+				        break;
+				    case "Familia":
+				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.family_id' => $id)));
+				        break;
+				    case "Subfamilia":
+				         $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subfamily_id' => $id)));
+				        break;
+				    case "Genero":
+				     $consTem = $this->Gender->find('all', array('recursive' => -1,'conditions' => array('Gender.category_id' => $id)));
+		             $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.genre_id' => $consTem[0]['Gender']['id'])));
+				        break;
+				    case "Subgenero":
+				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subgenre_id' => $id)));
+				        break;
+				    default:
+				        // no haga nada
+				} //Cierra switch
+
+        		$pics=[];
+        		for ($j = 0; $j<count($imagenesTaxon); $j++)
+                    {
+                        array_push($pics, $imagenesTaxon);
+                    }
+        
+                $this->set('pics',$pics);
+
+	
 		if ($taxon['Category']['classification'] == 'Familia'){
 		    $familiaDatos = $this->Family->find('first', array('conditions' => array('Family.category_id' => $taxon['Category']['id'])));
 		    $this->set('datosFamilia', $familiaDatos['Family']);
@@ -383,6 +428,7 @@ class CategoriesController extends TreeMenuAppController {
     public function edit($id = null) {
         $this->loadModel('Family');
         $this->loadModel('Gender');
+        $this->loadModel('Download');
         $this->Category->id = $id;
         //Si la categoría buscada no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists()) {
@@ -402,9 +448,8 @@ class CategoriesController extends TreeMenuAppController {
                 }
                 if($this->request->data['Category']['classification'] == 'Genero'){
                     $this->request->data['Gender']['category_id']= $this->Category->id;
-                	$this->Gender->saveAll($this->request->data['Gender']);
+                    $this->Gender->saveAll($this->request->data['Gender']);
                 }
-
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
@@ -426,12 +471,14 @@ class CategoriesController extends TreeMenuAppController {
         } else {
             
             $this->request->data = $this->Category->read(null, $id);
-            $genero = $this->Gender->find('first', array('recursive'=>-1,'conditions' => array('Gender.category_id' => $id)));
-            $family = $this->Family->find('first', array('recursive'=>-1,'conditions' => array('Family.category_id' => $id)));
-            //debug($genero['Gender'] );
-            $this->request->data['Family'] = $family['Family'];
-            $this->request->data['Gender'] = $genero['Gender'];
-            //$this->request->data=$this->Gender->read(null, $genero['Gender']);
+            if($this->request->data['Category']['classification'] == 'Genero'){
+                $genero = $this->Gender->find('first', array('recursive'=>-1,'conditions' => array('Gender.category_id' => $id)));
+                $this->request->data['Gender'] = $genero['Gender'];
+            }else if($this->request->data['Category']['classification']=='Familia'){
+                $family = $this->Family->find('first', array('recursive'=>-1,'conditions' => array('Family.category_id' => $id)));
+                $this->request->data['Family'] = $family['Family'];
+            }
+
             
         }
         // busca el padre de las categorías y genera el árbol
@@ -440,6 +487,8 @@ class CategoriesController extends TreeMenuAppController {
         $this->set('classification', $this->classification);
     }
 
+
+        
     /**
      * delete method
      *

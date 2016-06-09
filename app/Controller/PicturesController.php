@@ -52,12 +52,14 @@ class PicturesController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) { 
-		 //debug($this->request->data);
-		 //debug($this->request->data['Picture']['genre_id']);
-			
+		$this->loadModel('Gender');
+		if (($this->request->is('post')) && ($this->request->data['Picture']['image']['name'] != '')) { 
 			$this->loadModel('Category');
-			$this->loadModel('Gender');
+			
+			 //debug($this->request->data);
+			 //debug($this->request->data['Picture']['genre_id']);
+			
+			
 			
 			$categoryId = $this->Gender->find('first', array('conditions' => array('Gender.id' => $this->request->data['Picture']['genre_id'])));
 			$phylo = null;
@@ -139,6 +141,11 @@ class PicturesController extends AppController {
 			} else {
 			$this->Flash->error(__('La imagen no pudo ser guardada. Intentelo nuevamente.'));
 			}
+		} else {
+			$this->Flash->error(__('La imagen no pudo ser guardada. Intentelo nuevamente.'));
+				$idCategoriaenGender = $this->Gender->find('first', array('conditions' => array('Gender.id' => $this->request->data['Picture']['genre_id'])));
+				$id = $idCategoriaenGender['Gender']['category_id'];
+				return $this->redirect(array('action' => 'view',$id));
 		}
 	}
 

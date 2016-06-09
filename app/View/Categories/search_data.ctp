@@ -7,7 +7,7 @@
 			
 				<div class="col-lg-6 col-md-6">
 					<!--Parte del texto-->
-					<div title ="Seleccione para ir a la vista completa de la información del taxón"><b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'Category','action' => 'view',$resultado['Category']['id']));?></b></div>
+					<div title ="Seleccione para ir a la vista completa de la información del taxón"><b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'Category','action' => 'view2',$resultado['Category']['id']));?></b></div>
 					<ul>
 						
 							<div>
@@ -20,6 +20,7 @@
 								<p style="text-indent:60px">
 									<?php echo substr($resultado['Category']['description'],0,300); ?>
 								</p>
+								<?php echo "<a href= 'categories/view2/".$resultado['Category']['id']."'>...ver más</a>"; ?>
 							</div>
                     </ul>
 				</div>

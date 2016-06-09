@@ -128,7 +128,7 @@ class UsersController extends AppController {
     	//Se revisa primero en la variable $_SESSION si ya hay una sesión activa
     	if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
     		//Si ya hay una sesión activa, se le notifica al usuario que ya ha iniciado sesión
-			$this->Flash->error(__('Su sesión ya esta activa.'));
+			$this->Flash->error(__('Su sesión ya está activa.'));
 			//Se le redirige al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -386,11 +386,11 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function add() {
-		//Se verifica si ya hay una sesión activa
-		if (  (!empty($_SESSION['role'])) && ($_SESSION['role'] != null)  ) {
-			//Se le notifica al usuario que ya se encuentra registrado
-			throw new NotFoundException(__('Ya estás registrado.'));
-			//Se procede a redirgir al home de la página
+	//Se revisa primero en la variable $_SESSION si ya hay una sesión activa
+    	if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
+    		//Si ya hay una sesión activa, se le notifica al usuario que ya ha iniciado sesión
+			$this->Flash->error(__('Su sesión ya está activa.'));
+			//Se le redirige al home de la página
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
 		//Guarda en role la variable $this->roles

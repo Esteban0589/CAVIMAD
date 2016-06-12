@@ -74,7 +74,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad2-esteban0589.c9users.io/"/>-->
     <!---<base href="http://cavimad-aivaco.c9users.io/"/>-->
-     <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
+     <base href="http://cavimad-julioczar0.c9users.io/"/>
      <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->
 
          <!--<base href="http://cavimad.biologia.ucr.ac.cr/"/>-->

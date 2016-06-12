@@ -1,5 +1,22 @@
 <?php 
 class Download extends AppModel{
+    
+    /**
+ * Download Model
+ * 
+ * Modelo que contiene las validaciones de los campos de Download.
+ *
+ * @property Administrator $Administrator
+ * @property Picture $Picture
+ */
+   
+   /**
+	 * validate
+	 * 
+	 * Manejo de los archivos
+	 * @var array
+	 */
+    
 public $validate = array(
     'report' => array(
         'rule1' => array(

@@ -79,7 +79,7 @@
                                         <div class="row"><!-- starts row -->
                                             <div class="form-group clearfix col-lg-12">
                                                 <label for="contactComments"><span class="required">*</span> Mensaje</label>
-                                                <textarea aria-required="true" rows="5" cols="45" name="comments" id="comments" class="form-control requiredField mezage"></textarea>
+                                                <textarea aria-required="true" rows="5" cols="45" name="comments" id="comments" class="form-control requiredField mezage" placeholder = "Use este espacio para dejarnos su mensaje" required></textarea>
                                             </div>
                             
                                             <div class="form-group clearfix col-lg-12 text-right remove-margin-bottom">

@@ -58,26 +58,30 @@ h5   {margin: 0px;}
 				            <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
                             <div class="carousel-inner"><!-- Wrapper for slides -->
-                                 <?php 
-                                 $y=true;
-                                 $i=0;
-                                 foreach ($pics as $imagen):
-                                 ?>
-                                 <?php if($y){?>
-                                    <div class="item active">
-                                 <?php $y=false; 
-                                 } else { ?>
-                                     <div class="item">
-                                 <?php } ?>
-                                    
-                                     <?php echo $this->Html->image('../files/picture/image/' . $imagen[0]['Picture']['image_dir'].'/'.$imagen[0]['Picture']['image']); ?>
-                                    </div>
-                                 <?php  endforeach; ?>
-
-                                
+                                  <?php 
+			                         $y=true;
+			                         for($i=0; $i<count($pics[0]); $i++){?>
+				                         <?php if($y){?>
+				                            <div class="item active">
+				                         <?php $y=false; 
+				                         } else { ?>
+				                             <div class="item">
+				                         <?php } ?>
+				                            <?php
+				                            if((!empty('../files/picture/image/' . $pics[0][$i]['Picture']['image_dir']))){?>
+				                          	  <div class="thumbnail"> 
+				                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics[0][$i]['Picture']['image_dir'].'/'.$pics[0][$i]['Picture']['image']); ?>
+				                           		</div>
+				                          	<?php }	else{ ?>
+												<div class="thumbnail"> 
+													<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+												</div>
+				                           	<?php  } ?>	
+				                            </div>
+			                     <?php } ?>
+			                     
                             </div><!-- Wrapper for slides end -->
                         
-
                             <!-- Controls -->
                             <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
                             <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>

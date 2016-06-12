@@ -228,9 +228,10 @@ class CategoriesController extends TreeMenuAppController {
         		$pics=[];
         		for ($j = 0; $j<count($imagenesTaxon); $j++)
                     {
-                        array_push($pics, $imagenesTaxon);
+                        if(!in_array($imagenesTaxon,$pics))
+                            array_push($pics, $imagenesTaxon);
                     }
-                //return debug($pics);
+//                return debug($pics[0][0]);
                 $this->set('pics',$pics);
 
 		if ($taxon['Category']['classification'] == 'Familia'){
@@ -374,11 +375,11 @@ class CategoriesController extends TreeMenuAppController {
 				} //Cierra switch
 
         		$pics=[];
-        		for ($j = 0; $j<count($imagenesTaxon); $j++)
-                    {
+    			for ($j = 0; $j<count($imagenesTaxon); $j++)
+                {
+                    if(!in_array($imagenesTaxon,$pics))
                         array_push($pics, $imagenesTaxon);
-                    }
-        
+                }
                 $this->set('pics',$pics);
 
 	

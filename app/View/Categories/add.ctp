@@ -126,6 +126,15 @@
 								
 									<?php echo $this->Form->input('Family.0.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
 				
+									<?php echo $this->Form->input('Genger.0.countriygender', array('required' => false,'label'=>'Paises','type' => 'select','multiple' => 'checkbox', 'options' => array('Mexico' => 'México',
+                                                                                                    'El Salvador' => 'movies',
+                                                                                                     'Belice' => 'Belize',
+                                                                                                     'Honduras' => 'Honduras',
+                                                                                                    'Guatemala' => 'Guatemala',
+                                                                                                    'Nicaragua' => 'Nicaragua',
+                                                                                                   'Costa Rica' => 'Costa Rica',
+                                                                                                     'Panamá' => 'Panamá'))) ?>
+				
 									<?php echo $this->Form->input('Family.0.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
 									<br>
 
@@ -142,6 +151,15 @@
 									<?php echo $this->Form->input('Gender.0.habitat', array('required' => false,'label'=>'Hábitat','class' => 'form-control','title'=>'Ingrese el nombre del habitad del nivel taxonómico'));?>
 								
 									<?php echo $this->Form->input('Gender.0.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
+									
+									<?php echo $this->Form->input('Genger.0.countriygender', array('required' => false,'label'=>'Paises','type' => 'select','multiple' => 'checkbox', 'options' => array('Mexico' => 'México',
+                                                                                                    'El Salvador' => 'movies',
+                                                                                                     'Belice' => 'Belize',
+                                                                                                     'Honduras' => 'Honduras',
+                                                                                                    'Guatemala' => 'Guatemala',
+                                                                                                    'Nicaragua' => 'Nicaragua',
+                                                                                                   'Costa Rica' => 'Costa Rica',
+                                                                                                     'Panamá' => 'Panamá'))) ?>
 				
 									<?php echo $this->Form->input('Gender.0.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
 									

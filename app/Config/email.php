@@ -88,7 +88,7 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 	*/
-	//Método que permite utilizar una cuenta de Gmail para el envío automático de correos electrónicos.
+	//Arreglo que permite utilizar una cuenta de Gmail para el envío automático de correos electrónicos.
 	public $gmail = array(
 		'host' => 'ssl://smtp.gmail.com',
 		'timeout' => 30,

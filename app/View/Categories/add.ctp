@@ -142,11 +142,21 @@
 									<?php echo $this->Form->input('Gender.0.habitat', array('required' => false,'label'=>'Hábitat','class' => 'form-control','title'=>'Ingrese el nombre del habitad del nivel taxonómico'));?>
 								
 									<?php echo $this->Form->input('Gender.0.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
+									
+									<?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox', 'options' => array(
+																									'belize' => 'Belice',
+                                                                                                    'costa_rica' => 'Costa Rica',
+                                                                                                    'el_salvador' => 'El Salvador',
+                                                                                                    'guatemala' => 'Guatemala',
+                                                                                                    'honduras' => 'Honduras',
+                                                                                                    'Mexico' => 'México',
+                                                                                                    'nicaragua' => 'Nicaragua',
+                                                                                                    'panama' => 'Panamá'))) ?>
 				
 									<?php echo $this->Form->input('Gender.0.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
 									
 									<?php echo $this->Form->input('Gender.0.biologyandecology', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la información sobre biología y ecología del nivel taxonómico. Campo de texto expandible','label'=>'Biologia y ecologia'));?>
-									<small><div class="col-lg-16 col-sm-32"><p aling ="left"><i><a data-toggle="modal" data-target="#ModalPassword">Agregar archivo de especies</a></i></p></div></small>
+									<small><div class="col-lg-16 col-sm-32"><p aling ="left"><i><a data-toggle="modal" data-target="#modalFiles">Agregar archivo de especies</a></i></p></div></small>
 	
 									
 									<br>
@@ -174,7 +184,7 @@
 		</div> 
 	</div>
 	</body>
-	<div id="ModalPassword" class="modal fade" role="dialog">
+	<div id="modalFiles" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
 			<div class="col-md-6">
 		    <!-- Modal content-->

@@ -112,13 +112,6 @@ class Gender extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-	/*	'CountryGender' => array(
-			'className' => 'CountryGender',
-			'foreignKey' => 'gender_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),*/
 	);
 
 /**

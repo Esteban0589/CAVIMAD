@@ -122,7 +122,7 @@
          <br>
          <div title="Seleccione el género por el que desea filtar la búsqueda."><?php echo $this->Form->input('genre', array('empty' => 'Seleccione un género','class'=>'form-control', 'options'=>$genre, 'label'=>'Género: '));?></div>
          <br>
-         <div title="Seleccione el país por el que desea filtar la búsqueda."><?php echo $this->Form->input('country', array('empty' => 'Seleccione un país','class'=>'form-control', 'options'=>array( 'belize'=>'Belice','Costa Rica','El Salvador', 'Guatemala', 'Honduras','México','Panamá'), 'label'=>'País: '));?></div>
+         <div title="Seleccione el país por el que desea filtar la búsqueda."><?php echo $this->Form->input('country', array('empty' => 'Seleccione un país','class'=>'form-control', 'options'=>array( 'belize'=>'Belice','costa_rica'=>'Costa Rica','el_salvador'=>'El Salvador', 'guatemala'=>'Guatemala', 'honduras'=>'Honduras','mexico'=>'México','nicaragua'=>'Nicaragua','panama'=>'Panamá'), 'label'=>'País: '));?></div>
          <br>
          <div title="Introduzca las palabras con las que desea hacer la búsqueda."><?php echo $this->Form->input('search3', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?></div>
          <br>

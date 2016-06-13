@@ -17,7 +17,7 @@ class CountryGendersController extends AppController {
 
 /**
  * index method
- *
+ *	Indexa todos los países pertenecientes a los géneros.
  * @return void
  */
 	public function index() {
@@ -27,7 +27,7 @@ class CountryGendersController extends AppController {
 
 /**
  * view method
- *
+ *	Muestra una vista por cada tupla en caso de ser necesaria.
  * @throws NotFoundException
  * @param string $id
  * @return void
@@ -42,7 +42,7 @@ class CountryGendersController extends AppController {
 
 /**
  * add method
- *
+ *	Permite añadir una nueva tupla a la tabla.
  * @return void
  */
 	public function add() {
@@ -59,7 +59,7 @@ class CountryGendersController extends AppController {
 
 /**
  * edit method
- *
+ *	Permite editar alguna tupla de la tabla CountryGender.
  * @throws NotFoundException
  * @param string $id
  * @return void
@@ -83,7 +83,7 @@ class CountryGendersController extends AppController {
 
 /**
  * delete method
- *
+ *	Elimina una tupla de la tabla correspondiente.
  * @throws NotFoundException
  * @param string $id
  * @return void

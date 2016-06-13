@@ -60,7 +60,7 @@
 								<?php echo $this->Html->link(__('Manejar niveles taxonómicos'), array('action'=>'index', 'alias'=>$alias));?>
 								<span class="divider">/</span>
 							</li>
-						    <li class="active"><?php echo __('Agregar taxón'); ?></li>
+						    <li class="active"><?php echo __('Agregar nuevo taxón'); ?></li>
 						</ul>
 						<!--'novalidate'=>'novalidate'-->
 						<?php echo $this->Form->create('Category', array('class'=>'form-horizontal','onsubmit' => "return confirm(\"Recuerde que la clasificación debe de tener congruencia con respecto a su padre\");", 'enctype'=>'multipart/form-data'));?>
@@ -68,7 +68,7 @@
 							<fieldset>
 							
 							<!--Titulo principal-->
-							<h2><?php echo __('Agregar nivel taxonómico'); ?></h2>
+							<h2><?php echo __('Agregar nuevo taxón'); ?></h2>
 							<!--Nombre-->
 							<div title="Seleccione el taxón padre">
 							<?php echo $this->Form->input('parent_id', array('div'=>'control-group','placeholder'=>'','options'=>$parentCategories,

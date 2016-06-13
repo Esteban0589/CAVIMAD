@@ -1200,7 +1200,7 @@ class CategoriesController extends TreeMenuAppController {
       * @return void
       */
 	public function search_data(){
-	    $this->loadModel('Picture');
+	    $this->loadModel('Picture'); // Se cargan los modelos necesarios para realizar la búsqueda
 	    $this->loadModel('Gender');
 	    $this->loadModel('CountryGender');
 	    $conditions=array();
@@ -1211,16 +1211,18 @@ class CategoriesController extends TreeMenuAppController {
 	    $country=$this->request->pass[3];//Nombre del pais
 	    $search3=$this->request->pass[4];//Nombre a buscar.
         
-        
+        // Si desea buscar por algún término.
         if($search3!=-1){
             $condition=explode(' ', trim($search3));
             $condition=array_diff($condition,array(''));
+            // Si quiere buscar por familia.
             if($family!=-1){
                 $result3 = $this->Category->children($family);
-                
+                // Si se quiere filtrar por país entra a esta sección
                 if($country!=-1){
                         $i = 0;
                         $i2= 0;
+                        // Va resultado por resultado buscando el pais.
                         foreach($result3 as $results){
                             $catId = $result3[$i]['Category']['id'];
                             $var = $this->Gender->find('all',array('recursive'=>0, 'conditions'=>array('Gender.category_id '=> $catId)));
@@ -1231,12 +1233,14 @@ class CategoriesController extends TreeMenuAppController {
                                         array('CountryGender.gender_id'    => $var[0]['Gender']['id']),
                                     )
                                 );
+                                // En el caso de que el taxón sí esté en el país a buscar se mete en los resultados a mostrar
                                 if(count($this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises)))>0){
                                     $result2[$i2] = $result3[$i] + $this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises))[0];
                                     $i2++;
                                     
                                 }
                             }
+                            // Libera variables.
         			        unset($catId);
         			        unset($CondPaises);
         			        unset($var);
@@ -1246,17 +1250,15 @@ class CategoriesController extends TreeMenuAppController {
                     else{
                         $result2=$result3;
                     }
-                
-                
-                
-                
             }
             else{
+                // Caso en el que se quiera buscar por orden
                 if($order!=-1){
                    $result2 = $this->Category->children($order);
                 }
             }
             $i=0;
+            // En caso de encontrar algo por familia, pais u orden, que filtre por nombre.
             if(count($result2)>0){
                 foreach($result2 as $result1){  
                     foreach($condition as $tconditions){
@@ -1268,6 +1270,8 @@ class CategoriesController extends TreeMenuAppController {
                     }
                 }
             }
+            // En caso que no encuentre por pais, familia o orden, ya que no lo mandaron
+            // que busque por término unicamente.
             else{
                 foreach($condition as $tconditions){
     					$conditions[] = array(
@@ -1281,8 +1285,10 @@ class CategoriesController extends TreeMenuAppController {
             }
         }
         else{
+            // En caso que no envie término alguno, que busque por filtros.
             if($genre!=-1){
                 $result = $this->Gender->find('all',array('recursive'=>0, 'conditions'=>array('Gender.category_id '=>$genre)));
+				// Si se quiere filtrar por país entra a esta sección
 				if($country=!-1){
     				$CondPaises[] = array(
                         "AND" => array(
@@ -1290,11 +1296,13 @@ class CategoriesController extends TreeMenuAppController {
                 			array('CountryGender.gender_id'    => $result[0]['Gender']['id']),
                 		)
                     );
+                    // Se agrega el resultado de la búsqueda del pais
                     $result[0] = $result[0]+ $this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises))[0];
 				}
 				    
 			}
             else{
+                // Si quiere buscar por familia.
                 if($family!=-1){
                     
                     $result2 = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$family)));
@@ -1302,6 +1310,7 @@ class CategoriesController extends TreeMenuAppController {
                     if($country!=-1){
                         $i = 0;
                         $i2= 0;
+                        // Va resultado por resultado buscando el pais.
                         foreach($result2 as $results){
                             $catId = $result2[$i]['Category']['id'];
                             $var = $this->Gender->find('all',array('recursive'=>0, 'conditions'=>array('Gender.category_id '=> $catId)));
@@ -1312,25 +1321,27 @@ class CategoriesController extends TreeMenuAppController {
                                         array('CountryGender.gender_id'    => $var[0]['Gender']['id']),
                                     )
                                 );
+                                // En el caso de que el taxón sí esté en el país a buscar se mete en los resultados a mostrar
                                 if(count($this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises)))>0){
                                     $result[$i2] = $result2[$i] + $this->CountryGender->find('all',array('recursive'=>0, 'conditions'=>$CondPaises))[0];
                                     $i2++;
                                     
                                 }
                             }
+                            // Libera las variables
         			        unset($catId);
         			        unset($CondPaises);
         			        unset($var);
         			        $i++;
         			    }
-        			    debug($result);
-        			//    debug($result2);
                     }
+                    // Si no busca por paises, que iguale las variables.
                     else{
                         $result=$result2;
                     }
                 }
                 else{
+                    // Si se quiere buscar por orden
                     if($order!=-1){
                         $result = $this->Category->find('all',array('recursive'=>0, 'conditions'=>array('Category.id '=>$order)));
                         $result = $result + $this->Category->children($order);
@@ -1339,14 +1350,11 @@ class CategoriesController extends TreeMenuAppController {
             }
         }
 		if($order!=-1||$family!=-1||$genre!=-1||$country!=-1||$search3!=-1){
-		//	$result=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions));
 			if(count($result)>0){
 			    $i = 0;
-			    $this->loadModel('Picture');
-			    
-			    //debug($result);
+			    $this->loadModel('Picture'); // Se carga el modelo de Picture
+			    // Busca las imagenes de cada resultado.
 			    foreach($result as $results){
-			        
 				    $catId = $result[$i]['Gender']['id'];
 				    $idConditions[] = array(
                         "OR" => array(
@@ -1363,32 +1371,35 @@ class CategoriesController extends TreeMenuAppController {
             				array('Picture.subgenre_id' => $catId)
             			)
                     );
-                    debug($idConditions);
+                    // Si encuentra fotos asociadas al taxón a buscar las mete a un arreglo
 					if($this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions))){
 					    $pics = $this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions));
-					    //debug($pics);
+					    // Si se encuentra solamente una foto
 						if(count($pics)==1){
-						    //debug($resultado);
 							$myRandomNumber=0;	
 						}
+						//Si hay más de una foto se debe escoger alguna de manera aleatoria
 						else{
-						    // sino realizar un número aleatorio para encontrar lo solicitado
+						    // Random para realizar la selección
 							$myRandomNumber = rand(0,count($pics)-1);
 						}
 						$pics = $pics[$myRandomNumber];
+						// Se añade la foto seleccionada al arreglo
 						$result[$i]=$result[$i]+$pics;
 					}
 					$i++;
+					// Libera la $idConditions.
 					unset($idConditions);
 				}
-				debug($result);
 				$this->set('resultados',$result);
 			}
 			else{
+			    // Si no se encuentra algún taxón se notifica al usuario
 				return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
 			}
 		}
 		else{
+		    // Si no se encuentra algún taxón se notifica al usuario
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
 	}

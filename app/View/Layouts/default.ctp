@@ -339,11 +339,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 <h1 class="title-widget">Organizaciones</h1>
                                 
                                 <ul class="k-flickr-photos list-unstyled">
-                                	<li><a class="k-logo" href="http://www.ucr.ac.cr" title="Universidad de Costa Rica"><img src="app/webroot/img/ucr.gif" alt="UCR" width="100"; /></a></li>
-                                    <li><a href="http://www.cimar.ucr.ac.cr" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
+                                	<li><a class="k-logo" href="http://www.ucr.ac.cr" target="_blank" title="Universidad de Costa Rica"><img src="app/webroot/img/ucr.gif" alt="UCR" width="100"; /></a></li>
+                                    <li><a href="http://www.cimar.ucr.ac.cr" target="_blank" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
                                     
-                                    <li><a href="http://www.biologia.ucr.ac.cr" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
-                                    <li><a href="http://www.vra.ucr.ac.cr/" title="Vicerrectoría de Administración, UCR"><img src="app/webroot/img/logi-vi-cuadrado.png" alt="Vicerrectoría de Administración" width="10"; /></a></li>
+                                    <li><a href="http://www.biologia.ucr.ac.cr" target="_blank" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
+                                    <li><a href="http://www.vra.ucr.ac.cr/" target="_blank" title="Vicerrectoría de Administración, UCR"><img src="app/webroot/img/logi-vi-cuadrado.png" alt="Vicerrectoría de Administración" width="10"; /></a></li>
                                     
                                 </ul>
                     

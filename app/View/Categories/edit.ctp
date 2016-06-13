@@ -1,4 +1,3 @@
-
 <div id="k-body"><!-- content wrapper -->
     
 	<div class="container"><!-- container -->
@@ -88,7 +87,7 @@
 								
 									<?php echo $this->Form->input('Gender.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
 									
-									<?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox', 'options' => array(
+									<?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox','options' => array(
 																									'belize' => 'Belice',
                                                                                                     'costa_rica' => 'Costa Rica',
                                                                                                     'el_salvador' => 'El Salvador',
@@ -96,7 +95,7 @@
                                                                                                     'honduras' => 'Honduras',
                                                                                                     'Mexico' => 'México',
                                                                                                     'nicaragua' => 'Nicaragua',
-                                                                                                    'panama' => 'Panamá'))) ?>
+                                                                                                    'panama' => 'Panamá'), 'selected' => $countries)) ?>
 									
 									<?php echo $this->Form->input('Gender.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
 									

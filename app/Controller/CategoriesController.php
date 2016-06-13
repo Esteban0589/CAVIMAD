@@ -113,6 +113,7 @@ class CategoriesController extends TreeMenuAppController {
     public function add() {
         $this->loadModel('Family');
         $this->loadModel('Gender');
+        $this->loadModel('CountryGender');
         $alias = $this->categoryAlias;
         if ($this->request->is('post')) {
             // se crea una categoría
@@ -133,9 +134,58 @@ class CategoriesController extends TreeMenuAppController {
                 if($this->request->data['Category']['classification'] == 'Genero'){
                     $this->request->data['Gender']['0']['category_id']= $this->Category->id;
                 	$this->Gender->saveAll($this->request->data['Gender']['0']);
-                	//return $this->debugController($this->request->data);
+                	$id=$this->Gender->findAllByCategory_id($this->Category->id)[0]['Gender']['id'];
+                    $countries  = $this->request->data['Gender'][0]['countrygender'];
+                    $belize     = 0;
+                    $costa_rica = 0;
+                    $el_salvador= 0;
+                    $guatemala  = 0;
+                    $honduras   = 0;
+                    $mexico     = 0;
+                    $nicaragua  = 0;
+                    $panama     = 0;
+                    for ($i=0; $i<count($countries); $i++)
+                    {
+                        switch($countries[$i])
+                        {
+                        case 'belize':
+                            $belize++;
+                	        break;
+                       case 'costa_rica':
+                            $costa_rica++;
+                	        break;
+                		case 'el_salvador':
+                		    $el_salvador++;
+                			break;
+                		case 'guatemala':
+                		    $guatemala++;
+                		    break;
+                		case 'honduras':
+                		    $honduras++;
+                		    break;
+                		case 'mexico':
+                		    $mexico++;
+                		    break;
+                		case 'nicaragua':
+                		    $nicaragua++;
+                		    break;
+                		case 'panama':
+                		    $panama++;
+                		    break;
+                        }
+                    }
+                    $data = array('CountryGender' => array('gender_id' => $id, 'belize'=>$belize, 
+                        'costa_rica'=> $costa_rica, 'el_salvador'=> $el_salvador, 
+                        'guatemala'=> $guatemala, 'honduras' => $honduras, 
+                        'mexico' => $mexico, 'nicaragua'=> $nicaragua, 
+                        'panama' => $panama));
+                    //debug($data);
+                    $this->CountryGender->create();
+                    if($this->CountryGender->save($data))
+                        $this->Session->setFlash(__('Países ingresados correctamente'),'TreeMenu.success');
+                    else 
+                        $this->Session->setFlash(__('Los países no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
                 }
-                
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
@@ -480,6 +530,7 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('Download');
+        $this->loadModel('CountryGender');
         $this->Category->id = $id;
         //Si la categoría buscada no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists()) {
@@ -500,6 +551,57 @@ class CategoriesController extends TreeMenuAppController {
                 if($this->request->data['Category']['classification'] == 'Genero'){
                     $this->request->data['Gender']['category_id']= $this->Category->id;
                     $this->Gender->saveAll($this->request->data['Gender']);
+                    
+                    $id=$this->Gender->findAllByCategory_id($this->Category->id)[0]['Gender']['id'];
+                    $countries  = $this->request->data['Gender'][0]['countrygender'];
+                    $belize     = 0;
+                    $costa_rica = 0;
+                    $el_salvador= 0;
+                    $guatemala  = 0;
+                    $honduras   = 0;
+                    $mexico     = 0;
+                    $nicaragua  = 0;
+                    $panama     = 0;
+                    for ($i=0; $i<count($countries); $i++)
+                    {
+                        switch($countries[$i])
+                        {
+                        case 'belize':
+                            $belize++;
+                	        break;
+                       case 'costa_rica':
+                            $costa_rica++;
+                	        break;
+                		case 'el_salvador':
+                		    $el_salvador++;
+                			break;
+                		case 'guatemala':
+                		    $guatemala++;
+                		    break;
+                		case 'honduras':
+                		    $honduras++;
+                		    break;
+                		case 'mexico':
+                		    $mexico++;
+                		    break;
+                		case 'nicaragua':
+                		    $nicaragua++;
+                		    break;
+                		case 'panama':
+                		    $panama++;
+                		    break;
+                        }
+                    }
+                    $old = $this->CountryGender->findAllByGender_id($id)[0]['CountryGender']['id'];
+                    //debug($this->CountryGender->findAllByGender_id($id));
+                    $data = array('CountryGender' => array('id' => $old, 'gender_id' => $id, 'belize'=>$belize, 
+                        'costa_rica'=> $costa_rica, 'el_salvador'=> $el_salvador, 
+                        'guatemala'=> $guatemala, 'honduras' => $honduras, 
+                        'mexico' => $mexico, 'nicaragua'=> $nicaragua, 
+                        'panama' => $panama));
+                    $this->CountryGender->save($data);
+                    
+                    
                 }
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));

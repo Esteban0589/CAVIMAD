@@ -149,7 +149,7 @@
                                                                                                     'el_salvador' => 'El Salvador',
                                                                                                     'guatemala' => 'Guatemala',
                                                                                                     'honduras' => 'Honduras',
-                                                                                                    'Mexico' => 'México',
+                                                                                                    'mexico' => 'México',
                                                                                                     'nicaragua' => 'Nicaragua',
                                                                                                     'panama' => 'Panamá'))) ?>
 				

@@ -72,9 +72,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
  <!--<base href"http://cavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="http://cavimad2-esteban0589.c9users.io/"/>-->
+    <!--<base href="http://cavimad3-esteban0589.c9users.io/"/>-->
     <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
-    
      <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
      <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->
 
@@ -286,14 +285,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         
                         	<li class="widget-container widget_nav_menu"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Useful links</h1>
+                                <h1 class="title-widget">Enlaces útiles</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">Placement Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Superintendent's Hearing Audio</a></li>
-                                    <li><a href="#" title="menu item">Budget Central</a></li>
-                                    <li><a href="#" title="menu item">Job Opportunities - Application</a></li>
-                                    <li><a href="#" title="menu item">College Acceptances as of May 12</a></li>
+                                	<li><a href="http://www.clemson.edu/cafls/departments/esps/database/trichopt/search.php" target="_blank" title="Trichoptera World Checklist Database Search">Trichoptera World Checklist</a></li>
+                                    <li><a href="http://efg.cs.umb.edu/monteverde/" target="_blank" title="Biodiversity of Monteverde">Biodiversity of Monteverde</a></li>
                                 </ul>
                     
 							</li>
@@ -311,14 +307,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         
                         	<li class="widget-container widget_nav_menu"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Useful links</h1>
+                                <h1 class="title-widget">Enlaces útiles</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">Placement Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Superintendent's Hearing Audio</a></li>
-                                    <li><a href="#" title="menu item">Budget Central</a></li>
-                                    <li><a href="#" title="menu item">Job Opportunities - Application</a></li>
-                                    <li><a href="#" title="menu item">College Acceptances as of May 12</a></li>
+                                	<li><a href="http://bugguide.net"  target="_blank" title="BugGuide">BugGuide</a></li>
+                                    <li><a href="https://www.entm.purdue.edu/mayfly/" target="_blank"  title="Mayfly Central">Mayfly Central</a></li>
                                 </ul>
                     
 							</li>
@@ -339,11 +332,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 <h1 class="title-widget">Organizaciones</h1>
                                 
                                 <ul class="k-flickr-photos list-unstyled">
-                                	<li><a class="k-logo" href="http://www.ucr.ac.cr" title="Universidad de Costa Rica"><img src="app/webroot/img/ucr.gif" alt="UCR" width="100"; /></a></li>
-                                    <li><a href="http://www.cimar.ucr.ac.cr" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
+                                	<li><a class="k-logo" href="http://www.ucr.ac.cr" target="_blank" title="Universidad de Costa Rica"><img src="app/webroot/img/ucr.gif" alt="UCR" width="100"; /></a></li>
+                                    <li><a href="http://www.cimar.ucr.ac.cr" target="_blank" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
                                     
-                                    <li><a href="http://www.biologia.ucr.ac.cr" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
-                                    <li><a href="http://www.vra.ucr.ac.cr/" title="Vicerrectoría de Administración, UCR"><img src="app/webroot/img/logi-vi-cuadrado.png" alt="Vicerrectoría de Administración" width="10"; /></a></li>
+                                    <li><a href="http://www.biologia.ucr.ac.cr" target="_blank" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
+                                    <li><a href="http://www.vra.ucr.ac.cr/" target="_blank" title="Vicerrectoría de Administración, UCR"><img src="app/webroot/img/logi-vi-cuadrado.png" alt="Vicerrectoría de Administración" width="10"; /></a></li>
                                     
                                 </ul>
                     

@@ -190,7 +190,7 @@ class CategoriesController extends TreeMenuAppController {
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'cat_user_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
 				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." agregó la categoría ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
@@ -639,7 +639,7 @@ class CategoriesController extends TreeMenuAppController {
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'cat_user_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
 				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó ".$this->request->data['Category']['classification']." ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
@@ -703,7 +703,7 @@ class CategoriesController extends TreeMenuAppController {
         $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 		$invDate = $dateNow->format('Y-m-d H:i:s');
 		$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-		'category_id' =>  $id ,
+		'cat_user_id' =>  $id ,
 		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." elimino la categoría ".$this->Category->findById($id)['Category']['name']."." ,
 		'modified'=> $invDate));
 		

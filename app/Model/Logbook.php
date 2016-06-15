@@ -69,12 +69,12 @@ class Logbook extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Category' => array(
+		/*'Category' => array(
 			'className' => 'Category',
 			'foreignKey' => 'categorie_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		)*/
 	);
 }

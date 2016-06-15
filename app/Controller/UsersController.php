@@ -259,8 +259,22 @@ class UsersController extends AppController {
 		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
 		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
 			if ($this->request->is(array('post', 'put'))) {
+				if($this->User->findById($this->request->data['User']['id'])['User']['activated']==2){
+					//Se notifica que se han realizado los cambios
+					$this->Flash->error(__('El rol no ha sido actualizado ya que el usuario está deshabilitado.'));
+					return $this->redirect(array('action' => 'index', $id));
+				}
 				//Se guardan los datos del usuario
+				$this->loadModel('Logbook');
+				$dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+				$invDate = $dateNow->format('Y-m-d H:i:s');
+				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+				'cat_user_id' => $this->request->data['User']['id'] ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." edito el rol de ".$this->User->findById($this->request->data['User']['id'])['User']['username']."." ,
+				'modified'=> $invDate));
 				if ($this->User->saveAll($this->request->data)) {
+					$this->Logbook->create();
+					$this->Logbook->save($data);
 					//Se busca si el usuario al cual se le modificará el rol es un posible administrador o colaborador
 					if(empty($this->User->Administrator->find('first',array('conditions' => array('Administrator.user_id' => $this->request->data['User']['id']))))){
 						$this->request->data['Administrator']['user_id'] = $this->request->data['User']['id'];
@@ -319,7 +333,23 @@ class UsersController extends AppController {
 			
 			if(empty($this->User->find('first',array('conditions' =>$conditions )))) {
 				//Se guardan los cambios al usuario
+				$this->loadModel('Logbook');
+				$dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+				$invDate = $dateNow->format('Y-m-d H:i:s');
+				if($this->request->data['User']['activated']==1)
+				{
+					$varr=" habilitó ";
+				}
+				else{
+					$varr=" deshabilitó ";
+				}
+				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+				'cat_user_id' => $this->request->data['User']['id'] ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username'].$varr."a ".$this->User->findById($this->request->data['User']['id'])['User']['username']."." ,
+				'modified'=> $invDate));
 				if ($this->User->save($this->request->data)) {
+					$this->Logbook->create();
+					$this->Logbook->save($data);
 					//Se notifica que el estado de la cuenta se modificó correctamente
 					$this->Flash->success(__('Se cambio correctamente el estado de la cuenta.'));
 					//Se redirige al index de usuarios
@@ -513,37 +543,6 @@ class UsersController extends AppController {
         }
 	}
 
-	/**
-	 * delete method
-	 *
-	 * Permite eliminar un usuario de la base de datos.
-	 * 
-	 * @throws NotFoundException
-	 * @param string $id - Contiene el id del usuario que se va a eliminar.
-	 * @return void
-	 */
-	public function delete($id = null) {
-		//Se verifica si el usuario no es un administrador
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador')) {
-			throw new NotFoundException(__('Sesión activa.'));
-			return $this->redirect(array('controller' => 'pages','action' => 'display'));
-		}
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			//Si el usuario no existe se maneja la siguiente excepción
-			throw new NotFoundException(__('Usuario inválido.'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		//Se elimina el usuario
-		if ($this->User->delete()) {
-			//Se notifica que el usuario ha sido eliminado correctamente
-			$this->Flash->success(__('El usuario fue eliminado.'));
-		} else {
-			//Si hubo un error, se notifica al usuario que no se pudo realizar la operación
-			$this->Flash->error(__('El usuario no pudo ser eliminado. Inténtelo nuevamente.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
 	
 	/**
 	 * send_mail method

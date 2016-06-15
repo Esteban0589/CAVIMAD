@@ -419,7 +419,7 @@ class UsersController extends AppController {
 	                        $data['subject'] = 'Activación de cuenta';
 	                        $data['body'] = array('user_data' => $user_data);
 	                        $data['template'] = 'activate_account';
-	                        $output =$t0his->send_mail($data);
+	                        $output =$this->send_mail($data);
 	
 	                            if($output){
 	                            	//Se notifica al usuario que la cuenta fue creada con éxito

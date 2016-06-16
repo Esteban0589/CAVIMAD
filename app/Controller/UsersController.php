@@ -779,22 +779,28 @@ class UsersController extends AppController {
                          
                      $this->User->data['User']['tokenhash']=$new_hash;
                      
-                     //Si los passwords ingresados son iguales
-                     
-                     if($this->data['User']['password'] ==$this->data['User']['repeat_password'])
-                     {
-                         //Actualiza el usuario con la nueva contraseña.                   
-                         if($this->User->savefield('password',$this->request->data['User']['password']))
-                         {
-                             $this->Flash->success(__('La contraseña ha sido actualizada.'));
-                             $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
-                             $this->redirect(array('controller'=>'users','action'=>'login'));
-                         }
+                     //Si la contraseña no cumple con las condiciones necesarias.
+                     if ($this->User->validates(array('fieldList' => array('password')))) {
+                     	//Si los passwords ingresados son iguales
+	                     if($this->data['User']['password'] ==$this->data['User']['repeat_password'])
+	                     {
+	                         //Actualiza el usuario con la nueva contraseña.                   
+	                         if($this->User->savefield('password',$this->request->data['User']['password']))
+	                         {
+	                             $this->Flash->success(__('La contraseña ha sido actualizada.'));
+	                             $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
+	                             $this->redirect(array('controller'=>'users','action'=>'login'));
+	                         }
+	                     }
+	                     else{
+	                     	//Si el error se da al no ser las contraseñas iguales se le notifica al usuario
+	                         $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
+	                         }
                      }
-                     else{
-                     	//Si el error se da al no ser las contraseñas iguales se le notifica al usuario
-                         $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
-                         }
+                     else
+                     {
+                     	$this->Flash->set('Por favor verifique su contraseña.',$this->User->invalidFields());
+                     }
                  }
              }
              else

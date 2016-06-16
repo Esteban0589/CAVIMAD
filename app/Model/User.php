@@ -255,8 +255,8 @@ class User extends AppModel {
 			),
 			//Verifica que la contraseña sea aceptada por la expresión regular definida
 			'regex' => array(
-				//Restringe que la contraseña contenga al menos una letra mayúscula, una letra minúscula, un número y un caracter especial.
-				'rule' => '(^[a-zA-Z0-9_]+[\.\!\"\#\$\%\&\/\(\)\=\:\,\;\@\[a-zA-Z0-9]*]*)',
+				//Restringe que la contraseña contenga al menos una letra mayúscula, una letra minúscula y un número.
+				'rule' => '((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16})',
 				//'rule' => array('alphaNumeric'),
 				'message' => 'Su contraseña debe contener al menos una mayúscula, una minúscula y un número.',
 				//'message' => 'Your custom message here',

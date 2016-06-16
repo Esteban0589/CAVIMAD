@@ -24,6 +24,6 @@
 	<br>
 	<br>
 	-------------------------------------------------------------------------------------------------------
-	<i><p><center></center>Este correo electrónico ha sido generado automáticamente por CAVIMAD, por lo que ningun mensaje enviado a esta dirección será respondida.  Si usted no solicito ningún correo, por favor haga caso omiso del mismo.</center></p></i>
+	<i><p><center></center>Este correo electrónico ha sido generado automáticamente por CAVIMAD, por lo que ningún mensaje enviado a esta dirección será respondida.  Si usted no solicitó este mensaje, por favor haga caso omiso del mismo.</center></p></i>
 </body>
 </html>

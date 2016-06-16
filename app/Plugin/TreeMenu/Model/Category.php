@@ -35,11 +35,7 @@ class Category extends TreeMenuAppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
-                'required' => true,
-                'message' => 'Este campo solo permite letras y numeros.'
-            ),
+			
         ),
         
 

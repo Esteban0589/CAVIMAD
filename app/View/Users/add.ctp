@@ -18,7 +18,8 @@
 				<div title = "En este campo por favor introduzca la institución a la que pertenece"><?php echo $this->Form->input('institution', array('class'=>'form-control','label'=>'Institución:','placeholder' => 'Institución')); ?></div>
 				<div title = "En este campo por favor introduzca su nombre de usuario"><?php echo $this->Form->input('username', array('class'=>'form-control','label'=>'Nombre de Usuario:','placeholder' => 'EjemploUusario123'));?></div>
 				<div>&nbsp</div>
-				<div title = "Introducir por favor una contraseña que cumpla las especificaciones"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña (debe tener al menos una minúscula, una mayúscula, un número y tener entre 6 y 16 caracteres):','placeholder' => 'contraseña'));?></div>
+				<div title = "Introducir, por favor, una contraseña que cumpla las especificaciones"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña (debe tener al menos una minúscula, una mayúscula, un número y tener entre 6 y 16 caracteres):','placeholder' => 'Contraseña'));?></div>
+				<div title = "Por favor, repita su nueva contraseña en este campo"><?php echo $this->Form->input('repeat_password', array('class'=>'form-control','label'=>'Repita su contraseña:','placeholder' => 'Repita su contraseña', 'type' => 'password'));?></div>
 				<div>&nbsp</div>
 				<div><?php echo $this->Form->input('role', array('default' => 'Usuario','type'=>'hidden')); ?></div>
 				<div><?php echo $this->Form->input('activated', array('default' => '0','type'=>'hidden')); ?> </div>

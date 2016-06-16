@@ -29,39 +29,39 @@ class Gender extends AppModel {
 		
 		
 		
-		'characteristic' => array(
-			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'bibliography' => array(
-			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'author' => array(
-			//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		// 'characteristic' => array(
+		// 	//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+		// 	'alphaNumeric' => array(
+		// 		'rule' => array('alphaNumeric'),
+		// 		//'message' => 'Your custom message here',
+		// 		//'allowEmpty' => false,
+		// 		//'required' => false,
+		// 		//'last' => false, // Stop validation after this rule
+		// 		//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		// 	),
+		// ),
+		// 'bibliography' => array(
+		// 	//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+		// 	'alphaNumeric' => array(
+		// 		'rule' => array('alphaNumeric'),
+		// 		//'message' => 'Your custom message here',
+		// 		//'allowEmpty' => false,
+		// 		//'required' => false,
+		// 		//'last' => false, // Stop validation after this rule
+		// 		//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		// 	),
+		// ),
+		// 'author' => array(
+		// 	//Verifica que en el campo de características se puedan agregar caracteres alfanuméricos. 
+		// 	'alphaNumeric' => array(
+		// 		'rule' => array('alphaNumeric'),
+		// 		//'message' => 'Your custom message here',
+		// 		//'allowEmpty' => false,
+		// 		//'required' => false,
+		// 		//'last' => false, // Stop validation after this rule
+		// 		//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		// 	),
+		// ),
 		'globaldistribution' => array(
 			//Verifica que la distribución global no sea vacía
 			'notBlank' => array(

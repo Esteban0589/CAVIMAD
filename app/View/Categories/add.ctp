@@ -156,7 +156,7 @@
 									<?php echo $this->Form->input('Gender.0.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
 									
 									<?php echo $this->Form->input('Gender.0.biologyandecology', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la información sobre biología y ecología del nivel taxonómico. Campo de texto expandible','label'=>'Biologia y ecologia'));?>
-									<small><div class="col-lg-16 col-sm-32"><p aling ="left"><i><a data-toggle="modal" data-target="#modalFiles">Agregar archivo de especies</a></i></p></div></small>
+									<!--<small><div class="col-lg-16 col-sm-32"><p aling ="left"><i><a data-toggle="modal" data-target="#modalFiles">Agregar archivo de especies</a></i></p></div></small>-->
 	
 									
 									<br>

@@ -14,7 +14,7 @@ class Gender extends AppModel {
  * @var array
  */
 
-	public $validate = array(
+/*	public $validate = array(
 		'report' => array(
         'rule1' => array(
             'rule'    => array(
@@ -96,7 +96,7 @@ class Gender extends AppModel {
 			),
 		),
 	);
-
+*/
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

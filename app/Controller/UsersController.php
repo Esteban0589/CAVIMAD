@@ -711,6 +711,10 @@ class UsersController extends AppController {
 	 * @params $token
 	 * @return void
 	 */
+	public function contact()
+	{
+		
+	}
 	public function form_contact(){
 		
 		//$User = $this->User->read(null,$id);

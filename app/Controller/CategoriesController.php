@@ -111,6 +111,12 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
     public function add() {
+        // Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		$this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
@@ -190,7 +196,7 @@ class CategoriesController extends TreeMenuAppController {
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'cat_user_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
 				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." agregó la categoría ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
@@ -527,6 +533,12 @@ class CategoriesController extends TreeMenuAppController {
      */
      
     public function edit($id = null) {
+        // Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		$this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('Download');
@@ -639,7 +651,7 @@ class CategoriesController extends TreeMenuAppController {
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
 				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-				'category_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+				'cat_user_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
 				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." editó ".$this->request->data['Category']['classification']." ".$this->request->data['Category']['name']."." ,
 				'modified'=> $invDate));
 				$this->Logbook->create();
@@ -693,6 +705,12 @@ class CategoriesController extends TreeMenuAppController {
         if (!$this->Category->exists()) {
             throw new NotFoundException(__('Datos no validos'));
         }
+        // Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		$this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
         // segun el alias de las categorias se despliegan segun un orden indexado 
         $alias = $this->categoryAlias;
         $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
@@ -703,7 +721,7 @@ class CategoriesController extends TreeMenuAppController {
         $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 		$invDate = $dateNow->format('Y-m-d H:i:s');
 		$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-		'category_id' =>  $id ,
+		'cat_user_id' =>  $id ,
 		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." elimino la categoría ".$this->Category->findById($id)['Category']['name']."." ,
 		'modified'=> $invDate));
 		
@@ -987,22 +1005,22 @@ class CategoriesController extends TreeMenuAppController {
       * @return void
       */
     public function advanced_search2(){
-		    
-		    $this->loadModel('Administrator');
-		    $this->loadModel('Pictures');
-		    //Carga todos los órdenes para en la varible $order.
-		    $order = $this->Category->find('list', array(
-          'conditions' => array('Category.classification' => 'Orden'),
-          'recursive' => -1));
-          //Estas variables se declaran en null pues se proceden a llenar con los métodos getDataFamily y getDataGenre.
-          $family=array(null);
-          $genre=array(null);
-          //Envía las variables a a la vista.
-         $this-> set (compact('categories', 'order'));
-         $this-> set (compact('categories', 'family'));
-         $this-> set (compact('categories', 'genre'));
-         $this-> set (compact('categories', 'colaborator'));
-    	}
+        
+        $this->loadModel('Administrator');
+        $this->loadModel('Pictures');
+        //Carga todos los órdenes para en la varible $order.
+        $order = $this->Category->find('list', array(
+        'conditions' => array('Category.classification' => 'Orden'),
+        'recursive' => -1));
+        //Estas variables se declaran en null pues se proceden a llenar con los métodos getDataFamily y getDataGenre.
+        $family=array(null);
+        $genre=array(null);
+        //Envía las variables a a la vista.
+        $this-> set (compact('categories', 'order'));
+        $this-> set (compact('categories', 'family'));
+        $this-> set (compact('categories', 'genre'));
+        $this-> set (compact('categories', 'colaborator'));
+    }
     	
     /**
       * getDataFamily method

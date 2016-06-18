@@ -41,6 +41,24 @@ class UsersController extends AppController {
         $this->Auth->allow('add','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador','about','contact','form_contact');
     }
     
+    
+    /**
+	 * userdesha method
+	 * 
+	 * Función que maneja el control usuarios recien deshabilitados, pero conectados.
+	 *
+	 * @return void
+	 */
+    public function userdesha() {
+	   	// Borra la cookie en caso de que exista
+        $this->Cookie->delete('remember_me_cookie');
+        // Borra las variables de sesion
+	    $this->Session->destroy();
+        $this->Flash->error(__('Usuario deshabilitado. Por favor contactar al administrador.'));;
+    }
+    
+    
+    
 	/**
 	 * index method
 	 * 
@@ -54,6 +72,11 @@ class UsersController extends AppController {
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador' ) ) {
 			//Si el usuario no es un administrador no se le permite el acceso
 			throw new NotFoundException(__('Usuario inválido.'));
+		}
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
 		$this->set('role', $this->roles);
 		$this->User->recursive = 0;
@@ -70,6 +93,11 @@ class UsersController extends AppController {
 			//Si el usuario no es un administrador no se le permite el acceso
 			throw new NotFoundException(__('Usuario inválido.'));
 		}
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
 	}
 
 
@@ -81,6 +109,11 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function view_colaboradores() {
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
 		//se carga el modelo Administrator para manipular el arreglo correspondiente
 		$this->loadModel('Administrator');
 		clearCache();
@@ -105,6 +138,11 @@ class UsersController extends AppController {
 		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null)  ) {
 			//Si no hay una sesión activa, no se le permite continuar a ver los datos de algún usuario
 			throw new NotFoundException(__('Para esta sección es necesario estar registrado.'));
+		}
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
 		//Si el usuario a buscar no existe se notifica mediante un mensaje de error
 		if (!$this->User->exists($id)) {
@@ -208,6 +246,11 @@ class UsersController extends AppController {
 			//Si el usuario no existe se tira la siguiente excepción
 			throw new NotFoundException(__('Usuario no válido'));
 		}
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
 		
 		if ($this->request->is(array('post', 'put'))) {
 			//Se guardan los datos correspondientes al usuario
@@ -256,11 +299,31 @@ class UsersController extends AppController {
 			//Caso contrario se llama a la excepción
 			throw new NotFoundException(__('Usuario no válido'));
 		}
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
+		
 		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
 		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
 			if ($this->request->is(array('post', 'put'))) {
+				if($this->User->findById($this->request->data['User']['id'])['User']['activated']==2){
+					//Se notifica que se han realizado los cambios
+					$this->Flash->error(__('El rol no ha sido actualizado ya que el usuario está deshabilitado.'));
+					return $this->redirect(array('action' => 'index', $id));
+				}
 				//Se guardan los datos del usuario
+				$this->loadModel('Logbook');
+				$dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+				$invDate = $dateNow->format('Y-m-d H:i:s');
+				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+				'cat_user_id' => $this->request->data['User']['id'] ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." edito el rol de ".$this->User->findById($this->request->data['User']['id'])['User']['username']."." ,
+				'modified'=> $invDate));
 				if ($this->User->saveAll($this->request->data)) {
+					$this->Logbook->create();
+					$this->Logbook->save($data);
 					//Se busca si el usuario al cual se le modificará el rol es un posible administrador o colaborador
 					if(empty($this->User->Administrator->find('first',array('conditions' => array('Administrator.user_id' => $this->request->data['User']['id']))))){
 						$this->request->data['Administrator']['user_id'] = $this->request->data['User']['id'];
@@ -308,6 +371,11 @@ class UsersController extends AppController {
 			//Caso contrario se llama a la excepción
 			throw new NotFoundException(__('Usuario no válido'));
 		}
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
 		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
 		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador') && ($this->request->is(array('post', 'put')))){
 			$conditions = array(
@@ -319,7 +387,23 @@ class UsersController extends AppController {
 			
 			if(empty($this->User->find('first',array('conditions' =>$conditions )))) {
 				//Se guardan los cambios al usuario
+				$this->loadModel('Logbook');
+				$dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+				$invDate = $dateNow->format('Y-m-d H:i:s');
+				if($this->request->data['User']['activated']==1)
+				{
+					$varr=" habilitó ";
+				}
+				else{
+					$varr=" deshabilitó ";
+				}
+				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+				'cat_user_id' => $this->request->data['User']['id'] ,
+				'description' => "El usuario ".$_SESSION['Auth']['User']['username'].$varr."a ".$this->User->findById($this->request->data['User']['id'])['User']['username']."." ,
+				'modified'=> $invDate));
 				if ($this->User->save($this->request->data)) {
+					$this->Logbook->create();
+					$this->Logbook->save($data);
 					//Se notifica que el estado de la cuenta se modificó correctamente
 					$this->Flash->success(__('Se cambio correctamente el estado de la cuenta.'));
 					//Se redirige al index de usuarios
@@ -356,6 +440,11 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			//Caso contrario se llama a la excepción
 			throw new NotFoundException(__('Usuario no válido'));
+		}
+		// Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			//Se guardan los cambios al usuario
@@ -419,7 +508,7 @@ class UsersController extends AppController {
 	                        $data['subject'] = 'Activación de cuenta';
 	                        $data['body'] = array('user_data' => $user_data);
 	                        $data['template'] = 'activate_account';
-	                        $output =$this->send_mail($data);
+	                        $output =$t0his->send_mail($data);
 	
 	                            if($output){
 	                            	//Se notifica al usuario que la cuenta fue creada con éxito
@@ -513,37 +602,6 @@ class UsersController extends AppController {
         }
 	}
 
-	/**
-	 * delete method
-	 *
-	 * Permite eliminar un usuario de la base de datos.
-	 * 
-	 * @throws NotFoundException
-	 * @param string $id - Contiene el id del usuario que se va a eliminar.
-	 * @return void
-	 */
-	public function delete($id = null) {
-		//Se verifica si el usuario no es un administrador
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador')) {
-			throw new NotFoundException(__('Sesión activa.'));
-			return $this->redirect(array('controller' => 'pages','action' => 'display'));
-		}
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			//Si el usuario no existe se maneja la siguiente excepción
-			throw new NotFoundException(__('Usuario inválido.'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		//Se elimina el usuario
-		if ($this->User->delete()) {
-			//Se notifica que el usuario ha sido eliminado correctamente
-			$this->Flash->success(__('El usuario fue eliminado.'));
-		} else {
-			//Si hubo un error, se notifica al usuario que no se pudo realizar la operación
-			$this->Flash->error(__('El usuario no pudo ser eliminado. Inténtelo nuevamente.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
 	
 	/**
 	 * send_mail method
@@ -779,28 +837,22 @@ class UsersController extends AppController {
                          
                      $this->User->data['User']['tokenhash']=$new_hash;
                      
-                     //Si la contraseña no cumple con las condiciones necesarias.
-                     if ($this->User->validates(array('fieldList' => array('password')))) {
-                     	//Si los passwords ingresados son iguales
-	                     if($this->data['User']['password'] ==$this->data['User']['repeat_password'])
-	                     {
-	                         //Actualiza el usuario con la nueva contraseña.                   
-	                         if($this->User->savefield('password',$this->request->data['User']['password']))
-	                         {
-	                             $this->Flash->success(__('La contraseña ha sido actualizada.'));
-	                             $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
-	                             $this->redirect(array('controller'=>'users','action'=>'login'));
-	                         }
-	                     }
-	                     else{
-	                     	//Si el error se da al no ser las contraseñas iguales se le notifica al usuario
-	                         $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
-	                         }
-                     }
-                     else
+                     //Si los passwords ingresados son iguales
+                     
+                     if($this->data['User']['password'] ==$this->data['User']['repeat_password'])
                      {
-                     	$this->Flash->set('Por favor verifique su contraseña.',$this->User->invalidFields());
+                         //Actualiza el usuario con la nueva contraseña.                   
+                         if($this->User->savefield('password',$this->request->data['User']['password']))
+                         {
+                             $this->Flash->success(__('La contraseña ha sido actualizada.'));
+                             $this->User->updateAll(array('User.tokenhash' => NULL), array('User.username' => $u['User']['username']));
+                             $this->redirect(array('controller'=>'users','action'=>'login'));
+                         }
                      }
+                     else{
+                     	//Si el error se da al no ser las contraseñas iguales se le notifica al usuario
+                         $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
+                         }
                  }
              }
              else

@@ -7,6 +7,8 @@
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('position'); ?></th>
+			<th><?php echo $this->Paginator->sort('created'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -17,6 +19,8 @@
 		<td><?php echo h($news['News']['title']); ?>&nbsp;</td>
 		<td><?php echo h($news['News']['description']); ?>&nbsp;</td>
 		<td><?php echo h($news['News']['position']); ?>&nbsp;</td>
+		<td><?php echo h($news['News']['created']); ?>&nbsp;</td>
+		<td><?php echo h($news['News']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $news['News']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $news['News']['id'])); ?>

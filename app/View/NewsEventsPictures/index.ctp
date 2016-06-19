@@ -9,8 +9,6 @@
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('news_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('event_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -29,8 +27,6 @@
 		<td>
 			<?php echo $this->Html->link($newsEventsPicture['Event']['title'], array('controller' => 'events', 'action' => 'view', $newsEventsPicture['Event']['id'])); ?>
 		</td>
-		<td><?php echo h($newsEventsPicture['NewsEventsPicture']['created']); ?>&nbsp;</td>
-		<td><?php echo h($newsEventsPicture['NewsEventsPicture']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $newsEventsPicture['NewsEventsPicture']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $newsEventsPicture['NewsEventsPicture']['id'])); ?>

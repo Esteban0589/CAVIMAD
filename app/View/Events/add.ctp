@@ -1,7 +1,7 @@
 <div class="events form">
-<?php echo $this->Form->create('Events'); ?>
+<?php echo $this->Form->create('Event'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Events'); ?></legend>
+		<legend><?php echo __('Add Event'); ?></legend>
 	<?php
 		echo $this->Form->input('title');
 		echo $this->Form->input('description');

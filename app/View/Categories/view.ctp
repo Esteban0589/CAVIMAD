@@ -49,10 +49,10 @@ a{
 				<div class="col col-sm-5">
 					 <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
-                    <div class="carousel-inner"><!-- Wrapper for slides -->
-                         <?php 
+     				<div class="carousel-inner"><!-- Wrapper for slides -->
+                                  <?php 
 			                         $y=true;
-			                         for($i=0; $i<count($pics[0]); $i++){?>
+			                         for($i=0; $i<count($pics3); $i++){?>
 				                         <?php if($y){?>
 				                            <div class="item active">
 				                         <?php $y=false; 
@@ -60,9 +60,9 @@ a{
 				                             <div class="item">
 				                         <?php } ?>
 				                            <?php
-				                            if((!empty($pics[0][$i]['Picture']['image_dir']))){?>
+				                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
 				                          	  <div class="thumbnail"> 
-				                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics[0][$i]['Picture']['image_dir'].'/'.$pics[0][$i]['Picture']['image']); ?>
+				                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.$pics3[$i]['Picture']['image']); ?>
 				                           		</div>
 				                          	<?php }	else{ ?>
 												<div class="thumbnail"> 
@@ -71,9 +71,8 @@ a{
 				                           	<?php  } ?>	
 				                            </div>
 			                     <?php } ?>
-
-                        
-                    </div><!-- Wrapper for slides end -->
+			                     
+                            </div><!-- Wrapper for slides end -->
                 
 
                     <!-- Controls -->

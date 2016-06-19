@@ -11,7 +11,8 @@ class CategoriesController extends TreeMenuAppController {
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
-    var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','Orden' => 'Orden','Suborden' => 'Suborden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Genero');
+     var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Genero');
+    
     
     /**
 	 * beforeFilter method
@@ -281,14 +282,24 @@ class CategoriesController extends TreeMenuAppController {
 				} //Cierra switch
                 
                 //return debug($imagenesTaxon);
-        		$pics=[];
-        		for ($j = 0; $j<count($imagenesTaxon); $j++)
-                    {
-                        if(!in_array($imagenesTaxon,$pics))
-                            array_push($pics, $imagenesTaxon);
-                    }
-//                return debug($pics[0][0]);
-                $this->set('pics',$pics);
+            	$pics=[];
+            	$pics2=[];
+        		$pics3=[];
+        		
+    			for ($j = 0; $j<count($imagenesTaxon); $j++)
+                {
+                    if(!in_array($imagenesTaxon,$pics))
+                        array_push($pics, $imagenesTaxon);
+                }
+               if(count($pics[0])>5){
+                    $pics2=array_rand($pics[0], 5);
+                }
+                
+                for($i=0; $i<count($pics2); $i++){
+                    array_push($pics3, $pics[0][$pics2[$i]]);
+                }
+
+                $this->set('pics3',$pics3);
 
 		if ($taxon['Category']['classification'] == 'Familia'){
 		    $familiaDatos = $this->Family->find('first', array('conditions' => array('Family.category_id' => $taxon['Category']['id'])));
@@ -431,12 +442,23 @@ class CategoriesController extends TreeMenuAppController {
 				} //Cierra switch
 
         		$pics=[];
+            	$pics2=[];
+        		$pics3=[];
+        		
     			for ($j = 0; $j<count($imagenesTaxon); $j++)
                 {
                     if(!in_array($imagenesTaxon,$pics))
                         array_push($pics, $imagenesTaxon);
                 }
-                $this->set('pics',$pics);
+               if(count($pics[0])>5){
+                    $pics2=array_rand($pics[0], 5);
+                }
+                
+                for($i=0; $i<count($pics2); $i++){
+                    array_push($pics3, $pics[0][$pics2[$i]]);
+                }
+
+                $this->set('pics3',$pics3);
 
 	
 		if ($taxon['Category']['classification'] == 'Familia'){

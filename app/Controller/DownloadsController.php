@@ -52,17 +52,11 @@ class DownloadsController extends AppController{
     }
  }
  
-     /**
-    * add2 method
-    *Funcion que agregar un nuevo archivo a las base de datos
-    * @return void
-     */
-      public function add2() {
-          //La diferencia con el add anterior es la manera de hacer la redireccion
-      $this->loadModel('Category');
-         if ($this->request->is('post')) {
+     public function add_document() {
+      //Carga el modelo de Category
+        if ($this->request->is('post')) {
             $this->Download->create();
-        //Revisa si el archivo ya fue creado, elimina los datos que hay para despues volverlo a crear
+            //Revisa si el archivo ya fue creado, elimina los datos que hay para despues volverlo a crear
         if(empty($this->data['Download']['report']['name'])){
             unset($this->request->data['Download']['report']);
         }
@@ -75,14 +69,15 @@ class DownloadsController extends AppController{
             if($this->Download->save($this->request->data)) {
                 //Guarda el archivo en la ruta indicada
                 move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. time().$file['name']);  
-                return $this->redirect(array('controller'=>'Categories','action' => 'add'));
+                return $this->redirect(array('controller'=>'downloads','action' => 'index'));
             
              }
          }
         $this->Session->setFlash(__('Unable to add your Report.'));
         }
-    }
-    
+     }
+     
+ 
     /**
     * sanitize method
     *
@@ -110,26 +105,6 @@ class DownloadsController extends AppController{
      * view method
      *
      * @throws NotFoundException
-     * @param string $id
-     * @return void
-     */
-    public function view($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid Report'));
-        }
-
-        $Report = $this->Download->findById($id);
-        if (!$Report) {
-            throw new NotFoundException(__('Invalid Report'));
-        }
-        $this->set('Download', $Report);
-    }
-    
-    
-    /**
-     * view method
-     *
-     * @throws NotFoundException
      * Funcion que descarga los archivos ya creados en la base de datos
      * @param string $id
      * @param string $download
@@ -139,7 +114,6 @@ class DownloadsController extends AppController{
      if($download){
       $download=true;
      }
-
       $files=$this->Download->findById($id);
       $filename=$files['Download']['report'];
       $name=explode('.',$filename);

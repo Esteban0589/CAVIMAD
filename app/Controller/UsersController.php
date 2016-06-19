@@ -38,7 +38,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
-        $this->Auth->allow('add','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador','about','contact','form_contact');
+        $this->Auth->allow('add','userdesha','logout', 'login', 'view_colaboradores','forgot_password', 'reset','activate','buscador','about','contact','form_contact');
     }
     
     
@@ -485,43 +485,6 @@ class UsersController extends AppController {
 		//Guarda en role la variable $this->roles
 		$this->set('role', $this->roles);
 		if ($this->request->is('post')) {
-<<<<<<< HEAD
-			//Se crea un nuevo usuario
-			$this->User->create();
-			//Se guardan los datos del nuevo usuario
-			if ($this->User->save($this->request->data)) {
-				//Si el usuario creado no está activado.
-				if ($this->User->activaded == 0){
-					//Genera el link para activar cuenta.
-					$key = Security::hash(CakeText::uuid(),'sha512',true);
-					$hash=sha1(['User']['username'].rand(0,100));
-	                $url = Router::url( array('action'=>'activate'), true ).'/'.$key.'#'.$hash;
-	               	$this->User->saveField('tokenhash',$key);
-	                $ms=$url;
-	                $ms=wordwrap($ms,1000);
-					//Envía el correo de activación de cuenta.
-					$data = array();
-					$user_data = array();
-	                $user_data['name'] = $this->request->data['User']['name'];
-	                $user_data['ms'] = $ms;
-	                $this->set('user_data', $user_data);  
-	                        $data['to'] = $this->request->data['User']['email'];
-	                        $data['subject'] = 'Activación de cuenta';
-	                        $data['body'] = array('user_data' => $user_data);
-	                        $data['template'] = 'activate_account';
-	                        $output =$t0his->send_mail($data);
-	
-	                            if($output){
-	                            	//Se notifica al usuario que la cuenta fue creada con éxito
-	                                $this->Flash->success(__('El usuario ha sido creado. Por favor verifique su correo electrónico para activar su cuenta.'));
-	                          		return $this->redirect(array('controller'=>'pages','action' => 'display'));
-	                            }
-	                            else {
-	                            	//Se le notifica el usuario en el caso de que un error el intentar enviar el correo de activación
-	                            	$this->Flash->set('Hubo un error al enviar el correo electrónico. Por favor intente nuevamente en unos minutos.');
-	                            	delete_without_flash($this->request->data['User']['id']);
-	                            }
-=======
 			if ($this->User->validates(array('fieldList' => array('password')))) {
                      	//Si los passwords ingresados son iguales
 	                     if($this->data['User']['password'] ==$this->data['User']['repeat_password'])
@@ -568,7 +531,6 @@ class UsersController extends AppController {
 	                     	//Si el error se da al no ser las contraseñas iguales se le notifica al usuario
 	                         $this->Flash->set('Las contraseñas ingresadas no son iguales.',$this->User->invalidFields());
 	                    }
->>>>>>> fd75625bc135d32b32bff3a7b5d02bc2408555fe
 				}
 			
 			 else {

@@ -8,7 +8,22 @@ App::uses('AppModel', 'Model');
  * @property Event $Event
  */
 class NewsEventsPicture extends AppModel {
-
+	public $actsAs = array(
+        'Upload.Upload' => array(
+            'image' => array(
+                'fields' => array(
+                    'dir' => 'image_dir'
+                ),
+                'thumbnailMethod'  => 'php',
+                'thumbnailSizes' => array(
+                	'vga' => '640x480',
+                	'thumb' => '150x150'
+                ),
+                'deleteOnUpdate' => true,
+                'deleteFolderOnDelete' => true
+            )
+        )
+    );
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 

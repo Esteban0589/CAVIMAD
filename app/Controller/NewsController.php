@@ -23,8 +23,10 @@ class NewsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->News->recursive = 0;
-		$this->set('news', $this->Paginator->paginate());
+		$this->loadModel('NewsEventsPicture');
+		$this->set('pictures', $this->NewsEventsPicture->find('all'));
+		// $this->News->recursive = 1;
+		// $this->set('news', $this->Paginator->paginate());
 	}
 
 /**
@@ -38,6 +40,7 @@ class NewsController extends AppController {
 		if (!$this->News->exists($id)) {
 			throw new NotFoundException(__('Invalid news'));
 		}
+		
 		$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
 		$this->set('news', $this->News->find('first', $options));
 	}
@@ -48,14 +51,32 @@ class NewsController extends AppController {
  * @return void
  */
 	public function add() {
+		
+		$this->loadModel('NewsEventsPicture');
+
 		if ($this->request->is('post')) {
+			//return
+			//debug($this->request->data);	
 			$this->News->create();
 			if ($this->News->save($this->request->data)) {
-				$this->Flash->success(__('The news has been saved.'));
+				$this->request->data['NewsEventsPicture']['0']['news_id']= $this->News->id;
+				//return debug($this->request->data['NewsEventsPicture']['0']);
+				if($this->NewsEventsPicture->saveAll($this->request->data['NewsEventsPicture']['0'])){
+					$this->Flash->success(__('The news has been saved.'));
+				}
+				else{
+					$this->Flash->error(__('The news could not be saved. Please, try again.'));
+				}
+				
+				
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Flash->error(__('The news could not be saved. Please, try again.'));
 			}
+		}
+		else{
+			$position = array(0 => 'Omitir comentario de imagen',1 => 'Abajo a la derecha',2 => 'Abajo a la izquierda');
+			$this->set('position',$position);
 		}
 	}
 

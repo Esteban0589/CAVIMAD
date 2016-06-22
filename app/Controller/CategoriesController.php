@@ -304,6 +304,13 @@ class CategoriesController extends TreeMenuAppController {
 		
 		$clasificacion = $taxon['Category']['classification'];
 		$ids=$taxon['Category']['id'];
+		
+		
+		
+		$this->loadModel('Comment');
+		$comments=  $this->Comment->find('all', array('conditions' => array('Comment.category_id' => $id)));
+		$this->set('comments',$comments);
+		
 		//return debug($ids);
 		//debug($clasificacion);
 				switch ($clasificacion) {
@@ -1504,5 +1511,63 @@ class CategoriesController extends TreeMenuAppController {
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
 	}
+	public function addcoment($id = null) {
+	    $this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
+        $this->loadModel('Comment');
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Category->id = $id;
+            $this->Comment->create();
+            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+			$invDate = $dateNow->format('Y-m-d H:i:s');
+			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+			'category_id' => $this->Category->id ,
+			'comment' => $this->request->data['Category']['comment'],
+			'created'=> $invDate));
+			$this->Comment->save($data);
+        }
+	    
+	}
+	public function deleteComment($id = null) {
+	    $this->loadModel('Comment');
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+        // se trae el id de la categoría
+        $this->Comment->id = $id;
+        // Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		$this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
+        // segun el alias de las categorias se despliegan segun un orden indexado 
+        $alias = $this->categoryAlias;
+        $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+        // según la categoría seleccionada se eliminan los datos
+        //Si se logran eliminar los datos se notifica mediante un mensaje 
+        
+        $this->loadModel('Logbook');
+        $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+		$invDate = $dateNow->format('Y-m-d H:i:s');
+		$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+		'cat_user_id' =>  $id ,
+		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." elimino la categoría ".$this->Category->findById($id)['Category']['name']."." ,
+		'modified'=> $invDate));
+		
+		if ($this->Category->delete()) {
+		    $this->Logbook->create();
+		    $this->Logbook->save($data);
+            $this->Session->setFlash(__('Datos eliminados'), 'success');            
+            $this->redirect($alias);
+        }
+        else{
+            //Si no se logran borar los datos  se notifica mediante un mensaje de error
+            $this->Session->setFlash(__('Datos no eliminados'), 'error');
+            $this->redirect($alias);
+        }
+    }
 	
 }

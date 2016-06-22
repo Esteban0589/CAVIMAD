@@ -8,7 +8,8 @@
                                     <div title="Administrar usuarios y colaboradores.">
                                         <div class="btn btn-mini btn-link">
                                             <a href='users/index'>
-                                                Administrar usuarios
+                                                <i class="fa fa-users fa-4x"></i> Administrar usuarios
+                                                
                                             </a>
                                         </div>
                                     </div>
@@ -17,7 +18,7 @@
                                     <div title="Modifica los eventos.">
                                         <div class="btn btn-mini btn-link">
                                             <a href='index'>
-                                                Administrar eventos
+                                                 <i class="fa fa-calendar fa-4x"></i> Administrar eventos
                                             </a>
                                         </div>
                                     </div>
@@ -28,7 +29,7 @@
                                     <div title="Abre el árbol taxónomico.">
                                         <div class="btn btn-mini btn-link">
                                             <a href='categories/index'>
-                                                Administrar catálogo
+                                                <i class="fa fa-sitemap fa-4x"></i> Administrar catálogo
                                             </a>
                                         </div>
                                     </div>
@@ -37,7 +38,7 @@
                                     <div title="Muestra las estadística de la página.">
                                         <div class="btn btn-mini btn-link">
                                             <a href='index'>
-                                                Estadísticas
+                                                <i class="fa fa-google fa-4x"></i> Estadísticas
                                             </a>
                                         </div>
                                     </div>
@@ -48,7 +49,7 @@
                                         <div title="Modifica las fotos del inicio.">
                                             <div class="btn btn-mini btn-link">
                                                 <a href='home_pictures'>
-                                                    Administrar fotos de portada
+                                                    <i class="fa fa-picture-o fa-4x"></i>  Administrar fotos de portada
                                                 </a>
                                             </div>
                                         </div>
@@ -57,7 +58,7 @@
                                         <div title="Abre la bitácora de CAVIMAD.">
                                             <div class="btn btn-mini btn-link">
                                                 <a href='logbooks'>
-                                                    Bitácora
+                                                   <i class="fa fa-book fa-4x"></i> Bitácora
                                                 </a>
                                             </div>
                                         </div>
@@ -67,5 +68,5 @@
         </div>
     </div>
 </div>
-
+<br>
                 

@@ -72,7 +72,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
  <!--<base href="http://cavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
-    <!--<base href="http://cavimad2-maricelmonge.c9users.io"/>-->
+    <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad3-esteban0589.c9users.io/"/>-->
     <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
      <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
@@ -164,15 +164,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         <li>
                              <div = "Accesa a la sección de colaboradores."><a href="users/view_colaboradores" title="">Colaboradores</a></div>
                         </li>
-                             
                         <li class="dropdown">
-                              <a href="" data-toggle="dropdown" role="button"> Referencias</a>
+                              <div = "Accesa a las secciones de documentos y referencias"><a href="" data-toggle="dropdown" role="button"> Referencias</a></div>
                                   <ul class="dropdown-menu">
                                       <li><?php echo $this->Html->link('Documentos', array('controller'=>'downloads', 'action'=>'index'))?></li>
                                       <li><?php echo $this->Html->link('Referencias', array('controller'=>'links', 'action'=>'index'))?></li>
                                   </ul>
                         </li>
-
                         <li>
                              <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
                         </li>

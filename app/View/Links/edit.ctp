@@ -1,24 +1,23 @@
-<div class="links form">
-<?php echo $this->Form->create('Link'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Link'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('url');
-		echo $this->Form->input('description');
-		echo $this->Form->input('relatedpage');
-		echo $this->Form->input('administrator_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<?php echo $this->Form->create('Link'); ?>
+			<fieldset>
+				<div class="page-header">
+					<h2><?php echo __('Editar enlace'); ?></h2>
+				</div>
+				<?php echo $this->Form->input('id'); ?>
+				
+				<div title = "En este campo por favor introduzca un título para el enlace"><?php echo $this->Form->input('title', array('class'=>'form-control','label'=>'Título:','placeholder' => 'Título',));?></div>
+				<div title = "En este campo por favor introduzca el enlace"><?php echo $this->Form->input('url', array('class'=>'form-control','label'=>'Enlace:','placeholder' => 'Enlace',));?></div>
+				<div title = "En este campo por favor introduzca una descripción para el archivo"><?php echo $this->Form->input('description', array('class'=>'form-control','rows' => '5', 'cols' => '5','label'=>'Descripción:','placeholder' => 'Descripción'));?></div>
+				<div title = "En este campo por favor introduzca un comentario con relación al enlace"><?php echo $this->Form->input('relatedpage', array('class'=>'form-control','rows' => '5', 'cols' => '5','label'=>'Comentario:','placeholder' => 'Comentario'));?></div>
+				<br>
+			</fieldset>
+		<?php echo $this->Form->end(array('label'=>'Guardar enlace', 'class'=>'btn btn-success')); ?>
+		<br>
+		</div>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Link.id')), array('confirm' => __('Are you sure you want to delete # %s?', $this->Form->value('Link.id')))); ?></li>
-		<li><?php echo $this->Html->link(__('List Links'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Administrators'), array('controller' => 'administrators', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Administrator'), array('controller' => 'administrators', 'action' => 'add')); ?> </li>
-	</ul>
+	</div>
+	
 </div>

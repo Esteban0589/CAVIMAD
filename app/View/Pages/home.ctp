@@ -91,54 +91,17 @@
                             
                             	<li class="widget-container widget_up_events"><!-- widgets list -->
                         
-                                    <h1 class="title-widget">Eventos</h1>
+                                      <?php echo $this->Html->link( "Eventos", array('controller'=>'events','action' => 'index'),array('style'=>'color: #3897dc;','title'=>'Ver todos los eventos'));?>
                                     
-                                    <ul class="list-unstyled">
-                                    
-                                        <!--<li class="up-event-wrap">-->
-                                    
-                                        <!--    <h1 class="title-median"><a href="#" title="Annual alumni game">Annual alumni game</a></h1>-->
-                                            
-                                        <!--    <div class="up-event-meta clearfix">-->
-                                        <!--        <div class="up-event-date">Jul 25, 2015</div><div class="up-event-time">9:00 - 11:00</div>-->
-                                        <!--    </div>-->
-                                            
-                                        <!--    <p>-->
-                                        <!--    Fusce condimentum pulvinar mattis. Nunc condimentum sapien sit amet odio vulputate, nec suscipit orci pharetra... <a href="#" class="moretag" title="read more">MORE</a> -->
-                                        <!--    </p>-->
-                                        
-                                        <!--</li>-->
-                                        
-                                        <!--<li class="up-event-wrap">-->
-                                    
-                                        <!--    <h1 class="title-median"><a href="#" title="School talents gathering">School talents gathering</a></h1>-->
-                                            
-                                        <!--    <div class="up-event-meta clearfix">-->
-                                        <!--        <div class="up-event-date">Aug 25, 2015</div><div class="up-event-time">8:30 - 10:30</div>-->
-                                        <!--    </div>-->
-                                            
-                                        <!--    <p>-->
-                                        <!--    Pellentesque lobortis, arcu eget condimentum auctor, magna neque faucibus dui, ut varius diam neque sed diam... <a href="#" class="moretag" title="read more">MORE</a> -->
-                                        <!--    </p>-->
-                                        
-                                        <!--</li>-->
-                                        
-                                        <!--<li class="up-event-wrap">-->
-                                    
-                                        <!--    <h1 class="title-median"><a href="#" title="School talents gathering">Campus "Open Doors"</a></h1>-->
-                                            
-                                        <!--    <div class="up-event-meta clearfix">-->
-                                        <!--        <div class="up-event-date">Sep 04, 2015</div><div class="up-event-date">Sep 11, 2015</div>-->
-                                        <!--    </div>-->
-                                            
-                                        <!--    <p>-->
-                                        <!--    Donec fringilla lacinia laoreet. Vestibulum ultrices blandit tempor. Aenean magna elit, varius eget quam a, posuere... <a href="#" class="moretag" title="read more">MORE</a> -->
-                                        <!--    </p>-->
-                                        
-                                        <!--</li>-->
-                                    
-                                    </ul>
-                                
+                                    <h2>
+                                        <?php echo $this->Html->link( $lastEventCreated['Event']['title'], array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
+                                    </h2>
+                                        <?php echo $this->Html->image('../files/news_events_picture/events.png', array('style'=>'max-width: 100%; height: inherit;'));  ?>
+
+
+                                         <?php echo $lastEventCreated['Event']['description'];
+                                         echo $this->Html->link(__('...mas'), array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
+
                                 </li><!-- widgets list end -->
                             
                             </ul><!-- widgets end -->
@@ -155,75 +118,18 @@
                             
                             	<li class="widget-container widget_recent_news"><!-- widgets list -->
                         
-                                    <h1 class="title-widget">Noticias Recientes</h1>
+                                      <?php echo $this->Html->link( "Noticias Recientes", array('controller'=>'news','action' => 'index'),array('style'=>'color: #3897dc;','title'=>'Ver todas las noticias'));?>
                                     
-                                    <ul class="list-unstyled">
-                                    
-    									<!--<li class="recent-news-wrap">-->
-                                    
-             <!--                               <h1 class="title-median"><a href="#" title="Megan Boyle flourishes...">Megan Boyle flourishes at Boston University</a></h1>-->
-                                            
-             <!--                               <div class="recent-news-meta">-->
-             <!--                                   <div class="recent-news-date">Jun 12, 2014</div>-->
-             <!--                               </div>-->
-                                            
-             <!--                               <div class="recent-news-content clearfix">-->
-             <!--                                   <figure class="recent-news-thumb">-->
-             <!--                                       <a href="#" title="Megan Boyle flourishes..."><img src="img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>-->
-             <!--                                   </figure>-->
-             <!--                                   <div class="recent-news-text">-->
-             <!--                                       <p>-->
-             <!--                                       Megan Boyle is flourishing at Boston University in Boston. Our High School Class of 2012 member is majoring... <a href="#" class="moretag" title="read more">MORE</a> -->
-             <!--                                       </p>-->
-             <!--                                   </div>-->
-             <!--                               </div>-->
+                                    <h2>
+                                        <?php echo $this->Html->link( $lastNewsCreated['News']['title'], array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
+                                    </h2>
+                                        <?php echo $this->Html->image('../files/news_events_picture/noticias.jpeg', array('style'=>'max-width: 100%; height: inherit;'));  ?>
+
+
+                                         <?php echo $lastNewsCreated['News']['description'];
+                                         echo $this->Html->link(__('...mas'), array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
+
                                         
-             <!--                           </li>-->
-                                        
-    									<!--<li class="recent-news-wrap">-->
-                                    
-             <!--                               <h1 class="title-median"><a href="#" title="Buntington Alum...">Buntington Alum Marc Bloom Pens New Book</a></h1>-->
-                                            
-             <!--                               <div class="recent-news-meta">-->
-             <!--                                   <div class="recent-news-date">Jun 10, 2014</div>-->
-             <!--                               </div>-->
-                                            
-             <!--                               <div class="recent-news-content clearfix">-->
-             <!--                                   <figure class="recent-news-thumb">-->
-             <!--                                       <a href="#" title="Buntington Alum..."><img src="img/recent-news-thumb-2.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 2" /></a>-->
-             <!--                                   </figure>-->
-             <!--                                   <div class="recent-news-text">-->
-             <!--                                       <p>-->
-             <!--                                       Marc Bloom has a lot to say. He likes to share his experiences and opinions with others, so the 2011 Buntington... <a href="#" class="moretag" title="read more">MORE</a> -->
-             <!--                                       </p>-->
-             <!--                                   </div>-->
-             <!--                               </div>-->
-                                        
-             <!--                           </li>-->
-                                        
-    									<!--<li class="recent-news-wrap">-->
-                                    
-             <!--                               <h1 class="title-median"><a href="#" title="Cody Rotschild Enjoys...">Cody Rotschild Enjoys Life in Montreal</a></h1>-->
-                                            
-             <!--                               <div class="recent-news-meta">-->
-             <!--                                   <div class="recent-news-date">Jun 05, 2014</div>-->
-             <!--                               </div>-->
-                                            
-             <!--                               <div class="recent-news-content clearfix">-->
-             <!--                                   <figure class="recent-news-thumb">-->
-             <!--                                       <a href="#" title="Cody Rotschild Enjoys..."><img src="img/recent-news-thumb-3.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 3" /></a>-->
-             <!--                                   </figure>-->
-             <!--                                   <div class="recent-news-text">-->
-             <!--                                       <p>-->
-             <!--                                       Cody Rotschild might have graduated with Buntington High School’s Class of 2011, but she is really a woman... <a href="#" class="moretag" title="read more">MORE</a> -->
-             <!--                                       </p>-->
-             <!--                                   </div>-->
-             <!--                               </div>-->
-                                        
-             <!--                           </li>-->
-                                    
-                                    </ul>
-                                    
                                 </li><!-- widgets list end -->
                             
                             </ul><!-- widgets end -->

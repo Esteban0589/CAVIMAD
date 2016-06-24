@@ -23,8 +23,10 @@ class EventsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Event->recursive = 0;
-		$this->set('events', $this->Paginator->paginate());
+		// $this->loadModel('NewsEventsPicture');
+		// $this->set('pictures', $this->NewsEventsPicture->find('all'));
+		 $this->Event->recursive = 1;
+		 $this->set('events', $this->Paginator->paginate());
 	}
 
 /**
@@ -36,10 +38,11 @@ class EventsController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Event->exists($id)) {
-			throw new NotFoundException(__('Invalid event'));
+			throw new NotFoundException(__('Evento no valido'));
 		}
+		
 		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
-		$this->set('event', $this->Event->find('first', $options));
+		$this->set('events', $this->Event->find('first', $options));
 	}
 
 /**
@@ -48,15 +51,29 @@ class EventsController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->loadModel('NewsEventsPicture');
+
 		if ($this->request->is('post')) {
+			//return
+			//debug($this->request->data);	
 			$this->Event->create();
 			if ($this->Event->save($this->request->data)) {
-				$this->Flash->success(__('The event has been saved.'));
+				$this->request->data['NewsEventsPicture']['0']['envent_id']= $this->Event->id;
+				//return debug($this->request->data['NewsEventsPicture']['0']);
+				if($this->NewsEventsPicture->saveAll($this->request->data['NewsEventsPicture']['0'])){
+					$this->Flash->success(__('El evento fue guardada correctamente.'));
+				}
+				else{
+				$this->Flash->error(__('El evento no pudo ser agregado, intente nuevamente.'));
+				}
+				
+				
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The event could not be saved. Please, try again.'));
+				$this->Flash->error(__('El evento no pudo ser agregado, intente nuevamente.'));
 			}
 		}
+		
 	}
 
 /**
@@ -68,14 +85,14 @@ class EventsController extends AppController {
  */
 	public function edit($id = null) {
 		if (!$this->Event->exists($id)) {
-			throw new NotFoundException(__('Invalid event'));
+			throw new NotFoundException(__('Evento no valido'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Event->save($this->request->data)) {
-				$this->Flash->success(__('The event has been saved.'));
+				$this->Flash->success(__('El evento fue actualizado correctamente.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The event could not be saved. Please, try again.'));
+				$this->Flash->error(__('El evento no pudo ser actualizado, intente nuevamente.'));
 			}
 		} else {
 			$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));

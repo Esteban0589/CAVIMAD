@@ -15,7 +15,8 @@
 				<?php
 					echo $this->Form->input('title',array('class'=>'form-control','label'=>'Título','title'=>'Ingrese el titulo de la noticia'));
 					echo $this->Form->input('description',array('class'=>'form-control','label'=>'Descripcíon','rows' => '5', 'cols' => '5','title'=>'Ingrese una descripcion de la noticia' ));
-					echo $this->Form->input('position',array('class'=>'form-control','label'=>'Posicion de imagen ','title'=>'Seleccione la posicion de la noticia','options'=>$position));
+					//vamos a dat un formato fijo a las noticias por lo tanto no necesitamos dar la opcion de que escoja donde poner los 
+					//echo $this->Form->input('position',array('class'=>'form-control','label'=>'Posicion de imagen ','title'=>'Seleccione la posicion de la noticia','options'=>$position));
 					
 					echo $this->Form->input('NewsEventsPicture.0.image', array('class'=>'form-control','type'=>'file','label'=>'Imagen','title'=>'Seleccione la imagen a cargar' ));
 					echo "Agregue más imagenes desde la edicion de noticia. ";

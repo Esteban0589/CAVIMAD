@@ -67,8 +67,26 @@ class PagesController extends AppController {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
 		$this->loadModel('HomePicture');
+		$this->loadModel('News');
+		$this->loadModel('Event');
 		$imgnsPortada = $this->HomePicture->find('all');
 		$this->set('imagenesPortada', $imgnsPortada);
+		$this->loadModel('News');
+		$lastNewsCreated = $this->News->find('first', array('order' => array('News.created' => 'desc')));
+		$this->set('lastNewsCreated', $lastNewsCreated);
+		$this->loadModel('HomePicture');
+		$lastEventCreated =  $this->Event->find('first', array('order' => array('Event.created' => 'desc')));
+		$this->set('lastEventCreated', $lastEventCreated);
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
 		try {

@@ -23,10 +23,10 @@ class NewsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->loadModel('NewsEventsPicture');
-		$this->set('pictures', $this->NewsEventsPicture->find('all'));
-		// $this->News->recursive = 1;
-		// $this->set('news', $this->Paginator->paginate());
+		// $this->loadModel('NewsEventsPicture');
+		// $this->set('pictures', $this->NewsEventsPicture->find('all'));
+		 $this->News->recursive = 1;
+		 $this->set('news', $this->Paginator->paginate());
 	}
 
 /**
@@ -38,12 +38,13 @@ class NewsController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->News->exists($id)) {
-			throw new NotFoundException(__('Invalid news'));
+			throw new NotFoundException(__('Noticia no valida'));
 		}
 		
 		$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
 		$this->set('news', $this->News->find('first', $options));
 	}
+
 
 /**
  * add method
@@ -51,7 +52,6 @@ class NewsController extends AppController {
  * @return void
  */
 	public function add() {
-		
 		$this->loadModel('NewsEventsPicture');
 
 		if ($this->request->is('post')) {
@@ -62,16 +62,16 @@ class NewsController extends AppController {
 				$this->request->data['NewsEventsPicture']['0']['news_id']= $this->News->id;
 				//return debug($this->request->data['NewsEventsPicture']['0']);
 				if($this->NewsEventsPicture->saveAll($this->request->data['NewsEventsPicture']['0'])){
-					$this->Flash->success(__('The news has been saved.'));
+					$this->Flash->success(__('La noticia fue guardada correctamente.'));
 				}
 				else{
-					$this->Flash->error(__('The news could not be saved. Please, try again.'));
+				$this->Flash->error(__('La noticia no pudo ser agregada, intente nuevamente.'));
 				}
 				
 				
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The news could not be saved. Please, try again.'));
+				$this->Flash->error(__('La noticia no pudo ser agregada, intente nuevamente.'));
 			}
 		}
 		else{
@@ -89,14 +89,14 @@ class NewsController extends AppController {
  */
 	public function edit($id = null) {
 		if (!$this->News->exists($id)) {
-			throw new NotFoundException(__('Invalid news'));
+			throw new NotFoundException(__('Noticia no valida'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->News->save($this->request->data)) {
-				$this->Flash->success(__('The news has been saved.'));
+				$this->Flash->success(__('La noticia fue actualizada correctamente.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The news could not be saved. Please, try again.'));
+				$this->Flash->error(__('La noticia no pudo ser actualizada, intente nuevamente.'));
 			}
 		} else {
 			$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
@@ -114,13 +114,13 @@ class NewsController extends AppController {
 	public function delete($id = null) {
 		$this->News->id = $id;
 		if (!$this->News->exists()) {
-			throw new NotFoundException(__('Invalid news'));
+			throw new NotFoundException(__('Noticia no valida'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->News->delete()) {
-			$this->Flash->success(__('The news has been deleted.'));
+			$this->Flash->success(__('La noticia fue eliminada.'));
 		} else {
-			$this->Flash->error(__('The news could not be deleted. Please, try again.'));
+			$this->Flash->error(__('La noticia no pudo ser eliminada, intente nuevamente.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

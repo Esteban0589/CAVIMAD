@@ -68,7 +68,19 @@ class PagesController extends AppController {
 		}
 		$this->loadModel('HomePicture');
 		$imgnsPortada = $this->HomePicture->find('all');
-		$this->set('imagenesPortada', $imgnsPortada);
+		
+		$pics=[];
+		$pics2=[];
+		if(count($imgnsPortada)>5){
+			$pics=array_rand($imgnsPortada, 5);
+			for($i=0; $i<count($pics); $i++){
+				array_push($pics2, $imgnsPortada[$pics[$i]]);
+			}
+		}else{
+			$pics2=$imgnsPortada;
+		}
+		
+		$this->set('imagenesPortada', $pics2);
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
 		try {

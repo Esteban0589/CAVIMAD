@@ -354,12 +354,17 @@ class CategoriesController extends TreeMenuAppController {
                 }
                if(count($pics[0])>5){
                     $pics2=array_rand($pics[0], 5);
+                     for($i=0; $i<count($pics2); $i++){
+                       array_push($pics3, $pics[0][$pics2[$i]]);
+                    }
+                    
+                }else{
+                    $pics3=$pics[0];
                 }
                 
-                for($i=0; $i<count($pics2); $i++){
-                    array_push($pics3, $pics[0][$pics2[$i]]);
-                }
-
+                //debug($pics3);
+                //debug($pics2);
+                //return debug($pics[0]);
                 $this->set('pics3',$pics3);
 
 		if ($taxon['Category']['classification'] == 'Familia'){
@@ -502,7 +507,8 @@ class CategoriesController extends TreeMenuAppController {
 				        // no haga nada
 				} //Cierra switch
 
-        		$pics=[];
+        	                //return debug($imagenesTaxon);
+            	$pics=[];
             	$pics2=[];
         		$pics3=[];
         		
@@ -513,12 +519,17 @@ class CategoriesController extends TreeMenuAppController {
                 }
                if(count($pics[0])>5){
                     $pics2=array_rand($pics[0], 5);
+                     for($i=0; $i<count($pics2); $i++){
+                       array_push($pics3, $pics[0][$pics2[$i]]);
+                    }
+                    
+                }else{
+                    $pics3=$pics[0];
                 }
                 
-                for($i=0; $i<count($pics2); $i++){
-                    array_push($pics3, $pics[0][$pics2[$i]]);
-                }
-
+                //debug($pics3);
+                //debug($pics2);
+                //return debug($pics[0]);
                 $this->set('pics3',$pics3);
 
 	

@@ -27,7 +27,11 @@ class LinksController extends AppController {
 		$this->set('links', $this->Paginator->paginate());
 	}
 
-
+    public function beforeFilter() {
+        parent::beforeFilter();
+        //Métodos a los cuales se permite llamar
+        $this->Auth->allow('index','logout', 'login');
+    }
 
 /**
  * add method
@@ -94,9 +98,9 @@ class LinksController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Link->delete()) {
-			$this->Flash->success(__('The link has been deleted.'));
+			$this->Flash->success(__('El enlace se elimino correctamente.'));
 		} else {
-			$this->Flash->error(__('The link could not be deleted. Please, try again.'));
+			$this->Flash->error(__('El enlace no se pudo eliminar. Intentelo nuevamente'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

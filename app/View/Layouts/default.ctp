@@ -172,7 +172,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                   </ul>
                         </li>
                         <li>
-                             <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
+                             <div = "¿Quiénes somos?"><a href="pages/aboutus" title="">Sobre nosotros</a></div>
                         </li>
                         <li>
                              <div = "Si desea enviarnos un mensaje."><a href="users/contact" title="">Contáctenos</a></div>

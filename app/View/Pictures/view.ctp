@@ -25,7 +25,7 @@
 				<!--Agregar imagen visible solamente para admin-->
 				<div class="container">
 					<div class="row">
-						<?php if(($this->Session->read('Auth')['User']['role'] =='Administrador') || ($this->Session->read('Auth')['User']['role'] == 'Colaborador')): ?>
+						<?php if(($this->Session->read('role') =='Administrador') || ($this->Session->read('role') == 'Colaborador')): ?>
 							<div class="pictures form col-md-6">
 						<?php if($id != null): ?>
 						<?php echo $this->Form->create('Picture', array('url'=>'add','type'=>'file', 'novalidate'=>'novalidate')); ?>
@@ -35,6 +35,13 @@
 								<h3><?php echo __('Agregar imagen de género'); ?></h3>
 							<?php
 								echo $this->Form->input('image', array('class'=>'form-control','type'=>'file','label'=>'Imagen','title'=>'Seleccione la imagen a cargar' ));
+							?>
+							<font color="black">
+								<p>
+									Solo se admiten imagenes .png o .jpg
+								</p>
+								</font>
+							<?php
 								echo $this->Form->input('image_dir',array('type' =>'hidden','default'=>$id));
 								echo $this->Form->input('phylo_id',array('type' =>'hidden'));
 								echo $this->Form->input('subphylo_id',array('type' =>'hidden'));
@@ -60,7 +67,7 @@
 				
 			<div class="row">
 		
-					<?php if(($this->Session->read('Auth')['User']['role'] =='Administrador') || ($this->Session->read('Auth')['User']['role'] == 'Colaborador')): ?>
+					<?php if(($this->Session->read('role') =='Administrador') || ($this->Session->read('role') == 'Colaborador')): ?>
 					<?php foreach ($pictures as $picture): ?>
 						<div class = "col-lg-3">
 							<?php echo $this->Html->image('../files/picture/image/'.$picture['Picture']['image_dir'] .'/'.'thumb_'.$picture['Picture']['image'], array('class' => 'img-thumbnail img-responsive'));  ?>

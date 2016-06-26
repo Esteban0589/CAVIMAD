@@ -50,27 +50,32 @@ a{
 					 <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
      				<div class="carousel-inner"><!-- Wrapper for slides -->
-                                  <?php 
-			                         $y=true;
-			                         for($i=0; $i<count($pics3); $i++){?>
-				                         <?php if($y){?>
-				                            <div class="item active">
-				                         <?php $y=false; 
-				                         } else { ?>
-				                             <div class="item">
-				                         <?php } ?>
-				                            <?php
-				                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
-				                          	  <div class="thumbnail"> 
-				                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
-				                           		</div>
-				                          	<?php }	else{ ?>
-												<div class="thumbnail"> 
-													<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
-												</div>
-				                           	<?php  } ?>	
-				                            </div>
-			                     <?php } ?>
+                             <?php
+                            	if(count($pics3)==0){?>
+                            		<div class="thumbnail"> 
+										<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+									</div>
+                            	<?php }else{
+		                         $y=true;
+		                         for($i=0; $i<count($pics3); $i++){?>
+			                         <?php if($y){?>
+			                            <div class="item active">
+			                         <?php $y=false; 
+			                         } else { ?>
+			                             <div class="item">
+			                         <?php } ?>
+			                            <?php
+			                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
+			                          	  <div class="thumbnail"> 
+			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
+			                           		</div>
+			                          	<?php }	else{ ?>
+											<div class="thumbnail"> 
+												<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+											</div>
+			                           	<?php  } ?>	
+			                            </div>
+		                     <?php } }?>
 			                     
                             </div><!-- Wrapper for slides end -->
                 

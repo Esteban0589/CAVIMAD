@@ -31,7 +31,7 @@ class LogbooksController extends AppController {
  * @return void
  */
 	public function index() {
-		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
+		if((!empty($this->Session->read('Auth')['User']['role'])) && ($this->Session->read('Auth')['User']['role']=='Administrador')){
 			//Limpia el cache.
         	clearCache();
 			$logbooks = $this->Logbook->find('all', array('order' => array('Logbook.modified' => 'desc')));

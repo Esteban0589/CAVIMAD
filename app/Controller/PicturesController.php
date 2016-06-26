@@ -32,8 +32,8 @@ class PicturesController extends AppController {
  */
 	public function view($id = null) {
 		$this->loadModel('Gender');
-		$this->loadModel('Family');
-		$this->loadModel('Category');
+		// $this->loadModel('Family');
+		// $this->loadModel('Category');
 		//$cat = $this->Category->find(array('conditions' => array('Category.id' => $id)));
 		//$this->set('category', $cat);
 

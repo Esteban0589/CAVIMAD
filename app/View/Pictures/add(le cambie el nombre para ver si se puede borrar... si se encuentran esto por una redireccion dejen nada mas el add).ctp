@@ -1,7 +1,7 @@
 
 <div class="container">
 	<div class="row">
-		<?php if($this->Session->read('role') =='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 		<div class="pictures form col-md-6">
 		<?php echo $this->Form->create('Picture', array('controller'=>'Pictures','action'=>'add','type'=>'file', 'novalidate'=>'novalidate')); ?>
 			<fieldset>
@@ -29,7 +29,7 @@
 			<?php echo $this->Form->end(array('label'=>'Guardar imagen', 'class'=>'btn btn-success','title'=>'Guardar imagen en galeria')); ?>
 		</div>
 			<?php endif; ?>
-				<?php if($this->Session->read('role') !='Administrador'): ?>
+				<?php if($this->Session->read('Auth')['User']['role'] !='Administrador'): ?>
 	        	<div class="alert alert-warning alert-dismissable">
 	                 <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
 	           </div>

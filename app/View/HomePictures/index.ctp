@@ -18,7 +18,7 @@
 
 <div class="container">
 	<div class="homePictures index">
-		<?php if($this->Session->read('role') =='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 		<h2>
 			<?php echo __('Galeria de fotos de portada'); ?>
 			<?php echo $this->Html->link(__('Agregar imagen'), array('action' => 'add'), array('class' => 'glyphicon glyphicon-upload','title' =>'Agregar imagen', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
@@ -58,7 +58,7 @@
 			</table>
 		</div>
 		<?php endif; ?>
-		<?php if($this->Session->read('role') !='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role'] !='Administrador'): ?>
         	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            </div>

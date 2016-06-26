@@ -35,7 +35,7 @@ h5   {margin: 0px;}
 					<br>
 				<!--</div>-->
 				
-				<?php if($this->Session->read('role')=='Administrador'): ?>
+				<?php if($this->Session->read('Auth')['User']['role']=='Administrador'): ?>
 				<!--<div class="col col-sm-5">-->
 					<h5 style="margin: 0px;"> Edición de Taxón	
 					

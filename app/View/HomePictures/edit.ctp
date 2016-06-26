@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="homePictures form">
 		<div class="row">
-			<?php if($this->Session->read('role') =='Administrador'): ?>
+			<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 				<div class="homePictures form col-md-4">
 					<?php echo $this->Form->create('HomePicture'); ?>
 						<fieldset>
@@ -32,20 +32,13 @@
 			<?php endif; ?>
 			
 			
-			<?php if($this->Session->read('role') !='Administrador'): ?>
+			<?php if($this->Session->read('Auth')['User']['role'] !='Administrador'): ?>
         	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            </div>
        <?php endif; ?> 
 		</div>
-		<!--<div class="actions">-->
-		<!--	<h3><?php echo __('Actions'); ?></h3>-->
-		<!--	<ul>-->
-		
-		<!--		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('HomePicture.id')), array('confirm' => __('Are you sure you want to delete # %s?', $this->Form->value('HomePicture.id')))); ?></li>-->
-		<!--		<li><?php echo $this->Html->link(__('List Home Pictures'), array('action' => 'index')); ?></li>-->
-		<!--	</ul>-->
-		<!--</div>-->
+
 			<br>
 	</div>
 </div>

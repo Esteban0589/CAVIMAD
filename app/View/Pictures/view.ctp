@@ -25,7 +25,7 @@
 				<!--Agregar imagen visible solamente para admin-->
 				<div class="container">
 					<div class="row">
-						<?php if(($this->Session->read('role') =='Administrador') || ($this->Session->read('role') == 'Colaborador')): ?>
+						<?php if(($this->Session->read('Auth')['User']['role'] =='Administrador') || ($this->Session->read('Auth')['User']['role'] == 'Colaborador')): ?>
 							<div class="pictures form col-md-6">
 						<?php if($id != null): ?>
 						<?php echo $this->Form->create('Picture', array('url'=>'add','type'=>'file', 'novalidate'=>'novalidate')); ?>
@@ -60,7 +60,7 @@
 				
 			<div class="row">
 		
-					<?php if(($this->Session->read('role') =='Administrador') || ($this->Session->read('role') == 'Colaborador')): ?>
+					<?php if(($this->Session->read('Auth')['User']['role'] =='Administrador') || ($this->Session->read('Auth')['User']['role'] == 'Colaborador')): ?>
 					<?php foreach ($pictures as $picture): ?>
 						<div class = "col-lg-3">
 							<?php echo $this->Html->image('../files/picture/image/'.$picture['Picture']['image_dir'] .'/'.'thumb_'.$picture['Picture']['image'], array('class' => 'img-thumbnail img-responsive'));  ?>

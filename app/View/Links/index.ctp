@@ -19,7 +19,7 @@
 		<div class="col-md-12">
 			<h2 title= "Lista de enlaces">
 				<?php echo __('Enlaces'); ?>
-				<?php if($this->Session->read('role') =='Administrador'): ?>
+				<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 					<?php echo $this->Html->link(__('Agregar enlace'), array('action' => 'add'), array('class' => 'glyphicon glyphicon-upload','title' =>'Agregar enlace', 'style'=>'color: #3891D4;    font-size:25px; padding: 5px;')); ?>
 			  	<?php endif; ?>
 			</h2>
@@ -35,7 +35,7 @@
 					                <th>Enlace</th>
 					                <th>Descripción</th>
 					                <th>Comentario</th>
-					                <?php if($this->Session->read('role') =='Administrador'): ?>
+					                <?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 					                	<th>Acciones</th>
 					                <?php endif; ?>
 					            </tr>
@@ -50,7 +50,7 @@
 										<!--<td><?php echo h($link['Link']['url']); ?>&nbsp;</td>-->
 										<td><?php echo h($link['Link']['description']); ?>&nbsp;</td>
 										<td><?php echo h($link['Link']['relatedpage']); ?>&nbsp;</td>
-										<?php if($this->Session->read('role') =='Administrador'): ?>
+										<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 											<td>
 												<?php echo $this->Html->link(__(''), array('action' => 'edit', $link['Link']['id']),array('title'=>'Editar la información del enlace','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
 												<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $link['Link']['id']), array('title'=>'Eliminar enlace','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Atención se va a eliminar el enlace # %s', $link['Link']['id'])); ?>

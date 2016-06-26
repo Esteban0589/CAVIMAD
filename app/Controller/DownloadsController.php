@@ -16,7 +16,7 @@ class DownloadsController extends AppController{
     public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
-        $this->Auth->allow('index','logout', 'login');
+        $this->Auth->allow('index','logout', 'login', 'index_bio');
     }
 
 /**
@@ -27,8 +27,26 @@ class DownloadsController extends AppController{
   /*function to display all files details*/
   public function index() {
       //Carga los datos desde la base da datos 
-   $this->set('Downloads', $this->Download->find('all'));
+     $docs=$this->Download->find('all', array('conditions'=>array('Download.category_id'=>'0')));
+     $this->set('Downloads', $docs);
         }
+  
+  public function index_bio() {
+      //Carga los datos desde la base da datos 
+      $this->loadModel('Link');
+      $bios='Biomonitoreo';
+      $bio=$this->Download->find('all', array('conditions'=>array('Download.classification'=>$bios)));
+      $link=$this->Link->find('all', array('conditions'=>array('Link.relatedpage'=>$bios)));
+      $links=[];
+      for($i=0; $i<count($link); $i++){
+          array_push($links, $link[$i]['Link']);
+      }
+      $this->set('Enlace', $links);
+      $this->set('Biomonitoreo', $bio);
+      
+        }
+  
+  
   
  /**
  * add method
@@ -79,6 +97,55 @@ class DownloadsController extends AppController{
             
         }
      }
+     
+     
+      public function add_bio() {
+      //Carga el modelo de Category
+       $this->loadModel('User');
+      	$this->loadModel('Administrator');
+      	$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$_SESSION['Auth']['User']['id'])));
+		//return debug($adm_id);
+        if ($this->request->is('post')) {
+                $bio='Biomonitoreo';
+             //return debug($this->request->data);
+            $this->Download->create();
+            //Revisa si el archivo ya fue creado, elimina los datos que hay para despues volverlo a crear
+        if(empty($this->data['Download']['report']['name'])){
+            unset($this->request->data['Download']['report']);
+        }
+        //Revisa si el archivo exite y lo crea
+        if(!empty($this->data['Download']['report']['name'])){
+           
+           
+           $data =array('Download'=>array('title'=>$this->request->data['Download']['title'],
+                                          'description'=>$this->request->data['Download']['description'],
+                                          'abstract'=>$this->request->data['Download']['abstract'], 
+                                          'report'=>$this->request->data['Download']['report'], 
+                                          'administrator_id'=> $adm_id['Administrator']['id'],
+                                          'classification'=>$bio,
+                                          'name'=>$this->request->data['Download']['report']['name']));
+            //return debug($this->request->data);
+
+              $file=$this->request->data['Download']['report'];
+                $file['name']=$this->sanitize($file['name']);
+                $data['Download']['report'] = time().$file['name'];
+
+            if($this->Download->save($data)) {
+                //Guarda el archivo en la ruta indicada
+                move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
+                $this->Flash->success(__('El documento se guardo correctamente.'));
+                return $this->redirect(array('controller'=>'downloads','action' => 'index_bio'));
+            
+             }
+         }else{
+            $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
+        }
+            
+        }
+     }
+     
+     
+     
      
  
     /**
@@ -160,7 +227,6 @@ public function edit($id = null) {
             $file['name']=$this->sanitize($file['name']);
             $data['Download']['report']=time().$file['name'];
 			if ($this->Download->save($data)) {
-
 			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
 				$this->Flash->success(__('El documento se guardo correctamente.'));
 				return $this->redirect(array('action' => 'index'));
@@ -172,6 +238,71 @@ public function edit($id = null) {
 			$this->request->data = $this->Download->find('first', $options);
 		}
 	}
+	
+	
+	public function edit_bio($id = null) {
+		if (!$this->Download->exists($id)) {
+			throw new NotFoundException(__('Invalid download'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+		     $bio='Biomonitoreo';
+           $data =array('Download'=>array('id'=>$id,
+               'title'=>$this->request->data['Download']['title'],
+                                          'description'=>$this->request->data['Download']['description'],
+                                          'abstract'=>$this->request->data['Download']['abstract'],
+                                          'name'=>$this->request->data['Download']['report']['name'],
+                                          'classification'=>$bio,
+                                          'report'=>$this->request->data['Download']['report']
+                                          ));
+            $file=$this->data['Download']['report'];
+            $file['name']=$this->sanitize($file['name']);
+            $data['Download']['report']=time().$file['name'];
+			if ($this->Download->save($data)) {
+
+			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
+				$this->Flash->success(__('El documento se guardo correctamente.'));
+				return $this->redirect(array('action' => 'index_bio'));
+			} else {
+				 $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
+			}
+		} else {
+			$options = array('conditions' => array('Download.' . $this->Download->primaryKey => $id));
+			$this->request->data = $this->Download->find('first', $options);
+		}
+	}
+	
+		public function edit_doc($id = null) {
+		if (!$this->Download->exists($id)) {
+			throw new NotFoundException(__('Invalid download'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+		     $bio='Biomonitoreo';
+           $data =array('Download'=>array('id'=>$id,
+               'title'=>$this->request->data['Download']['title'],
+                                          'description'=>$this->request->data['Download']['description'],
+                                          'name'=>$this->request->data['Download']['report']['name'],
+                                          'report'=>$this->request->data['Download']['report']
+                                          ));
+            $file=$this->data['Download']['report'];
+            $file['name']=$this->sanitize($file['name']);
+            $data['Download']['report']=time().$file['name'];
+            $all=$this->Download->find('first', array('conditions'=>array('Download.id'=>$id)));
+            $cat=$all['Download']['category_id'];
+			if ($this->Download->save($data)) {
+
+			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
+				$this->Flash->success(__('El documento se guardo correctamente.'));
+				return $this->redirect(array('controller'=>'categories','action' => 'edit'.'/'.$cat));
+			} else {
+				 $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
+			}
+		} else {
+			$options = array('conditions' => array('Download.' . $this->Download->primaryKey => $id));
+			$this->request->data = $this->Download->find('first', $options);
+		}
+	}
+	
+	
 	
 //}
 /**

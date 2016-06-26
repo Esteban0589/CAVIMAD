@@ -69,7 +69,7 @@ class UsersController extends AppController {
 	 */
 	public function index() {
 		//Se revisa si existe una sesión activa, y si el usuario es administrador
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador' ) ) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') != 'Administrador' ) ) {
 			//Si el usuario no es un administrador no se le permite el acceso
 			throw new NotFoundException(__('Usuario inválido.'));
 		}
@@ -89,7 +89,7 @@ class UsersController extends AppController {
 	}
 	
 	public function controlpanel() {
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != 'Administrador' ) ) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') != 'Administrador' ) ) {
 			//Si el usuario no es un administrador no se le permite el acceso
 			throw new NotFoundException(__('Usuario inválido.'));
 		}
@@ -135,7 +135,7 @@ class UsersController extends AppController {
 	 */
 	public function view($id = null) {
 		//Se revisa primero si hay una sesión activa
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null)  ) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') == null)  ) {
 			//Si no hay una sesión activa, no se le permite continuar a ver los datos de algún usuario
 			throw new NotFoundException(__('Para esta sección es necesario estar registrado.'));
 		}
@@ -164,7 +164,7 @@ class UsersController extends AppController {
 	 */
     public function login() {
     	//Se revisa primero en la variable $_SESSION si ya hay una sesión activa
-    	if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
+    	if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') != null  )) {
     		//Si ya hay una sesión activa, se le notifica al usuario que ya ha iniciado sesión
 			$this->Flash->error(__('Su sesión ya está activa.'));
 			//Se le redirige al home de la página
@@ -188,7 +188,7 @@ class UsersController extends AppController {
     	                $this->Cookie->write('remember_me_cookie', $this->request->data['User'], true, '1 weeks'); //if user select remember me, the cookie will be saved in his browser for 1 week.
 					}
 					//Se guarda en $_SESSION el rol del usuario que ha iniciado sesión
-    	        	$_SESSION['role'] = $this->Session->read("Auth.User.role") ;
+    	        	//$this->Session->read('role') = $this->Session->read("Auth.User.role") ;
     	        	//Se guarda en $_SESSION el username del usuario que ha iniciado sesión
 		            $_SESSION['username'] = $this->Session->read("Auth.User.username") ;
 		            //Se procede a redirigir al home de la página
@@ -234,7 +234,7 @@ class UsersController extends AppController {
 		//Se carga el modelo Administrator
 		$this->loadModel('Administrator');
 		//Se verifica si el usuario ha ingresado sesión
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null)  ) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') == null)  ) {
 			//Si no hay una sesión activa, no se le permite continuar
 			throw new NotFoundException(__('Es necesario estar registrado para esta seccion.'));
 			//Se le redirige al home de la página
@@ -256,7 +256,7 @@ class UsersController extends AppController {
 			//Se guardan los datos correspondientes al usuario
 			if ($this->User->saveAll($this->request->data['User'])) {
 				//Se chequea si el usuario es un administrador o un colaborador
-				if($_SESSION['role'] == 'Administrador' || $_SESSION['role'] == 'Colaborador') {
+				if($this->Session->read('role') == 'Administrador' || $this->Session->read('role') == 'Colaborador') {
 					//En este caso se guardan también los datos correspondientes al modelo Administrator
 					$this->Administrator->saveAll($this->request->data['Administrator']);
 				}
@@ -288,7 +288,7 @@ class UsersController extends AppController {
 	 */
 	public function editrol($id = null) {
 		//Se verifica que exista una sesión activa
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null ) ) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') == null ) ) {
 			//Se maneja la excepción en caso de que no haya un usuario en la sesión
 			throw new NotFoundException(__('Es necesario estar registrado para esta sección.'));
 			//Se redirige al home de la página
@@ -306,7 +306,7 @@ class UsersController extends AppController {
 		}
 		
 		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
-		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador')){
+		if((!empty($this->Session->read('role'))) && ($this->Session->read('role')=='Administrador')){
 			if ($this->request->is(array('post', 'put'))) {
 				if($this->User->findById($this->request->data['User']['id'])['User']['activated']==2){
 					//Se notifica que se han realizado los cambios
@@ -360,7 +360,7 @@ class UsersController extends AppController {
 	
 	public function habdes($id = null) {
 		//Se verifica que exista una sesión activa
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] == null ) ) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') == null ) ) {
 			//Se maneja la excepción en caso de que no haya un usuario en la sesión
 			throw new NotFoundException(__('Es necesario estar registrado para esta sección.'));
 			//Se redirige al home de la página
@@ -377,7 +377,7 @@ class UsersController extends AppController {
 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
 		//Primero se verigica que el usuario en la sesión activa tenga un rol de administrador
-		if((!empty($_SESSION['role'])) && ($_SESSION['role']=='Administrador') && ($this->request->is(array('post', 'put')))){
+		if((!empty($this->Session->read('role'))) && ($this->Session->read('role')=='Administrador') && ($this->request->is(array('post', 'put')))){
 			$conditions = array(
 						"AND" => array(
 						    array('User.id '=>$id),
@@ -476,7 +476,7 @@ class UsersController extends AppController {
 	 */
 	public function add() {
 	//Se revisa primero en la variable $_SESSION si ya hay una sesión activa
-    	if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
+    	if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') != null  )) {
     		//Si ya hay una sesión activa, se le notifica al usuario que ya ha iniciado sesión
 			$this->Flash->error(__('Su sesión ya está activa.'));
 			//Se le redirige al home de la página
@@ -552,7 +552,7 @@ class UsersController extends AppController {
 	public function activate($token=null)
 	{
 		//Se verifica si ya hay una sesión activa
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null  )) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') != null  )) {
 			//Se le notifica al usuario que ya se encuentra registrado
 			throw new NotFoundException(__('Sesión activa.'));
 			//Se procede a redirgir al home de la página
@@ -676,7 +676,7 @@ class UsersController extends AppController {
 	public function forgot_password()
 	{
 		//Verifica si hay una sesión activa primero
-		if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null)  ) {
+		if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') != null)  ) {
 			//Si la sesión se encuentra activa se maneja la expeción
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
@@ -817,7 +817,7 @@ class UsersController extends AppController {
  	public function reset($token=null)
  	{
  		 //Se verifica si ya existe una sesión activa
-         if ( (!empty($_SESSION['role'])) && ($_SESSION['role'] != null ) ) {
+         if ( (!empty($this->Session->read('role'))) && ($this->Session->read('role') != null ) ) {
 			throw new NotFoundException(__('Sesión activa.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}    

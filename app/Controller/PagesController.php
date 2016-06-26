@@ -69,24 +69,65 @@ class PagesController extends AppController {
 		$this->loadModel('HomePicture');
 		$this->loadModel('News');
 		$this->loadModel('Event');
+		$this->loadModel('NewsEventsPicture');
 		$imgnsPortada = $this->HomePicture->find('all');
-		$this->set('imagenesPortada', $imgnsPortada);
-		$this->loadModel('News');
-		$lastNewsCreated = $this->News->find('first', array('order' => array('News.created' => 'desc')));
-		$this->set('lastNewsCreated', $lastNewsCreated);
-		$this->loadModel('HomePicture');
-		$lastEventCreated =  $this->Event->find('first', array('order' => array('Event.created' => 'desc')));
-		$this->set('lastEventCreated', $lastEventCreated);
-		
-		
-		
 
+		$pics=[];
+		$pics2=[];
+		if(count($imgnsPortada)>5){
+			$pics=array_rand($imgnsPortada, 5);
+			for($i=0; $i<count($pics); $i++){
+				array_push($pics2, $imgnsPortada[$pics[$i]]);
+			}
+		}else{
+			$pics2=$imgnsPortada;
+		}
+		
+		$this->set('imagenesPortada', $pics2);
+	
+		$picsNews2=[];
+		$picsNews2rand=[];
+		$picsNewsFinal=[];
+		$lastNewsCreated = $this->News->find('first', array('order' => array('News.created' => 'desc')));
+		$picsNews=$this->NewsEventsPicture->find('all', array('conditions'=>array('NewsEventsPicture.news_id'=>$lastNewsCreated['News']['id'])));
+		for($i=0; $i<count($picsNews); $i++){
+			array_push($picsNews2, $picsNews[$i]['NewsEventsPicture']);
+		}
+		if(count($picsNews2)>5){
+			$picsNews2rand=array_rand($picsNews2, 5);
+			for($i=0; $i<count($picsNews2rand); $i++){
+				array_push($picsNewsFinal, $picsNews2[$picsNews2rand[$i]]);
+			}
+		}
+		else{
+			$picsNewsFinal=$picsNews2;
+		}
+		$this->set('picsNewsFinal', $picsNewsFinal);
+		$this->set('lastNewsCreated', $lastNewsCreated);
 		
 		
+		$picsEvents=[];
+		$picsEvenrsrand=[];
+		$picsEventsFinal=[];
+		$lastEventCreated =  $this->Event->find('first', array('order' => array('Event.created' => 'desc')));
+		$picsEvents2=$this->NewsEventsPicture->find('all', array('conditions'=>array('NewsEventsPicture.event_id'=>$lastEventCreated['Event']['id'])));
+
+		for($i=0; $i<count($picsEvents2); $i++){
+			array_push($picsEvents, $picsEvents2[$i]['NewsEventsPicture']);
+		}
+		if(count($picsEvents)>5){
+			$picsEvenrsrand=array_rand($picsEvents, 5);
+			for($i=0; $i<count($picsEvenrsrand); $i++){
+				array_push($picsEventsFinal, $picsEvents[$picsEvenrsrand[$i]]);
+			}
+		}
+		else{
+			$picsEventsFinal=$picsEvents;
+		}
 		
-		
-		
-		
+		$this->set('picsEventsFinal', $picsEventsFinal);
+		$this->set('lastEventCreated', $lastEventCreated);
+
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
 		try {

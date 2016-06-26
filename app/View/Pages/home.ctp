@@ -6,7 +6,7 @@
         
         	<div class="container"><!-- Contenedor-->
                 
-                <h1>CAVIMAD<small><div>Catálogo Virtual sobre Macroinvertebrados Dulceacuícolas de América Central</div></small></h1>
+                <h1>CAVIMAD<small><div style="color: #3891d6; font-size: larger;">Catálogo Virtual sobre Macroinvertebrados Dulceacuícolas de América Central</div></small></h1>
                 <p>
                 Este catálogo fue creado por investigadores que trabajan con Macroinvertebrados Dulceacuícolas con el fin de proporcionar información sobre la taxonomía, ecología, biología y distribución de los diferentes órdenes, familias y géneros de este grupo de organismos en la región centroamericana.
                 </p>
@@ -96,8 +96,40 @@
                                     <h2>
                                         <?php echo $this->Html->link( $lastEventCreated['Event']['title'], array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
                                     </h2>
-                                        <?php echo $this->Html->image('../files/news_events_picture/events.png', array('style'=>'max-width: 100%; height: inherit;'));  ?>
+                                    
+                                        <div id="carousel-featured3" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
+                               				<div class="carousel-inner"><!-- Wrapper for slides -->
+                                              <?php 
+            			                         $y=true;
+            			                         for($i=0; $i<count($picsEventsFinal); $i++){?>
+            				                         <?php if($y){?>
+            				                            <div class="item active">
+            				                         <?php $y=false; 
+            				                         } else { ?>
+            				                             <div class="item">
+            				                         <?php } ?>
+            				                            <?php
+            				                            if((!empty('../files/news_events_picture/image/' . $picsEventsFinal[$i]['image_dir']))){?>
+            				                          	  <div class="thumbnail"> 
+            				                            	 <?php echo $this->Html->image('../files/news_events_picture/image/' . $picsEventsFinal[$i]['image_dir'].'/'.$picsEventsFinal[$i]['image']); ?>
+            				                           		</div>
+            				                          	<?php }	else{ ?>
+            												<div class="thumbnail"> 
+            													<?php echo $this->Html->image('../files/news_events_picture/events.png'); ?>
+            												</div>
+            				                           	<?php  } ?>	
+            				                            </div>
+            			                     <?php } ?>
+            			                     
+                                        </div><!-- Wrapper for slides end -->
+                                    
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" href="#carousel-featured3" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                                        <a class="right carousel-control" href="#carousel-featured3" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                                        <!-- Controls end -->
+                                        
+                                    </div><!-- featured posts slider wrapper end -->
 
                                          <?php echo $lastEventCreated['Event']['description'];
                                          echo $this->Html->link(__('...mas'), array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
@@ -123,8 +155,39 @@
                                     <h2>
                                         <?php echo $this->Html->link( $lastNewsCreated['News']['title'], array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
                                     </h2>
-                                        <?php echo $this->Html->image('../files/news_events_picture/noticias.jpeg', array('style'=>'max-width: 100%; height: inherit;'));  ?>
+                                          <div id="carousel-featured2" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
+                               				<div class="carousel-inner"><!-- Wrapper for slides -->
+                                              <?php 
+            			                         $y=true;
+            			                         for($i=0; $i<count($picsNewsFinal); $i++){?>
+            				                         <?php if($y){?>
+            				                            <div class="item active">
+            				                         <?php $y=false; 
+            				                         } else { ?>
+            				                             <div class="item">
+            				                         <?php } ?>
+            				                            <?php
+            				                            if((!empty('../files/news_events_picture/image/' . $picsNewsFinal[$i]['image_dir']))){?>
+            				                          	  <div class="thumbnail"> 
+            				                            	 <?php echo $this->Html->image('../files/news_events_picture/image/' . $picsNewsFinal[$i]['image_dir'].'/'.$picsNewsFinal[$i]['image']); ?>
+            				                           		</div>
+            				                          	<?php }	else{ ?>
+            												<div class="thumbnail"> 
+            													<?php echo $this->Html->image('../files/news_events_picture/noticias.jpeg'); ?>
+            												</div>
+            				                           	<?php  } ?>	
+            				                            </div>
+            			                     <?php } ?>
+            			                     
+                                        </div><!-- Wrapper for slides end -->
+                                    
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" href="#carousel-featured2" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                                        <a class="right carousel-control" href="#carousel-featured2" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                                        <!-- Controls end -->
+                                        
+                                    </div><!-- featured posts slider wrapper end -->
 
                                          <?php echo $lastNewsCreated['News']['description'];
                                          echo $this->Html->link(__('...mas'), array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>

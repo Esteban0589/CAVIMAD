@@ -70,6 +70,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                -->
    
  <!--<base href="http://cavimad-jimemachado.c9users.io/"/>-->
+    <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad3-esteban0589.c9users.io/"/>-->
@@ -103,7 +104,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             	</div>
                 <ul class="list-inline  col-md-9" style="padding: inherit;">
                     <?php
-        			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
+        			    if(empty($this->Session->read('role'))||$_SESSION['username']==null){
         		    ?>  
         		    <div class="col-md-8 col-sm-12"></div>
         		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
@@ -163,8 +164,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         <li>
                              <div = "Accesa a la sección de colaboradores."><a href="users/view_colaboradores" title="">Colaboradores</a></div>
                         </li>
-                        <li>
-                             <div = "Accesa a la sección de referencias."><a href="downloads/index" title="">Referencias</a></div>
+                        <li class="dropdown">
+                              <div = "Accesa a las secciones de documentos y referencias"><a href="" data-toggle="dropdown" role="button"> Referencias</a></div>
+                                  <ul class="dropdown-menu">
+                                      <li><?php echo $this->Html->link('Documentos', array('controller'=>'downloads', 'action'=>'index'))?></li>
+                                      <li><?php echo $this->Html->link('Referencias', array('controller'=>'links', 'action'=>'index'))?></li>
+                                  </ul>
                         </li>
                         <li>
                              <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
@@ -176,7 +181,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
                         </li>
                         <li>
-                            <?php if(!empty($_SESSION['role'])){    ?>  
+                            <?php if(!empty($this->Session->read('role'))){    ?>  
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         

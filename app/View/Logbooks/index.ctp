@@ -14,7 +14,7 @@
 	    });
 });
 </script>
-<?php if($_SESSION['role']=='Administrador'): ?>
+<?php if($this->Session->read('role')=='Administrador'): ?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

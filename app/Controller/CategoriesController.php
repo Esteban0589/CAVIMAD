@@ -121,6 +121,7 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
+        $this->loadModel('Download');
         $alias = $this->categoryAlias;
         if ($this->request->is('post')) {
             // se crea una categoría
@@ -129,6 +130,7 @@ class CategoriesController extends TreeMenuAppController {
             if($alias) $this->request->data['Category']['alias'] = $alias;
             //Si los datos son creados correctamente se notifica mediante un mensaje
             if ($this->Category->save($this->request->data)) {
+                $varDat=0;
                 //Este bloque se encarga de cargar el modelo Logbook, crea los datos necesarios dentro del arreglo al que Lookgbook 
                 //le realizará un save en la base de datos
                 //return $this->debugController('salvo en modelo normal');
@@ -188,11 +190,47 @@ class CategoriesController extends TreeMenuAppController {
                         'panama' => $panama));
                     //debug($data);
                     $this->CountryGender->create();
-                    if($this->CountryGender->save($data))
+                    
+                    if($this->CountryGender->save($data)){
                         $this->Session->setFlash(__('Países ingresados correctamente'),'TreeMenu.success');
-                    else 
+                    }
+                    else {
                         $this->Session->setFlash(__('Los países no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
+                        $varDat++;
+                    }
+                    unset($data);
+                    $data2 = array('Download' => array('category_id' => $this->request->data['Gender']['0']['category_id'], 
+                                    'administrator_id'  => $_SESSION['Auth']['User']['id'],
+                                    'title'             =>$this->request->data['Gender'][0]['title'],
+                                    'description'       => $this->request->data['Gender'][0]['description'],
+                                    'classification'    =>$this->request->data['Category']['name'],
+                                    'name'              => $this->request->data['Gender'][0]['report']['name'],
+                                    'report'            => $this->request->data['Gender'][0]['report']
+                                ));
+                    $this->Download->create();
+                    $file=$this->request->data['Gender'][0]['report'];
+                    $file['name']=$this->sanitize($file['name']);
+                    $data2['Download']['report'] = time().$file['name'];
+                    if($this->Download->save($data2)){
+                        move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. time().$file['name']); 
+                        if($varDat==0){
+                            $this->Session->setFlash(__('Archivo ingresado correctamente'),'TreeMenu.success');
+                        }
+                        else{
+                            $this->Session->setFlash(__('Archivo ingresado correctamente, fallo al ingresar los paises.'),'TreeMenu.success');
+                        }
+                    }
+                    else {
+                        if($varDat==1){
+                            $this->Session->setFlash(__('Ni los países ni el archivo se guardo correctamente. Intente nuevamente.'), 'TreeMenu.error');
+                        }
+                        else{
+                            $this->Session->setFlash(__('El archivo no se pudo ingresar.'), 'TreeMenu.error');
+                            $varDat++;
+                        }
+                    }
                 }
+                unset($data);
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
@@ -202,8 +240,9 @@ class CategoriesController extends TreeMenuAppController {
 				'modified'=> $invDate));
 				$this->Logbook->create();
 				$this->Logbook->save($data);
-				
-                $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
+				if($varDat==0){
+                    $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
+				}
                 $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
                 $this->redirect($alias);
             } else {
@@ -218,6 +257,28 @@ class CategoriesController extends TreeMenuAppController {
     }
     
 
+    /**
+    * sanitize method
+    *
+    * Restringe el acceso al documento
+    * @throws NotFoundException
+    * @param string $string
+    * @param string $force_lowercase
+    * @param string $anal
+    * @return void
+    */
+    
+    function sanitize($string, $force_lowercase = true, $anal = false) {
+    $strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]","}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;","â€”", "â€“", ",", "<",">", "/", "?");
+    $clean = trim(str_replace($strip, "", strip_tags($string)));
+    $clean = preg_replace('/\s+/', "-", $clean);
+    $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean ;
+    return ($force_lowercase) ?
+        (function_exists('mb_strtolower')) ?
+            mb_strtolower($clean, 'UTF-8') :
+            strtolower($clean) :
+        $clean;
+}
 
     
     /**
@@ -293,12 +354,17 @@ class CategoriesController extends TreeMenuAppController {
                 }
                if(count($pics[0])>5){
                     $pics2=array_rand($pics[0], 5);
+                     for($i=0; $i<count($pics2); $i++){
+                       array_push($pics3, $pics[0][$pics2[$i]]);
+                    }
+                    
+                }else{
+                    $pics3=$pics[0];
                 }
                 
-                for($i=0; $i<count($pics2); $i++){
-                    array_push($pics3, $pics[0][$pics2[$i]]);
-                }
-
+                //debug($pics3);
+                //debug($pics2);
+                //return debug($pics[0]);
                 $this->set('pics3',$pics3);
 
 		if ($taxon['Category']['classification'] == 'Familia'){
@@ -441,7 +507,8 @@ class CategoriesController extends TreeMenuAppController {
 				        // no haga nada
 				} //Cierra switch
 
-        		$pics=[];
+        	                //return debug($imagenesTaxon);
+            	$pics=[];
             	$pics2=[];
         		$pics3=[];
         		
@@ -452,12 +519,17 @@ class CategoriesController extends TreeMenuAppController {
                 }
                if(count($pics[0])>5){
                     $pics2=array_rand($pics[0], 5);
+                     for($i=0; $i<count($pics2); $i++){
+                       array_push($pics3, $pics[0][$pics2[$i]]);
+                    }
+                    
+                }else{
+                    $pics3=$pics[0];
                 }
                 
-                for($i=0; $i<count($pics2); $i++){
-                    array_push($pics3, $pics[0][$pics2[$i]]);
-                }
-
+                //debug($pics3);
+                //debug($pics2);
+                //return debug($pics[0]);
                 $this->set('pics3',$pics3);
 
 	

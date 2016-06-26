@@ -16,7 +16,7 @@
 
 <div class="container">
 	<div class="row">
-		<?php if($this->Session->read('role')=='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role']=='Administrador'): ?>
 		<div class="col-md-12">
 			<h2 title= "Lista de usuarios de la página"><?php echo __('Administrar Usuarios'); ?></h2>
 			
@@ -89,7 +89,7 @@
 			</div>
 		</div>
 		<?php endif; ?>
-		<?php if($this->Session->read('role')!='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role']!='Administrador'): ?>
             <div class="alert alert-warning alert-dismissable">
                 <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            	</div>

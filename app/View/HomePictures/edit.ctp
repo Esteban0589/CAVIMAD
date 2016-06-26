@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="homePictures form">
 		<div class="row">
-			<?php if($this->Session->read('role') =='Administrador'): ?>
+			<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 				<div class="homePictures form col-md-4">
 					<?php echo $this->Form->create('HomePicture'); ?>
 						<fieldset>
@@ -32,7 +32,7 @@
 			<?php endif; ?>
 			
 			
-			<?php if($this->Session->read('role') !='Administrador'): ?>
+			<?php if($this->Session->read('Auth')['User']['role'] !='Administrador'): ?>
         	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            </div>

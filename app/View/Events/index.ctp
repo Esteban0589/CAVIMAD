@@ -18,7 +18,7 @@
 
 <div class="container">
 	<div class="event index">
-		<?php if($this->Session->read('role') =='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 		<h2>
 			<?php echo $this->Html->link(__(''), array('controller'=>'users','action' => 'controlpanel'), array('class' => 'glyphicon glyphicon-arrow-left','title' =>'Volver a panel de control', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 			<?php echo __('Eventos'); ?>
@@ -61,7 +61,7 @@
 			</table>
 		</div>
 		<?php endif; ?>
-		<?php if($this->Session->read('role') !='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role'] !='Administrador'): ?>
         	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            </div>

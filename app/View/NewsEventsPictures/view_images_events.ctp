@@ -28,7 +28,7 @@
 				<!--Agregar imagen visible solamente para admin-->
 				<div class="container">
 					<div class="row">
-						<?php if($this->Session->read('role') =='Administrador'): ?>
+						<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 							<div class="view_images_events form col-md-6">
             					<?php echo $this->Form->create('NewsEventsPicture', array('url' => 'add','type'=>'file', 'novalidate'=>'novalidate')); ?>
             					

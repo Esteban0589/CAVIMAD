@@ -14,7 +14,7 @@
 	    });
 });
 </script>
-<?php if($this->Session->read('role')=='Administrador'): ?>
+<?php if($this->Session->read('Auth')['User']['role']=='Administrador'): ?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

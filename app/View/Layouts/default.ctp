@@ -104,7 +104,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             	</div>
                 <ul class="list-inline  col-md-9" style="padding: inherit;">
                     <?php
-        			    if(empty($this->Session->read('role'))||$_SESSION['username']==null){
+        			    if(empty($this->Session->read('Auth')['User']['role'])||$_SESSION['username']==null){
         		    ?>  
         		    <div class="col-md-8 col-sm-12"></div>
         		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">

@@ -35,6 +35,14 @@
 								<h3><?php echo __('Agregar imagen de género'); ?></h3>
 							<?php
 								echo $this->Form->input('image', array('class'=>'form-control','type'=>'file','label'=>'Imagen','title'=>'Seleccione la imagen a cargar' ));
+								
+								?>
+ 							<font color="black">
+ 								<p>
+ 									Solo se admiten imagenes .png o .jpg
+ 								</p>
+ 								</font>
+ 							<?php
 								echo $this->Form->input('image_dir',array('type' =>'hidden','default'=>$id));
 								echo $this->Form->input('phylo_id',array('type' =>'hidden'));
 								echo $this->Form->input('subphylo_id',array('type' =>'hidden'));

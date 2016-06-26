@@ -69,7 +69,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    <!-- <link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">      -->
    <!--<link href=q"css/style.css" rel="stylesheet" type="text/css">                -->
    
- <base href="http://cavimad-jimemachado.c9users.io/"/>
+ <!--<base href="http://cavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->

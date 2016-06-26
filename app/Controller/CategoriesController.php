@@ -513,7 +513,7 @@ class CategoriesController extends TreeMenuAppController {
 				        // no haga nada
 				} //Cierra switch
 
-        	                //return debug($imagenesTaxon);
+        
             	$pics=[];
             	$pics2=[];
         		$pics3=[];
@@ -532,10 +532,6 @@ class CategoriesController extends TreeMenuAppController {
                 }else{
                     $pics3=$pics[0];
                 }
-                
-                //debug($pics3);
-                //debug($pics2);
-                //return debug($pics[0]);
                 $this->set('pics3',$pics3);
 
 	
@@ -1009,10 +1005,71 @@ class CategoriesController extends TreeMenuAppController {
     public function admin_cargar($id) {
 
         // send the nodes to our view
+        $this->loadModel('Picture');
+        $this->loadModel('Gender');
     	$taxon=$this->Category->find('first', array('conditions' => array('Category.id' => $id)));
     	$this->set('category', $taxon);
     	
-		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
+    	$clasificacion = $taxon['Category']['classification'];
+			switch ($clasificacion) {
+			    case "Filo":
+			        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.phylo_id' => $id)));
+			        break;
+			    case "Subfilo":
+			        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subphylo_id' => $id)));
+			        break;
+			    case "Clase":
+			       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.class_id' => $id)));
+			        break;
+			    case "Subclase":
+			        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subclass_id' => $id)));
+			        break;
+			    case "Orden":
+			        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.order_id' => $id)));
+			        break;  
+			    case "Suborden":
+			        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.suborder_id' => $id)));
+			        break;
+			    case "Familia":
+			       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.family_id' => $id)));
+			        break;
+			    case "Subfamilia":
+			         $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subfamily_id' => $id)));
+			        break;
+			    case "Genero":
+			     $consTem = $this->Gender->find('all', array('recursive' => -1,'conditions' => array('Gender.category_id' => $id)));
+	             $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.genre_id' => $consTem[0]['Gender']['id'])));
+			        break;
+			    case "Subgenero":
+			       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subgenre_id' => $id)));
+			        break;
+			    default:
+			        // no haga nada
+			} //Cierra switch
+	        $pics=[];
+        	$pics2=[];
+    		$pics3=[];
+    		
+			for ($j = 0; $j<count($imagenesTaxon); $j++)
+            {
+                if(!in_array($imagenesTaxon,$pics))
+                    array_push($pics, $imagenesTaxon);
+            }
+           if(count($pics[0])>5){
+                $pics2=array_rand($pics[0], 5);
+                 for($i=0; $i<count($pics2); $i++){
+                   array_push($pics3, $pics[0][$pics2[$i]]);
+                }
+                
+            }else{
+                $pics3=$pics[0];
+            }
+
+            $this->set('pics3',$pics3);
+            
+        $sons=$this->Category->find('all', array('conditions'=>array('Category.parent_id'=>$id)));
+        $this->set('sons', $sons);
+
         $this->layout = 'ajax';
 
     }

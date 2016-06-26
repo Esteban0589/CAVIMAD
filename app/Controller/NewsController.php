@@ -37,10 +37,33 @@ class NewsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$this->loadModel('NewsEventsPicture');
 		if (!$this->News->exists($id)) {
 			throw new NotFoundException(__('Noticia no valida'));
 		}
 		
+		$picsNews2=[];
+		$picsNews2rand=[];
+		$picsNewsFinal=[];
+		$picsNews=$this->NewsEventsPicture->find('all', array('conditions'=>array('NewsEventsPicture.news_id'=>$id)));
+		
+	
+		for($i=0; $i<count($picsNews); $i++){
+			array_push($picsNews2, $picsNews[$i]['NewsEventsPicture']);
+		}
+		
+		if(count($picsNews2)>5){
+			$picsNews2rand=array_rand($picsNews2, 5);
+			for($i=0; $i<count($picsNews2rand); $i++){
+				array_push($picsNewsFinal, $picsNews2[$picsNews2rand[$i]]);
+			}
+		}
+		else{
+			$picsNewsFinal=$picsNews2;
+		}
+		// return debug($picsNewsFinal);
+		$this->set('picsNewsFinal', $picsNewsFinal);
+
 		$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
 		$this->set('news', $this->News->find('first', $options));
 	}

@@ -25,8 +25,46 @@
 		</div>
 		<div class="news form col-md-8">
 					<h5><?php echo __('Imagen'); ?></h5>
-					<?php echo $this->Html->image('../files/home_picture/image/'.$news['News']['image_dir'] . '/thumb_' .$news['News']['image'], array('class' => 'img-thumbnail img-responsive'));  ?>
-					<br>
+								<div class="col col-sm-8">
+					 <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
+
+           				<div class="carousel-inner"><!-- Wrapper for slides -->
+                          <?php 
+                          	if(count($picsEventsFinal)==0){?>
+                            	<div class="thumbnail"> 
+									<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+								</div>
+                            	<?php }else{
+	                         $y=true;
+	                         for($i=0; $i<count($picsEventsFinal); $i++){?>
+		                         <?php if($y){?>
+		                            <div class="item active">
+		                         <?php $y=false; 
+		                         } else { ?>
+		                             <div class="item">
+		                         <?php } ?>
+		                            <?php
+		                            if((!empty('../files/news_events_picture/image/' . $picsEventsFinal[$i]['image_dir']))){?>
+		                          	  <div class="thumbnail"> 
+		                            	 <?php echo $this->Html->image('../files/news_events_picture/image/' . $picsEventsFinal[$i]['image_dir'].'/'.$picsEventsFinal[$i]['image'], array('style'=>'height: 200px; width: 100%;')); ?>
+		                           		</div>
+		                          	<?php }	else{ ?>
+										<div class="thumbnail"> 
+											<?php echo $this->Html->image('../files/news_events_picture/noticias.jpeg'); ?>
+										</div>
+		                           	<?php  } ?>	
+		                            </div>
+	                     <?php } }?>
+	                     
+                    </div><!-- Wrapper for slides end -->
+                
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                    <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                    <!-- Controls end -->
+                    
+                </div><!-- featured posts slider wrapper end -->
+			</div>
 		</div>
 	</div>
 	

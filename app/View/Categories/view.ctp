@@ -67,7 +67,7 @@ a{
 			                            <?php
 			                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
 			                          	  <div class="thumbnail"> 
-			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
+			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.$pics3[$i]['Picture']['image']); ?>
 			                           		</div>
 			                          	<?php }	else{ ?>
 											<div class="thumbnail"> 

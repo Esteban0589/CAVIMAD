@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="news form">
 		<div class="row">
-			<?php if($this->Session->read('role') =='Administrador'): ?>
+			<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 				<h1>					
 					<?php echo $this->Html->link(__(''), array('action' => 'view',$this->request->data['News']['id']), array('class' => 'glyphicon glyphicon-arrow-left','title' =>'Ver todas las noticias', 'style'=>'color: #3891D4; font-size:25px; padding: 5px;')); ?>
 					<?php echo __('Edicíon noticia'); ?>
@@ -35,7 +35,7 @@
 			<?php endif; ?>
 			
 			
-			<?php if($this->Session->read('role') !='Administrador'): ?>
+			<?php if($this->Session->read('Auth')['User']['role'] !='Administrador'): ?>
         	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            </div>

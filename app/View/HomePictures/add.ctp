@@ -16,9 +16,16 @@
 					echo $this->Form->input('description',array('class'=>'form-control','label'=>'Descripcíon','rows' => '5', 'cols' => '5','title'=>'Ingrese una descripcion de la imagen' ));
 					echo $this->Form->input('position',array('class'=>'form-control','label'=>'Posicion de imagen ','title'=>'Ingrese el titulo de la imagen','options'=>$position));
 					echo $this->Form->input('image', array('class'=>'form-control','type'=>'file','label'=>'Imagen','title'=>'Seleccione la imagen a cargar' ));
+				?> <font color="black">
+					<p>
+						Solo se admiten imagenes .png o .jpg
+					</p>
+					</font>
+				<?php
 					echo $this->Form->input('image_dir', array('type'=>'hidden'));
 					
 				?>
+				
 				<br>
 				</fieldset>
 			<?php echo $this->Form->end(array('label'=>'Guardar imagen', 'class'=>'btn btn-success','title'=>'Guardar imagen en galeria')); ?>

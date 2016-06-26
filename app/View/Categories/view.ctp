@@ -62,7 +62,7 @@ a{
 				                            <?php
 				                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
 				                          	  <div class="thumbnail"> 
-				                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.$pics3[$i]['Picture']['image']); ?>
+				                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
 				                           		</div>
 				                          	<?php }	else{ ?>
 												<div class="thumbnail"> 
@@ -322,8 +322,11 @@ a{
 						<div class= "texto"><?php echo nl2br(h($datosGenero['globaldistribution'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosGenero['observation'])); ?></div>
+						<h5>Archivo de especies:</h5> 
+						<?php echo $this->Html->link(__(''), array('controller' => 'downloads', 'action' => 'viewdown', $doc['Download']['id'],true), array('class' => 'glyphicon glyphicon-file','title' =>'Descargar documento', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 					<?php	} ?>
 					
+						<br>
 						<?php echo $this->Html->link('Ir a galería', array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']));?>
 					
 					<br>

@@ -47,7 +47,7 @@
 										<td><?php echo $Report['Download']['description']; ?>&nbsp;</td>
 										<td><?php echo $Report['Download']['abstract']; ?>&nbsp;</td>
 										<td class="actions" >
-											<?php echo $this->Html->link('Descargar', array('controller' => 'downloads', 'action' => 'viewdown', $Report['Download']['id'],true));?>
+											<?php echo $this->Html->link(__(''), array('controller' => 'downloads', 'action' => 'viewdown', $Report['Download']['id'],true), array('class' => 'glyphicon glyphicon-file','title' =>'Descargar documento', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 										</td>
 									 <?php if($this->Session->read('role') =='Administrador'): ?>	
 

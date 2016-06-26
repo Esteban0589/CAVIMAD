@@ -27,7 +27,8 @@ class DownloadsController extends AppController{
   /*function to display all files details*/
   public function index() {
       //Carga los datos desde la base da datos 
-     $this->set('Downloads', $this->Download->find('all'));
+     $docs=$this->Download->find('all', array('conditions'=>array('Download.category_id'=>'0')));
+     $this->set('Downloads', $docs);
         }
   
   public function index_bio() {
@@ -226,7 +227,6 @@ public function edit($id = null) {
             $file['name']=$this->sanitize($file['name']);
             $data['Download']['report']=time().$file['name'];
 			if ($this->Download->save($data)) {
-
 			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
 				$this->Flash->success(__('El documento se guardo correctamente.'));
 				return $this->redirect(array('action' => 'index'));
@@ -271,6 +271,36 @@ public function edit($id = null) {
 		}
 	}
 	
+		public function edit_doc($id = null) {
+		if (!$this->Download->exists($id)) {
+			throw new NotFoundException(__('Invalid download'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+		     $bio='Biomonitoreo';
+           $data =array('Download'=>array('id'=>$id,
+               'title'=>$this->request->data['Download']['title'],
+                                          'description'=>$this->request->data['Download']['description'],
+                                          'name'=>$this->request->data['Download']['report']['name'],
+                                          'report'=>$this->request->data['Download']['report']
+                                          ));
+            $file=$this->data['Download']['report'];
+            $file['name']=$this->sanitize($file['name']);
+            $data['Download']['report']=time().$file['name'];
+            $all=$this->Download->find('first', array('conditions'=>array('Download.id'=>$id)));
+            $cat=$all['Download']['category_id'];
+			if ($this->Download->save($data)) {
+
+			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
+				$this->Flash->success(__('El documento se guardo correctamente.'));
+				return $this->redirect(array('controller'=>'categories','action' => 'edit'.'/'.$cat));
+			} else {
+				 $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
+			}
+		} else {
+			$options = array('conditions' => array('Download.' . $this->Download->primaryKey => $id));
+			$this->request->data = $this->Download->find('first', $options);
+		}
+	}
 	
 	
 	

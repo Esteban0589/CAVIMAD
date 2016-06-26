@@ -4,9 +4,9 @@
 			<?php echo $this->Form->create('Download', array('enctype'=>'multipart/form-data')); ?>
 			<fieldset>
 				<div class="page-header">
-					<h2><?php echo __('Agregar archivo'); ?></h2>
+					<h2><?php echo __('Editar Documento'); ?></h2>
 				</div>
-				
+				<?php echo $this->Form->input('id'); ?>
 				<div title = "En este campo por favor introduzca un título para el archivo"><?php echo $this->Form->input('title', array('class'=>'form-control','label'=>'Título:','placeholder' => 'Título',));?></div>
 				<div title = "En este campo por favor introduzca una descripción para el archivo"><?php echo $this->Form->input('description', array('class'=>'form-control','rows' => '5', 'cols' => '5','label'=>'Descripción:','placeholder' => 'Descripción'));?></div>
 				<div title = "En este campo por favor introduzca un resumen del archivo"><?php echo $this->Form->input('abstract', array('class'=>'form-control','rows' => '5', 'cols' => '5','label'=>'Resumen:','placeholder' => 'Resumen'));?></div>
@@ -20,4 +20,3 @@
 	</div>
 	
 </div>
-

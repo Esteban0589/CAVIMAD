@@ -21,7 +21,7 @@ class AdministratorsController extends AppController {
  * @return void
  */
 	public function index() {
-		if ( $_SESSION['role'] != 'Administrador'  ) {
+		if ( $this->Session->read('role') != 'Administrador'  ) {
 			throw new NotFoundException(__('Usuario no valido.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -37,7 +37,7 @@ class AdministratorsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if ( $_SESSION['role'] != 'Administrador'  ) {
+		if ( $this->Session->read('role') != 'Administrador'  ) {
 			throw new NotFoundException(__('Usuario no valido.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
@@ -81,7 +81,7 @@ class AdministratorsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		if ( $_SESSION['role'] != 'Administrador'  ) {
+		if ( $this->Session->read('role') != 'Administrador'  ) {
 			throw new NotFoundException(__('Usuario no valido.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}

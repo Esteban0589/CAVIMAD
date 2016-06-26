@@ -2,7 +2,7 @@
     
 	<div class="container"><!-- container -->
     
-    	<?php if($_SESSION['role']=='Administrador'): ?>
+    	<?php if($this->Session->read('role')=='Administrador'): ?>
     	
         <div class="row"><!-- row -->
             
@@ -17,9 +17,13 @@
 						    	<?php echo __('Editar nivel taxonómico'); ?>
 						    </li>
 						</ul>
-					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal','onsubmit' => "return confirm(\"Recuerde que la clasificación debe de tener congruencia con respecto a su padre\");"));?>
+					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal','onsubmit' => "return confirm(\"Recuerde que la clasificación debe de tener congruencia con respecto a su padre\");", 'enctype'=>'multipart/form-data'));?>
 					<fieldset class="col-lg-4 col-md-4" >
-								<h2><?php echo __('Editar taxón'); ?></h2>
+								<h2><?php echo __('Editar taxón'); ?>
+									<?php echo $this->Html->link(__('Editar documento'), array('controller'=>'downloads','action' => 'edit_doc', $doc['Download']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+	
+								
+								</h2>
 							<?php
 								echo $this->Form->input('id');
 								echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoría a la que pertenecera el taxón a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>__('Root'),
@@ -100,7 +104,6 @@
 									<?php echo $this->Form->input('Gender.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
 									
 									<?php echo $this->Form->input('Gender.biologyandecology', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la información sobre biología y ecología del nivel taxonómico. Campo de texto expandible','label'=>'Biologia y ecologia'));?>
-									<!--<small><div class="col-lg-16 col-sm-32"><p aling ="left"><i><a data-toggle="modal" data-target="#modalFiles">Agregar archivo de especies</a></i></p></div></small>-->
 			
 									
 								<?php endif; ?>
@@ -127,37 +130,10 @@
 		</div>
 		
 		<?php endif; ?>
-		<?php if($_SESSION['role']!='Administrador'): ?>
+		<?php if($this->Session->read('role')!='Administrador'): ?>
             	<div class="alert alert-warning alert-dismissable">
                 	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            		</div>
    		<?php endif; ?>     
 	</div> 
-</div>
-<!-- Modal que maneja el cambio de contraseña -->
-<div id="modalFiles" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-<div class="col-md-6">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4>Agregar archivo de especies</h4>
-      </div>
-      <div class="modal-body">
-      		<?php echo $this->Form->create('Download', array('enctype'=>'multipart/form-data', 'url'=>'../downloads/add')); ?>
-        		<div title = "En este campo por favor introduzca un título para el archivo"><?php echo $this->Form->input('title', array('class'=>'form-control','label'=>'Título:','placeholder' => 'Título',));?></div>
-				<div title = "En este campo por favor introduzca su primer apellido"><?php echo $this->Form->input('description', array('class'=>'form-control','label'=>'Descripción:','placeholder' => 'Descripción'));?></div>
-				<div title = "En este campo por favor introduzca su segundo apellido"><?php echo $this->Form->input('report', array('type'=>'file','label'=>'Archivo:','placeholder' => 'Archivo'));?></div>
-				<?php echo $this->Form->input('classification', array('default'=>$this->request->data['Category']['classification'], 'type'=>'hidden'));?>
-				<?php echo $this->Form->input('category_id', array('default'=>$this->request->data['Category']['id'], 'type'=>'hidden'));?>
-      </div>
-      <div class="modal-footer">
-        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Guardar cambios</button>-->
-        <?php echo $this->Form->end(array('label'=>'Guardar', 'controller'=>'Downloads','action'=>'add', 'class'=>'btn btn-success')); ?>
-      </div>
-    </div>
-
-  </div>
-</div>
 </div>

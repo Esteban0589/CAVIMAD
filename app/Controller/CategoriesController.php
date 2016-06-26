@@ -294,6 +294,7 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
         $this->loadModel('Picture');
+        $this->loadModel('Download');
         //Si el taxón buscado no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
@@ -354,12 +355,17 @@ class CategoriesController extends TreeMenuAppController {
                 }
                if(count($pics[0])>5){
                     $pics2=array_rand($pics[0], 5);
+                     for($i=0; $i<count($pics2); $i++){
+                       array_push($pics3, $pics[0][$pics2[$i]]);
+                    }
+                    
+                }else{
+                    $pics3=$pics[0];
                 }
                 
-                for($i=0; $i<count($pics2); $i++){
-                    array_push($pics3, $pics[0][$pics2[$i]]);
-                }
-
+                //debug($pics3);
+                //debug($pics2);
+                //return debug($pics[0]);
                 $this->set('pics3',$pics3);
 
 		if ($taxon['Category']['classification'] == 'Familia'){
@@ -407,6 +413,10 @@ class CategoriesController extends TreeMenuAppController {
 		    
 		    $generoDatos = $this->Gender->find('first', array('conditions' => array('Gender.category_id' => $taxon['Category']['id'])));
 		    $this->set('datosGenero', $generoDatos['Gender']);
+
+		     $doc=$this->Download->find('first', array('conditions'=>array('Download.category_id'=>$id)));
+		    //return debug($doc);
+		    $this->set('doc', $doc);
 		    
 		    //Recibe el id de la tabla categoría de un género.
     	    $id_category = $taxon['Category']['id'];
@@ -458,6 +468,7 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('Gender');
         $this->loadModel('Picture');
         $this->loadModel('CountryGender');
+        $this->loadModel('Download');
         //Si el taxón buscado no existe se notifica mediante un mensaje de error
         if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Taxón no valido'));
@@ -502,7 +513,8 @@ class CategoriesController extends TreeMenuAppController {
 				        // no haga nada
 				} //Cierra switch
 
-        		$pics=[];
+        	                //return debug($imagenesTaxon);
+            	$pics=[];
             	$pics2=[];
         		$pics3=[];
         		
@@ -513,12 +525,17 @@ class CategoriesController extends TreeMenuAppController {
                 }
                if(count($pics[0])>5){
                     $pics2=array_rand($pics[0], 5);
+                     for($i=0; $i<count($pics2); $i++){
+                       array_push($pics3, $pics[0][$pics2[$i]]);
+                    }
+                    
+                }else{
+                    $pics3=$pics[0];
                 }
                 
-                for($i=0; $i<count($pics2); $i++){
-                    array_push($pics3, $pics[0][$pics2[$i]]);
-                }
-
+                //debug($pics3);
+                //debug($pics2);
+                //return debug($pics[0]);
                 $this->set('pics3',$pics3);
 
 	
@@ -569,7 +586,9 @@ class CategoriesController extends TreeMenuAppController {
 		    
 		    $generoDatos = $this->Gender->find('first', array('conditions' => array('Gender.category_id' => $taxon['Category']['id'])));
 		    $this->set('datosGenero', $generoDatos['Gender']);
-		    
+		    $doc=$this->Download->find('first', array('conditions'=>array('Download.category_id'=>$id)));
+		    //return debug($doc);
+		    $this->set('doc', $doc);
 		  //Recibe el id de la tabla categoría de un género.
     	    $id_category = $taxon['Category']['id'];
     	    
@@ -628,7 +647,10 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('CountryGender');
         $this->Category->id = $id;
         
-        //
+        $doc=$this->Download->find('first', array('conditions'=>array('Download.category_id'=>$id)));
+        $this->set('doc', $doc);
+//        return debug($doc);
+              
         $ids=$this->Gender->findAllByCategory_id($this->Category->id)[0]['Gender']['id'];
         $var = $this->CountryGender->findAllByGender_id($ids);
         $old = $var[0]['CountryGender']['id'];
@@ -727,9 +749,11 @@ class CategoriesController extends TreeMenuAppController {
                         'mexico' => $mexico, 'nicaragua'=> $nicaragua, 
                         'panama' => $panama));
                     $this->CountryGender->save($data);
-                    
+                
                     
                 }
+                
+                
                 $this->loadModel('Logbook');
                 $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 				$invDate = $dateNow->format('Y-m-d H:i:s');
@@ -985,7 +1009,9 @@ class CategoriesController extends TreeMenuAppController {
     public function admin_cargar($id) {
 
         // send the nodes to our view
-    	$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+    	$taxon=$this->Category->find('first', array('conditions' => array('Category.id' => $id)));
+    	$this->set('category', $taxon);
+    	
 		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
         $this->layout = 'ajax';
 

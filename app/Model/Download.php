@@ -28,6 +28,16 @@ public $validate = array(
             'rule'    => array('fileSize', '<=', '4MB'),
             'message' => 'File must be less than 4MB'
         )
+    ),
+    'title' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				'message' => 'El nombre no debe estar vacío.',
+			),
+			'unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'El título ya ha sido utilizado.',
+	)
     )
 );
 }

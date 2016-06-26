@@ -14,6 +14,9 @@
             
             <div class="row no-gutter"><!-- row -->
                 
+                <div class="col-lg-2 col-md-2"><!-- doc body wrapper -->
+                </div>
+                
                 <div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
                 	
                     <div class="col-padded"><!-- inner custom column -->

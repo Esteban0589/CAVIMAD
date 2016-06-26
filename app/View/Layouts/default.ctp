@@ -104,7 +104,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             	</div>
                 <ul class="list-inline  col-md-9" style="padding: inherit;">
                     <?php
-        			    if(empty($_SESSION['role'])||$_SESSION['username']==null){
+        			    if(empty($this->Session->read('role'))||$_SESSION['username']==null){
         		    ?>  
         		    <div class="col-md-8 col-sm-12"></div>
         		    <div class="col-md-2 col-sm-12" style="padding: inherit; text-align: right;">
@@ -159,7 +159,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <div = "Accesa al catálogo."><a href="categories/sort" title="">Catálogo</a></div>
                         </li>
                         <li>
-                             <div = "Accesa a la sección de biomonitoreo."><a href="" title="">Biomonitoreo</a></div>
+                             <div = "Accesa a la sección de biomonitoreo."><a href="downloads/index_bio" title="">Biomonitoreo</a></div>
                         </li>
                         <li>
                              <div = "Accesa a la sección de colaboradores."><a href="users/view_colaboradores" title="">Colaboradores</a></div>
@@ -181,7 +181,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
                         </li>
                         <li>
-                            <?php if(!empty($_SESSION['role'])){    ?>  
+                            <?php if(!empty($this->Session->read('role'))){    ?>  
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         

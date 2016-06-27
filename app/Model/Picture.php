@@ -29,5 +29,17 @@ class Picture extends AppModel {
             )
         )
     );
+    
+    
+     public $validate = array(
+ 		
+ 		  'image' => array(
+             'rule' => array(
+                 'extension',
+                 array( 'png', 'jpg')
+             ),
+             'message' => 'Por favor agregue una imagen valida.'
+        )
+ 	);
 
 }

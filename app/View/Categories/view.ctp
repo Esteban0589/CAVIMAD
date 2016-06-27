@@ -35,6 +35,9 @@ a{
 					<?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
 	
 		            <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el taxón",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+					
+					<?php echo $this->Html->link(__(''), array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']), array('class' => 'glyphicon glyphicon-th-large','title' =>'Ir a galeria', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+				
 					</h5>
 	
 				<!--</div>-->
@@ -50,27 +53,32 @@ a{
 					 <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
      				<div class="carousel-inner"><!-- Wrapper for slides -->
-                                  <?php 
-			                         $y=true;
-			                         for($i=0; $i<count($pics3); $i++){?>
-				                         <?php if($y){?>
-				                            <div class="item active">
-				                         <?php $y=false; 
-				                         } else { ?>
-				                             <div class="item">
-				                         <?php } ?>
-				                            <?php
-				                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
-				                          	  <div class="thumbnail"> 
-				                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
-				                           		</div>
-				                          	<?php }	else{ ?>
-												<div class="thumbnail"> 
-													<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
-												</div>
-				                           	<?php  } ?>	
-				                            </div>
-			                     <?php } ?>
+                             <?php
+                            	if(count($pics3)==0){?>
+                            		<div class="thumbnail"> 
+										<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+									</div>
+                            	<?php }else{
+		                         $y=true;
+		                         for($i=0; $i<count($pics3); $i++){?>
+			                         <?php if($y){?>
+			                            <div class="item active">
+			                         <?php $y=false; 
+			                         } else { ?>
+			                             <div class="item">
+			                         <?php } ?>
+			                            <?php
+			                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
+			                          	  <div class="thumbnail"> 
+			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.$pics3[$i]['Picture']['image']); ?>
+			                           		</div>
+			                          	<?php }	else{ ?>
+											<div class="thumbnail"> 
+												<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+											</div>
+			                           	<?php  } ?>	
+			                            </div>
+		                     <?php } }?>
 			                     
                             </div><!-- Wrapper for slides end -->
                 
@@ -327,7 +335,7 @@ a{
 					<?php	} ?>
 					
 						<br>
-						<?php echo $this->Html->link('Ir a galería', array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']));?>
+					
 					
 					<br>
 				</div>

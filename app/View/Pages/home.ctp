@@ -112,7 +112,7 @@
             				                            <?php
             				                            if((!empty('../files/news_events_picture/image/' . $picsEventsFinal[$i]['image_dir']))){?>
             				                          	  <div class="thumbnail"> 
-            				                            	 <?php echo $this->Html->image('../files/news_events_picture/image/' . $picsEventsFinal[$i]['image_dir'].'/'.$picsEventsFinal[$i]['image']); ?>
+            				                            	 <?php echo $this->Html->image('../files/news_events_picture/image/' . $picsEventsFinal[$i]['image_dir'].'/'.$picsEventsFinal[$i]['image'], array('style'=>'height: 150px; width: 100%;')); ?>
             				                           		</div>
             				                          	<?php }	else{ ?>
             												<div class="thumbnail"> 
@@ -170,7 +170,7 @@
             				                            <?php
             				                            if((!empty('../files/news_events_picture/image/' . $picsNewsFinal[$i]['image_dir']))){?>
             				                          	  <div class="thumbnail"> 
-            				                            	 <?php echo $this->Html->image('../files/news_events_picture/image/' . $picsNewsFinal[$i]['image_dir'].'/'.$picsNewsFinal[$i]['image']); ?>
+            				                            	 <?php echo $this->Html->image('../files/news_events_picture/image/' . $picsNewsFinal[$i]['image_dir'].'/'.$picsNewsFinal[$i]['image'], array('style'=>'height: 150px; width: 100%;')); ?>
             				                           		</div>
             				                          	<?php }	else{ ?>
             												<div class="thumbnail"> 

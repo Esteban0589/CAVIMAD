@@ -37,10 +37,31 @@ class EventsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$this->loadModel('NewsEventsPicture');
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Evento no valido'));
 		}
+		$picsEvents2=[];
+		$picsEvents2rand=[];
+		$picsEventsFinal=[];
+		$picsEvents=$this->NewsEventsPicture->find('all', array('conditions'=>array('NewsEventsPicture.event_id'=>$id)));
 		
+		for($i=0; $i<count($picsEvents); $i++){
+			array_push($picsEvents2, $picsEvents[$i]['NewsEventsPicture']);
+		}
+		
+		if(count($picsEvents2)>5){
+			$picsEvents2rand=array_rand($picsEvents2, 5);
+			for($i=0; $i<count($picsEvents2rand); $i++){
+				array_push($picsEventsFinal, $picsEvents2[$picsEvents2rand[$i]]);
+			}
+		}
+		else{
+			$picsEventsFinal=$picsEvents2;
+		}
+		// return debug($picsNewsFinal);
+		$this->set('picsEventsFinal', $picsEventsFinal);
+
 		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
 		$this->set('events', $this->Event->find('first', $options));
 	}

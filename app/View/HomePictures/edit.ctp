@@ -13,6 +13,7 @@
 							echo $this->Form->input('id',array('class'=>'form-control'));
 							echo $this->Form->input('title',array('class'=>'form-control','label'=>'Título','title'=>'Ingrese el título de la imagen'));
 							echo $this->Form->input('description',array('class'=>'form-control','label'=>'Descripcíon','rows' => '5', 'cols' => '5','title'=>'Ingrese una descripción de la imagen' ));
+							echo $this->Form->input('position',array('class'=>'form-control','label'=>'Posicion de imagen ','title'=>'Posición de la imagen','options'=>$position));
 							echo $this->Form->input('picture', array('class'=>'form-control','type'=>'file','label'=>'Imagen','title'=>'Seleccione la imagen a cargar' ));
 							echo $this->Form->input('picture_dir',array('type'=>'hidden'));
 						?>

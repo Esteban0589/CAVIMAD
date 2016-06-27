@@ -41,24 +41,49 @@ a{
 				<h2 style="margin: 0px;"> <?php echo $category['Category']['name']; ?>	</h2>
 			</a> 			<!--Imagen a la izq con 3 columnas-->
 			<div class="col col-sm-3">
-				<?php
-				if((!empty($category['Picture']['image_dir']))&&(count($category['Picture']['image_dir'])>0) ){
-				?>
-					<div class="thumbnail"> 
-						<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $category['Category']['id']?>)" >
-						<?php echo $this->Html->image('../files/category/image/' . $category['Picture']['image_dir'].'/'.'thumb_'.$category['Picture']['image']); ?>
-						</a>
-					</div>
-				<?php
-				}else{ ?>
-					<div class="thumbnail"> 
-						<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $category['Category']['id']?>)" >
-						<?php echo $this->Html->image('../files/category/default.PNG'); ?>
-					 	</a>
-					</div>
-				<?php
-				}	
-				?>
+
+				
+				<div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
+
+               		<div class="carousel-inner"><!-- Wrapper for slides -->
+            					 <?php
+                            	if(count($pics3)==0){?>
+                            		<div class="thumbnail"> 
+										<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+									</div>
+                            	<?php }else{
+		                         $y=true;
+		                         for($i=0; $i<count($pics3); $i++){?>
+			                         <?php if($y){?>
+			                            <div class="item active">
+			                         <?php $y=false; 
+			                         } else { ?>
+			                             <div class="item">
+			                         <?php } ?>
+			                            <?php
+			                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
+			                          	  <div class="thumbnail"> 
+			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
+			                           		</div>
+			                          	<?php }	else{ ?>
+											<div class="thumbnail"> 
+												<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
+											</div>
+			                           	<?php  } ?>	
+			                            </div>
+		                     <?php } }?>
+		                     
+                        </div><!-- Wrapper for slides end -->
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                        <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                        <!-- Controls end -->
+                        
+                    </div><!-- featured posts slider wrapper end -->
+				
+				
+				
 				</div>
 	
 			<!--Campo para tipo y descripcion. Toma las 9columans restantes de este row-->
@@ -77,17 +102,15 @@ a{
 	<!--En este row veremos los taxones asociados con su imagen y una pequeña decripcion-->
     <?php if($category['Category']['classification'] !='Genero'): ?>
 	<div class="row">
+		<br>
 		<h2 style = "margin: 0px;">
 			Taxones asociados
 		</h2>
 		<!--Tabla donde se muestran las imagenes, nombre y descripcion de taxones derivados del actual-->
-		
-		
-		
+
 		<table id="example" class="display" cellspacing="0" width="100%">
 	        <thead>
 	            <tr>
-	                <th class="col col-sm-2"> </th>
 	                <th class="col col-sm-2">Taxón</th>
 	                <th>Descripción</th>
 	                <th>Acciones</th>
@@ -96,22 +119,6 @@ a{
 	        <tbody>
 	            <?php foreach ($sons as $son): ?>
 					<tr>
-						<!--Imagen-->
-						<td class="col col-sm-2">
-							<?php if((!empty($son['Picture']['image_dir']))&&(count($son['Picture']['image_dir'])>0) ){?>
-								<div class="thumbnail" style=" margin: 0px;"> 
-									<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >
-									<?php echo $this->Html->image('../files/category/image/' . $son['Picture']['image_dir'].'/'.'thumb_'.$son['Picture']['image']); ?>
-									</a>
-								</div>
-							<?php }else{ ?>
-								<div class="thumbnail" style=" margin: 0px;"> 
-									<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >
-									<?php echo $this->Html->image('../files/category/default.PNG'); ?>
-								 	</a>
-								</div>
-							<?php } ?>
-						</td>
 						<!--Nombre de taxón-->
 						<td class="col col-sm-2">
 							<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >

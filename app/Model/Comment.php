@@ -15,7 +15,7 @@ class Comment extends AppModel {
  */
 	public $validate = array(
 		'user_id' => array(
-			'numeric' => array(
+			/*'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
@@ -30,7 +30,7 @@ class Comment extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 		'comment' => array(
 			'notBlank' => array(
@@ -41,16 +41,9 @@ class Comment extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			
 			'minLength' => array(
-				'rule' => array('minLength'),
+				'rule' => array('minLength',5),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -58,7 +51,7 @@ class Comment extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
-				'rule' => array('maxLength'),
+				'rule' => array('maxLength',50),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -67,24 +60,24 @@ class Comment extends AppModel {
 			),
 		),
 		'created' => array(
-			'datetime' => array(
+			/*'datetime' => array(
 				'rule' => array('datetime'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 		'category_id' => array(
-			'numeric' => array(
+			/*'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 	);
 

@@ -453,7 +453,7 @@ li.widget-container:not(:first-child) { margin-top: 60px; }
 .comment-reply-link { float: right; font-weight: 700; text-transform: uppercase; }
 #respond { margin-top: 40px; }
 li.comment #respond { margin-top: 30px; }
-#comment { height: 202px; }
+#comment { height: 100px; }
 #commentform { margin-top: 20px; }
 /* == END post comments == */
 

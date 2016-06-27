@@ -290,6 +290,7 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
  public function view($id = null) {
+        
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
@@ -305,11 +306,9 @@ class CategoriesController extends TreeMenuAppController {
 		$clasificacion = $taxon['Category']['classification'];
 		$ids=$taxon['Category']['id'];
 		
-		
-		
 		$this->loadModel('Comment');
-		$comments=  $this->Comment->find('all', array('conditions' => array('Comment.category_id' => $id)));
-		$this->set('comments',$comments);
+        $var = $this->Comment->findAllByCategoryId($id);
+        $this->Set('Comments', $var);
 		
 		//return debug($ids);
 		//debug($clasificacion);
@@ -375,7 +374,7 @@ class CategoriesController extends TreeMenuAppController {
 		    
 		     //Recibe el id de la tabla categoría de un género.
     	    $id_category = $taxon['Category']['id'];
-    	    
+
     	    //Este arreglo contendrá los id's de cada país en el cuál hay especies del género.
             $countries = [];
     	    //Obtiene el id del género según su id de categoría.
@@ -1511,7 +1510,8 @@ class CategoriesController extends TreeMenuAppController {
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
 	}
-	public function addcoment($id = null) {
+	
+	public function addcomment($id = null) {
 	    $this->loadModel('User');
 		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
@@ -1523,13 +1523,29 @@ class CategoriesController extends TreeMenuAppController {
             $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
 			$invDate = $dateNow->format('Y-m-d H:i:s');
 			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-			'category_id' => $this->Category->id ,
-			'comment' => $this->request->data['Category']['comment'],
+			'category_id' => $this->request->data['idCat'] ,
+			'comment' => $this->request->data['comments'],
 			'created'=> $invDate));
-			$this->Comment->save($data);
+			//debug($data);
+			//debug($this->categoryAlias);
+			$alias = $this->categoryAlias;
+            $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+			if ($this->Comment->save($data)) { 
+			   // $this->Session->setFlash(__('Comentario guardado.'), 'success');
+                
+                		$this->layout = 'ajax';
+
+               // $this->redirect(array('action' => 'sort', 'alias'=>$this->request->data['idCat']));
+            }
+            else{
+                //Si no se logran borar los datos  se notifica mediante un mensaje de error
+                //$this->Session->setFlash(__('Comentario no guardado.'), 'error');
+                //$this->redirect($alias);
+            }
         }
 	    
 	}
+	
 	public function deleteComment($id = null) {
 	    $this->loadModel('Comment');
         if (!$this->request->is('post')) {
@@ -1548,18 +1564,8 @@ class CategoriesController extends TreeMenuAppController {
         $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
         // según la categoría seleccionada se eliminan los datos
         //Si se logran eliminar los datos se notifica mediante un mensaje 
-        
-        $this->loadModel('Logbook');
-        $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
-		$invDate = $dateNow->format('Y-m-d H:i:s');
-		$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-		'cat_user_id' =>  $id ,
-		'description' => "El usuario ".$_SESSION['Auth']['User']['username']." elimino la categoría ".$this->Category->findById($id)['Category']['name']."." ,
-		'modified'=> $invDate));
-		
-		if ($this->Category->delete()) {
-		    $this->Logbook->create();
-		    $this->Logbook->save($data);
+
+		if ($this->Comment->delete()) {
             $this->Session->setFlash(__('Datos eliminados'), 'success');            
             $this->redirect($alias);
         }
@@ -1569,5 +1575,11 @@ class CategoriesController extends TreeMenuAppController {
             $this->redirect($alias);
         }
     }
+    
+    public function viewComment($id = null) {
+        $this->loadModel('Comment');
+        $var = $this->Comment->findAllByCategoryId($id);
+        $this->Set('Comments', $var);
+	}
 	
 }

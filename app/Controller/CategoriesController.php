@@ -1074,6 +1074,14 @@ class CategoriesController extends TreeMenuAppController {
 
     }
     
+    public function admin_actualizar($id){
+    
+         // send the nodes to our view
+    	$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
+        $this->layout = 'ajax';
+    }
+    
     /**
      * catalogo method
      *

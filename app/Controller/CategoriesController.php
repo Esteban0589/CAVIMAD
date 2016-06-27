@@ -1566,12 +1566,12 @@ class CategoriesController extends TreeMenuAppController {
         //Si se logran eliminar los datos se notifica mediante un mensaje 
 
 		if ($this->Comment->delete()) {
-            $this->Session->setFlash(__('Datos eliminados'), 'success');            
+            $this->Session->setFlash(__('El comentario ha sido eliminado'), 'success');            
             $this->redirect($alias);
         }
         else{
             //Si no se logran borar los datos  se notifica mediante un mensaje de error
-            $this->Session->setFlash(__('Datos no eliminados'), 'error');
+            $this->Session->setFlash(__('El comentario no pudo ser eliminado, inténtelo nuevamente'), 'error');
             $this->redirect($alias);
         }
     }

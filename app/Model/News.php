@@ -49,5 +49,14 @@ class News extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		
+		'NewsEventsPicture.0.image' => array(
+             'rule' => array(
+                 'extension',
+                 array( 'png', 'jpg')
+             ),
+             'message' => 'Por favor agregue una imagen valida.'
+        ),
 	);
+	
 }

@@ -80,9 +80,11 @@
     
                                 <td style="text-align: center">
                                 
-                                   	<?php echo $this->Html->link(__(''), array('action' => 'view2', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Vista completa de la información del taxón','class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?><?php echo "" ?>
+                                   	<?php echo $this->Html->link(__(''), array('action' => 'view2', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Vista completa de la información del taxón','class' => 'glyphicon glyphicon-eye-open', 'style' => ' color: #e6cd53; font-size:25px; padding: 5px;')); ?><?php echo "" ?>
                                     <?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Editar el taxón','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
-                                    <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+                                    <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+                                	<?php echo $this->Html->link(__(''), array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']), array('class' => 'glyphicon glyphicon-th-large','title' =>'Ir a galeria', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
+				
                                 </td>
                             </tr>
                         <?php endforeach; ?>

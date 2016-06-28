@@ -20,6 +20,14 @@
 					
 					echo $this->Form->input('NewsEventsPicture.0.image', array('class'=>'form-control','type'=>'file','label'=>'Imagen','title'=>'Seleccione la imagen a cargar' ));
 					echo "Agregue más imagenes desde la edicion de eventos. ";
+								
+					?>
+				 	<font color="black">
+				 		<p>
+				 			Solo se admiten imagenes .png o .jpg
+				 		</p>
+				 	</font>
+				 	<?php
 					echo "<br>";
 					echo $this->Form->input('NewsEventsPicture.0.image_dir', array('type'=>'hidden'));
 					echo $this->Form->input('NewsEventsPicture.0.news_id', array('type'=>'hidden'));

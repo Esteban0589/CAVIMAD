@@ -30,7 +30,6 @@ class Picture extends AppModel {
         )
     );
     
-    
      public $validate = array(
  		
  		  'image' => array(

@@ -91,11 +91,21 @@
                             
                             	<li class="widget-container widget_up_events"><!-- widgets list -->
                         
-                                      <?php echo $this->Html->link( "Eventos", array('controller'=>'events','action' => 'index'),array('style'=>'color: #3897dc;','title'=>'Ver todos los eventos'));?>
+                                      <h1 class="page-title"> <?php echo $this->Html->link( "Eventos", array('controller'=>'events','action' => 'index'),array('style'=>'color: #3897dc;','title'=>'Ver todos los eventos'));?>
+                                    </h1>
                                     
-                                    <h2>
-                                        <?php echo $this->Html->link( $lastEventCreated['Event']['title'], array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
-                                    </h2>
+                                     <div class="up-event-wrapper"><!-- event summary -->
+                        
+                                            <h1 class="title-median">   <?php echo $this->Html->link($lastEventCreated['Event']['title'], array('controller'=>'news','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles de la evento'));?>
+                                          </h1>
+                        
+                                        <div class="up-event-meta clearfix">
+                                            <div class="up-event-date">
+                                                <?php echo h($lastEventCreated['Event']['modified']);?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     
                                         <div id="carousel-featured3" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
@@ -150,11 +160,24 @@
                             
                             	<li class="widget-container widget_recent_news"><!-- widgets list -->
                         
-                                      <?php echo $this->Html->link( "Noticias Recientes", array('controller'=>'news','action' => 'index'),array('style'=>'color: #3897dc;','title'=>'Ver todas las noticias'));?>
+                                     <h1 class="page-title"> <?php echo $this->Html->link( "Noticias Recientes", array('controller'=>'news','action' => 'index'),array('style'=>'color: #3897dc;','title'=>'Ver todas las noticias'));?>
+                                     </h1>
                                     
-                                    <h2>
-                                        <?php echo $this->Html->link( $lastNewsCreated['News']['title'], array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
-                                    </h2>
+                               
+                                      
+                                    
+                                    <div class="up-event-wrapper"><!-- event summary -->
+                        
+                                            <h1 class="title-median">   <?php echo $this->Html->link( $lastNewsCreated['News']['title'], array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
+                                          </h1>
+                        
+                                        <div class="up-event-meta clearfix">
+                                            <div class="up-event-date">
+                                                <?php echo h($lastNewsCreated['News']['modified']);?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                           <div id="carousel-featured2" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
                                				<div class="carousel-inner"><!-- Wrapper for slides -->

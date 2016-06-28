@@ -341,6 +341,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                     <li><a href="http://www.cimar.ucr.ac.cr" target="_blank" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
                                     
                                     <li><a href="http://www.biologia.ucr.ac.cr" target="_blank" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
+                                     <li><a href="http://museo.biologia.ucr.ac.cr/" target="_blank" title="Museo de Biologia, UCR"><img src="app/webroot/img/LogoMuseo.gif" alt="MUSEO DE BIOLOGIA" width="10"; /></a></li>
                                     
                                 </ul>
                     

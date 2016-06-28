@@ -907,7 +907,7 @@ class CategoriesController extends TreeMenuAppController {
 				}
 				// de  los resultado de la búsqueda, busque recursivamente todos que cumplan las condiciones
 				$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
-				debug($resultado);
+				//debug($resultado);
 				$i = 0;
 				// para cada resultado encontrado por categoría según el id regrese la categoría y la imagen
 				foreach($resultado as $resultados){

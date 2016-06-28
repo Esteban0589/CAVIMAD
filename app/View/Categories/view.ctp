@@ -24,7 +24,11 @@ a{
 			<div class="page-header">
 			<div class="col col-sm-12" style=" padding-left: 0px;">
 				<!--<div class="col col-sm-7">-->
-					<h2 style="margin: 0px;"> <?php echo $category['Category']['name']; ?>	</h2>
+					<?php if($category['Category']['classification']=='Genero'){?>	
+						<h2 style="margin: 0px;"><em> <?php echo $category['Category']['name']; ?> </em></h2>
+					<?php	} else { ?>
+						<h2 style="margin: 0px;"> <?php echo $category['Category']['name']; ?>	</h2>
+					<?php	} ?>
 					<br>
 				<!--</div>-->
 				

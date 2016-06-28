@@ -7,7 +7,15 @@
 			
 				<div class="col-lg-6 col-md-6">
 					<!--Parte del texto-->
-					<div title ="Seleccione para ir a la vista completa de la información del taxón"><b style="color:#82B204"><?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'categories','action' => 'view2',$resultado['Category']['id']));?></b></div>
+					<div title ="Seleccione para ir a la vista completa de la información del taxón">
+						<b style="color:#82B204">
+							<?php if($resultado['Category']['classification']=='Genero'){?>	
+								<em> <?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'categories','action' => 'view2',$resultado['Category']['id']));?> </em>
+							<?php	} else { ?>
+								<?php echo$this->Html->link($resultado['Category']['name'], array('controller' => 'categories','action' => 'view2',$resultado['Category']['id']));?>
+							<?php	} ?>
+						</b>
+					</div>
 					<ul>
 						
 							<div>

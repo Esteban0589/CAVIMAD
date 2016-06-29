@@ -6,7 +6,7 @@
         
         	<div class="container"><!-- Contenedor-->
                 
-                <h1>CAVIMAD<small><div style="color: #3891d6; font-size: larger;">Catálogo Virtual sobre Macroinvertebrados Dulceacuícolas de América Central</div></small></h1>
+                <h1>CAVIMAD<small><div style="color: #3891d6; font-size: larger;"> <font color="#82b204">Ca</font>tálogo <font color="#82b204">Vi</font>rtual sobre <font color="#82b204">Ma</font>croinvertebrados <font color="#82b204">D</font>ulceacuícolas de América Central</div></small></h1>
                 <p>
                 Este catálogo fue creado por investigadores que trabajan con Macroinvertebrados Dulceacuícolas con el fin de proporcionar información sobre la taxonomía, ecología, biología y distribución de los diferentes órdenes, familias y géneros de este grupo de organismos en la región centroamericana.
                 </p>

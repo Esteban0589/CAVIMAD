@@ -291,14 +291,14 @@ a{
 						<form id="contactform" method="post" action="categories/addcomment">
 							<div class="form-group clearfix col-lg-12">
 								<label for="contactComments"><span class="required"></span></label>
-								<textarea aria-required="true" rows="5" cols="5" name="comments" id="comment" class="form-control requiredField mezage" placeholder = "Escriba aquí su comentario. Por favor refresque la página para visualizar su comentario" required></textarea>
+								<textarea aria-required="true" rows="5" cols="5" name="comments" id="comment" class="form-control requiredField mezage" placeholder = "Escriba aquí su comentario." required></textarea>
 							</div>
 							<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom"  >
 							<input type="hidden" name="idCat" id="agregar" value= "1">
 							<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom">
 	                            <input type="hidden" name="submitted" id="submitted" value="true" />
-	                            <input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />
-    							<a title="Agregar comentario" href="javascript:comment(<?php  echo $category['Category']['id']?>)" >Maldito link</a>
+	                            <!--<input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />-->
+    							<a title="Agregar comentario" href="javascript:comment(<?php  echo $category['Category']['id']?>)" >Enviar Comentario</a>
 
 	                        </div>
 							<!--<a title="Agregar comentario" href="javascript:comments(<?php //echo $category['Category']['id']?>)" >-->
@@ -317,7 +317,11 @@ a{
 									<div>
 						    			<b2 style="color:#999"><?php echo $Comments['Comment']['created']."     ";?></b2>
 						    			<b>
-						       				<?php echo $this->Html->link($Comments['User']['username'], array('controller' => 'users','action' => 'view',$Comments['User']['id']));?>
+						    				<?php if($Comments['User']['activated'] != 2){?>
+						       					<?php echo $this->Html->link($Comments['User']['username'], array('controller' => 'users','action' => 'view',$Comments['User']['id']));?>
+						       				<?php } else {?>
+						       					<?php echo $Comments['User']['username'];?>
+						       				<?php }?>
 						       				<?php echo "dijo: "?>
 						   				</b>
 									</div>

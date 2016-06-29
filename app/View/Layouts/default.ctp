@@ -76,7 +76,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="http://cavimad3-esteban0589.c9users.io/"/>-->
     <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
      <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
-     <base href="http://ingenieria2-kevinfl.c9users.io/"/>
+     <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->
 
          <!--<base href="http://cavimad.biologia.ucr.ac.cr/"/>-->
 
@@ -385,7 +385,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     
     <!-- Bootstrap -->
      <script src="js/bootstrap.min.js"></script>
-     <script src="js/bootstrap.js"></script>
+
      <!--<script src="js/npm.js"></script>-->
      <script src="js/buscador.js"></script>
     

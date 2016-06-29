@@ -62,18 +62,11 @@
                     <div class="conteiner">
                         <div title="Editar las noticias.">
                                 <a href='news/index'>
-                                    Administrar noticias
+                                    <i class="fa fa-pencil-square-o fa-4x"></i> Administrar noticias
                                 </a>
                         </div>
                     </div>
                     <br>
-                    <div class="conteiner">
-                        <div title="Editar noticias.">
-                            <a href='https://www.youtube.com/watch?v=Wc5vPDaOmhI'>
-                                El misterio del link
-                            </a>
-                        </div>
-                    </div>
                 </div><!-- misc wrapper end -->
             </div>
             <br>

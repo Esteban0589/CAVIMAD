@@ -83,7 +83,7 @@ h5   {margin: 0px;}
 			                            <?php
 			                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
 			                          	  <div class="thumbnail"> 
-			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
+			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.$pics3[$i]['Picture']['image'], array('style'=>'height: 200px; width: 100%;')); ?>
 			                           		</div>
 			                          	<?php }	else{ ?>
 											<div class="thumbnail"> 
@@ -103,7 +103,8 @@ h5   {margin: 0px;}
                         </div><!-- featured posts slider wrapper end -->
                         
 					<!--Campo para el mapa-->
-					<div class="row">
+					<?php if($category['Category']['classification']=='Familia' ||$category['Category']['classification']=='Genero'){?>
+						<div class="row">
 						Mapa de ubicación
 				<div class = "container" style = "width: 100%">
 					 <meta charset='utf-8' />
@@ -289,6 +290,7 @@ h5   {margin: 0px;}
 					</script>
 					</div>
 					</div>
+					<?php	} ?>
 				</div>
 			
 			
@@ -298,25 +300,30 @@ h5   {margin: 0px;}
 					<!--Vista en caso de que sea taxon != de Familia o Genero-->
 					<?php if($category['Category']['classification']!='Familia' && $category['Category']['classification']!='Genero'){?>	
 						<h5>Clasificación</h5> <?php echo h($category['Category']['classification']); ?>
-						<h5>Descripción:</h5> <?php echo nl2br(h($category['Category']['description'])); ?>
+						<h5>Descripción:</h5> 
+						<div class="call-out" align="justify">
+							<?php echo nl2br(h($category['Category']['description'])); ?>
+						</div>	
 					<?php	} ?>
 					
 					
 					<!--Vista en caso de que sea taxon ==  Familia -->
-					<?php if($category['Category']['classification']=='Familia'){?>	
+					<?php if($category['Category']['classification']=='Familia'||$category['Category']['classification']=='Subfamilia'){?>	
 						<h5>Clasificación</h5> 
 						<div class= "texto"><?php echo h($category['Category']['classification']); ?></div>
-						<h5>Descripción:</h5> 
-						<div class= "texto"><?php echo nl2br(h($category['Category']['description'])); ?></div>
+						<h5>Autor:</h5> 
+						<div class= "texto"><?php echo nl2br(h($datosFamilia['author'])); ?></div>
 						<h5>Características:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['characteristic'])); ?></div>
 						<h5>Hábitat:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['habitat'])); ?></div>
 						<h5>Distribución global:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['globaldistribution'])); ?></div>
+						<h5>Bibliografía :</h5> 
+						<div class= "texto"><?php echo nl2br(h($datosFamilia['bibliography'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['observation'])); ?></div>
-						<!--<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Géneros relacionados</button>-->
+
 						
 					<?php	} ?>
 					
@@ -325,23 +332,25 @@ h5   {margin: 0px;}
 					<?php if($category['Category']['classification']=='Genero'){?>
 					<!--seccion para la foto y el mapa-->
 						<h5>Clasificación</h5> 
-						<div class= "texto"><?php echo h($category['Category']['classification']); ?></div>
-						<h5>Descripción:</h5> 
-						<div class= "texto"><?php echo nl2br(h($category['Category']['description'])); ?></div>
+						<div class= "texto"><p>Género</p></div>
+						<h5>Autor:</h5> 
+						<div class= "texto"><?php echo nl2br(h($datosGenero['author'])); ?></div>
 						<h5>Características:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosGenero['characteristic'])); ?></div>
-						<h5>Biología & Ecología:</h5> 
-						<div class= "texto"><?php echo nl2br(h($datosGenero['biologyandecology'])); ?></div>
 						<h5>Hábitat:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosGenero['habitat'])); ?></div>
+						<h5>Biología & Ecología:</h5> 
+						<div class= "texto"><?php echo nl2br(h($datosGenero['biologyandecology'])); ?></div>
 						<h5>Distribución global:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosGenero['globaldistribution'])); ?></div>
+						<h5>Bibliografía:</h5> 
+						<div class= "texto"><?php echo nl2br(h($datosGenero['bibliography'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosGenero['observation'])); ?></div>
+						<?php if($doc['Download']['id']!=null){?>
 						<h5>Archivo de especies:</h5> 
 						<?php echo $this->Html->link(__(''), array('controller' => 'downloads', 'action' => 'viewdown', $doc['Download']['id'],true), array('class' => 'glyphicon glyphicon-file','title' =>'Descargar documento', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
-						<?php	} ?>
-					
+						<?php	} }?>
 						<br>
 						<?php echo $this->Html->link('Ir a galería', array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']));?>
 					

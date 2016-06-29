@@ -46,7 +46,7 @@ a{
 				<div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
                		<div class="carousel-inner"><!-- Wrapper for slides -->
-            					 <?php
+            					<?php
                             	if(count($pics3)==0){?>
                             		<div class="thumbnail"> 
 										<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
@@ -63,7 +63,7 @@ a{
 			                            <?php
 			                            if((!empty('../files/picture/image/' . $pics3[$i]['Picture']['image_dir']))){?>
 			                          	  <div class="thumbnail"> 
-			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.'thumb_'.$pics3[$i]['Picture']['image']); ?>
+			                            	 <?php echo $this->Html->image('../files/picture/image/' . $pics3[$i]['Picture']['image_dir'].'/'.$pics3[$i]['Picture']['image'], array('style'=>'height: 200px; width: 100%;')); ?>
 			                           		</div>
 			                          	<?php }	else{ ?>
 											<div class="thumbnail"> 
@@ -88,13 +88,17 @@ a{
 	
 			<!--Campo para tipo y descripcion. Toma las 9columans restantes de este row-->
 			<div class="col col-sm-9">
-		    
-				<h5 style = "margin: 0px; ">Clasificación</h5> 
-				<?php echo h($category['Category']['classification']); ?>
+				<?php if($category['Category']['classification'] =='Genero'){?>		    
+					<h5 style = "margin: 0px; ">Clasificación</h5> 
+					<div class= "texto"><p>Género</p></div>
+				<?php }else{ ?>
+					<h5 style = "margin: 0px; ">Clasificación</h5> 
+					<?php echo h($category['Category']['classification']); ?>
+				<?php }?>
 				<h5 style = "margin: 0px; ">Descripción:</h5> 
-				<?php echo substr($category['Category']['description'],0,300); ?> 
-				
-				<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $category['Category']['id']?>)" >...más</a>
+				<div class="call-out" align="justify">
+					<?php echo substr($category['Category']['description'],0,300); ?>
+				</div>
 				
 				<br>
 			</div>
@@ -129,7 +133,9 @@ a{
 						</td>
 						<!--Nombre descripcion de taxón-->
 						<td class="col col-sm-6">
+							<div class="call-out" align="justify">
 							<?php echo substr($son['Category']['description'],0,200); ?> 
+							</div>
 							<a style="color: #FFFFFF;padding: inherit;" title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >...más</a>
 
 						</td>

@@ -220,6 +220,31 @@ class CategoriesController extends TreeMenuAppController {
         // send the nodes to our view
         $this->set(compact('nodes'));
     }
+    
+    public function admin_getnodes2($alias=null) {
+        $this->layout = 'ajax';
+        // retrieve the node id that Ext JS posts via ajax
+        $parent = isset($this->request->data['node']) ? intval($this->request->data['node']) : 0;
+
+        // find all the nodes underneath the parent node defined above
+        // the second parameter (true) means we only want direct children
+        if ($parent) {
+            $nodes = $this->Category->children($parent, true);
+        } else {
+            $conditions = array('Category.parent_id' => $parent);
+            if($alias) {
+                $conditions['Category.alias'] = $alias;
+            }else{
+                $conditions[] = 'Category.alias IS NULL';
+            }
+            $nodes = $this->Category->find('all', array(
+                'conditions' => $conditions,
+                'order' => array('Category.lft' => 'ASC')));
+        }
+
+        // send the nodes to our view
+        $this->set(compact('nodes'));
+    }
 
     function admin_reorder() {
         $this->autoRender = false;

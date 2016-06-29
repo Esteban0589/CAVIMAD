@@ -41,11 +41,18 @@
 </script>
 <h4>El padre seleccionado es:  <?php if($parent['Category']['classification'] == 'Familia'){ echo '<i>'; echo $parent['Category']['name']; echo'</i>';} 
    else{ echo $parent['Category']['name'];}?></h4>
-<?php echo $this->Form->input('parent_id', array('div'=>'control-group','placeholder'=>'','default'=>$parent['Category']['id'],
-   'empty'=>array('0'=>__('Root')),
-   'before'=>'<label class="control-label">'.__('Padre').'</label><div class="controls">', 'type' => 'hidden',
-   'after'=>$this->Form->error('parent_id', array(), array('wrap' => 'span', 'class' => 'error-message')).'</div>',
-   'label'=>false, 'class'=>'form-control'));?></div>
+<?php if($parent['Category']['classification'] == 'Genero'){
+         echo $this->Form->input('parent_id', array('div'=>'control-group','placeholder'=>'','default'=>$parent['Category']['parent_id'],
+        'empty'=>array('0'=>__('Root')),
+        'before'=>'<label class="control-label">'.__('Padre').'</label><div class="controls">', 'type' => 'hidden',
+        'after'=>$this->Form->error('parent_id', array(), array('wrap' => 'span', 'class' => 'error-message')).'</div>',
+        'label'=>false, 'class'=>'form-control'));}
+     else{
+         echo $this->Form->input('parent_id', array('div'=>'control-group','placeholder'=>'','default'=>$parent['Category']['id'],
+        'empty'=>array('0'=>__('Root')),
+        'before'=>'<label class="control-label">'.__('Padre').'</label><div class="controls">', 'type' => 'hidden',
+        'after'=>$this->Form->error('parent_id', array(), array('wrap' => 'span', 'class' => 'error-message')).'</div>',
+        'label'=>false, 'class'=>'form-control'));}?></div>
 <?php echo $this->Form->input('classification', array('div'=>'control-group','id'=>'drop1','placeholder'=>'','options'=>$classification,
    'before'=>'<label class="control-label">'.__('Clasificación').'</label><div class="controls">',
    'after'=>$this->Form->error('classification', array(), array('wrap' => 'span', 'class' => 'error-message')).'</div>',

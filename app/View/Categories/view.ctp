@@ -285,8 +285,65 @@ a{
 					});
 					</script>
 					</div>
+					
 					</div>
 					<?php	} ?>
+					<div class="col col-sm-12">
+								<div class="comments form" >
+								<!--	href="javascript:comments(<?php //echo $category['Category']['id'];?> -->
+								<form id="contactform" method="post" action="categories/addcomment">
+									<div class="form-group clearfix col-lg-12">
+										<label for="contactComments"><span class="required"></span></label>
+										<textarea aria-required="true" rows="5" cols="5" name="comments" id="comment" class="form-control requiredField mezage" placeholder = "Escriba aquí su comentario." required></textarea>
+									</div>
+									<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom"  >
+									<input type="hidden" name="idCat" id="agregar" value= "1">
+									<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom">
+										<input type="hidden" name="submitted" id="submitted" value="true" />
+										<!--<input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />-->
+										<a title="Agregar comentario" href="javascript:comment(<?php  echo $category['Category']['id']?>)" >Enviar Comentario</a>
+
+									</div>
+									<!--<a title="Agregar comentario" href="javascript:comments(<?php //echo $category['Category']['id']?>)" >-->
+									<!--	<h2 style="margin: 0px;"> <?php //echo "Agregar comentario" ?>	</h2>-->
+									<!--</a> 			<!--Imagen a la izq con 3 columnas-->
+								</div>
+								</form>
+								
+								<div class="row">
+									<br>
+									<h2><?php if($Comments!=null){ echo __('Comentarios:'); ?></h2>
+									<div>
+										<?php foreach ($Comments as $Comments): ?>
+										<div>
+											<!--Parte del texto-->
+											<div>
+												<b2 style="color:#999"><?php echo $Comments['Comment']['created']."     ";?></b2>
+												<b>
+													<?php if($Comments['User']['activated'] != 2){?>
+														<?php echo $this->Html->link($Comments['User']['username'], array('controller' => 'users','action' => 'view',$Comments['User']['id']));?>
+													<?php } else {?>
+														<?php echo $Comments['User']['username'];?>
+													<?php }?>
+													<?php echo "dijo: "?>
+												</b>
+											</div>
+											<div>
+												<p style="text-indent:60px"><?php echo h($Comments['Comment']['comment']); ?></p>
+											</div>
+											<?php if($this->Session->read('role')=='Administrador'){ ?>
+											<td class="actions" >
+												<?php echo $this->Form->postLink(__(''), array('action' => 'deleteComment', $Comments['Comment']['id']), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el comentario",'style'=>'color: #860000;    font-size:25px; '), __('¿Está seguro de que desea eliminar el comentario de %s?', $Comments['User']['username'])); ?>
+											</td>
+											<?php }	?>
+											<hr>
+										</div>
+											<?php endforeach; ?>
+									</div><?php } ?>
+								</div>
+							</div>
+							</div>
+						
 				</div>
 			
 			

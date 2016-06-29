@@ -98,6 +98,7 @@ a{
 				<h5 style = "margin: 0px; ">Descripción:</h5> 
 				<div class="call-out" align="justify">
 					<?php echo substr($category['Category']['description'],0,300); ?>
+					<a title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $category['Category']['id']?>)" >...más</a>
 				</div>
 				
 				<br>
@@ -135,8 +136,8 @@ a{
 						<td class="col col-sm-6">
 							<div class="call-out" align="justify">
 							<?php echo substr($son['Category']['description'],0,200); ?> 
-							</div>
 							<a style="color: #FFFFFF;padding: inherit;" title=\"Ver perfil de taxón\" href="javascript:view(<?php echo $son['Category']['id']?>)" >...más</a>
+							</div>
 
 						</td>
 						<!--Acciones-->

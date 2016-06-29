@@ -111,7 +111,7 @@ class CategoriesController extends TreeMenuAppController {
      * 
      * @return void
      */
-    public function add() {
+     public function add() {
         // Controla el acceso de los usuarios habilitados o deshabilitados.
 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
 		$this->loadModel('User');
@@ -124,139 +124,147 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('CountryGender');
         $this->loadModel('Download');
         $alias = $this->categoryAlias;
-        if ($this->request->is('post')) {
-            // se crea una categoría
-            $this->Category->create();
-            // en base a eso se le asigna un alias
-            if($alias) $this->request->data['Category']['alias'] = $alias;
-            //Si los datos son creados correctamente se notifica mediante un mensaje
-            $this->request->data['Category']['parent_id'] = $this->request->data['parent_id'];
-            $this->request->data['Category']['classification'] = $this->request->data['classification'];
-            if ($this->Category->save($this->request->data)) {
-                $varDat=0;
-                //Este bloque se encarga de cargar el modelo Logbook, crea los datos necesarios dentro del arreglo al que Lookgbook 
-                //le realizará un save en la base de datos
-                //return $this->debugController('salvo en modelo normal');
-                if($this->request->data['Category']['classification'] == 'Familia'){
-                    $this->request->data['Family']['0']['category_id']= $this->Category->id;
-                //	return $this->debugController($this->request->data);
-                	$this->Family->saveAll($this->request->data['Family']['0']);
-                	
-                }
-                if($this->request->data['Category']['classification'] == 'Genero'){
-                    $this->request->data['Gender']['0']['category_id']= $this->Category->id;
-                	$this->Gender->saveAll($this->request->data['Gender']['0']);
-                	$id=$this->Gender->findAllByCategory_id($this->Category->id)[0]['Gender']['id'];
-                    $countries  = $this->request->data['Gender'][0]['countrygender'];
-                    $belize     = 0;
-                    $costa_rica = 0;
-                    $el_salvador= 0;
-                    $guatemala  = 0;
-                    $honduras   = 0;
-                    $mexico     = 0;
-                    $nicaragua  = 0;
-                    $panama     = 0;
-                    for ($i=0; $i<count($countries); $i++)
-                    {
-                        switch($countries[$i])
+        debug($this->request->data);
+        if ($this->request->data['classification'] != 'Default')
+        {
+            if ($this->request->is('post')) {
+                // se crea una categoría
+                $this->Category->create();
+                // en base a eso se le asigna un alias
+                if($alias) $this->request->data['Category']['alias'] = $alias;
+                //Si los datos son creados correctamente se notifica mediante un mensaje
+                $this->request->data['Category']['parent_id'] = $this->request->data['parent_id'];
+                $this->request->data['Category']['classification'] = $this->request->data['classification'];
+                if ($this->Category->save($this->request->data)) {
+                    $varDat=0;
+                    //Este bloque se encarga de cargar el modelo Logbook, crea los datos necesarios dentro del arreglo al que Lookgbook 
+                    //le realizará un save en la base de datos
+                    //return $this->debugController('salvo en modelo normal');
+                    if($this->request->data['Category']['classification'] == 'Familia'){
+                        $this->request->data['Family']['0']['category_id']= $this->Category->id;
+                    //	return $this->debugController($this->request->data);
+                    	$this->Family->saveAll($this->request->data['Family']['0']);
+                    	
+                    }
+                    if($this->request->data['Category']['classification'] == 'Genero'){
+                        $this->request->data['Gender']['0']['category_id']= $this->Category->id;
+                    	$this->Gender->saveAll($this->request->data['Gender']['0']);
+                    	$id=$this->Gender->findAllByCategory_id($this->Category->id)[0]['Gender']['id'];
+                        $countries  = $this->request->data['Gender'][0]['countrygender'];
+                        $belize     = 0;
+                        $costa_rica = 0;
+                        $el_salvador= 0;
+                        $guatemala  = 0;
+                        $honduras   = 0;
+                        $mexico     = 0;
+                        $nicaragua  = 0;
+                        $panama     = 0;
+                        for ($i=0; $i<count($countries); $i++)
                         {
-                        case 'belize':
-                            $belize++;
-                	        break;
-                       case 'costa_rica':
-                            $costa_rica++;
-                	        break;
-                		case 'el_salvador':
-                		    $el_salvador++;
-                			break;
-                		case 'guatemala':
-                		    $guatemala++;
-                		    break;
-                		case 'honduras':
-                		    $honduras++;
-                		    break;
-                		case 'mexico':
-                		    $mexico++;
-                		    break;
-                		case 'nicaragua':
-                		    $nicaragua++;
-                		    break;
-                		case 'panama':
-                		    $panama++;
-                		    break;
+                            switch($countries[$i])
+                            {
+                            case 'belize':
+                                $belize++;
+                    	        break;
+                           case 'costa_rica':
+                                $costa_rica++;
+                    	        break;
+                    		case 'el_salvador':
+                    		    $el_salvador++;
+                    			break;
+                    		case 'guatemala':
+                    		    $guatemala++;
+                    		    break;
+                    		case 'honduras':
+                    		    $honduras++;
+                    		    break;
+                    		case 'mexico':
+                    		    $mexico++;
+                    		    break;
+                    		case 'nicaragua':
+                    		    $nicaragua++;
+                    		    break;
+                    		case 'panama':
+                    		    $panama++;
+                    		    break;
+                            }
                         }
-                    }
-                    $data = array('CountryGender' => array('gender_id' => $id, 'belize'=>$belize, 
-                        'costa_rica'=> $costa_rica, 'el_salvador'=> $el_salvador, 
-                        'guatemala'=> $guatemala, 'honduras' => $honduras, 
-                        'mexico' => $mexico, 'nicaragua'=> $nicaragua, 
-                        'panama' => $panama));
-                    //debug($data);
-                    $this->CountryGender->create();
-                    
-                    if($this->CountryGender->save($data)){
-                        $this->Session->setFlash(__('Países ingresados correctamente'),'TreeMenu.success');
-                    }
-                    else {
-                        $this->Session->setFlash(__('Los países no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
-                        $varDat++;
-                    }
-                    unset($data);
-                    $data2 = array('Download' => array('category_id' => $this->request->data['Gender']['0']['category_id'], 
-                                    'administrator_id'  => $_SESSION['Auth']['User']['id'],
-                                    'title'             =>$this->request->data['Gender'][0]['title'],
-                                    'description'       => $this->request->data['Gender'][0]['description'],
-                                    'classification'    =>$this->request->data['Category']['name'],
-                                    'name'              => $this->request->data['Gender'][0]['report']['name'],
-                                    'report'            => $this->request->data['Gender'][0]['report']
-                                ));
-                    $this->Download->create();
-                    $file=$this->request->data['Gender'][0]['report'];
-                    $file['name']=$this->sanitize($file['name']);
-                    $data2['Download']['report'] = time().$file['name'];
-                    if($this->Download->save($data2)){
-                        move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. time().$file['name']); 
-                        if($varDat==0){
-                            $this->Session->setFlash(__('Archivo ingresado correctamente'),'TreeMenu.success');
+                        $data = array('CountryGender' => array('gender_id' => $id, 'belize'=>$belize, 
+                            'costa_rica'=> $costa_rica, 'el_salvador'=> $el_salvador, 
+                            'guatemala'=> $guatemala, 'honduras' => $honduras, 
+                            'mexico' => $mexico, 'nicaragua'=> $nicaragua, 
+                            'panama' => $panama));
+                        //debug($data);
+                        $this->CountryGender->create();
+                        
+                        if($this->CountryGender->save($data)){
+                            $this->Session->setFlash(__('Países ingresados correctamente'),'TreeMenu.success');
                         }
-                        else{
-                            $this->Session->setFlash(__('Archivo ingresado correctamente, fallo al ingresar los paises.'),'TreeMenu.success');
-                        }
-                    }
-                    else {
-                        if($varDat==1){
-                            $this->Session->setFlash(__('Ni los países ni el archivo se guardo correctamente. Intente nuevamente.'), 'TreeMenu.error');
-                        }
-                        else{
-                            $this->Session->setFlash(__('El archivo no se pudo ingresar.'), 'TreeMenu.error');
+                        else {
+                            $this->Session->setFlash(__('Los países no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
                             $varDat++;
                         }
+                        unset($data);
+                        $data2 = array('Download' => array('category_id' => $this->request->data['Gender']['0']['category_id'], 
+                                        'administrator_id'  => $_SESSION['Auth']['User']['id'],
+                                        'title'             =>$this->request->data['Gender'][0]['title'],
+                                        'description'       => $this->request->data['Gender'][0]['description'],
+                                        'classification'    =>$this->request->data['Category']['name'],
+                                        'name'              => $this->request->data['Gender'][0]['report']['name'],
+                                        'report'            => $this->request->data['Gender'][0]['report']
+                                    ));
+                        $this->Download->create();
+                        $file=$this->request->data['Gender'][0]['report'];
+                        $file['name']=$this->sanitize($file['name']);
+                        $data2['Download']['report'] = time().$file['name'];
+                        if($this->Download->save($data2)){
+                            move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. time().$file['name']); 
+                            if($varDat==0){
+                                $this->Session->setFlash(__('Archivo ingresado correctamente'),'TreeMenu.success');
+                            }
+                            else{
+                                $this->Session->setFlash(__('Archivo ingresado correctamente, fallo al ingresar los paises.'),'TreeMenu.success');
+                            }
+                        }
+                        else {
+                            if($varDat==1){
+                                $this->Session->setFlash(__('Ni los países ni el archivo se guardo correctamente. Intente nuevamente.'), 'TreeMenu.error');
+                            }
+                            else{
+                                $this->Session->setFlash(__('El archivo no se pudo ingresar.'), 'TreeMenu.error');
+                                $varDat++;
+                            }
+                        }
                     }
+                    unset($data);
+                    $this->loadModel('Logbook');
+                    $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+    				$invDate = $dateNow->format('Y-m-d H:i:s');
+    				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+    				'cat_user_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
+    				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." agregó la categoría ".$this->request->data['Category']['name']."." ,
+    				'modified'=> $invDate));
+    				$this->Logbook->create();
+    				$this->Logbook->save($data);
+    				if($varDat==0){
+                        $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
+    				}
+                    $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+                    $this->redirect($alias);
+                } else {
+                    //Si los datos no se guadados correctamente se notifica mediante un mensaje de error
+                    $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
                 }
-                unset($data);
-                $this->loadModel('Logbook');
-                $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
-				$invDate = $dateNow->format('Y-m-d H:i:s');
-				$data = array('Logbook' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-				'cat_user_id' =>  $this->Category->findByName($this->request->data['Category']['name'])['Category']['id'] ,
-				'description' => "El usuario ".$_SESSION['Auth']['User']['username']." agregó la categoría ".$this->request->data['Category']['name']."." ,
-				'modified'=> $invDate));
-				$this->Logbook->create();
-				$this->Logbook->save($data);
-				if($varDat==0){
-                    $this->Session->setFlash(__('Datos ingresados correctamente'), 'TreeMenu.success');
-				}
-                $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
-                $this->redirect($alias);
-            } else {
-                //Si los datos no se guadados correctamente se notifica mediante un mensaje de error
-                $this->Session->setFlash(__('Los datos no se guardaron. Intente nuevamente.'), 'TreeMenu.error');
             }
+                // busca el padre de las categorías y genera el arbol
+                $parentCategories = $this->Category->_generateTreeList($alias);
+                $this->set(compact('parentCategories'));
+                $this->set('classification', $this->classification);
         }
-            // busca el padre de las categorías y genera el arbol
-            $parentCategories = $this->Category->_generateTreeList($alias);
-            $this->set(compact('parentCategories'));
-            $this->set('classification', $this->classification);
+        else
+        {
+            $this->Session->setFlash(__('Los datos no se guardaron pues no se seleccionó un nivel taxonómico válido. Por favor, intente nuevamente.'), 'TreeMenu.error');
+        }
     }
     
 
@@ -293,6 +301,33 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
  public function view($id = null) {
+        //En caso de hacer el borrar tamb igual usar -> if ($this->request->is('post') && $this->request->data['agregar']==1) {
+        if ($this->request->is('post')) {
+            $this->loadModel('Comment');
+            $this->Comment->create();
+            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+			$invDate = $dateNow->format('Y-m-d H:i:s');
+			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+			'category_id' => $id,
+			'comment' => $this->request->data['comments'],
+			'created'=> $invDate));
+			$this->Comment->save($data);
+        }
+        // else{
+        //     if($this->request->is('post') && $this->request->data['agregar']==0) {
+        //         $this->loadModel('Comment');
+        //         $this->Comment->id = $id;
+        //         // Controla el acceso de los usuarios habilitados o deshabilitados.
+        // 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+        // 		$this->loadModel('User');
+        // 		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+        // 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+        // 		}
+        //         // segun el alias de las categorias se despliegan segun un orden indexado 
+        //         // según la categoría seleccionada se eliminan los datos
+        //         $this->Comment->delete();
+        //     }
+        // }
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
@@ -308,6 +343,11 @@ class CategoriesController extends TreeMenuAppController {
 		
 		$clasificacion = $taxon['Category']['classification'];
 		$ids=$taxon['Category']['id'];
+		
+		$this->loadModel('Comment');
+        $var = $this->Comment->findAllByCategoryId($id);
+        $this->Set('Comments', $var);
+		
 		//return debug($ids);
 		//debug($clasificacion);
 				switch ($clasificacion) {
@@ -377,7 +417,7 @@ class CategoriesController extends TreeMenuAppController {
 		    
 		     //Recibe el id de la tabla categoría de un género.
     	    $id_category = $taxon['Category']['id'];
-    	    
+
     	    //Este arreglo contendrá los id's de cada país en el cuál hay especies del género.
             $countries = [];
     	    //Obtiene el id del género según su id de categoría.
@@ -1289,7 +1329,7 @@ class CategoriesController extends TreeMenuAppController {
       * @return void
       */
 	public function getDataGenre(){
-	     //Permite desplegar los resultados de ajax.
+	   //  Permite desplegar los resultados de ajax.
 	    $this->layout = 'ajax';
 	     //Si se trata de actualizar a través de get.
 	    if (!$this->request->is('post')) {
@@ -1651,6 +1691,79 @@ class CategoriesController extends TreeMenuAppController {
 		    // Si no se encuentra algún taxón se notifica al usuario
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
+	}
+	
+	public function addcomment($id = null) {
+        $this->layout = 'ajax';
+	    return debug($this->request->data);
+	    $this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
+        $this->loadModel('Comment');
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Category->id = $id;
+            $this->Comment->create();
+            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+			$invDate = $dateNow->format('Y-m-d H:i:s');
+			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+			'category_id' => $this->request->data['idCat'] ,
+			'comment' => $this->request->data['comments'],
+			'created'=> $invDate));
+			$this->layout = 'ajax';
+			//debug($data);
+			//debug($this->categoryAlias);
+			$alias = $this->categoryAlias;
+            $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+			if ($this->Comment->save($data)) { 
+			   // $this->Session->setFlash(__('Comentario guardado.'), 'success');
+                
+
+               // $this->redirect(array('action' => 'sort', 'alias'=>$this->request->data['idCat']));
+            }
+            else{
+                //Si no se logran borar los datos  se notifica mediante un mensaje de error
+                //$this->Session->setFlash(__('Comentario no guardado.'), 'error');
+                //$this->redirect($alias);
+            }
+        }
+	    
+	}
+	
+	public function deleteComment($id = null) {
+        $this->loadModel('Comment');
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+        // se trae el id de la categoría
+        $this->Comment->id = $id;
+        // Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		$this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
+        // segun el alias de las categorias se despliegan segun un orden indexado 
+        $alias = $this->categoryAlias;
+        $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+        // según la categoría seleccionada se eliminan los datos
+        //Si se logran eliminar los datos se notifica mediante un mensaje 
+
+		if ($this->Comment->delete()) {
+            $this->Session->setFlash(__('El comentario ha sido eliminado'), 'success');            
+            $this->redirect($alias);
+        }
+        else{
+            //Si no se logran borar los datos  se notifica mediante un mensaje de error
+            $this->Session->setFlash(__('El comentario no pudo ser eliminado, inténtelo nuevamente'), 'error');
+            $this->redirect($alias);
+        }
+    }
+    
+    public function viewComment($id = null) {
+        $this->loadModel('Comment');
+        $var = $this->Comment->findAllByCategoryId($id);
+        $this->Set('Comments', $var);
 	}
 	
 }

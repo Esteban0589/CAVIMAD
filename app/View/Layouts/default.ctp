@@ -71,8 +71,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    
  <!--<base href="http://cavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="http://cakebiolo-andres25fg.c9users.io/"/>-->
-    <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
+    <!--<base href="http://cakebiolo-andres25fg-1.c9users.io/"/>-->
+    <base href="http://inge2-maricelmonge.c9users.io"/>
     <!--<base href="http://cavimad3-esteban0589.c9users.io/"/>-->
     <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
      <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
@@ -181,7 +181,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
                         </li>
                         <li>
-                            <?php if(!empty($this->Session->read('Auth')['User']['role'])){    ?>  
+                            <?php if(!empty($this->Session->read('role'))){    ?>  
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         
@@ -341,7 +341,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                     <li><a href="http://www.cimar.ucr.ac.cr" target="_blank" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
                                     
                                     <li><a href="http://www.biologia.ucr.ac.cr" target="_blank" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
-                                     <li><a href="http://museo.biologia.ucr.ac.cr/" target="_blank" title="Museo de Biologia, UCR"><img src="app/webroot/img/LogoMuseo.gif" alt="MUSEO DE BIOLOGIA" width="10"; /></a></li>
                                     
                                 </ul>
                     

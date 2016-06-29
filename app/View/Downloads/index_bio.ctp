@@ -34,7 +34,11 @@
 	<div class="row">
 		<h1><?php echo __('Biomonitoreo'); ?></h1>
 		<h4><div style="color: #3891d6"><?php echo __('Descripción'); ?></div></h4>
-		<p>Aquí va la descripción de biomonitoreo</p>
+		<p align="justify">Los macroinvertebrados dulceacuícolas son excelentes indicadores biológicos de la calidad de agua y del impacto ambiental que causan las diversas actividades humanas sobre los ambientes acuáticos. Por lo  tanto, se han desarrollado muchos métodos e índices para utilizar estos organismos en programas de biomonitoreo en diversas partes del mundo, incluyendo varios países de Latinoamérica.
+		</p>
+		<p align="justify">
+			En esta sección encontrará información útil relacionada con el tema del biomonitoreo acuático.
+		</p>
 		
 		
 	    <div class="col-md-12">

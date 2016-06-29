@@ -24,7 +24,7 @@ class CategoriesController extends TreeMenuAppController {
     
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','view2','sort','admin_getnodes','admin_cargar','catalogo','admin_actualizar');
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','view2','sort','admin_getnodes','admin_cargar','catalogo','advanced_search2');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -910,7 +910,7 @@ class CategoriesController extends TreeMenuAppController {
 				}
 				// de  los resultado de la búsqueda, busque recursivamente todos que cumplan las condiciones
 				$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
-				debug($resultado);
+				//debug($resultado);
 				$i = 0;
 				// para cada resultado encontrado por categoría según el id regrese la categoría y la imagen
 				foreach($resultado as $resultados){

@@ -293,6 +293,33 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
  public function view($id = null) {
+        //En caso de hacer el borrar tamb igual usar -> if ($this->request->is('post') && $this->request->data['agregar']==1) {
+        if ($this->request->is('post')) {
+            $this->loadModel('Comment');
+            $this->Comment->create();
+            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+			$invDate = $dateNow->format('Y-m-d H:i:s');
+			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+			'category_id' => $id,
+			'comment' => $this->request->data['comments'],
+			'created'=> $invDate));
+			$this->Comment->save($data);
+        }
+        // else{
+        //     if($this->request->is('post') && $this->request->data['agregar']==0) {
+        //         $this->loadModel('Comment');
+        //         $this->Comment->id = $id;
+        //         // Controla el acceso de los usuarios habilitados o deshabilitados.
+        // 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+        // 		$this->loadModel('User');
+        // 		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+        // 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+        // 		}
+        //         // segun el alias de las categorias se despliegan segun un orden indexado 
+        //         // según la categoría seleccionada se eliminan los datos
+        //         $this->Comment->delete();
+        //     }
+        // }
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
@@ -308,6 +335,11 @@ class CategoriesController extends TreeMenuAppController {
 		
 		$clasificacion = $taxon['Category']['classification'];
 		$ids=$taxon['Category']['id'];
+		
+		$this->loadModel('Comment');
+        $var = $this->Comment->findAllByCategoryId($id);
+        $this->Set('Comments', $var);
+		
 		//return debug($ids);
 		//debug($clasificacion);
 				switch ($clasificacion) {
@@ -377,7 +409,7 @@ class CategoriesController extends TreeMenuAppController {
 		    
 		     //Recibe el id de la tabla categoría de un género.
     	    $id_category = $taxon['Category']['id'];
-    	    
+
     	    //Este arreglo contendrá los id's de cada país en el cuál hay especies del género.
             $countries = [];
     	    //Obtiene el id del género según su id de categoría.
@@ -1289,7 +1321,7 @@ class CategoriesController extends TreeMenuAppController {
       * @return void
       */
 	public function getDataGenre(){
-	     //Permite desplegar los resultados de ajax.
+	   //  Permite desplegar los resultados de ajax.
 	    $this->layout = 'ajax';
 	     //Si se trata de actualizar a través de get.
 	    if (!$this->request->is('post')) {
@@ -1651,6 +1683,79 @@ class CategoriesController extends TreeMenuAppController {
 		    // Si no se encuentra algún taxón se notifica al usuario
 			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
 		}
+	}
+	
+	public function addcomment($id = null) {
+        $this->layout = 'ajax';
+	    return debug($this->request->data);
+	    $this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
+        $this->loadModel('Comment');
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Category->id = $id;
+            $this->Comment->create();
+            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+			$invDate = $dateNow->format('Y-m-d H:i:s');
+			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+			'category_id' => $this->request->data['idCat'] ,
+			'comment' => $this->request->data['comments'],
+			'created'=> $invDate));
+			$this->layout = 'ajax';
+			//debug($data);
+			//debug($this->categoryAlias);
+			$alias = $this->categoryAlias;
+            $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+			if ($this->Comment->save($data)) { 
+			   // $this->Session->setFlash(__('Comentario guardado.'), 'success');
+                
+
+               // $this->redirect(array('action' => 'sort', 'alias'=>$this->request->data['idCat']));
+            }
+            else{
+                //Si no se logran borar los datos  se notifica mediante un mensaje de error
+                //$this->Session->setFlash(__('Comentario no guardado.'), 'error');
+                //$this->redirect($alias);
+            }
+        }
+	    
+	}
+	
+	public function deleteComment($id = null) {
+        $this->loadModel('Comment');
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+        // se trae el id de la categoría
+        $this->Comment->id = $id;
+        // Controla el acceso de los usuarios habilitados o deshabilitados.
+		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+		$this->loadModel('User');
+		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+		}
+        // segun el alias de las categorias se despliegan segun un orden indexado 
+        $alias = $this->categoryAlias;
+        $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
+        // según la categoría seleccionada se eliminan los datos
+        //Si se logran eliminar los datos se notifica mediante un mensaje 
+
+		if ($this->Comment->delete()) {
+            $this->Session->setFlash(__('El comentario ha sido eliminado'), 'success');            
+            $this->redirect($alias);
+        }
+        else{
+            //Si no se logran borar los datos  se notifica mediante un mensaje de error
+            $this->Session->setFlash(__('El comentario no pudo ser eliminado, inténtelo nuevamente'), 'error');
+            $this->redirect($alias);
+        }
+    }
+    
+    public function viewComment($id = null) {
+        $this->loadModel('Comment');
+        $var = $this->Comment->findAllByCategoryId($id);
+        $this->Set('Comments', $var);
 	}
 	
 }

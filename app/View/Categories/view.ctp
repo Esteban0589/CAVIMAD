@@ -281,10 +281,12 @@ a{
 								<textarea aria-required="true" rows="5" cols="5" name="comments" id="comment" class="form-control requiredField mezage" placeholder = "Escriba aquí su comentario. Por favor refresque la página para visualizar su comentario" required></textarea>
 							</div>
 							<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom"  >
-							<input type="hidden" name="idCat" id="idCat" value= <?php echo $category['Category']['id'] ?>>
+							<input type="hidden" name="idCat" id="agregar" value= "1">
 							<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom">
 	                            <input type="hidden" name="submitted" id="submitted" value="true" />
 	                            <input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />
+    							<a title="Agregar comentario" href="javascript:comment(<?php  echo $category['Category']['id']?>)" >Maldito link</a>
+
 	                        </div>
 							<!--<a title="Agregar comentario" href="javascript:comments(<?php //echo $category['Category']['id']?>)" >-->
 							<!--	<h2 style="margin: 0px;"> <?php //echo "Agregar comentario" ?>	</h2>-->
@@ -349,7 +351,11 @@ a{
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['globaldistribution'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['observation'])); ?></div>
-						<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Géneros relacionados</button>
+						<!--<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;">-->
+						<a title="Ver perfil resumido de taxón y sus taxones relacionados" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" >
+							Géneros relacionados
+						</a>
+						<!--</button>-->
 						
 					<?php	} ?>
 					

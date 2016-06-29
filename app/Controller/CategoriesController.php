@@ -290,7 +290,33 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
  public function view($id = null) {
-        
+        //En caso de hacer el borrar tamb igual usar -> if ($this->request->is('post') && $this->request->data['agregar']==1) {
+        if ($this->request->is('post')) {
+            $this->loadModel('Comment');
+            $this->Comment->create();
+            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
+			$invDate = $dateNow->format('Y-m-d H:i:s');
+			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
+			'category_id' => $id,
+			'comment' => $this->request->data['comments'],
+			'created'=> $invDate));
+			$this->Comment->save($data);
+        }
+        // else{
+        //     if($this->request->is('post') && $this->request->data['agregar']==0) {
+        //         $this->loadModel('Comment');
+        //         $this->Comment->id = $id;
+        //         // Controla el acceso de los usuarios habilitados o deshabilitados.
+        // 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
+        // 		$this->loadModel('User');
+        // 		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+        // 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
+        // 		}
+        //         // segun el alias de las categorias se despliegan segun un orden indexado 
+        //         // según la categoría seleccionada se eliminan los datos
+        //         $this->Comment->delete();
+        //     }
+        // }
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
@@ -893,7 +919,7 @@ class CategoriesController extends TreeMenuAppController {
 				}
 				// de  los resultado de la búsqueda, busque recursivamente todos que cumplan las condiciones
 				$resultado=$this->Category->find('all', array('recursive'=>0, 'conditions'=>$conditions, 'limit' => 10));
-				debug($resultado);
+				// debug($resultado);
 				$i = 0;
 				// para cada resultado encontrado por categoría según el id regrese la categoría y la imagen
 				foreach($resultado as $resultados){
@@ -1147,7 +1173,7 @@ class CategoriesController extends TreeMenuAppController {
       * @return void
       */
 	public function getDataGenre(){
-	     //Permite desplegar los resultados de ajax.
+	   //  Permite desplegar los resultados de ajax.
 	    $this->layout = 'ajax';
 	     //Si se trata de actualizar a través de get.
 	    if (!$this->request->is('post')) {
@@ -1512,6 +1538,8 @@ class CategoriesController extends TreeMenuAppController {
 	}
 	
 	public function addcomment($id = null) {
+        $this->layout = 'ajax';
+	    return debug($this->request->data);
 	    $this->loadModel('User');
 		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
@@ -1526,6 +1554,7 @@ class CategoriesController extends TreeMenuAppController {
 			'category_id' => $this->request->data['idCat'] ,
 			'comment' => $this->request->data['comments'],
 			'created'=> $invDate));
+			$this->layout = 'ajax';
 			//debug($data);
 			//debug($this->categoryAlias);
 			$alias = $this->categoryAlias;
@@ -1533,7 +1562,6 @@ class CategoriesController extends TreeMenuAppController {
 			if ($this->Comment->save($data)) { 
 			   // $this->Session->setFlash(__('Comentario guardado.'), 'success');
                 
-                		$this->layout = 'ajax';
 
                // $this->redirect(array('action' => 'sort', 'alias'=>$this->request->data['idCat']));
             }
@@ -1547,7 +1575,7 @@ class CategoriesController extends TreeMenuAppController {
 	}
 	
 	public function deleteComment($id = null) {
-	    $this->loadModel('Comment');
+        $this->loadModel('Comment');
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }

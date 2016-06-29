@@ -35,6 +35,18 @@
             $("#secciones").html(result);
         }});
     }
+    function comment(id)
+    {
+        $.ajax({
+            type: 'POST',
+            url: 'categories/view/'+id, 
+            data: 'comments=' + $('#comment').val(), 
+            success: function(result){
+            $("#secciones").html(result);
+        }});
+        debug(data);
+    }
+    
 //});
 </script>
 

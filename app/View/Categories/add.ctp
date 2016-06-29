@@ -1,3 +1,5 @@
+
+
 <script>
    //Este script se utiliza para esconder o mostrar secciones de dropdown según lo seleccionado.
    $(document).ready(function() {
@@ -39,6 +41,19 @@
    }
    
 </script>
+<script type="text/javascript">
+   function actualizar(id)
+   {
+   $.ajax({
+   type: 'GET',
+   url: 'admin/categories/actualizar/' + id,
+   success: function (data) {
+     //alert(id);
+     $('#parent_id').html(data);
+   },
+   });
+   }
+</script>
 <body onload="toggle_visibility_off()">
    <div id="k-body">
       <!-- content wrapper -->
@@ -58,39 +73,6 @@
                   </li>
                   <li class="active"><?php echo __('Agregar nuevo taxón'); ?></li>
                </ul>
-               <script type="text/javascript">
-                  $( document ).ready(function() {
-                  
-                      
-                      
-                      function actualizar(id)
-                  	{
-                  		$.ajax({
-                  			type: 'GET',
-                  			url: 'admin/categories/cargar/' + id,
-                  			success: function (data) {
-                  				$('#secciones').html(data);
-                  			},
-                  		});
-                  	}
-                       function catalogo()
-                       {
-                           $.ajax({
-                               url: "categories/catalogo/", 
-                               success: function(result){
-                               $("#secciones").html(result);
-                           }});
-                       }
-                       function view(id)
-                       {
-                           $.ajax({
-                               url: 'categories/view/'+id, 
-                               success: function(result){
-                               $("#secciones").html(result);
-                           }});
-                       }
-                  });
-               </script>
                <?php echo $this->Html->css(array('/tree_menu/css/extjs/ext-all'));?>
                <?php echo $this->Html->script(array('/tree_menu/js/extjs/ext-base','/tree_menu/js/extjs/ext-all'));?>
                <style type="text/css">
@@ -209,21 +191,16 @@
                         </div>
                         <!--Parte a refrescar-->
                         <a href="javascript:catalogo()" >
-                           <h2 >Agregar nuevo taxón</h2>
                         </a>
                         <div id="secciones" class="col-lg-9 col-md-9">
                            <?php echo $this->Form->create('Category', array('class'=>'form-horizontal','onsubmit' => "return confirm(\"Recuerde que la clasificación debe de tener congruencia con respecto a su padre\");", 'enctype'=>'multipart/form-data'));?>
                            <!--<div class="col col-sm-12" style=" padding-left: 0px;">-->
                            <div class="col-lg-6 col-md-6" >
-                              
+                              <h2 >Agregar nuevo taxón</h2>
                               <fieldset>
                                  <!--Clasificacion-->
-                                 <div title="Seleccione la clasificación del nuevo taxón">	
-                                    <?php echo $this->Form->input('classification', array('div'=>'control-group','id'=>'drop1','placeholder'=>'','options'=>$classification,
-                                       'before'=>'<label class="control-label">'.__('Clasificación').'</label><div class="controls">',
-                                       'after'=>$this->Form->error('classification', array(), array('wrap' => 'span', 'class' => 'error-message')).'</div>',
-                                       'error' => array('attributes' => array('style' => 'display:none')),
-                                       'label'=>false, 'class'=>'form-control'));?>
+                                 <div title="Seleccione la clasificación del nuevo taxón">
+                                    <div id="parent_id"> <i>Si desea añadir un nuevo filo, simplemente agregue el nombre y la descripción en los espacios indicados. De otra manera, debe de seleccionar el padre en el árbol taxonómico.<br><br></i> </div>
                                  </div>
                                  <?php echo $this->Form->input('name', array('div'=>'control-group','placeholder'=>'','title'=>'Ingrese el nombre del nivel taxonómico',
                                     'before'=>'<label class="control-label">'.__('Nombre').'</label><div class="controls">',
@@ -264,7 +241,6 @@
                                        <?php echo $this->Form->input('Family.0.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
                                        <br>
                                     </div>
-                                    
                                     <div class="genero box">
                                        <?php echo $this->Form->input('Gender.0.id'); ?>	
                                        <?php echo $this->Form->input('Gender.0.author', array('required' => false,'label'=>'Autor','class' => 'form-control','title'=>'Ingrese el nombre del autor del nivel taxonómico'));?>
@@ -274,15 +250,15 @@
                                        <?php echo $this->Form->input('Gender.0.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
                                        <?php echo $this->Form->input('Gender.0.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
                                        <?php echo $this->Form->input('Gender.0.biologyandecology', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la información sobre biología y ecología del nivel taxonómico. Campo de texto expandible','label'=>'Biologia y ecologia'));?>
-                                        <?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox', 'options' => array(
-                                        																			  'belize' => 'Belice',
-                                                                                                                     'costa_rica' => 'Costa Rica',
-                                                                                                                     'el_salvador' => 'El Salvador',
-                                                                                                                     'guatemala' => 'Guatemala',
-                                                                                                                     'honduras' => 'Honduras',
-                                                                                                                     'mexico' => 'México',
-                                                                                                                     'nicaragua' => 'Nicaragua',
-                                                                                                                     'panama' => 'Panamá'))) ?>
+                                       <?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox', 'options' => array(
+                                          'belize' => 'Belice',
+                                                                                                  'costa_rica' => 'Costa Rica',
+                                                                                                  'el_salvador' => 'El Salvador',
+                                                                                                  'guatemala' => 'Guatemala',
+                                                                                                  'honduras' => 'Honduras',
+                                                                                                  'mexico' => 'México',
+                                                                                                  'nicaragua' => 'Nicaragua',
+                                                                                                  'panama' => 'Panamá'))) ?>
                                        <h4><?php echo __('Agregar archivo de especies'); ?></h4>
                                        <?php echo $this->Form->input('Gender.0.title', array('required' => false,'label'=>'Título','class' => 'form-control','title'=>'En este campo por favor introduzca un título para el archivo'));?>
                                        <?php echo $this->Form->input('Gender.0.description', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese una descripción para el documento','label'=>'Descripción'));?>
@@ -313,3 +289,4 @@
    </div>
    </div>
 </body>
+

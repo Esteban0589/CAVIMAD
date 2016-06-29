@@ -11,7 +11,7 @@ class CategoriesController extends TreeMenuAppController {
     public $uses = array('TreeMenu.Category');
 
     var $categoryAlias = null;
-     var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Genero');
+    //  var $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Genero');
     
     
     /**
@@ -24,7 +24,7 @@ class CategoriesController extends TreeMenuAppController {
     
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','view2','sort','admin_getnodes','admin_cargar','catalogo');
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','view2','sort','admin_getnodes','admin_cargar','catalogo','admin_actualizar');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -115,6 +115,7 @@ class CategoriesController extends TreeMenuAppController {
         // Controla el acceso de los usuarios habilitados o deshabilitados.
 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
 		$this->loadModel('User');
+		//debug($this->request->data);
 		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
@@ -129,6 +130,8 @@ class CategoriesController extends TreeMenuAppController {
             // en base a eso se le asigna un alias
             if($alias) $this->request->data['Category']['alias'] = $alias;
             //Si los datos son creados correctamente se notifica mediante un mensaje
+            $this->request->data['Category']['parent_id'] = $this->request->data['parent_id'];
+            $this->request->data['Category']['classification'] = $this->request->data['classification'];
             if ($this->Category->save($this->request->data)) {
                 $varDat=0;
                 //Este bloque se encarga de cargar el modelo Logbook, crea los datos necesarios dentro del arreglo al que Lookgbook 
@@ -1074,12 +1077,66 @@ class CategoriesController extends TreeMenuAppController {
 
     }
     
+    
+    /**
+     * admin_actualizar method
+     *
+     * método que devuelve la lista de clasificaciones cuando se selecciona algo en el árbol.
+     * 
+     * @param  $id
+     * @return void
+     */
     public function admin_actualizar($id){
     
          // send the nodes to our view
-    	$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
-		$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
-        $this->layout = 'ajax';
+         $class = $this->Category->find('first', array('conditions' => array('Category.id' => $id)));
+         unset($classification);
+         if ($class['Category']['classification'] == 'Filo' )
+         {
+            $classification = array('Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         elseif ($class['Category']['classification'] == 'Subfilo')
+         {
+             $classification = array('Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         elseif ($class['Category']['classification'] == 'Clase')
+         {
+            $classification = array('Subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         elseif ($class['Category']['classification'] == 'Subclase')
+         {
+             $classification = array('Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         elseif ($class['Category']['classification'] == 'Orden')
+         {
+             $classification = array('Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         elseif ($class['Category']['classification'] == 'Suborden')
+         {
+             $classification = array('infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         elseif ($class['Category']['classification'] == 'Infraorden')
+         {
+             $classification = array('Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         elseif ($class['Category']['classification'] == 'Familia')
+         {
+             $classification = array('Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+        elseif ($class['Category']['classification'] == 'Subfamilia')
+         {
+             $classification = array('Genero' => 'Género');
+         }
+         else //Si no hay nada
+         {
+            $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+         }
+         
+    	//$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));
+		//$this->set('sons', $this->Category->find('all', array('conditions' => array('Category.parent_id' => $id))));
+	    $this->set('classification', $classification);
+	    $this->set('parent', $class);
+	    $this->layout = 'ajax';
     }
     
     /**

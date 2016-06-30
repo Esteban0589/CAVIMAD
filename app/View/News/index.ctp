@@ -49,9 +49,9 @@
 				<td class="col-lg-2"><?php echo h($homePicture['News']['modified']); ?>&nbsp;</td>
 
 				<td class="actions col-lg-2">
-					<?php echo $this->Html->link(__(''), array('action' => 'view', $homePicture['News']['id']), array('title'=>'Ver todos los detalles de la imagen','class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?>
-					<?php echo $this->Html->link(__(''), array('action' => 'edit', $homePicture['News']['id']),array('title'=>'Editar la información de la imagen','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
-					<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $homePicture['News']['id']), array('title'=>'Eliminar el taxón','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Atención se va a eliminar la imagen # %s', $homePicture['News']['id'])); ?>
+					<?php echo $this->Html->link(__(''), array('action' => 'view', $homePicture['News']['id']), array('title'=>'Ver todos los detalles de la noticia','class' => 'glyphicon glyphicon-eye-open', 'style' => 'font-size:25px; padding: 5px;')); ?>
+					<?php echo $this->Html->link(__(''), array('action' => 'edit', $homePicture['News']['id']),array('title'=>'Editar la información de la noticia','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
+					<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $homePicture['News']['id']), array('title'=>'Eliminar la noticia','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Atención se va a eliminar la imagen # %s', $homePicture['News']['id'])); ?>
                   
 
 				</td>

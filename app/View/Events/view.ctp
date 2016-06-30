@@ -65,7 +65,9 @@
                     
                 </div><!-- featured posts slider wrapper end -->
 			</div>
+
 		</div>
+			<?php	echo $this->Html->link(__('Editar imagenes de evento'), array('controller'=>'NewsEventsPictures','action' => 'view_images_events',$this->request->data['Event']['id'],), array('class' => 'glyphicon glyphicon-th','title' =>'Administrar imagenes del evento', 'style'=>'color: #3891D4; font-size:14px; padding: 5px;'));?>
 	</div>
 	
 </div>

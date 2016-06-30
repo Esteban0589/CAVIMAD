@@ -1,3 +1,4 @@
+ <?php if($this->Session->read('Auth')['User']['role']=='Administrador'||$this->Session->read('Auth')['User']['role']=='Colaborador'){ ?> 
 <script>
 	$(document).ready(function() {
 	    $('#example').DataTable( {
@@ -14,6 +15,7 @@
 	    });
 });
 </script>
+<?php }?>
 
 <div class="container">
 	<div class="row">

@@ -172,7 +172,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                   </ul>
                         </li>
                         <li>
-                             <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
+                             <div = "¿Quiénes somos?"><a href="pages/aboutus" title="">Sobre nosotros</a></div>
                         </li>
                         <li>
                              <div = "Si desea enviarnos un mensaje."><a href="users/contact" title="">Contáctenos</a></div>
@@ -181,7 +181,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
                         </li>
                         <li>
-                            <?php if(!empty($_SESSION['role'])){    ?>  
+                            <?php if(!empty($this->Session->read('Auth')['User']['role'])){    ?>  
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         

@@ -96,7 +96,7 @@
                                     
                                      <div class="up-event-wrapper"><!-- event summary -->
                         
-                                            <h1 class="title-median">   <?php echo $this->Html->link($lastEventCreated['Event']['title'], array('controller'=>'news','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles de la evento'));?>
+                                            <h1 class="title-median">   <?php echo $this->Html->link($lastEventCreated['Event']['title'], array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles de la evento'));?>
                                           </h1>
                         
                                         <div class="up-event-meta clearfix">

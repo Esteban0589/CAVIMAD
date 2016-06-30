@@ -1207,6 +1207,10 @@ class CategoriesController extends TreeMenuAppController {
          {
              $classification = array('Genero' => 'Género');
          }
+         elseif ($class['Category']['classification'] == 'Genero')
+         {
+             $classification = array('Default'=>'No existen niveles inferiores a este taxón, por favor seleccione la clasificación de Género.','Genero' => 'Género');
+         }
          else //Si no hay nada
          {
             $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');

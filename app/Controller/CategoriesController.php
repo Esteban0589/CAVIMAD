@@ -301,17 +301,26 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
  public function view($id = null) {
-        //En caso de hacer el borrar tamb igual usar -> if ($this->request->is('post') && $this->request->data['agregar']==1) {
-        if ($this->request->is('post')) {
-            $this->loadModel('Comment');
-            $this->Comment->create();
-            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica'));
-			$invDate = $dateNow->format('Y-m-d H:i:s');
-			$data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] ,
-			'category_id' => $id,
-			'comment' => $this->request->data['comments'],
-			'created'=> $invDate));
-			$this->Comment->save($data);
+//En caso de hacer el borrar tamb igual usar -> if ($this->request->is('post') && $this->request->data['agregar']==1) { 
+        debug($this->request->data); 
+       // if ($this->request->is('post')) { 
+       if ($this->request->is('post') && $this->request->data['function']=='addcomment') { 
+            $this->loadModel('Comment'); 
+            $this->Comment->create(); 
+            $dateNow = new DateTime('now', new DateTimeZone('America/Costa_Rica')); 
+            $invDate = $dateNow->format('Y-m-d H:i:s'); 
+            $data = array('Comment' => array('user_id' => $_SESSION['Auth']['User']['id'] , 
+            'category_id' => $id, 
+            'comment' => $this->request->data['comments'], 
+            'created'=> $invDate)); 
+            $this->Comment->save($data); 
+        }else{ 
+            if ($this->request->is('post') && $this->request->data['function']=='deletecomment') { 
+                debug($id); 
+                $this->loadModel('Comment'); 
+                $this->Comment->id = $this->request->data['id'];
+                $this->Comment->delete(); 
+            } 
         }
         // else{
         //     if($this->request->is('post') && $this->request->data['agregar']==0) {

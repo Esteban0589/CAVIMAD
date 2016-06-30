@@ -35,18 +35,26 @@
             $("#secciones").html(result);
         }});
     }
-    function comment(id)
-    {
-        $.ajax({
-            type: 'POST',
-            url: 'categories/view/'+id, 
-            data: 'comments=' + $('#comment').val(), 
-            success: function(result){
-            $("#secciones").html(result);
-        }});
-        debug(data);
+    function comment(id) 
+    { 
+        $.ajax({ 
+            type: 'POST', 
+            url: 'categories/view/'+id,  
+            data: {'comments': $('#comment').val(), 'function': 'addcomment'}, 
+            success: function(result){ 
+            $("#secciones").html(result); 
+        }}); 
     }
-    
+    function delcomment(id) 
+    { 
+        $.ajax({ 
+            type: 'POST', 
+            url: 'categories/view/'+id,  
+            data: {'function': 'deletecomment', 'id':$('#idcomment').val() }, 
+            success: function(result){ 
+            $("#secciones").html(result); 
+        }}); 
+    }
 //});
 </script>
 

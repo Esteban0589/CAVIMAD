@@ -51,7 +51,7 @@ class Comment extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxLength' => array(
-				'rule' => array('maxLength',50),
+				'rule' => array('maxLength',250),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

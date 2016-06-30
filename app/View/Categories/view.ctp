@@ -331,17 +331,12 @@ a{
 												<p style="text-indent:60px"><?php echo h($Comments['Comment']['comment']); ?></p>
 											</div>
 											<?php if($this->Session->read('Auth')['User']['role']=='Administrador'){ ?>
-											<td class="actions" >
-												<?php echo $this->Form->postLink(__(''), array('action' => 'deleteComment', $Comments['Comment']['id']), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el comentario",'style'=>'color: #860000;    font-size:25px; '), __('¿Está seguro de que desea eliminar el comentario de %s?', $Comments['User']['username'])); ?>
-											</td>
-											
-											
-											<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom"> 
-												<input type="hidden" name="submitted" id="submitted" value="true" /> 
-												<!--<input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />--> 
-												<input type="hidden" name="idcomment" id="idcomment" value= <?php echo $Comments['Comment']['id'] ?>>
-												<a title="Borrar comentario" href="javascript:delcomment(<?php echo $category['Category']['id']?>)" >Borrar Comentario</a> 
-											</div>
+												<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom"> 
+													<input type="hidden" name="submitted" id="submitted" value="true" /> 
+													<!--<input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />--> 
+													<input type="hidden" name="idcomment" id="idcomment" value= <?php echo $Comments['Comment']['id'] ?>>
+													<a title="Borrar comentario" href="javascript:delcomment(<?php echo $category['Category']['id']?>)" >Borrar Comentario</a> 
+												</div>
 											
 											
 											<?php }	?>

@@ -229,6 +229,8 @@
                                     'label'=>false, 'class'=>''));
                                     // Este publis se asigno oculto debido a que la funcionalidad del plugin no esta clara.
                                     ?>
+                                    <br>
+                                   <?php echo $this->Form->end(array('label'=>'Crear Taxón', 'class'=>'btn btn-primary', 'style' =>"margin-bottom: 20;")); ?>
                                  <br>
                                  </div>
                                  <div id="hide">
@@ -270,8 +272,6 @@
                                                     	<?php echo $this->Form->input('Family.0.characteristic', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las características de la familia. Campo de texto expandible','label'=>'Características'));?>
 
 														<?php echo $this->Form->input('Family.0.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
-									
-																	    
                                                 </div>
                                             </div>
                                         </div>
@@ -369,6 +369,30 @@
                                             </div>
                                         </div>
                                         
+                                                                                                                        
+                                        <div class="panel panel-default"><!-- accordion panel four -->
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a href="#collapse4" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+                                                        Ubicación general 
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div class="panel-collapse collapse" id="collapse4">
+                                                <div class="panel-body">
+                                            <?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox', 'options' => array(
+                                                                                                  'belize' => 'Belice',
+                                                                                                  'costa_rica' => 'Costa Rica',
+                                                                                                  'el_salvador' => 'El Salvador',
+                                                                                                  'guatemala' => 'Guatemala',
+                                                                                                  'honduras' => 'Honduras',
+                                                                                                  'mexico' => 'México',
+                                                                                                  'nicaragua' => 'Nicaragua',
+                                                                                                  'panama' => 'Panamá'))) ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                     
 				
@@ -381,11 +405,15 @@
 								</div>
 							</div>
                               </fieldset>
-                              <?php echo $this->Form->end(array('label'=>'Crear Taxón', 'class'=>'btn btn-primary')); ?>
+   
                               <br>
                               <br>
                            </div>
-                        
+                          
+                     </div>
+
+                     <div >
+                    </div>      
                      </div>
                   </div>
                </div>

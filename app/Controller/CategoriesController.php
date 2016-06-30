@@ -124,7 +124,6 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('CountryGender');
         $this->loadModel('Download');
         $alias = $this->categoryAlias;
-        debug($this->request->data);
         if ($this->request->data['classification'] != 'Default')
         {
             if ($this->request->is('post')) {
@@ -1173,39 +1172,39 @@ class CategoriesController extends TreeMenuAppController {
          unset($classification);
          if ($class['Category']['classification'] == 'Filo' )
          {
-            $classification = array('Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+            $classification = array('Default'=>'Seleccione una opción...','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Subfilo')
          {
-             $classification = array('Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+             $classification = array('Default'=>'Seleccione una opción...','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Clase')
          {
-            $classification = array('Subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+            $classification = array('Default'=>'Seleccione una opción...','Subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Subclase')
          {
-             $classification = array('Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+             $classification = array('Default'=>'Seleccione una opción...','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Orden')
          {
-             $classification = array('Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+             $classification = array('Default'=>'Seleccione una opción...','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Suborden')
          {
-             $classification = array('infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+             $classification = array('Default'=>'Seleccione una opción...','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Infraorden')
          {
-             $classification = array('Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+             $classification = array('Default'=>'Seleccione una opción...','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Familia')
          {
-             $classification = array('Subfamilia' => 'Subfamilia','Genero' => 'Género');
+             $classification = array('Default'=>'Seleccione una opción...','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
         elseif ($class['Category']['classification'] == 'Subfamilia')
          {
-             $classification = array('Genero' => 'Género');
+             $classification = array('Default'=>'Seleccione una opción...','Genero' => 'Género');
          }
          elseif ($class['Category']['classification'] == 'Genero')
          {
@@ -1213,7 +1212,7 @@ class CategoriesController extends TreeMenuAppController {
          }
          else //Si no hay nada
          {
-            $classification = array('Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
+            $classification = array('Default'=>'Seleccione una opción...','Filo' => 'Filo','Subfilo' => 'Subfilo','Clase' => 'Clase','subclase'=>'Subclase','Orden' => 'Orden','Suborden' => 'Suborden','infraorden'=>'Infraorden','Familia' => 'Familia','Subfamilia' => 'Subfamilia','Genero' => 'Género');
          }
          
     	//$this->set('category', $this->Category->find('first', array('conditions' => array('Category.id' => $id))));

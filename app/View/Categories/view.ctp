@@ -299,7 +299,6 @@ a{
 									<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom"  >
 									<input type="hidden" name="idCat" id="agregar" value= "1">
 									<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom">
-										<input type="hidden" name="submitted" id="submitted" value="true" />
 										<!--<input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />-->
 										<a title="Agregar comentario" href="javascript:comment(<?php  echo $category['Category']['id']?>)" >Enviar Comentario</a>
 									</div>
@@ -313,29 +312,26 @@ a{
 									<br>
 									<h2><?php if($Comments!=null){ echo __('Comentarios:'); ?></h2>
 									<div>
-										<?php foreach ($Comments as $Comments): ?>
+										<?php foreach ($Comments as $Comment): ?>
 										<div>
 											<!--Parte del texto-->
 											<div>
-												<b2 style="color:#999"><?php echo $Comments['Comment']['created']."     ";?></b2>
+												<b2 style="color:#999"><?php echo $Comment['Comment']['created']."     ";?></b2>
 												<b>
-													<?php if($Comments['User']['activated'] != 2){?>
-														<?php echo $this->Html->link($Comments['User']['username'], array('controller' => 'users','action' => 'view',$Comments['User']['id']));?>
+													<?php if($Comment['User']['activated'] != 2){?>
+														<?php echo $this->Html->link($Comment['User']['username'], array('controller' => 'users','action' => 'view',$Comment['User']['id']));?>
 													<?php } else {?>
-														<?php echo $Comments['User']['username'];?>
+														<?php echo $Comment['User']['username'];?>
 													<?php }?>
 													<?php echo "dijo: "?>
 												</b>
 											</div>
 											<div>
-												<p style="text-indent:60px"><?php echo h($Comments['Comment']['comment']); ?></p>
+												<p style="text-indent:60px"><?php echo h($Comment['Comment']['comment']); ?></p>
 											</div>
 											<?php if($this->Session->read('Auth')['User']['role']=='Administrador'){ ?>
 												<div class="form-group clearfix col-lg-12 text-right remove-margin-bottom"> 
-													<input type="hidden" name="submitted" id="submitted" value="true" /> 
-													<!--<input type="submit" value="Agregar comentario" id="submit" name="submit" class="btn btn-default" />--> 
-													<input type="hidden" name="idcomment" id="idcomment" value= <?php echo $Comments['Comment']['id'] ?>>
-													<a title="Borrar comentario" href="javascript:delcomment(<?php echo $category['Category']['id']?>)" >Borrar Comentario</a> 
+													<a title="Borrar comentario" href="javascript:delcomment(<?php echo $category['Category']['id']?>,<?php echo $Comment['Comment']['id'] ?> )" >Borrar Comentario</a> 
 												</div>
 											
 											

@@ -301,9 +301,6 @@ class CategoriesController extends TreeMenuAppController {
      * @return void
      */
  public function view($id = null) {
-//En caso de hacer el borrar tamb igual usar -> if ($this->request->is('post') && $this->request->data['agregar']==1) { 
-        debug($this->request->data); 
-       // if ($this->request->is('post')) { 
        if ($this->request->is('post') && $this->request->data['function']=='addcomment') { 
             $this->loadModel('Comment'); 
             $this->Comment->create(); 
@@ -315,28 +312,12 @@ class CategoriesController extends TreeMenuAppController {
             'created'=> $invDate)); 
             $this->Comment->save($data); 
         }else{ 
-            if ($this->request->is('post') && $this->request->data['function']=='deletecomment') { 
-                debug($id); 
+            if ($this->request->is('post') && $this->request->data['function']=='deletecomment') {
                 $this->loadModel('Comment'); 
-                $this->Comment->id = $this->request->data['id'];
+                $this->Comment->id = $this->request->data['iddc'];
                 $this->Comment->delete(); 
             } 
         }
-        // else{
-        //     if($this->request->is('post') && $this->request->data['agregar']==0) {
-        //         $this->loadModel('Comment');
-        //         $this->Comment->id = $id;
-        //         // Controla el acceso de los usuarios habilitados o deshabilitados.
-        // 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
-        // 		$this->loadModel('User');
-        // 		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
-        // 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
-        // 		}
-        //         // segun el alias de las categorias se despliegan segun un orden indexado 
-        //         // según la categoría seleccionada se eliminan los datos
-        //         $this->Comment->delete();
-        //     }
-        // }
         $this->loadModel('Family');
         $this->loadModel('Gender');
         $this->loadModel('CountryGender');
@@ -1725,14 +1706,14 @@ class CategoriesController extends TreeMenuAppController {
 			$alias = $this->categoryAlias;
             $alias = ($alias) ? array('action' => 'sort', 'alias'=>$alias) : array('action' => 'sort');
 			if ($this->Comment->save($data)) { 
-			   // $this->Session->setFlash(__('Comentario guardado.'), 'success');
+			    $this->Session->setFlash(__('Comentario guardado.'), 'success');
                 
 
                // $this->redirect(array('action' => 'sort', 'alias'=>$this->request->data['idCat']));
             }
             else{
                 //Si no se logran borar los datos  se notifica mediante un mensaje de error
-                //$this->Session->setFlash(__('Comentario no guardado.'), 'error');
+                $this->Session->setFlash(__('Comentario no guardado.'), 'error');
                 //$this->redirect($alias);
             }
         }

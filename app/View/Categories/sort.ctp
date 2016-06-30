@@ -45,12 +45,12 @@
             $("#secciones").html(result); 
         }}); 
     }
-    function delcomment(id) 
+    function delcomment(id,id2) 
     { 
         $.ajax({ 
             type: 'POST', 
             url: 'categories/view/'+id,  
-            data: {'function': 'deletecomment', 'id':$('#idcomment').val() }, 
+            data: {'function': 'deletecomment', 'iddc':id2 }, 
             success: function(result){ 
             $("#secciones").html(result); 
         }}); 

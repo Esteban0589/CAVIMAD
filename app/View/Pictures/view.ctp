@@ -80,10 +80,11 @@
 						<?php elseif(($this->Session->read('Auth')['User']['role'] =! null) ): ?>
 							<?php foreach ($pictures as $picture): ?>
 									<div class = "col-lg-3">
-										<?php echo $this->Html->image('../files/picture/image/'.$picture['Picture']['image_dir'] .'/'.'thumb_'.$picture['Picture']['image'], array('class' => 'img-thumbnail img-responsive'));  ?>
+										<?php echo $this->Html->image('../files/picture/image/'.$picture['Picture']['image_dir'] .'/'.$picture['Picture']['image'], array('class' => 'img-thumbnail img-responsive', 'style'=>'height: 150px; width: 100%;'));  ?>
 										
 									</div>
 								<?php endforeach; ?>
+								
 						<?php endif; ?>
 					
 					

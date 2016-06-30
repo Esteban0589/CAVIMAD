@@ -148,7 +148,7 @@
                                     <div class="call-out" align="justify">
 
                                          <?php echo substr($lastEventCreated['Event']['description'],0,300);
-                                         echo $this->Html->link(__('...mas'), array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
+                                         echo $this->Html->link(__('...leer más.'), array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
                                     </div>     
 
                                 </li><!-- widgets list end -->
@@ -226,7 +226,7 @@
                                     <div class="call-out" align="justify">
                                         
                                          <?php echo substr($lastNewsCreated['News']['description'],0,300);
-                                         echo $this->Html->link(__('...mas'), array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
+                                         echo $this->Html->link(__('...leer más.'), array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
                                     </div>
                                         
                                 </li><!-- widgets list end -->

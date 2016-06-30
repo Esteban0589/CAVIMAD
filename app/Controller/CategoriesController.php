@@ -1679,50 +1679,77 @@ class CategoriesController extends TreeMenuAppController {
             }
         }
 		if($order!=-1||$family!=-1||$genre!=-1||$country!=-1||$search3!=-1){
-			if(count($result)>0){
-			    $i = 0;
-			    $this->loadModel('Picture'); // Se carga el modelo de Picture
-			    // Busca las imagenes de cada resultado.
-			    foreach($result as $results){
-				    $catId = $result[$i]['Gender']['id'];
-				    $idConditions[] = array(
-                        "OR" => array(
-            				array('Picture.phylo_id'    => $catId),
-            				array('Picture.subphylo_id' => $catId),
-            				array('Picture.class_id'    => $catId),
-            				array('Picture.subclass_id' => $catId),
-            				array('Picture.subclass_id' => $catId),
-            				array('Picture.order_id'    => $catId),
-            				array('Picture.suborder_id' => $catId),
-            				array('Picture.family_id'   => $catId),
-            				array('Picture.subfamily_id'=> $catId),
-            				array('Picture.genre_id'    => $catId),
-            				array('Picture.subgenre_id' => $catId)
-            			)
-                    );
-                    // Si encuentra fotos asociadas al taxón a buscar las mete a un arreglo
-					if($this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions))){
-					    $pics = $this->Picture->find('all',array('recursive'=>0, 'conditions'=>$idConditions));
-					    // Si se encuentra solamente una foto
-						if(count($pics)==1){
-							$myRandomNumber=0;	
-						}
-						//Si hay más de una foto se debe escoger alguna de manera aleatoria
-						else{
-						    // Random para realizar la selección
-							$myRandomNumber = rand(0,count($pics)-1);
-						}
-						$pics = $pics[$myRandomNumber];
-						// Se añade la foto seleccionada al arreglo
-						$result[$i]=$result[$i]+$pics;
-					}
-					$i++;
-					// Libera la $idConditions.
-					unset($idConditions);
-				}
-				$this->set('resultados',$result);
-			}
-			else{
+		    if(count($result)>0){
+    		    $arregloFinal;
+    				$indice = 0;
+    				foreach($result as $resultados){
+    				    
+    				      $catId = $resultados['Category']['id'];
+    				      $taxon = $this->Category->find('first', array('conditions' => array('Category.id' => $catId)));
+    				      $clasificacion = $taxon['Category']['classification'];
+    				    switch ($clasificacion) {
+    				    case "Filo":
+    				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.phylo_id' => $catId)));
+    				        break;
+    				    case "Subfilo":
+    				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subphylo_id' => $catId)));
+    				        break;
+    				    case "Clase":
+    				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.class_id' => $catId)));
+    				        break;
+    				    case "Subclase":
+    				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subclass_id' => $catId)));
+    				        break;
+    				    case "Orden":
+    				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.order_id' => $catId)));
+    				        break; 
+    				    case "Suborden":
+    				        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.suborder_id' => $catId)));
+    				        break;
+    				    case "Familia":
+    				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.family_id' => $catId)));
+    				        break;
+    				    case "Subfamilia":
+    				         $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subfamily_id' => $catId)));
+    				        break;
+    				    case "Genero":
+    				     $consTem = $this->Gender->find('all', array('recursive' => -1,'conditions' => array('Gender.category_id' => $catId)));
+    		             $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.genre_id' => $consTem[0]['Gender']['id'])));
+    				        break;
+    				    case "Subgenero":
+    				       $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.subgenre_id' => $catId)));
+    				        break;
+    				    default:
+    				        // no haga nada
+    				} //Cierra switch
+    				     
+        				$pics=[];
+                    	$pics2=[];
+                		$pics3=[];
+                		$pics4=[];
+            		
+            			for ($j = 0; $j<count($imagenesTaxon); $j++)
+                        {
+                            if(!in_array($imagenesTaxon,$pics))
+                                array_push($pics, $imagenesTaxon);
+                        }
+                       if(count($pics[0])>5){
+                            $pics2=array_rand($pics[0], 5);
+                             for($i=0; $i<count($pics2); $i++){
+                               array_push($pics3, $pics[0][$pics2[$i]]);
+                            }
+                            
+                        }else{
+                            $pics3=$pics[0];
+                        }
+                    
+                        $resultados['Pictures'] = $pics3;
+                        $arregloFinal[$indice]=$resultados;
+                        $indice++;
+    
+    				}
+    				$this->set('resultados',$arregloFinal);
+		    } else {
 			    // Si no se encuentra algún taxón se notifica al usuario
 				return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
 			}

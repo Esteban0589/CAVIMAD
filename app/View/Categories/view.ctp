@@ -376,7 +376,8 @@ a{
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['bibliography'])); ?></div>
 						<h5>Observaciones adicionales:</h5> 
 						<div class= "texto"><?php echo nl2br(h($datosFamilia['observation'])); ?></div>
-						<button type="button" class="btn btn-default btn-sm "  style=" margin: 10px;"> <a title=\"Ver perfil resumido de taxón y sus taxones relacionados\" class="glyphicon glyphicon-list-alt" style="padding: 5px;color: #FFFFFF;" href="javascript:cargar(<?php echo $category['Category']['id']?>)" ></a>Géneros relacionados</button>
+						<br>
+						<a title="Ver los taxones relacionados" href="javascript:cargar(<?php echo $category['Category']['id']?>)" >Géneros relacionados</a>
 						
 					<?php	} ?>
 					

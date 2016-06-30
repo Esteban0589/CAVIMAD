@@ -24,8 +24,9 @@
 			</dl>
 		</div>
 		<div class="news form col-md-8">
-					<h5><?php echo __('Imagen'); ?></h5>
-								<div class="col col-sm-8">
+			<?php	echo $this->Html->link(__('Editar imagenes de evento'), array('controller'=>'NewsEventsPictures','action' => 'view_images_events',$events['Event']['id'],), array('class' => 'glyphicon glyphicon-th','title' =>'Administrar imagenes del evento', 'style'=>'color: #3891D4; font-size:14px; padding: 5px;'));?>
+			<h5><?php echo __('Imagen'); ?></h5>
+			<div class="col col-sm-8">
 					 <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
            				<div class="carousel-inner"><!-- Wrapper for slides -->
@@ -67,7 +68,6 @@
 			</div>
 
 		</div>
-			<?php	echo $this->Html->link(__('Editar imagenes de evento'), array('controller'=>'NewsEventsPictures','action' => 'view_images_events',$this->request->data['Event']['id'],), array('class' => 'glyphicon glyphicon-th','title' =>'Administrar imagenes del evento', 'style'=>'color: #3891D4; font-size:14px; padding: 5px;'));?>
 	</div>
 	
 </div>

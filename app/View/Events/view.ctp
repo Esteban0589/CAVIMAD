@@ -12,13 +12,13 @@
 		<div class="news form col-md-4">
 
 			<dl>
-				<dt><h5><?php echo __('Título'); ?></h5></dt>
-				<dd>
-					<?php echo h($events['Event']['title']); ?>
-					&nbsp;
-				</dd>
-				<dt><h5><?php echo __('Descripción'); ?></h5></dt>
-				<dd>
+				<dt><h5>
+						<?php echo h($events['Event']['title']); ?>
+						&nbsp;
+					</h5>
+				</dt>
+				
+
 					<?php echo h($events['Event']['description']); ?>
 					&nbsp;
 			</dl>
@@ -63,14 +63,16 @@
                     </div><!-- Wrapper for slides end -->
                 
                     <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                    <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                    <?php if(count($picsEventsFinal)>1){?>
+	                    <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+	                    <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                    <?php  } ?>	
                     <!-- Controls end -->
                     
                 </div><!-- featured posts slider wrapper end -->
 			</div>
 
+			</div>
 		</div>
 	</div>
-	
 </div>

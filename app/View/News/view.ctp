@@ -12,25 +12,25 @@
 		<div class="news form col-md-4">
 
 			<dl>
-				<dt><h5><?php echo __('Título'); ?></h5></dt>
-				<dd>
-					<?php echo h($news['News']['title']); ?>
-					&nbsp;
-				</dd>
-				<dt><h5><?php echo __('Descripción'); ?></h5></dt>
-				<dd>
+				<dt><h5>
+						<?php echo h($news['News']['title']); ?>
+						&nbsp;
+					</h5>
+				</dt>
 					<?php echo h($news['News']['description']); ?>
 					&nbsp;
 			</dl>
 		</div>
 		<div class="news form col-md-8">
-					<h5><?php echo __('Imagen'); ?></h5>
-					<div class="col col-sm-8">
-					 <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
+			<?php echo $this->Html->link(__('Editar imagenes de noticia'), array('controller'=>'NewsEventsPictures','action' => 'view_images_news',$news['News']['id'],), array('class' => 'glyphicon glyphicon-th','title' =>'Administrar imagenes de noticia', 'style'=>'color: #3891D4; font-size:14px; padding: 5px;')); ?>
+
+			<h5><?php echo __('Imagen'); ?></h5>
+			<div class="col col-sm-8">
+				
+				<div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
 
            				<div class="carousel-inner"><!-- Wrapper for slides -->
-                          <?php 
-                        	if(count($picsNewsFinal)==0){?>
+                          <?php 	if(count($picsNewsFinal)==0){?>
                             	<div class="thumbnail"> 
 									<?php echo $this->Html->image('../files/picture/default.PNG'); ?>
 								</div>
@@ -59,13 +59,16 @@
                     </div><!-- Wrapper for slides end -->
                 
                     <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                    <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+					<?php 	if(count($picsNewsFinal)>1){?>
+	                    <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+	                    <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                   	<?php  } ?>	
                     <!-- Controls end -->
                     
                 </div><!-- featured posts slider wrapper end -->
 			</div>
+			
+			</div>
 		</div>
 	</div>
-	
 </div>

@@ -128,6 +128,33 @@ class NewsController extends AppController {
 				$this->Flash->error(__('La noticia no pudo ser actualizada, intente nuevamente.'));
 			}
 		} else {
+			
+			
+			$this->loadModel('NewsEventsPicture');
+
+			$picsNews2=[];
+			$picsNews2rand=[];
+			$picsNewsFinal=[];
+			$picsNews=$this->NewsEventsPicture->find('all', array('conditions'=>array('NewsEventsPicture.news_id'=>$id)));
+			
+		
+			for($i=0; $i<count($picsNews); $i++){
+				array_push($picsNews2, $picsNews[$i]['NewsEventsPicture']);
+			}
+			
+			if(count($picsNews2)>5){
+				$picsNews2rand=array_rand($picsNews2, 5);
+				for($i=0; $i<count($picsNews2rand); $i++){
+					array_push($picsNewsFinal, $picsNews2[$picsNews2rand[$i]]);
+				}
+			}
+			else{
+				$picsNewsFinal=$picsNews2;
+			}
+			// return debug($picsNewsFinal);
+			$this->set('picsNewsFinal', $picsNewsFinal);
+			
+			
 			$options = array('conditions' => array('News.' . $this->News->primaryKey => $id));
 			$this->request->data = $this->News->find('first', $options);
 		}

@@ -146,7 +146,8 @@
                                         
                                     </div><!-- featured posts slider wrapper end -->
                                     <div class="call-out" align="justify">
-                                         <?php echo $lastEventCreated['Event']['description'];
+
+                                         <?php echo substr($lastEventCreated['Event']['description'],0,300);
                                          echo $this->Html->link(__('...mas'), array('controller'=>'events','action' => 'view', $lastEventCreated['Event']['id']), array('title'=>'Ver detalles del evento'));?>
                                     </div>     
 
@@ -223,7 +224,8 @@
                                         
                                     </div><!-- featured posts slider wrapper end -->
                                     <div class="call-out" align="justify">
-                                         <?php echo $lastNewsCreated['News']['description'];
+                                        
+                                         <?php echo substr($lastNewsCreated['News']['description'],0,300);
                                          echo $this->Html->link(__('...mas'), array('controller'=>'news','action' => 'view', $lastNewsCreated['News']['id']), array('title'=>'Ver detalles de la noticia'));?>
                                     </div>
                                         

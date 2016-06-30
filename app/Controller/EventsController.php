@@ -16,6 +16,12 @@ class EventsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Flash', 'Session');
+	
+	public function beforeFilter() {
+        parent::beforeFilter();
+        //Métodos a los cuales se permite llamar
+        $this->Auth->allow('logout', 'login', 'view','index');
+    }
 
 /**
  * index method

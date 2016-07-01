@@ -110,10 +110,7 @@ class UsersController extends AppController {
 	 */
 	public function view_colaboradores() {
 		// Controla el acceso de los usuarios habilitados o deshabilitados.
-		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
-		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
-			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
-		}
+		
 		//se carga el modelo Administrator para manipular el arreglo correspondiente
 		$this->loadModel('Administrator');
 		clearCache();

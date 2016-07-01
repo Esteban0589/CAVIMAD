@@ -26,6 +26,7 @@
 			<div class="row small k-equal-height"><!-- row -->
                               
 				 <div class="col-lg-12 col-md-6 col-sm-12">
+				 
 									
 					<table id="example" class="display" cellspacing="0" width="100%">
 					        <thead>

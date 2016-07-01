@@ -85,7 +85,7 @@ class EventsController extends AppController {
 			//debug($this->request->data);	
 			$this->Event->create();
 			if ($this->Event->save($this->request->data)) {
-				$this->request->data['NewsEventsPicture']['0']['envent_id']= $this->Event->id;
+				$this->request->data['NewsEventsPicture']['0']['event_id']= $this->Event->id;
 				//return debug($this->request->data['NewsEventsPicture']['0']);
 				if($this->NewsEventsPicture->saveAll($this->request->data['NewsEventsPicture']['0'])){
 					$this->Flash->success(__('El evento fue guardada correctamente.'));

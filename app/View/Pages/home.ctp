@@ -140,8 +140,10 @@
                                         </div><!-- Wrapper for slides end -->
                                     
                                         <!-- Controls -->
-                                        <a class="left carousel-control" href="#carousel-featured3" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                                        <a class="right carousel-control" href="#carousel-featured3" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+										<?php if(count($picsEventsFinal)>1){?>
+											<a class="left carousel-control" href="#carousel-featured3" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+											<a class="right carousel-control" href="#carousel-featured3" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+										<?php  } ?>
                                         <!-- Controls end -->
                                         
                                     </div><!-- featured posts slider wrapper end -->
@@ -218,9 +220,14 @@
                                         </div><!-- Wrapper for slides end -->
                                     
                                         <!-- Controls -->
-                                        <a class="left carousel-control" href="#carousel-featured2" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                                        <a class="right carousel-control" href="#carousel-featured2" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-                                        <!-- Controls end -->
+										<?php if(count($picsNewsFinal)>1){?>
+											<a class="left carousel-control" href="#carousel-featured2" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+											<a class="right carousel-control" href="#carousel-featured2" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+										<?php  } ?>	
+
+
+											<!-- Controls end -->
+
                                         
                                     </div><!-- featured posts slider wrapper end -->
                                     <div class="call-out" align="justify">

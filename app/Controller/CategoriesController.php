@@ -24,7 +24,7 @@ class CategoriesController extends TreeMenuAppController {
     
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','view2','sort','admin_getnodes','admin_cargar','catalogo','advanced_search2');
+        $this->Auth->allow('logout', 'login','buscador','buscar','index','view','view2','sort','admin_getnodes','admin_cargar','catalogo','advanced_search2','search_colaborator','search_data','redirect_to_methods');
         /*$this->layout = 'TreeMenu.bootstrap';*/
         $this->layout = 'default';
         
@@ -204,36 +204,29 @@ class CategoriesController extends TreeMenuAppController {
                             $varDat++;
                         }
                         unset($data);
-                        $data2 = array('Download' => array('category_id' => $this->request->data['Gender']['0']['category_id'], 
-                                        'administrator_id'  => $_SESSION['Auth']['User']['id'],
-                                        'title'             =>$this->request->data['Gender'][0]['title'],
-                                        'description'       => $this->request->data['Gender'][0]['description'],
-                                        'classification'    =>$this->request->data['Category']['name'],
-                                        'name'              => $this->request->data['Gender'][0]['report']['name'],
-                                        'report'            => $this->request->data['Gender'][0]['report']
-                                    ));
-                        $this->Download->create();
-                        $file=$this->request->data['Gender'][0]['report'];
-                        $file['name']=$this->sanitize($file['name']);
-                        $data2['Download']['report'] = time().$file['name'];
-                        if($this->Download->save($data2)){
-                            move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. time().$file['name']); 
-                            if($varDat==0){
-                                $this->Session->setFlash(__('Archivo ingresado correctamente'),'TreeMenu.success');
-                            }
-                            else{
-                                $this->Session->setFlash(__('Archivo ingresado correctamente, fallo al ingresar los paises.'),'TreeMenu.success');
-                            }
+						if($this->request->data['Gender'][0]['title'] != null){
+							$data2 = array('Download' => array('category_id' => $this->request->data['Gender']['0']['category_id'], 
+											'administrator_id'  => $_SESSION['Auth']['User']['id'],
+											'title'             =>$this->request->data['Gender'][0]['title'],
+											'description'       => $this->request->data['Gender'][0]['description'],
+											'classification'    =>$this->request->data['Category']['name'],
+											'name'              => $this->request->data['Gender'][0]['report']['name'],
+											'report'            => $this->request->data['Gender'][0]['report']
+										));
+							$this->Download->create();
+							$file=$this->request->data['Gender'][0]['report'];
+							$file['name']=$this->sanitize($file['name']);
+							$data2['Download']['report'] = time().$file['name'];
+							if($this->Download->save($data2)){
+								move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. time().$file['name']); 
+								if($varDat==0){
+									$this->Session->setFlash(__('Archivo ingresado correctamente'),'TreeMenu.success');
+								}
+								else{
+									$this->Session->setFlash(__('Archivo ingresado correctamente, fallo al ingresar los paises.'),'TreeMenu.success');
+								}
                         }
-                        else {
-                            if($varDat==1){
-                                $this->Session->setFlash(__('Ni los países ni el archivo se guardo correctamente. Intente nuevamente.'), 'TreeMenu.error');
-                            }
-                            else{
-                                $this->Session->setFlash(__('El archivo no se pudo ingresar.'), 'TreeMenu.error');
-                                $varDat++;
-                            }
-                        }
+						}
                     }
                     unset($data);
                     $this->loadModel('Logbook');

@@ -97,7 +97,7 @@
 <div class = "col-md-4">
    
    <div title="Seleccione el tipo de búsqueda.">
-      <?php echo $this->Form->input('drop1',array('empty'=>'Seleccione una opción','class'=>'form-control','options' => array('colaboradores' => 'Colaboradores', 'documentos' => 'Documentos', 'nivel'=>'Nivel Taxonómico'), 'id'=>'drop1', 'label' => 'Seleccione el tipo de búsqueda: '));?>
+      <?php echo $this->Form->input('drop1',array('empty'=>'Seleccione una opción','class'=>'form-control','options' => array('colaboradores' => 'Colaboradores', 'nivel'=>'Nivel Taxonómico'), 'id'=>'drop1', 'label' => 'Seleccione el tipo de búsqueda: '));?>
       <br>
       
    </div>
@@ -108,12 +108,12 @@
          <?php echo $this->Form->end(array('label'=>'Buscar', 'class'=>'btn btn-success', 'title'=>'Busca los datos')); ?>
          <br>
       </div>
-      <div class="documentos box">
-         <div title="Introduzca las palabras con las que desea hacer la búsqueda."><?php echo $this->Form->input('search2', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?></div>
-         <br>
-         <?php echo $this->Form->end(array('label'=>'Buscar', 'class'=>'btn btn-success', 'title'=>'Busca los datos')); ?>
-         <br>
-      </div>
+      <!--<div class="documentos box">-->
+      <!--   <div title="Introduzca las palabras con las que desea hacer la búsqueda."><?php echo $this->Form->input('search2', array('placeholder' => 'Escriba las palabras clave','class'=>'form-control', 'label'=>'Búsqueda: '));?></div>-->
+      <!--   <br>-->
+      <!--   <?php echo $this->Form->end(array('label'=>'Buscar', 'class'=>'btn btn-success', 'title'=>'Busca los datos')); ?>-->
+      <!--   <br>-->
+      <!--</div>-->
       <div class="nivel box">
          
          <div title="Seleccione el orden por el que desea filtar la búsqueda."><?php echo $this->Form->input('order', array('empty' => 'Seleccione un orden','class'=>'form-control', 'options'=>$order, 'label'=>'Orden: '));?> </div>

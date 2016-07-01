@@ -66,6 +66,8 @@
  */
 class DATABASE_CONFIG {
 
+
+//Base de datos para desarrollo	
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -76,7 +78,6 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
-
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -87,4 +88,33 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+
+
+
+
+
+
+
+//Basede datos cavimad.biologia.ucr.ac.cr
+	// public $default = array(
+	// 	'datasource' => 'Database/Mysql',
+	// 	'persistent' => false,
+	// 	'host' => '163.178.108.3',
+	// 	'login' => 'cavimad',
+	// 	'password' => 'Ca2016!.Ca#',
+	// 	'database' => 'cavimad',
+	// 	'prefix' => '',
+	// 	//'encoding' => 'utf8',
+	// );
+
+	// public $test = array(
+	// 	'datasource' => 'Database/Mysql',
+	// 	'persistent' => false,
+	// 	'host' => 'phpmyadmin.clk26rezrnfs.us-west-2.rds.amazonaws.com',
+	// 	'login' => 'phpMyAdmin',
+	// 	'password' => 'phpMyAdmin',
+	// 	'database' => 'test_cavimad',
+	// 	'prefix' => '',
+	// 	//'encoding' => 'utf8',
+	// );
 }

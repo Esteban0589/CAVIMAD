@@ -57,7 +57,7 @@ class DownloadsController extends AppController{
       //Carga el modelo de Category
        $this->loadModel('User');
       	$this->loadModel('Administrator');
-      	$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$_SESSION['Auth']['User']['id'])));
+      	$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$this->Session->read('Auth')['User']['id'])));
 		//return debug($adm_id);
         if ($this->request->is('post')) {
              //return debug($this->request->data);
@@ -75,7 +75,7 @@ class DownloadsController extends AppController{
                                           'report'=>$this->request->data['Download']['report'], 
                                           'administrator_id'=> $adm_id['Administrator']['id'],
                                           'name'=>$this->request->data['Download']['report']['name']));
-            //return debug($this->request->data);
+            return debug($this->request->data);
 
               $file=$this->request->data['Download']['report'];
                 $file['name']=$this->sanitize($file['name']);
@@ -103,7 +103,7 @@ class DownloadsController extends AppController{
       //Carga el modelo de Category
        $this->loadModel('User');
       	$this->loadModel('Administrator');
-      	$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$_SESSION['Auth']['User']['id'])));
+      	$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$this->Session->read('Auth')['User']['id'])));
 		//return debug($adm_id);
         if ($this->request->is('post')) {
                 $bio='Biomonitoreo';
@@ -121,7 +121,7 @@ class DownloadsController extends AppController{
                                           'description'=>$this->request->data['Download']['description'],
                                           'abstract'=>$this->request->data['Download']['abstract'], 
                                           'report'=>$this->request->data['Download']['report'], 
-                                          'administrator_id'=> $adm_id['Administrator']['id'],
+                                          'administrator_id'=> $this->Session->read('Auth')['User']['id'],
                                           'classification'=>$bio,
                                           'name'=>$this->request->data['Download']['report']['name']));
             //return debug($this->request->data);

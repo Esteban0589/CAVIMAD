@@ -18,13 +18,17 @@
 						    </li>
 						</ul>
 					<?php echo $this->Form->create('Category', array('class'=>'form-horizontal','onsubmit' => "return confirm(\"Recuerde que la clasificación debe de tener congruencia con respecto a su padre\");", 'enctype'=>'multipart/form-data'));?>
-					<fieldset>
+					<fieldset class="col-lg-4 col-md-4" >
 								<h2><?php echo __('Editar taxón'); ?>
-									
+									<?php 
+									if ($doc['Download']['id'] =! null){
+										echo $this->Html->link(__('Editar documento'), array('controller'=>'downloads','action' => 'edit_doc', $doc['Download']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
+									}
+									else{
+										echo $this->Html->link(__('Editar documento'), array('controller'=>'downloads','action' => 'add', 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
+									}
+									?>
 								</h2>
-							<div class="col-lg-5 col-md-4">
-								<?php echo $this->Html->link(__('Editar Documento'), array('controller'=>'downloads','action' => 'edit_doc', $doc['Download']['id'], 'alias'=>$alias), array('class' => ' glyphicon glyphicon-edit','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); ?>
-	
 							<?php
 								echo $this->Form->input('id');
 								echo $this->Form->input('parent_id', array('div'=>'control-group','title'=>'Escoja la categoría a la que pertenecera el taxón a agregar','placeholder'=>'','options'=>$parentCategories,'empty'=>__('Root'),
@@ -60,8 +64,58 @@
 											'error' => array('attributes' => array('style' => 'display:none')),
 											'label'=>false, 'class'=>''));
 							?>
-							<br>
-							<div class="form-actions">
+							
+								<?php if($this->request->data['Category']['classification']=='Familia'):?>
+									
+									<?php echo $this->Form->input('Family.id'); ?>
+									<?php echo $this->Form->input('Family.author', array('required' => false,'label'=>'Autor','class' => 'form-control','title'=>'Ingrese el nombre del autor del nivel taxonómico'));?>
+									
+									<?php echo $this->Form->input('Family.characteristic', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las características de la familia. Campo de texto expandible','label'=>'Características'));?>
+
+								
+									<?php echo $this->Form->input('Family.bibliography', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las referencias bibliográficas de la familia. Campo de texto expandible','label'=>'Bibliografía'));?>
+
+									<?php echo $this->Form->input('Family.habitat', array('required' => false,'label'=>'Hábitat','class' => 'form-control','title'=>'Ingrese el nombre del habitad del nivel taxonómico'));?>
+								
+									<?php echo $this->Form->input('Family.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
+									
+									<?php echo $this->Form->input('Family.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
+									
+								<?php endif; ?>
+								<?php if($this->request->data['Category']['classification']=='Genero'):?>
+									
+									<?php echo $this->Form->input('Gender.id'); ?>	
+									<?php echo $this->Form->input('Gender.author', array('required' => false,'label'=>'Autor','class' => 'form-control','title'=>'Ingrese el nombre del autor del nivel taxonómico'));?>
+									
+									<?php echo $this->Form->input('Gender.characteristic', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las características de la familia. Campo de texto expandible','label'=>'Características'));?>
+
+								
+									<?php echo $this->Form->input('Gender.bibliography', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las referencias bibliográficas de la familia. Campo de texto expandible','label'=>'Bibliografía'));?>
+
+									<?php echo $this->Form->input('Gender.habitat', array('required' => false,'label'=>'Hábitat','class' => 'form-control','title'=>'Ingrese el nombre del habitad del nivel taxonómico'));?>
+								
+									<?php echo $this->Form->input('Gender.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
+									
+									<?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox','options' => array(
+																									'belize' => 'Belice',
+                                                                                                    'costa_rica' => 'Costa Rica',
+                                                                                                    'el_salvador' => 'El Salvador',
+                                                                                                    'guatemala' => 'Guatemala',
+                                                                                                    'honduras' => 'Honduras',
+                                                                                                    'mexico' => 'México',
+                                                                                                    'nicaragua' => 'Nicaragua',
+                                                                                                    'panama' => 'Panamá'), 'selected' => $countries)) ?>
+									
+									<?php echo $this->Form->input('Gender.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
+									
+									<?php echo $this->Form->input('Gender.biologyandecology', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la información sobre biología y ecología del nivel taxonómico. Campo de texto expandible','label'=>'Biologia y ecologia'));?>
+			
+									
+								<?php endif; ?>
+								
+								
+						        <br>
+						        <div class="form-actions">
 						            <!--<?php echo $this->Form->submit(__('Guardar'), array('class'=>'btn btn-primary', 'div'=>false,'title'=>'Guardar los datos ingresados'));?>            -->
         							<?php echo $this->Form->end(array('label'=>'Guardar datos', 'class'=>'btn btn-primary')); ?>
 
@@ -72,168 +126,8 @@
 						            <!--<?php echo $this->Form->reset(__('Cancel'), array('class'=>'btn', 'div'=>false));?>        </div>-->
 								<br>
 								<br>
-								
 								</div>
-							</div>
-							<div class="col-lg-7 col-md-4">
-								<?php if($this->request->data['Category']['classification']=='Familia'):?>
-									
-									<?php echo $this->Form->input('Family.id'); ?>
-									
-									
-								 <div id="accordion" class="panel-group">
-                    
-                                        <div class="panel panel-default"><!-- accordion panel two -->
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a href="#collapse1" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed" >
-                                                        Distribución Gegráfica
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div class="panel-collapse collapse" id="collapse1">
-                                                <div class="panel-body">
-                                                    		<?php echo $this->Form->input('Family.habitat', array('required' => false,'label'=>'Hábitat','class' => 'form-control','title'=>'Ingrese el nombre del habitad del nivel taxonómico'));?>
-								
-														<?php echo $this->Form->input('Family.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
-									
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="panel panel-default"><!-- accordion panel three -->
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a href="#collapse2" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                        Identificación
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div class="panel-collapse collapse" id="collapse2">
-                                                <div class="panel-body">
-                                                   <?php echo $this->Form->input('Family.characteristic', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las características de la familia. Campo de texto expandible','label'=>'Características'));?>
-
-														<?php echo $this->Form->input('Family.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
-									
-													
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="panel panel-default"><!-- accordion panel four -->
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a href="#collapse3" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                        Referencias
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div class="panel-collapse collapse" id="collapse3">
-                                                <div class="panel-body">
-												<?php echo $this->Form->input('Family.author', array('required' => false,'label'=>'Autor','class' => 'form-control','title'=>'Ingrese el nombre del autor del nivel taxonómico'));?>
-									
-                                                  <?php echo $this->Form->input('Family.bibliography', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las referencias bibliográficas de la familia. Campo de texto expandible','label'=>'Bibliografía'));?>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-									
-								
-									
-								
-								<?php endif; ?>
-								<?php if($this->request->data['Category']['classification']=='Genero'):?>
-									
-									<?php echo $this->Form->input('Gender.id'); ?>	
-                              
-                                    
-                                    <div id="accordion" class="panel-group">
-                    
-                                        <div class="panel panel-default"><!-- accordion panel two -->
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a href="#collapse1" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                        Distribución Geográfica
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div class="panel-collapse collapse" id="collapse1">
-                                                <div class="panel-body">
-                                                    	<?php echo $this->Form->input('Gender.habitat', array('required' => false,'label'=>'Hábitat','class' => 'form-control','title'=>'Ingrese el nombre del habitad del nivel taxonómico'));?>
-								
-														<?php echo $this->Form->input('Gender.globaldistribution', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la distribución global del nivel taxonómico. Campo de texto expandible','label'=>'Distribucion global'));?>
-														
-														<?php echo $this->Form->input('Gender.0.countrygender', array('required' => false,'label'=>'Países','type' => 'select','multiple' => 'checkbox','options' => array(
-																									'belize' => 'Belice',
-                                                                                                    'costa_rica' => 'Costa Rica',
-                                                                                                    'el_salvador' => 'El Salvador',
-                                                                                                    'guatemala' => 'Guatemala',
-                                                                                                    'honduras' => 'Honduras',
-                                                                                                    'mexico' => 'México',
-                                                                                                    'nicaragua' => 'Nicaragua',
-                                                                                                    'panama' => 'Panamá'), 'selected' => $countries)) ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="panel panel-default"><!-- accordion panel three -->
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a href="#collapse2" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                        Identificación
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div class="panel-collapse collapse" id="collapse2">
-                                                <div class="panel-body">
-                                                    <?php echo $this->Form->input('Gender.characteristic', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las características de la familia. Campo de texto expandible','label'=>'Características'));?>
-
-								
-													<?php echo $this->Form->input('Gender.biologyandecology', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese la información sobre biología y ecología del nivel taxonómico. Campo de texto expandible','label'=>'Biologia y ecologia'));?>
-													
-													<?php echo $this->Form->input('Gender.observation', array('rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las observaciones del nivel taxonómico. Campo de texto expandible','label'=>'Observaciones'));?>
-										
-													
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="panel panel-default"><!-- accordion panel four -->
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a href="#collapse3" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-                                                        Referencias
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div class="panel-collapse collapse" id="collapse3">
-                                                <div class="panel-body">
-													<?php echo $this->Form->input('Gender.author', array('required' => false,'label'=>'Autor','class' => 'form-control','title'=>'Ingrese el nombre del autor del nivel taxonómico'));?>
-									
-                                                    <?php echo $this->Form->input('Gender.bibliography', array('required' => false,'rows' => '5', 'cols' => '5','class'=>'form-control','title'=>'Ingrese las referencias bibliográficas de la familia. Campo de texto expandible','label'=>'Bibliografía'));?>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-									
-                                    
-                                 
-                            
-
-										
-									
-								<?php endif; ?>
-								
-								</div>
-						        <br>
-						        
 							</fieldset>
-							
-								
 						
 					<?php echo $this->Form->end();?>
 				</div> 

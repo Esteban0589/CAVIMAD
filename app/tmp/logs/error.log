@@ -1,0 +1,1107 @@
+2016-06-30 04:15:58 Warning: Warning (2): filesize() [<a href='http://php.net/function.filesize'>function.filesize</a>]: stat failed for 14672817582015-2-ci1323-tc-1.pdf in [/home/www/html/cavimad/lib/Cake/Utility/Validation.php, line 965]
+Trace:
+filesize - [internal], line ??
+Validation::fileSize() - CORE/Cake/Utility/Validation.php, line 965
+CakeValidationRule::process() - CORE/Cake/Model/Validator/CakeValidationRule.php, line 277
+CakeValidationSet::validate() - CORE/Cake/Model/Validator/CakeValidationSet.php, line 135
+ModelValidator::errors() - CORE/Cake/Model/ModelValidator.php, line 268
+ModelValidator::validates() - CORE/Cake/Model/ModelValidator.php, line 99
+Model::validates() - CORE/Cake/Model/Model.php, line 3469
+Model::_doSave() - CORE/Cake/Model/Model.php, line 1829
+Model::save() - CORE/Cake/Model/Model.php, line 1751
+DownloadsController::add_bio() - APP/Controller/DownloadsController.php, line 133
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 491
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 167
+[main] - APP/webroot/index.php, line 111
+
+2016-06-30 04:15:58 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'administrator_id' cannot be null
+Request URL: /downloads/add_bio
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Download), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/DownloadsController.php(133): Model->save(Array)
+#6 [internal function]: DownloadsController->add_bio()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(DownloadsController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(DownloadsController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:16:26 Warning: Warning (2): filesize() [<a href='http://php.net/function.filesize'>function.filesize</a>]: stat failed for 14672817862015-2-ci1323-tc-1.pdf in [/home/www/html/cavimad/lib/Cake/Utility/Validation.php, line 965]
+Trace:
+filesize - [internal], line ??
+Validation::fileSize() - CORE/Cake/Utility/Validation.php, line 965
+CakeValidationRule::process() - CORE/Cake/Model/Validator/CakeValidationRule.php, line 277
+CakeValidationSet::validate() - CORE/Cake/Model/Validator/CakeValidationSet.php, line 135
+ModelValidator::errors() - CORE/Cake/Model/ModelValidator.php, line 268
+ModelValidator::validates() - CORE/Cake/Model/ModelValidator.php, line 99
+Model::validates() - CORE/Cake/Model/Model.php, line 3469
+Model::_doSave() - CORE/Cake/Model/Model.php, line 1829
+Model::save() - CORE/Cake/Model/Model.php, line 1751
+DownloadsController::add() - APP/Controller/DownloadsController.php, line 87
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 491
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 167
+[main] - APP/webroot/index.php, line 111
+
+2016-06-30 04:16:26 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'administrator_id' cannot be null
+Request URL: /downloads/add
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Download), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/DownloadsController.php(87): Model->save(Array)
+#6 [internal function]: DownloadsController->add()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(DownloadsController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(DownloadsController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:16:46 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'administrator_id' cannot be null
+Request URL: /downloads/add
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Download), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/DownloadsController.php(87): Model->save(Array)
+#6 [internal function]: DownloadsController->add()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(DownloadsController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(DownloadsController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:19:49 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'administrator_id' cannot be null
+Request URL: /downloads/add_bio
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Download), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/DownloadsController.php(133): Model->save(Array)
+#6 [internal function]: DownloadsController->add_bio()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(DownloadsController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(DownloadsController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:20:02 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'administrator_id' cannot be null
+Request URL: /downloads/add_bio
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Download), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/DownloadsController.php(133): Model->save(Array)
+#6 [internal function]: DownloadsController->add_bio()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(DownloadsController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(DownloadsController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:21:09 Error: Fatal Error (1): Call to undefined method DownloadsController::session() in [/home/www/html/cavimad/app/Controller/DownloadsController.php, line 106]
+2016-06-30 04:21:09 Error: [InternalErrorException] Internal Server Error
+Request URL: /downloads/add_bio
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/www/html/...', 106)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/www/html/...', 106, Array)
+#2 /home/www/html/cavimad/lib/Cake/Core/App.php(970): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/www/html/...', 106, Array)
+#3 /home/www/html/cavimad/lib/Cake/Core/App.php(943): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-06-30 04:21:26 Error: Fatal Error (1): Call to undefined method DownloadsController::session() in [/home/www/html/cavimad/app/Controller/DownloadsController.php, line 106]
+2016-06-30 04:21:26 Error: [InternalErrorException] Internal Server Error
+Request URL: /downloads/add_bio
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/www/html/...', 106)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/www/html/...', 106, Array)
+#2 /home/www/html/cavimad/lib/Cake/Core/App.php(970): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/www/html/...', 106, Array)
+#3 /home/www/html/cavimad/lib/Cake/Core/App.php(943): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-06-30 04:21:37 Error: Fatal Error (1): Call to undefined method DownloadsController::session() in [/home/www/html/cavimad/app/Controller/DownloadsController.php, line 106]
+2016-06-30 04:21:37 Error: [FatalErrorException] Call to undefined method DownloadsController::session()
+Request URL: /downloads/add_bio
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/www/html/...', 106)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/www/html/...', 106, Array)
+#2 /home/www/html/cavimad/lib/Cake/Core/App.php(970): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/www/html/...', 106, Array)
+#3 /home/www/html/cavimad/lib/Cake/Core/App.php(943): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-06-30 04:23:25 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'administrator_id' cannot be null
+Request URL: /downloads/add_bio
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Download), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/DownloadsController.php(133): Model->save(Array)
+#6 [internal function]: DownloadsController->add_bio()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(DownloadsController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(DownloadsController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:35:45 Error: [NotFoundException] Noticia no valida
+Request URL: /news/view
+Stack Trace:
+#0 [internal function]: NewsController->view()
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(NewsController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(NewsController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 04:35:51 Error: [NotFoundException] Noticia no valida
+Request URL: /news/view
+Stack Trace:
+#0 [internal function]: NewsController->view()
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(NewsController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(NewsController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 04:36:11 Error: [NotFoundException] Noticia no valida
+Request URL: /news/view/1
+Stack Trace:
+#0 [internal function]: NewsController->view('1')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(NewsController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(NewsController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 04:36:15 Error: [NotFoundException] Noticia no valida
+Request URL: /news/view
+Stack Trace:
+#0 [internal function]: NewsController->view()
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(NewsController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(NewsController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 04:42:52 Warning: Warning (2): filesize(): stat failed for 1467283372documentacion-externa-inge2.pdf in [/home/www/html/cavimad/lib/Cake/Utility/Validation.php, line 965]
+Trace:
+filesize - [internal], line ??
+Validation::fileSize() - CORE/Cake/Utility/Validation.php, line 965
+CakeValidationRule::process() - CORE/Cake/Model/Validator/CakeValidationRule.php, line 277
+CakeValidationSet::validate() - CORE/Cake/Model/Validator/CakeValidationSet.php, line 135
+ModelValidator::errors() - CORE/Cake/Model/ModelValidator.php, line 268
+ModelValidator::validates() - CORE/Cake/Model/ModelValidator.php, line 99
+Model::validates() - CORE/Cake/Model/Model.php, line 3469
+Model::_doSave() - CORE/Cake/Model/Model.php, line 1829
+Model::save() - CORE/Cake/Model/Model.php, line 1751
+DownloadsController::edit_doc() - APP/Controller/DownloadsController.php, line 291
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 491
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 167
+[main] - APP/webroot/index.php, line 111
+
+2016-06-30 04:42:52 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/edit/0
+Stack Trace:
+#0 [internal function]: CategoriesController->edit('0')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 04:49:39 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+Request URL: /categories/view/3
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Comment), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(305): Model->save(Array)
+#6 [internal function]: CategoriesController->view('3')
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:49:43 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+Request URL: /categories/view/3
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Comment), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(305): Model->save(Array)
+#6 [internal function]: CategoriesController->view('3')
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:49:44 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+Request URL: /categories/view/3
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Comment), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(305): Model->save(Array)
+#6 [internal function]: CategoriesController->view('3')
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:49:46 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+Request URL: /categories/view/3
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Comment), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(305): Model->save(Array)
+#6 [internal function]: CategoriesController->view('3')
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 04:49:47 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+Request URL: /categories/view/3
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Comment), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(305): Model->save(Array)
+#6 [internal function]: CategoriesController->view('3')
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 09:14:39 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 09:14:48 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 09:15:00 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 09:15:53 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 09:15:58 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 09:16:02 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 09:30:09 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 09:30:17 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 10:01:02 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 10:02:38 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 10:02:41 Error: [NotFoundException] Taxón no valido
+Request URL: /categories/view2/68
+Stack Trace:
+#0 [internal function]: CategoriesController->view2('68')
+#1 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#2 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#4 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-06-30 10:22:26 Warning: Warning (2): filesize(): stat failed for 1467303746example.pdf in [/home/www/html/cavimad/lib/Cake/Utility/Validation.php, line 965]
+Trace:
+filesize - [internal], line ??
+Validation::fileSize() - CORE/Cake/Utility/Validation.php, line 965
+CakeValidationRule::process() - CORE/Cake/Model/Validator/CakeValidationRule.php, line 277
+CakeValidationSet::validate() - CORE/Cake/Model/Validator/CakeValidationSet.php, line 135
+ModelValidator::errors() - CORE/Cake/Model/ModelValidator.php, line 268
+ModelValidator::validates() - CORE/Cake/Model/ModelValidator.php, line 99
+Model::validates() - CORE/Cake/Model/Model.php, line 3469
+Model::_doSave() - CORE/Cake/Model/Model.php, line 1829
+Model::save() - CORE/Cake/Model/Model.php, line 1751
+DownloadsController::add_bio() - APP/Controller/DownloadsController.php, line 133
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 491
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 167
+[main] - APP/webroot/index.php, line 111
+
+2016-06-30 10:22:52 Warning: Warning (2): filesize(): stat failed for 1467303772example.pdf in [/home/www/html/cavimad/lib/Cake/Utility/Validation.php, line 965]
+Trace:
+filesize - [internal], line ??
+Validation::fileSize() - CORE/Cake/Utility/Validation.php, line 965
+CakeValidationRule::process() - CORE/Cake/Model/Validator/CakeValidationRule.php, line 277
+CakeValidationSet::validate() - CORE/Cake/Model/Validator/CakeValidationSet.php, line 135
+ModelValidator::errors() - CORE/Cake/Model/ModelValidator.php, line 268
+ModelValidator::validates() - CORE/Cake/Model/ModelValidator.php, line 99
+Model::validates() - CORE/Cake/Model/Model.php, line 3469
+Model::_doSave() - CORE/Cake/Model/Model.php, line 1829
+Model::save() - CORE/Cake/Model/Model.php, line 1751
+DownloadsController::edit_bio() - APP/Controller/DownloadsController.php, line 260
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 491
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 167
+[main] - APP/webroot/index.php, line 111
+
+2016-06-30 10:23:50 Warning: Warning (2): filesize(): stat failed for 1467303830example.pdf in [/home/www/html/cavimad/lib/Cake/Utility/Validation.php, line 965]
+Trace:
+filesize - [internal], line ??
+Validation::fileSize() - CORE/Cake/Utility/Validation.php, line 965
+CakeValidationRule::process() - CORE/Cake/Model/Validator/CakeValidationRule.php, line 277
+CakeValidationSet::validate() - CORE/Cake/Model/Validator/CakeValidationSet.php, line 135
+ModelValidator::errors() - CORE/Cake/Model/ModelValidator.php, line 268
+ModelValidator::validates() - CORE/Cake/Model/ModelValidator.php, line 99
+Model::validates() - CORE/Cake/Model/Model.php, line 3469
+Model::_doSave() - CORE/Cake/Model/Model.php, line 1829
+Model::save() - CORE/Cake/Model/Model.php, line 1751
+DownloadsController::edit() - APP/Controller/DownloadsController.php, line 229
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 491
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 167
+[main] - APP/webroot/index.php, line 111
+
+2016-06-30 10:25:46 Error: [MissingActionException] Action LinksController::www.google.com() could not be found.
+Exception Attributes: array (
+  'controller' => 'LinksController',
+  'action' => 'www.google.com',
+)
+Request URL: /links/www.google.com
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#1 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(LinksController), Object(CakeRequest))
+#2 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2016-06-30 10:29:47 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Picture.category_id' in 'field list'
+Request URL: /categories/view/10
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT `Picture...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(664): DboSource->execute('SELECT `Picture...', Array, Array)
+#3 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1451): DboSource->fetchAll('SELECT `Picture...', false)
+#4 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1285): DboSource->_fetchHasMany(Object(Category), 'SELECT `Picture...', Array)
+#5 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1144): DboSource->queryAssociation(Object(Category), Object(Picture), 'hasMany', 'Picture', Array, Array, true, Array, 0, Array)
+#6 /home/www/html/cavimad/lib/Cake/Model/Model.php(3031): DboSource->read(Object(Category), Array)
+#7 /home/www/html/cavimad/lib/Cake/Model/Model.php(3003): Model->_readDataSource('first', Array)
+#8 /home/www/html/cavimad/app/Controller/CategoriesController.php(323): Model->find('first', Array)
+#9 [internal function]: CategoriesController->view('10')
+#10 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#11 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#12 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#13 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2016-06-30 10:29:55 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Picture.category_id' in 'field list'
+Request URL: /categories/view/10
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT `Picture...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(664): DboSource->execute('SELECT `Picture...', Array, Array)
+#3 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1451): DboSource->fetchAll('SELECT `Picture...', false)
+#4 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1285): DboSource->_fetchHasMany(Object(Category), 'SELECT `Picture...', Array)
+#5 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1144): DboSource->queryAssociation(Object(Category), Object(Picture), 'hasMany', 'Picture', Array, Array, true, Array, 0, Array)
+#6 /home/www/html/cavimad/lib/Cake/Model/Model.php(3031): DboSource->read(Object(Category), Array)
+#7 /home/www/html/cavimad/lib/Cake/Model/Model.php(3003): Model->_readDataSource('first', Array)
+#8 /home/www/html/cavimad/app/Controller/CategoriesController.php(323): Model->find('first', Array)
+#9 [internal function]: CategoriesController->view('10')
+#10 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#11 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#12 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#13 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2016-06-30 10:34:16 Warning: Warning (2): filesize(): stat failed for 1467304456example.pdf in [/home/www/html/cavimad/lib/Cake/Utility/Validation.php, line 965]
+Trace:
+filesize - [internal], line ??
+Validation::fileSize() - CORE/Cake/Utility/Validation.php, line 965
+CakeValidationRule::process() - CORE/Cake/Model/Validator/CakeValidationRule.php, line 277
+CakeValidationSet::validate() - CORE/Cake/Model/Validator/CakeValidationSet.php, line 135
+ModelValidator::errors() - CORE/Cake/Model/ModelValidator.php, line 268
+ModelValidator::validates() - CORE/Cake/Model/ModelValidator.php, line 99
+Model::validates() - CORE/Cake/Model/Model.php, line 3469
+Model::_doSave() - CORE/Cake/Model/Model.php, line 1829
+Model::save() - CORE/Cake/Model/Model.php, line 1751
+CategoriesController::add() - APP/Controller/CategoriesController.php, line 220
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 491
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 167
+[main] - APP/webroot/index.php, line 111
+
+2016-06-30 18:16:50 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'parent_id' cannot be null
+Request URL: /categories/add
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Category), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(137): Model->save(Array)
+#6 [internal function]: CategoriesController->add()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 18:17:11 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'parent_id' cannot be null
+Request URL: /categories/add
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Category), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(137): Model->save(Array)
+#6 [internal function]: CategoriesController->add()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 18:27:02 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`cavimad`.`pictures`, CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genders` (`id`))
+Request URL: /categories/delete/22
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('DELETE `Categor...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/Database/Mysql.php(455): DboSource->execute('DELETE `Categor...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(2714): Mysql->delete(Object(Category), Array)
+#4 /home/www/html/cavimad/app/Controller/CategoriesController.php(856): Model->delete()
+#5 [internal function]: CategoriesController->delete('22')
+#6 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#7 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#9 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2016-06-30 18:27:27 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`cavimad`.`pictures`, CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genders` (`id`))
+Request URL: /categories/delete/22
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('DELETE `Categor...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/Database/Mysql.php(455): DboSource->execute('DELETE `Categor...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(2714): Mysql->delete(Object(Category), Array)
+#4 /home/www/html/cavimad/app/Controller/CategoriesController.php(856): Model->delete()
+#5 [internal function]: CategoriesController->delete('22')
+#6 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#7 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#9 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2016-06-30 18:27:54 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`cavimad`.`pictures`, CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genders` (`id`))
+Request URL: /categories/delete/22
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('DELETE `Categor...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/Database/Mysql.php(455): DboSource->execute('DELETE `Categor...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(2714): Mysql->delete(Object(Category), Array)
+#4 /home/www/html/cavimad/app/Controller/CategoriesController.php(856): Model->delete()
+#5 [internal function]: CategoriesController->delete('22')
+#6 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#7 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#9 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2016-06-30 18:29:38 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`cavimad`.`pictures`, CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genders` (`id`))
+Request URL: /categories/delete/19
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('DELETE `Categor...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/Database/Mysql.php(455): DboSource->execute('DELETE `Categor...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(2714): Mysql->delete(Object(Category), Array)
+#4 /home/www/html/cavimad/app/Controller/CategoriesController.php(856): Model->delete()
+#5 [internal function]: CategoriesController->delete('19')
+#6 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#7 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#9 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2016-06-30 18:31:07 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`cavimad`.`pictures`, CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genders` (`id`))
+Request URL: /categories/delete/4
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('DELETE `Categor...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/Database/Mysql.php(455): DboSource->execute('DELETE `Categor...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(2863): Mysql->delete(Object(Category), Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Behavior/TreeBehavior.php(200): Model->deleteAll(Array)
+#5 [internal function]: TreeBehavior->afterDelete(Object(Category))
+#6 /home/www/html/cavimad/lib/Cake/Utility/ObjectCollection.php(128): call_user_func_array(Array, Array)
+#7 [internal function]: ObjectCollection->trigger(Object(CakeEvent))
+#8 /home/www/html/cavimad/lib/Cake/Event/CakeEventManager.php(243): call_user_func(Array, Object(CakeEvent))
+#9 /home/www/html/cavimad/lib/Cake/Model/Model.php(2722): CakeEventManager->dispatch(Object(CakeEvent))
+#10 /home/www/html/cavimad/app/Controller/CategoriesController.php(856): Model->delete()
+#11 [internal function]: CategoriesController->delete('4')
+#12 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#13 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#14 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#15 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}
+2016-06-30 18:39:48 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'parent_id' cannot be null
+Request URL: /categories/add
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Category), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(137): Model->save(Array)
+#6 [internal function]: CategoriesController->add()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-06-30 20:51:41 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'parent_id' cannot be null
+Request URL: /categories/add
+Stack Trace:
+#0 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('INSERT INTO `ca...', Array)
+#2 /home/www/html/cavimad/lib/Cake/Model/Datasource/DboSource.php(1019): DboSource->execute('INSERT INTO `ca...')
+#3 /home/www/html/cavimad/lib/Cake/Model/Model.php(1933): DboSource->create(Object(Category), Array, Array)
+#4 /home/www/html/cavimad/lib/Cake/Model/Model.php(1751): Model->_doSave(Array, Array)
+#5 /home/www/html/cavimad/app/Controller/CategoriesController.php(137): Model->save(Array)
+#6 [internal function]: CategoriesController->add()
+#7 /home/www/html/cavimad/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(CategoriesController), Array)
+#8 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#9 /home/www/html/cavimad/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest))
+#10 /home/www/html/cavimad/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2016-07-01 05:02:42 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2003] Can\'t connect to MySQL server on \'163.178.108.3\' (4)',
+  'enabled' => true,
+)
+Request URL: /
+Stack Trace:
+#0 /home/ubuntu/workspace/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/ubuntu/workspace/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3626): ConnectionManager::getDataSource('default')
+#3 /home/ubuntu/workspace/lib/Cake/Model/Model.php(1155): Model->setDataSource('default')
+#4 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3653): Model->setSource('home_pictures')
+#5 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3031): Model->getDataSource()
+#6 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#7 /home/ubuntu/workspace/app/Controller/PagesController.php(73): Model->find('all')
+#8 [internal function]: PagesController->display('home')
+#9 /home/ubuntu/workspace/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#10 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#11 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#12 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 /home/ubuntu/workspace/index.php(41): require('/home/ubuntu/wo...')
+#14 {main}
+2016-07-01 05:03:12 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2003] Can\'t connect to MySQL server on \'163.178.108.3\' (4)',
+  'enabled' => true,
+)
+Request URL: /
+Stack Trace:
+#0 /home/ubuntu/workspace/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/ubuntu/workspace/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3626): ConnectionManager::getDataSource('default')
+#3 /home/ubuntu/workspace/lib/Cake/Model/Model.php(1155): Model->setDataSource('default')
+#4 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3653): Model->setSource('home_pictures')
+#5 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3031): Model->getDataSource()
+#6 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#7 /home/ubuntu/workspace/app/Controller/PagesController.php(73): Model->find('all')
+#8 [internal function]: PagesController->display('home')
+#9 /home/ubuntu/workspace/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#10 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#11 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#12 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 /home/ubuntu/workspace/index.php(41): require('/home/ubuntu/wo...')
+#14 {main}
+2016-07-01 05:07:14 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2003] Can\'t connect to MySQL server on \'163.178.108.3\' (4)',
+  'enabled' => true,
+)
+Request URL: /
+Stack Trace:
+#0 /home/ubuntu/workspace/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/ubuntu/workspace/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3626): ConnectionManager::getDataSource('default')
+#3 /home/ubuntu/workspace/lib/Cake/Model/Model.php(1155): Model->setDataSource('default')
+#4 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3653): Model->setSource('home_pictures')
+#5 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3031): Model->getDataSource()
+#6 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#7 /home/ubuntu/workspace/app/Controller/PagesController.php(73): Model->find('all')
+#8 [internal function]: PagesController->display('home')
+#9 /home/ubuntu/workspace/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#10 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#11 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#12 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 /home/ubuntu/workspace/index.php(41): require('/home/ubuntu/wo...')
+#14 {main}
+2016-07-01 05:11:00 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2003] Can\'t connect to MySQL server on \'163.178.108.3\' (4)',
+  'enabled' => true,
+)
+Request URL: /
+Stack Trace:
+#0 /home/ubuntu/workspace/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/ubuntu/workspace/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3626): ConnectionManager::getDataSource('default')
+#3 /home/ubuntu/workspace/lib/Cake/Model/Model.php(1155): Model->setDataSource('default')
+#4 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3653): Model->setSource('home_pictures')
+#5 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3031): Model->getDataSource()
+#6 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#7 /home/ubuntu/workspace/app/Controller/PagesController.php(73): Model->find('all')
+#8 [internal function]: PagesController->display('home')
+#9 /home/ubuntu/workspace/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#10 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#11 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#12 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2016-07-01 05:19:25 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2003] Can\'t connect to MySQL server on \'163.178.108.3\' (4)',
+  'enabled' => true,
+)
+Request URL: /
+Stack Trace:
+#0 /home/ubuntu/workspace/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/ubuntu/workspace/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3626): ConnectionManager::getDataSource('default')
+#3 /home/ubuntu/workspace/lib/Cake/Model/Model.php(1155): Model->setDataSource('default')
+#4 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3653): Model->setSource('home_pictures')
+#5 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3031): Model->getDataSource()
+#6 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#7 /home/ubuntu/workspace/app/Controller/PagesController.php(73): Model->find('all')
+#8 [internal function]: PagesController->display('home')
+#9 /home/ubuntu/workspace/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#10 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#11 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#12 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2016-07-01 05:19:55 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [2003] Can\'t connect to MySQL server on \'163.178.108.3\' (4)',
+  'enabled' => true,
+)
+Request URL: /
+Stack Trace:
+#0 /home/ubuntu/workspace/lib/Cake/Model/Datasource/DboSource.php(260): Mysql->connect()
+#1 /home/ubuntu/workspace/lib/Cake/Model/ConnectionManager.php(105): DboSource->__construct(Array)
+#2 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3626): ConnectionManager::getDataSource('default')
+#3 /home/ubuntu/workspace/lib/Cake/Model/Model.php(1155): Model->setDataSource('default')
+#4 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3653): Model->setSource('home_pictures')
+#5 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3031): Model->getDataSource()
+#6 /home/ubuntu/workspace/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#7 /home/ubuntu/workspace/app/Controller/PagesController.php(73): Model->find('all')
+#8 [internal function]: PagesController->display('home')
+#9 /home/ubuntu/workspace/lib/Cake/Controller/Controller.php(491): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#10 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#11 /home/ubuntu/workspace/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#12 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2016-07-01 05:20:29 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/news_events_picture/image/73/qwe.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:20:29 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/news_events_picture/image/71/qwe.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:20:42 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/news_events_picture/image/73/qwe.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:20:42 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/news_events_picture/image/71/qwe.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:26:44 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/20/img4.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:26:44 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/89/AvLDdpd.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:26:44 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/92/2.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:26:44 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/95/5.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:26:44 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/96/6.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:37:48 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/34/AvLDdpd.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:37:48 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/78/FM005%20035%20Potamocarcinus%20magnus.tif.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:37:48 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/93/3.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:37:48 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/94/4.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:37:48 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/96/6.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:01 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/34/AvLDdpd.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:01 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/77/IMG_4585.JPG
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:01 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/91/1.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:01 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/95/5.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:01 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/96/6.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:04 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/20/img4.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:04 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/78/FM005%20035%20Potamocarcinus%20magnus.tif.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:04 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/79/index.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:04 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/96/6.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:39:04 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/91/1.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:43:30 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/34/AvLDdpd.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:43:30 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/89/AvLDdpd.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:43:30 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/93/3.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:43:30 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/91/1.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:43:30 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/picture/image/94/4.jpe
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:47:53 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/home_picture/image/1/img2.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:47:54 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/home_picture/image/2/olas-rompiendo.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:47:54 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/home_picture/image/5/olas-rompiendo.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:47:54 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/home_picture/image/30/dragonfly-slider.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:47:54 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/home_picture/image/32/7.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:47:54 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/news_events_picture/image/73/qwe.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-07-01 05:47:55 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /files/news_events_picture/image/71/qwe.jpg
+Stack Trace:
+#0 /home/ubuntu/workspace/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

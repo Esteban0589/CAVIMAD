@@ -29,6 +29,7 @@ public $validate = array(
             'message' => 'File must be less than 4MB'
         )
     ),
+	/*
     'title' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -39,6 +40,7 @@ public $validate = array(
 				'message' => 'El título ya ha sido utilizado.',
 	)
     )
+	*/
 );
 }
 ?>

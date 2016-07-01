@@ -75,7 +75,7 @@
             							     <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <ul class="list-unstyled">
                                                     <li>Equipo</li>
-                                                    <li>Ivan Arroyo</li>
+                                                    <li>Iván Arroyo</li>
                                                     <li>Esteban Esquivel</li>
                                                     <li>Kevin Flores</li>
                                                     <li>Andrés González</li>

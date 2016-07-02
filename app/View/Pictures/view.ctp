@@ -78,13 +78,15 @@
 						</div>
 						<?php endforeach; ?>
 						<?php elseif(($this->Session->read('Auth')['User']['role'] =! null) ): ?>
+							<?php if(count($pictures)>0){?>
 							<?php foreach ($pictures as $picture): ?>
 									<div class = "col-lg-3">
 										<?php echo $this->Html->image('../files/picture/image/'.$picture['Picture']['image_dir'] .'/'.$picture['Picture']['image'], array('class' => 'img-thumbnail img-responsive', 'style'=>'height: 150px; width: 100%;'));  ?>
 										
 									</div>
 								<?php endforeach; ?>
-								
+							<?php }else{ ?>
+							<h5><?php echo __('Todavía no hay imagenes en este taxón'); }?></h5>
 						<?php endif; ?>
 					
 					

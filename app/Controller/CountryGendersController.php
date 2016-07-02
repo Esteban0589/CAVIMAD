@@ -33,6 +33,7 @@ class CountryGendersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		// si el pais no existe retorna error
 		if (!$this->CountryGender->exists($id)) {
 			throw new NotFoundException(__('Invalid country gender'));
 		}
@@ -48,9 +49,11 @@ class CountryGendersController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->CountryGender->create();
+			// agrega un pais del genero
 			if ($this->CountryGender->save($this->request->data)) {
 				$this->Flash->success(__('The country gender has been saved.'));
 				return $this->redirect(array('action' => 'index'));
+				//  de no poder gusrdar el dato notifica al usuario
 			} else {
 				$this->Flash->error(__('The country gender could not be saved. Please, try again.'));
 			}
@@ -65,13 +68,16 @@ class CountryGendersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		// si el pais no existe retorna error
 		if (!$this->CountryGender->exists($id)) {
 			throw new NotFoundException(__('Invalid country gender'));
 		}
+		// guarda los cambios de la edicion de un pais de genero
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->CountryGender->save($this->request->data)) {
 				$this->Flash->success(__('The country gender has been saved.'));
 				return $this->redirect(array('action' => 'index'));
+				//  de no poder gusrdar el dato notifica al usuario
 			} else {
 				$this->Flash->error(__('The country gender could not be saved. Please, try again.'));
 			}
@@ -90,12 +96,14 @@ class CountryGendersController extends AppController {
  */
 	public function delete($id = null) {
 		$this->CountryGender->id = $id;
+		// si el pais no existe retorna error
 		if (!$this->CountryGender->exists()) {
 			throw new NotFoundException(__('Invalid country gender'));
-		}
+		}// elimina los datos de un pais de genero
 		$this->request->allowMethod('post', 'delete');
 		if ($this->CountryGender->delete()) {
 			$this->Flash->success(__('The country gender has been deleted.'));
+			//  de no poder gusrdar el dato notifica al usuario
 		} else {
 			$this->Flash->error(__('The country gender could not be deleted. Please, try again.'));
 		}

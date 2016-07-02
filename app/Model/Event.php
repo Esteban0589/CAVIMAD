@@ -19,6 +19,7 @@ class Event extends AppModel {
  * @var array
  */
 	public $validate = array(
+		// valida que el titulo no sea vacio
 		'title' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -29,6 +30,7 @@ class Event extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		// valida la fecha de creacion
 		'created' => array(
 			'date' => array(
 				'rule' => array('date'),
@@ -39,6 +41,7 @@ class Event extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		// valida la fecha de modificacion
 		'modified' => array(
 			'date' => array(
 				'rule' => array('date'),
@@ -49,6 +52,7 @@ class Event extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		// valida que la imagen sea png o jpg
 		'image' => array(
              'rule' => array(
                  'extension',

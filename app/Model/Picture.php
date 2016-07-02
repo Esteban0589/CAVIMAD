@@ -30,8 +30,13 @@ class Picture extends AppModel {
         )
     );
     
+    /**
+ * validate
+ *
+ * @var image
+ */
      public $validate = array(
- 		
+ 		// verifica que la imagen solo sea jpg y png
  		  'image' => array(
              'rule' => array(
                  'extension',

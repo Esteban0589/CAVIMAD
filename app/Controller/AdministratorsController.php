@@ -41,6 +41,7 @@ class AdministratorsController extends AppController {
 			throw new NotFoundException(__('Usuario no valido.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		//Si el administrador a buscar no existe se notifica mediante un mensaje de error
 		if (!$this->Administrator->exists($id)) {
 			throw new NotFoundException(__('Invalid administrator'));
 		}
@@ -48,6 +49,12 @@ class AdministratorsController extends AppController {
 		$this->set('administrator', $this->Administrator->find('first', $options));
 	}
 
+
+/**
+ * beforeFilter method
+ *
+ * @return void
+ */
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add','logout', 'login', 'index', 'edit', 'view', 'delete');
@@ -62,9 +69,11 @@ class AdministratorsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Administrator->create();
+			// si los datos son agregados correctamente crea un nuevo admisnitrador
 			if ($this->Administrator->save($this->request->data)) {
 				$this->Flash->success(__('The administrator has been saved.'));
 				return $this->redirect(array('action' => 'index'));
+				// si los datos no pueden ser guardados notifica al usuario
 			} else {
 				$this->Flash->error(__('The administrator could not be saved. Please, try again.'));
 			}
@@ -85,14 +94,17 @@ class AdministratorsController extends AppController {
 			throw new NotFoundException(__('Usuario no valido.'));
 			return $this->redirect(array('controller' => 'pages','action' => 'display'));
 		}
+		//Si el administrador a buscar no existe se notifica mediante un mensaje de error
 		if (!$this->Administrator->exists($id)) {
 			throw new NotFoundException(__('Invalid administrator'));
 		}
+		// si los datos del admisnitrador son agregados correcttamente este guarda y redirige al index
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Administrator->save($this->request->data)) {
 				$this->Flash->success(__('The administrator has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
+				// si los datos no puden sr guardados notifica al usuario
 				$this->Flash->error(__('The administrator could not be saved. Please, try again.'));
 			}
 		} else {

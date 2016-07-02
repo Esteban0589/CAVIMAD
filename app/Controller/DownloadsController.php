@@ -98,7 +98,11 @@ class DownloadsController extends AppController{
         }
      }
      
-     
+ /**
+ * addbio method
+ *
+ * @return void
+ */    
       public function add_bio() {
       //Carga el modelo de Category
        $this->loadModel('User');
@@ -138,6 +142,7 @@ class DownloadsController extends AppController{
             
              }
          }else{
+             // de no poder ser guardados los datos notifica al usuario
             $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
         }
             
@@ -211,9 +216,11 @@ class DownloadsController extends AppController{
  * @return void
  */
 public function edit($id = null) {
+    // si no existe la descarga retorna error
 		if (!$this->Download->exists($id)) {
 			throw new NotFoundException(__('Invalid download'));
 		}
+		// edita todos los campos de descarga
 		if ($this->request->is(array('post', 'put'))) {
 		   // return debug($this->request->data);
            $data =array('Download'=>array('id'=>$id,
@@ -226,24 +233,35 @@ public function edit($id = null) {
             $file=$this->data['Download']['report'];
             $file['name']=$this->sanitize($file['name']);
             $data['Download']['report']=time().$file['name'];
+			// si los datos se guardaron correctamente notifica al usuario
 			if ($this->Download->save($data)) {
 			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
 				$this->Flash->success(__('El documento se guardo correctamente.'));
 				return $this->redirect(array('action' => 'index'));
+			    //Si los datos no pudieron ser guardados notifica al usuario
 			} else {
 				 $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
 			}
 		} else {
+		    
 			$options = array('conditions' => array('Download.' . $this->Download->primaryKey => $id));
 			$this->request->data = $this->Download->find('first', $options);
 		}
 	}
 	
-	
+	    /**
+ * edit_bio method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function edit_bio($id = null) {
+	    // si no existe la descarga retorna error
 		if (!$this->Download->exists($id)) {
 			throw new NotFoundException(__('Invalid download'));
 		}
+		// edita todos los campos de descarga
 		if ($this->request->is(array('post', 'put'))) {
 		     $bio='Biomonitoreo';
            $data =array('Download'=>array('id'=>$id,
@@ -258,23 +276,34 @@ public function edit($id = null) {
             $file['name']=$this->sanitize($file['name']);
             $data['Download']['report']=time().$file['name'];
 			if ($this->Download->save($data)) {
-
+                //Si los datos se guardaron  notifica al usuario
 			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
 				$this->Flash->success(__('El documento se guardo correctamente.'));
 				return $this->redirect(array('action' => 'index_bio'));
 			} else {
 				 $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
 			}
+			//Si los datos no pudieron ser guardados notifica al usuario
 		} else {
 			$options = array('conditions' => array('Download.' . $this->Download->primaryKey => $id));
 			$this->request->data = $this->Download->find('first', $options);
 		}
 	}
 	
+ /**
+ * edit_doc method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	
 		public function edit_doc($id = null) {
+		      // si no existe la descarga retorna error
 		if (!$this->Download->exists($id)) {
 			throw new NotFoundException(__('Invalid download'));
 		}
+		// edita todos los campos de descarga
 		if ($this->request->is(array('post', 'put'))) {
 		     $bio='Biomonitoreo';
            $data =array('Download'=>array('id'=>$id,
@@ -289,11 +318,12 @@ public function edit($id = null) {
             $all=$this->Download->find('first', array('conditions'=>array('Download.id'=>$id)));
             $cat=$all['Download']['category_id'];
 			if ($this->Download->save($data)) {
-
+                //Si los datos se guardaron  notifica al usuario
 			    move_uploaded_file($file['tmp_name'], APP . 'webroot/files/download' .DS. $data['Download']['report']); 
 				$this->Flash->success(__('El documento se guardo correctamente.'));
 				return $this->redirect(array('controller'=>'categories','action' => 'edit'.'/'.$cat));
 			} else {
+			   //Si los datos no pudieron ser guardados notifica al usuario
 				 $this->Flash->error(__('El documento no se pudo guardar. Intentelo nuevamente.'));
 			}
 		} else {
@@ -314,12 +344,15 @@ public function edit($id = null) {
  */
 	public function delete($id = null) {
 		$this->Download->id = $id;
+		  // si no existe la descarga retorna error
 		if (!$this->Download->exists()) {
 			throw new NotFoundException(__('Invalid download'));
 		}
 		$this->request->allowMethod('post', 'delete');
+		//Si los datos se eliminaron  notifica al usuario
 		if ($this->Download->delete()) {
 			$this->Flash->success(__('El documento se elimino correctamente.'));
+			//Si los datos no pudieron ser eliminados notifica al usuario
 		} else {
 			$this->Flash->error(__('El documento no se pudo eliminar. Intentelo de nuevo'));
 		}

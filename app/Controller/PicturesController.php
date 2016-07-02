@@ -52,6 +52,13 @@ class PicturesController extends AppController {
 		
 	}
 
+/**
+ * debugController method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function debugController($id) {
 			$this->request->data = $id;
 	}
@@ -149,6 +156,7 @@ class PicturesController extends AppController {
 			 //debug($this->request->data);
 
 			$this->Picture->create();
+			// si los datos pudieron ser guardados notifica al usuario y redireciona a la vista
 			if ($this->Picture->save($this->request->data)) {
 				
 			$this->Flash->success(__('La imagen a sido guardada.'));
@@ -156,6 +164,7 @@ class PicturesController extends AppController {
 				$id = $idCategoriaenGender['Gender']['category_id'];
 				return $this->redirect(array('action' => 'view',$id));
 			} else {
+				// de no poder ser guardada la imagen notifica al usuario
 			$this->Flash->error(__('La imagen no pudo ser guardada. Intentelo nuevamente.'));
 			}
 		} else {
@@ -181,6 +190,7 @@ class PicturesController extends AppController {
 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
 		$this->Picture->id = $id;
+		// si la imagen ya existe regresa un error
 		if (!$this->Picture->exists()) {
 			throw new NotFoundException(__('Invalid picture'));
 		}
@@ -189,8 +199,10 @@ class PicturesController extends AppController {
 
 		$categoryId = $this->Gender->find('first', array('conditions' => array('Gender.id' => $categoryId['Picture']['genre_id'])));
 		$this->request->allowMethod('post', 'delete');
+		// si los datos de la imagen lograron ser eliminados notifica al usuario 
 		if ($this->Picture->delete()) {
 			$this->Flash->success(__('La imagen a sido eliminiada.'));
+			// sino notifica del error
 		} else {
 			$this->Flash->error(__('La imagen no pudo ser eliminada. Intentelo nuevamente.'));
 		}

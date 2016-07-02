@@ -676,6 +676,7 @@ class CategoriesController extends TreeMenuAppController {
         $var = $this->CountryGender->findAllByGender_id($ids);
         $old = $var[0]['CountryGender']['id'];
         $countries;
+        // segun el pais selecionado despliega el layer correpondiente
         if($var[0]['CountryGender']['belize']){ 
            $countries[] = 'belize';
            //array_push($countries,1);
@@ -1076,6 +1077,7 @@ class CategoriesController extends TreeMenuAppController {
     	$this->set('category', $taxon);
     	
     	$clasificacion = $taxon['Category']['classification'];
+    	// switch de los posibles casos para la busqueda de imagenes según la clsificacion del taxon
 			switch ($clasificacion) {
 			    case "Filo":
 			        $imagenesTaxon = $this->Picture->find('all', array('recursive' => -1,'conditions' => array('Picture.phylo_id' => $id)));
@@ -1746,6 +1748,17 @@ class CategoriesController extends TreeMenuAppController {
 		}
 	}
 	
+	
+	/**
+      * addcomment method
+      *
+      * Busca si el usuario esta registrado y crea un comentario en el taxon asociado, para luego gurdarlo
+      * 
+      * @param int $id
+      * @return void
+      */
+	
+	
 	public function addcomment($id = null) {
         $this->layout = 'ajax';
 	    return debug($this->request->data);
@@ -1783,6 +1796,15 @@ class CategoriesController extends TreeMenuAppController {
 	    
 	}
 	
+		/**
+      * delet method
+      *
+      * Busca si el usuario es administrador y borra el comentario en el taxon asociado, para luego gurdarlo
+      * 
+      * @param int $id
+      * @return void
+      */
+	
 	public function deleteComment($id = null) {
         $this->loadModel('Comment');
         if (!$this->request->is('post')) {
@@ -1813,6 +1835,14 @@ class CategoriesController extends TreeMenuAppController {
         }
     }
     
+    	/**
+      * viewComment method
+      *
+      * Visualizacion del comentario
+      * 
+      * @param int $id
+      * @return void
+      */
     public function viewComment($id = null) {
         $this->loadModel('Comment');
         $var = $this->Comment->findAllByCategoryId($id);

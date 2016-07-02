@@ -66,6 +66,7 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
+		// carga de la base de datos los eventos, noticias y fotos
 		$this->loadModel('HomePicture');
 		$this->loadModel('News');
 		$this->loadModel('Event');
@@ -74,6 +75,7 @@ class PagesController extends AppController {
 
 		$pics=[];
 		$pics2=[];
+		// imagenes de portda del carusel inicial
 		if(count($imgnsPortada)>5){
 			$pics=array_rand($imgnsPortada, 5);
 			for($i=0; $i<count($pics); $i++){
@@ -84,7 +86,7 @@ class PagesController extends AppController {
 		}
 		
 		$this->set('imagenesPortada', $pics2);
-	
+		// imagenes de eventos y noticias son cargadas aleatoriamente
 		$picsNews2=[];
 		$picsNews2rand=[];
 		$picsNewsFinal=[];
@@ -93,6 +95,7 @@ class PagesController extends AppController {
 		for($i=0; $i<count($picsNews); $i++){
 			array_push($picsNews2, $picsNews[$i]['NewsEventsPicture']);
 		}
+		//imagenes d ela pagina de inicio de events y noticias
 		if(count($picsNews2)>5){
 			$picsNews2rand=array_rand($picsNews2, 5);
 			for($i=0; $i<count($picsNews2rand); $i++){
@@ -124,7 +127,7 @@ class PagesController extends AppController {
 		else{
 			$picsEventsFinal=$picsEvents;
 		}
-		
+		//coloca las imagenes dw eventos y noticias
 		$this->set('picsEventsFinal', $picsEventsFinal);
 		$this->set('lastEventCreated', $lastEventCreated);
 

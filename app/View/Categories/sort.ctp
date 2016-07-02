@@ -19,6 +19,16 @@
 			},
 		});
 	}
+	function edit(id)
+	{
+		$.ajax({
+			type: 'GET',
+			url: 'categories/edit/' + id,
+			success: function (data) {
+				$('#secciones').html(data);
+			},
+		});
+	}
     function catalogo()
     {
         $.ajax({

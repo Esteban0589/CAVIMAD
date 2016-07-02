@@ -44,10 +44,7 @@
 					        	<?php foreach ($links as $link): ?>
 									<tr>
 										<td><?php echo h($link['Link']['title']); ?>&nbsp;</td>
-										<td class="actions" >
-											<?php echo $this->Html->link($link['Link']['url']);?>
-										</td>
-										<!--<td><?php echo ($link['Link']['url']); ?>&nbsp;</td>-->
+										<td><a href="<?php echo ($link['Link']['url']); ?> "target="_blank"><?php echo ($link['Link']['url']); ?></a>&nbsp;</td>
 										<td><?php echo h($link['Link']['description']); ?>&nbsp;</td>
 										<td><?php echo h($link['Link']['relatedpage']); ?>&nbsp;</td>
 										<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>

@@ -47,7 +47,7 @@ class LinksController extends AppController {
 	public function add() {
 		$this->loadModel('User');
 		$this->loadModel('Administrator');
-		$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$_SESSION['Auth']['User']['id'])));
+		$adm_id=$this->Administrator->find('first',array('conditions' => array($this->Session->read('Auth')['User']['id'])));
 		//return debug($adm_id);
 		// llena el formulario y se guardan los datos, luego se notifica al usuario
 		if ($this->request->is('post')) {
@@ -56,6 +56,12 @@ class LinksController extends AppController {
 										'description'=>$this->request->data['Link']['description'],
 										'relatedpage'=>$this->request->data['Link']['relatedpage'],
 										'administrator_id'=>$adm_id['Administrator']['id']));
+			$link = $data['Link']['url'];
+			$rest = substr($link, 0, 4);  // returns los primeros 4 caracteres del link
+			// return debug($data);
+			if ($rest != "http"){
+				$data['Link']['url'] = "http://".$link;
+			}
 			$this->Link->create();
 			if ($this->Link->save($data)) {
 				$this->Flash->success(__('El enlace se guardo correctamente.'));
@@ -111,6 +117,12 @@ class LinksController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			// se editan los datos del link y se notifica al usurio
+			$link = $this->request->data['Link']['url'];
+			$rest = substr($link, 0, 4);  // returns "abcde"
+			// return debug($rest);
+			if ($rest != "http"){
+				$this->request->data['Link']['url'] = "http://".$link;
+			}
 			if ($this->Link->save($this->request->data)) {
 				$this->Flash->success(__('El enlace se guardo correctamente.'));
 				return $this->redirect(array('action' => 'index'));

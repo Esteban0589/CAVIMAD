@@ -172,7 +172,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                   </ul>
                         </li>
                         <li>
-                             <div = "¿Quiénes somos?"><a href="pages/aboutus" title="">Sobre nosotros</a></div>
+                             <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
                         </li>
                         <li>
                              <div = "Si desea enviarnos un mensaje."><a href="users/contact" title="">Contáctenos</a></div>
@@ -181,7 +181,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
                         </li>
                         <li>
-                            <?php if(!empty($this->Session->read('Auth')['User']['role'])){    ?>  
+                            <?php if(!empty($_SESSION['role'])){    ?>  
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         
@@ -341,6 +341,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                     <li><a href="http://www.cimar.ucr.ac.cr" target="_blank" title="Centro de Investigación en Ciencias del Mar y Limnología"><img src="app/webroot/img/logo_cimar.png" alt="CIMAR" width="10"; /></a></li>
                                     
                                     <li><a href="http://www.biologia.ucr.ac.cr" target="_blank" title="Escuela de Biologia, UCR"><img src="app/webroot/img/logopeq.png" alt="ESCUELA DE BIOLOGIA" width="10"; /></a></li>
+                                    <li><a href="http://www.vra.ucr.ac.cr/" target="_blank" title="Vicerrectoría de Administración, UCR"><img src="app/webroot/img/logi-vi-cuadrado.png" alt="Vicerrectoría de Administración" width="10"; /></a></li>
+                                    
                                 </ul>
                     
 							</li>

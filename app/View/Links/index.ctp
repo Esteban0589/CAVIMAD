@@ -47,13 +47,13 @@
 										<td class="actions" >
 											<?php echo $this->Html->link($link['Link']['url']);?>
 										</td>
-										<!--<td><?php echo h($link['Link']['url']); ?>&nbsp;</td>-->
+										<!--<td><?php echo ($link['Link']['url']); ?>&nbsp;</td>-->
 										<td><?php echo h($link['Link']['description']); ?>&nbsp;</td>
 										<td><?php echo h($link['Link']['relatedpage']); ?>&nbsp;</td>
 										<?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
 											<td>
 												<?php echo $this->Html->link(__(''), array('action' => 'edit', $link['Link']['id']),array('title'=>'Editar la información del enlace','class' => 'glyphicon glyphicon-pencil', 'style' => 'font-size:25px; padding: 5px;')); ?>
-												<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $link['Link']['id']), array('title'=>'Eliminar enlace','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Atención se va a eliminar el enlace # %s', $link['Link']['id'])); ?>
+												<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $link['Link']['id']), array('title'=>'Eliminar enlace','class' => 'glyphicon glyphicon glyphicon-trash', 'style' => 'font-size:25px; padding: 5px;'), __('Atención se va a eliminar el enlace: %s', $link['Link']['title'])); ?>
 											</td>
 										<?php endif; ?>
 									</tr>

@@ -51,16 +51,18 @@ class NewsEventsPicturesController extends AppController {
  * @return void
  */
 	public function add() {
-			
+			// formulario de los datos de los eventos y noticias
 		if ($this->request->is('post')) {
 			$this->NewsEventsPicture->create();
+			// si los datos logran ser guardados notifica al usuario
 			if ($this->NewsEventsPicture->save($this->request->data)) {
 				$this->Flash->success(__('The news events picture has been saved.'));
-					
+					// se guardan los de imagen dependiendo si se encuentra en eventos o noticias
 				if($this->request->data['NewsEventsPicture']['news_id']!=null)
 					return $this->redirect(array('action' => 'view_images_news',$this->request->data['NewsEventsPicture']['news_id']));
 				else
 					return $this->redirect(array('action' => 'view_images_events',$this->request->data['NewsEventsPicture']['event_id']));
+					// si los datos no pueden ser guardados notifica al usuario
 			} else {
 				$this->Flash->error(__('The news events picture could not be saved. Please, try again.'));
 			}
@@ -79,7 +81,7 @@ class NewsEventsPicturesController extends AppController {
  * @return void
  */
 	public function view_images_news($id = null) {
-		
+			// permite la visualizacion de las imagenes de las noticias
 		$options = array('conditions' => array('NewsEventsPicture.' . $this->NewsEventsPicture->primaryKey => $id));
 		
 		$allPicturesOfThisNews = $this->NewsEventsPicture->find('all', array('recursive'=>-1,'conditions' => array('NewsEventsPicture.news_id' => $id)));
@@ -96,6 +98,7 @@ class NewsEventsPicturesController extends AppController {
 	public function view_images_events($id = null) {
 		
 		// return debug("adsfs");
+		// permite la visualizacion de las imagenes de los eventos
 		$options = array('conditions' => array('NewsEventsPicture.' . $this->NewsEventsPicture->primaryKey => $id));
 		
 		$allPicturesOfThisEvent = $this->NewsEventsPicture->find('all', array('recursive'=>-1,'conditions' => array('NewsEventsPicture.event_id' => $id)));
@@ -154,11 +157,14 @@ class NewsEventsPicturesController extends AppController {
 		$this->request->allowMethod('post', 'delete');
 		 //debug($id);
 		 //return debug($specificallyThisOne['NewsEventsPicture']['news_id']);
+		 // los datos logran ser eliminado notifa con un mensaje
 		if ($this->NewsEventsPicture->delete()) {
 			$this->Flash->success(__('The news events picture has been deleted.'));
+			// si los datos no logran ser eliminado notifica al usuario 
 		} else {
 			$this->Flash->error(__('The news events picture could not be deleted. Please, try again.'));
 		}
+		//dependiendo si se elimino un evento una noticia redirige a la vista de eventos o noticias
 		if($specificallyThisOne['NewsEventsPicture']['news_id']!=null)
 				return $this->redirect(array('action' => 'view_images_news',$specificallyThisOne['NewsEventsPicture']['news_id']));
 			else

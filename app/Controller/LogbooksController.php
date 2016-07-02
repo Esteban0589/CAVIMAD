@@ -36,18 +36,28 @@ class LogbooksController extends AppController {
         	clearCache();
 			$logbooks = $this->Logbook->find('all', array('order' => array('Logbook.modified' => 'desc')));
 			$this->set('logbooks', $logbooks);
+			// notifica al usuario de no poder ser guardado
 		} else {
 			$this->Flash->error(__('No tiene el permiso suficiente para acceder a esta sección.'));
 		}
 	}
 
+
+
+/**
+ * add method
+ *
+ * @return void
+ */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Logbook->create();
+			// crea un nuevo logbook y lo guarda
 			if ($this->Logbook->save($this->request->data)) {
 				$this->Flash->success(__('The logbook has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
+				// notifica al usuario de no poder ser guardado
 				$this->Flash->error(__('The logbook could not be saved. Please, try again.'));
 			}
 		}

@@ -56,9 +56,13 @@ class NewsEventsPicture extends AppModel {
 		)
 	);
 	
-	
+	/**
+ * validate
+ *
+ * @var image
+ */
 	public $validate = array(
- 		
+ 		// valida que la imagen sea solamente jpg y png
  		  'image' => array(
              'rule' => array(
                  'extension',

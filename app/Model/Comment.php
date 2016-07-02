@@ -32,6 +32,7 @@ class Comment extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),*/
 		),
+		// valida que el comentario no se guarde vacio
 		'comment' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -41,7 +42,7 @@ class Comment extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			
+			// vacia el tamaño minimo del coemntario
 			'minLength' => array(
 				'rule' => array('minLength',5),
 				//'message' => 'Your custom message here',
@@ -50,6 +51,7 @@ class Comment extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			// vacia el tamaño maximo del coemntario
 			'maxLength' => array(
 				'rule' => array('maxLength',250),
 				//'message' => 'Your custom message here',

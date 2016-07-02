@@ -20,10 +20,12 @@ class Download extends AppModel{
 public $validate = array(
     'report' => array(
         'rule1' => array(
+            // valida que solo se acepten documentos pfd
             'rule'    => array(
             'extension',array('pdf')),
             'message' => 'Please upload pdf file only'
          ),
+         // valida le tamaño maximo del documento
         'rule2' => array(
             'rule'    => array('fileSize', '<=', '4MB'),
             'message' => 'File must be less than 4MB'

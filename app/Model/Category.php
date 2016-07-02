@@ -24,13 +24,22 @@ class Category extends TreeMenuAppModel {
     );
 
 
+ /**
+	 * validate
+	 * 
+	 *
+	 * @var array
+	 */
+
     public $validate = array(
     'report' => array(
+        // valida que el reporte sea un archivo pdf
         'rule1' => array(
             'rule'    => array(
             'extension',array('pdf')),
             'message' => 'Please upload pdf file only'
          ),
+         // valida el tamaño maximo del reporte
         'rule2' => array(
             'rule'    => array('fileSize', '<=', '4MB'),
             'message' => 'File must be less than 4MB'
@@ -85,6 +94,11 @@ class Category extends TreeMenuAppModel {
 
 //     );
 
+ /**
+     * after save
+     *
+     * @var array
+     */
     public function afterSave($created, $options = array()) {
         parent::afterSave($created,$options);
         Cache::clear();
@@ -151,7 +165,11 @@ class Category extends TreeMenuAppModel {
 		)
 	);
       
-
+ /**
+     * after delete
+     *
+     * @var array
+     */
     public function afterDelete() {
         parent::afterDelete();
 

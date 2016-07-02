@@ -26,6 +26,7 @@ class HomePicture extends AppModel {
                 'fields' => array(
                     'dir' => 'image_dir'
                 ),
+                // valida el tamaño de la iamgen
                 'thumbnailMethod'  => 'php',
                 'thumbnailSizes' => array(
                 	'vga' => '640x480',
@@ -43,6 +44,7 @@ class HomePicture extends AppModel {
  * @var array
  */
 	public $validate = array(
+	    // valida que el titulo no sea vacio
 		'title' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
@@ -53,7 +55,7 @@ class HomePicture extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		
+		// valida que la imagen sea png o jpg
 		  'image' => array(
             'rule' => array(
                 'extension',

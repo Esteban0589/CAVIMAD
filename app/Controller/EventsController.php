@@ -44,6 +44,7 @@ class EventsController extends AppController {
  */
 	public function view($id = null) {
 		$this->loadModel('NewsEventsPicture');
+		//si el evento no existe retorna error
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Evento no valido'));
 		}
@@ -87,14 +88,16 @@ class EventsController extends AppController {
 			if ($this->Event->save($this->request->data)) {
 				$this->request->data['NewsEventsPicture']['0']['event_id']= $this->Event->id;
 				//return debug($this->request->data['NewsEventsPicture']['0']);
+				// guarda el nuevo  evento y notifica al usuario
 				if($this->NewsEventsPicture->saveAll($this->request->data['NewsEventsPicture']['0'])){
 					$this->Flash->success(__('El evento fue guardada correctamente.'));
 				}
+				// retorna error si no se puedo guardar y nofica al usuario
 				else{
 				$this->Flash->error(__('El evento no pudo ser agregado, intente nuevamente.'));
 				}
 				
-				
+				//redireciona al index
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Flash->error(__('El evento no pudo ser agregado, intente nuevamente.'));
@@ -111,19 +114,23 @@ class EventsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		//si el evento no existe retorna error
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Evento no valido'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			// guarda la edicion de evento y notifica al usuario
 			if ($this->Event->save($this->request->data)) {
 				$this->Flash->success(__('El evento fue actualizado correctamente.'));
 				return $this->redirect(array('action' => 'index'));
+				// retorna error si no se puedo guardar y nofica al usuario
 			} else {
 				$this->Flash->error(__('El evento no pudo ser actualizado, intente nuevamente.'));
 			}
 		} else {
-			
+			// carga las fotos de eventos y noticias de la base
 			$this->loadModel('NewsEventsPicture');
+			//si el evento no existe retorna error
 			if (!$this->Event->exists($id)) {
 				throw new NotFoundException(__('Evento no valido'));
 			}
@@ -164,15 +171,19 @@ class EventsController extends AppController {
  */
 	public function delete($id = null) {
 		$this->Event->id = $id;
+		//si el evento no existe retorna error
 		if (!$this->Event->exists()) {
 			throw new NotFoundException(__('Invalid event'));
 		}
 		$this->request->allowMethod('post', 'delete');
+		// elimina de evento y notifica al usuario
 		if ($this->Event->delete()) {
 			$this->Flash->success(__('The event has been deleted.'));
+			// retorna error si no se puedo eliminar y nofica al usuario
 		} else {
 			$this->Flash->error(__('The event could not be deleted. Please, try again.'));
 		}
+		//redireciona al index
 		return $this->redirect(array('action' => 'index'));
 	}
 }

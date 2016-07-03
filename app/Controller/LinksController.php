@@ -45,6 +45,10 @@ class LinksController extends AppController {
  * @return void
  */
 	public function add() {
+		if($this->Session->read('Auth')['User']['role'] != 'Administrador') {
+			$this->Flash->error(__('No puede acceder a esta sección.'));
+            return $this->redirect(array('controller'=>'pages','action' => 'display'));
+		}
 		$this->loadModel('User');
 		$this->loadModel('Administrator');
 		$adm_id=$this->Administrator->find('first',array('conditions' => array($this->Session->read('Auth')['User']['id'])));
@@ -78,7 +82,11 @@ class LinksController extends AppController {
  *
  * @return void
  */
-		public function add_bio() {
+	public function add_bio() {
+		if($this->Session->read('Auth')['User']['role'] != 'Administrador') {
+			$this->Flash->error(__('No puede acceder a esta sección.'));
+            return $this->redirect(array('controller'=>'pages','action' => 'display'));
+		}
 		$this->loadModel('User');
 		$this->loadModel('Administrator');
 		$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$_SESSION['Auth']['User']['id'])));

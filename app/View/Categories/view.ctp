@@ -32,17 +32,16 @@ a{
 					<br>
 				<!--</div>-->
 				
-				<?php if($this->Session->read('Auth')['User']['role']=='Administrador'): ?>
+				<?php if($this->Session->read('Auth')['User']['role']=='Administrador' || $this->Session->read('Auth')['User']['role']=='Editor'): ?>
 				<!--<div class="col col-sm-5">-->
 					<h5 style="margin: 0px;"> Edición de Taxón	
 					
 					<?php echo $this->Html->link(__(''), array('action' => 'edit', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #82B204;    font-size:25px;     padding: 5px;')); ?>
-	
-		            <?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el taxón",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
-					<?php
-						echo $this->Html->link(__('Imágenes'), array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']), array('class' => 'glyphicon glyphicon-th','title' =>'Administrar imagenes', 'style'=>'color: #3891D4; font-size:25px; padding: 5px;'));
-					?>
-					
+				
+					<?php if($this->Session->read('Auth')['User']['role']=='Administrador'): ?>
+		            	<?php echo $this->Form->postLink(__(''), array('action' => 'delete', $category['Category']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-trash', 'title' =>"Eliminar el taxón",'style'=>'color: #860000;    font-size:25px;     padding: 5px;'), __('Está seguro de que desea eliminar # %s?', $category['Category']['name'])); ?>
+						<?php echo $this->Html->link(__('Imágenes'), array('controller' => 'pictures', 'action' => 'view',$category['Category']['id']), array('class' => 'glyphicon glyphicon-th','title' =>'Administrar imagenes', 'style'=>'color: #3891D4; font-size:25px; padding: 5px;'));	?>
+					<?php endif; ?>
 					</h5>
 	
 				<!--</div>-->

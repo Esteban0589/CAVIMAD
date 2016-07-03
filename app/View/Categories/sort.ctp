@@ -86,11 +86,11 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fiel
                 
                 <!--Parte contenedora del arbol-->
                 <div class="col-lg-3 col-md-3"><!-- doc body wrapper -->
-                    <h2>Árbol Taxonómicooooo</h2>
+                    <h2>Árbol Taxonómico</h2>
                     <div class="conteiner">
                  
                      <!--<?php if (!isset($this->params['named']['alias'])) echo 'active'; ?>-->
-                        <?php if($this->Session->read('Auth')['User']['role'] =='Administrador'): ?>
+                        <?php if($this->Session->read('Auth')['User']['role'] =='Administrador' || $this->Session->read('Auth')['User']['role'] =='Colaborador'): ?>
                             <div class="btn btn-mini btn-link" title="Ingresar a la sección para administrar los niveles taxonómicos" style="background-color: #3891d4;color: white;margin-bottom: 10px;">
                                 <a style= "color: white;" href='/categories/index'>
                                     Administar Taxonomía

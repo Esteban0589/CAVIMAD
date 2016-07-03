@@ -7,8 +7,8 @@
 	            <div class="page-header">
 	            	
 		            <h2><?php echo __('Editar perfil'); ?></h2>
-				<?php if($this->Session->read('username')==$this->request->data['User']['username']): ?>
-				<!--<?php debug($this->request->data)?>-->
+				<?php if($this->Session->read('Auth')['User']['username']==$this->request->data['User']['username']): ?>
+				
 	            	</div>
 	            	
 	
@@ -36,7 +36,7 @@
 	            	<!--<div title = "En este campo puede editar su Contraseña"><?php echo $this->Form->input('password', array('class'=>'form-control','label'=>'Contraseña:','placeholder' => 'Contraseña'));?></div>-->
 	            	<!--<div>&nbsp</div>-->
 					<?php echo $this->Form->input('image', array('type'=>'file','label'=>'Foto: ', 'id'=>'foto', 'class'=>'file', 'data-show-upload'=>'false','data-show-caption'=>'true', 'default'=>'icono.jpg'));?>
-	            	<?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
+	                <?php echo $this->Form->input('image_dir',array('type'=>'hidden'));?>
 	            	
 	            	<?php if(($current_user['role']=='Administrador')||($current_user['role']=='Colaborador')): ?>
 
@@ -57,11 +57,11 @@
 		            <div>&nbsp</div>
 		            <div>&nbsp</div>
              <?php endif; ?>
-             <?php if($this->Session->read('username')!=$this->request->data['User']['username']): ?>
+             <?php if($this->Session->read('Auth')['User']['username']!=$this->request->data['User']['username']): ?>
             	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
-           </div>
-           <?php endif; ?>        
+           		</div>
+           	<?php endif; ?>        
         </div>
     </div>
 </div>

@@ -59,7 +59,7 @@
       <!-- content wrapper -->
       <div class="container">
          <!-- container -->
-         <?php if($this->Session->read('Auth')['User']['role']=='Administrador'): ?> 
+         <?php if($this->Session->read('Auth')['User']['role']=='Administrador' || $this->Session->read('Auth')['User']['role']=='Colaborador'): ?> 
          <div class="row">
             <!-- row -->
             <div class="col-lg-12 col-md-12">
@@ -281,7 +281,7 @@
          </div>
       </div>
       <?php endif; ?>
-      <?php if($this->Session->read('Auth')['User']['role']!='Administrador'): ?>
+      <?php if(!($this->Session->read('Auth')['User']['role'] =='Administrador' || $this->Session->read('Auth')['User']['role']=='Colaborador')): ?>
       <div class="alert alert-warning alert-dismissable">
          <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
       </div>

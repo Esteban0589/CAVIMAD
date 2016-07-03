@@ -21,11 +21,11 @@
 					<fieldset class="col-lg-4 col-md-4" >
 								<h2><?php echo __('Editar taxón'); ?>
 									<?php 
-									if ($doc['Download']['id'] =! null){
+									if ($doc['Download']['id'] != null){
 										echo $this->Html->link(__('Editar documento'), array('controller'=>'downloads','action' => 'edit_doc', $doc['Download']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
 									}
 									else{
-										echo $this->Html->link(__('Editar documento'), array('controller'=>'downloads','action' => 'add', 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
+										echo $this->Html->link(__('Agregar documento'), array('controller'=>'downloads','action' => 'add', 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
 									}
 									?>
 								</h2>

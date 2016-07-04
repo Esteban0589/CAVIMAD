@@ -1,13 +1,24 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
+ * 
  * NewsEventsPicture Model
+ * 
+ * Modelo que contiene las validaciones de los campos de NewsEventsPicture y sus relaciones con los otros modelos.
  *
  * @property User $User
  * @property News $News
  * @property Event $Event
  */
 class NewsEventsPicture extends AppModel {
+	
+	/*
+     * actAs 
+     *
+     * Modulo necesario paraagregar fotos
+     *
+     * @var string
+     */	
 	public $actsAs = array(
         'Upload.Upload' => array(
             'image' => array(
@@ -27,11 +38,13 @@ class NewsEventsPicture extends AppModel {
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 * 
+	 * Contiene las relaciones de pertenece con los modelos de User, News y Event
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
@@ -57,10 +70,12 @@ class NewsEventsPicture extends AppModel {
 	);
 	
 	/**
- * validate
- *
- * @var image
- */
+	 * validate
+	 * 
+	 * Contiene las validaciones para las fotos, de manera que tengan el formato .jpg o .png
+	 *
+	 * @var image
+	 */
 	public $validate = array(
  		// valida que la imagen sea solamente jpg y png
  		  'image' => array(

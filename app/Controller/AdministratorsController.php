@@ -2,6 +2,9 @@
 App::uses('AppController', 'Controller');
 /**
  * Administrators Controller
+ * 
+ * Este controllador contiene los metodos y componentes que se utilizaran en todos los controllers hijos.
+ * Es un controlador donde se manejan las fuciones de los administradores.
  *
  * @property Administrator $Administrator
  * @property PaginatorComponent $Paginator
@@ -10,7 +13,9 @@ class AdministratorsController extends AppController {
 
 /**
  * Components
- *
+ * 
+ * Contine los componentes del controlador, en este caso el paginador.
+ * 
  * @var array
  */
 	public $components = array('Paginator');
@@ -18,6 +23,10 @@ class AdministratorsController extends AppController {
 /**
  * index method
  *
+ * Permite ingresar a la tabla que contiene a todos los administradores del página web
+ * 
+ * @throws NotFoundException
+ * @param void
  * @return void
  */
 	public function index() {
@@ -31,6 +40,8 @@ class AdministratorsController extends AppController {
 
 /**
  * view method
+ * 
+ * Permite ver la lista completa de los administradores de la página web.
  *
  * @throws NotFoundException
  * @param string $id
@@ -52,7 +63,11 @@ class AdministratorsController extends AppController {
 
 /**
  * beforeFilter method
+ * 
+ * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa o sin los privilegios requeridos.
+ * 
  *
+ * @param void
  * @return void
  */
 	public function beforeFilter() {
@@ -64,6 +79,9 @@ class AdministratorsController extends AppController {
 /**
  * add method
  *
+ * Permite agregar un nuevo administrador a la página web y de una vez lo indexa en la tabla de administradores.
+ * 
+ * @param void
  * @return void
  */
 	public function add() {
@@ -84,10 +102,12 @@ class AdministratorsController extends AppController {
 
 /**
  * edit method
+ * 
+ * Permite editar la información de un administrador previamente agregado.
  *
  * @throws NotFoundException
  * @param string $id
- * @return void
+ * @return array
  */
 	public function edit($id = null) {
 		if ( $this->Session->read('Auth')['User']['role'] != 'Administrador'  ) {
@@ -118,9 +138,11 @@ class AdministratorsController extends AppController {
 /**
  * delete method
  *
+ * Elimina un administrador de la página web, deshabilitando el usuario.
+ * 
  * @throws NotFoundException
  * @param string $id
- * @return void
+ * @return array
  */
 	public function delete($id = null) {
 		$this->Administrator->id = $id;

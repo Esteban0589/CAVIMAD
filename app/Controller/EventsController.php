@@ -3,16 +3,16 @@ App::uses('AppController', 'Controller');
 /**
  * Events Controller
  *
- * @property Event $Event
- * @property PaginatorComponent $Paginator
- * @property FlashComponent $Flash
- * @property SessionComponent $Session
+ * Este controllador contiene los metodos y componentes que se utilizaran para agregar, editar, ver y eliminar evento.
+ *
  */
 class EventsController extends AppController {
 
 /**
- * Components
+ * Componentes
  *
+ * Son los complementos que utilizaran los controllers que heredan de appController
+ * 
  * @var array
  */
 	public $components = array('Paginator', 'Flash', 'Session');
@@ -24,8 +24,11 @@ class EventsController extends AppController {
     }
 
 /**
- * index method
+ * view method
+ * 
+ * Metodo que permite ver una lista de todos los eventos
  *
+ * @throws NotFoundException
  * @return void
  */
 	public function index() {
@@ -37,6 +40,8 @@ class EventsController extends AppController {
 
 /**
  * view method
+ * 
+ * Metodo para poder ver detalles de un evento específicado por $id
  *
  * @throws NotFoundException
  * @param string $id
@@ -74,7 +79,9 @@ class EventsController extends AppController {
 	}
 
 /**
- * add method
+ * view method
+ * 
+ * Metodo que permite agregar eventos a la pagina web
  *
  * @return void
  */
@@ -108,6 +115,8 @@ class EventsController extends AppController {
 
 /**
  * edit method
+ * 
+ * Metodo para editar la información interna de cada evento.
  *
  * @throws NotFoundException
  * @param string $id
@@ -164,6 +173,8 @@ class EventsController extends AppController {
 
 /**
  * delete method
+ * 
+ * Metodo para eliminar evento especificado mediante $id
  *
  * @throws NotFoundException
  * @param string $id

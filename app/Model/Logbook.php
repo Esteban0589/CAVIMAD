@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 /**
  * Logbook Model
  *
+ * Modelo que contiene las validaciones de los campos de Logbook y sus relaciones con los otros modelos.
+ * 
  * @property User $User
  * @property Categorie $Categorie
  */
@@ -11,6 +13,8 @@ class Logbook extends AppModel {
 /**
  * Validation rules
  *
+ * Contiene las reglas de validación para el modelo, campos obligatorios, tamaños máximos, mínimos y no blancos.
+ * 
  * @var array
  */
 	public $validate = array(
@@ -58,6 +62,7 @@ class Logbook extends AppModel {
 
 /**
  * belongsTo associations
+ * Relación con el modelo de User
  *
  * @var array
  */

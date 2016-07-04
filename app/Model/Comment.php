@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 /**
  * Comment Model
  *
+ * Modelo que contiene las validaciones de los campos de Administrator y sus relaciones con los otros modelos.
+ * 
  * @property User $User
  * @property Category $Category
  */
@@ -10,6 +12,8 @@ class Comment extends AppModel {
 
 /**
  * Validation rules
+ * 
+ * Contiene las reglas de validación para el modelo, campos obligatorios, tamaños maximos, minimos y no blancos.
  *
  * @var array
  */
@@ -86,7 +90,7 @@ class Comment extends AppModel {
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
+ * Relación con el modelo de User y Category
  *
  * @var array
  */

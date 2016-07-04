@@ -1,0 +1,190 @@
+<?php
+App::uses('AppController', 'Controller');
+/**
+ * NewsEventsPictures Controller
+ * 
+ * Este controllador contiene los metodos y componentes que se utilizaran en todos los controllers hijos.
+ * Es un controlador donde se manejan las fuciones que manenjan las fotográfias de las noticias y los eventos de la página web.
+ *
+ * @property NewsEventsPicture $NewsEventsPicture
+ * @property PaginatorComponent $Paginator
+ * @property FlashComponent $Flash
+ * @property SessionComponent $Session
+ */
+class NewsEventsPicturesController extends AppController {
+
+/**
+ * Components
+ * 
+ * Son los complementos que utilizaran los controllers que heredan de appController, en este caso el paginador, 
+ * mensajes tipo Flash y las variables de sesión.
+ *
+ * @var array
+ */
+	public $components = array('Paginator', 'Flash', 'Session');
+
+/**
+ * index method
+ *
+ * @return void
+ */
+ 
+ //No debe tener index porque ya con el view se ve cada noticia individualmente y sino se ve desde el controlador de news
+	// public function index() {
+	// 	$this->NewsEventsPicture->recursive = 0;
+	// 	$this->set('newsEventsPictures', $this->Paginator->paginate());
+	// }
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+ //Comentado porque no se van a ver imagenes de noticias individualmente sino que en galera(view_images...)
+	// public function view($id = null) {
+	// 	if (!$this->NewsEventsPicture->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid news events picture'));
+	// 	}
+	// 	$options = array('conditions' => array('NewsEventsPicture.' . $this->NewsEventsPicture->primaryKey => $id));
+	// 	$this->set('newsEventsPicture', $this->NewsEventsPicture->find('first', $options));
+	// }
+
+/**
+ * add method
+ * 
+ * Esta función permite a un usuario de tipo Administrador agregarle una imágen a una noticia o evento.
+ * 
+ * @param void
+ * @return array
+ */
+	public function add() {
+			// formulario de los datos de los eventos y noticias
+		if ($this->request->is('post')) {
+			$this->NewsEventsPicture->create();
+			// si los datos logran ser guardados notifica al usuario
+			if ($this->NewsEventsPicture->save($this->request->data)) {
+				$this->Flash->success(__('The news events picture has been saved.'));
+					// se guardan los de imagen dependiendo si se encuentra en eventos o noticias
+				if($this->request->data['NewsEventsPicture']['news_id']!=null)
+					return $this->redirect(array('action' => 'view_images_news',$this->request->data['NewsEventsPicture']['news_id']));
+				else
+					return $this->redirect(array('action' => 'view_images_events',$this->request->data['NewsEventsPicture']['event_id']));
+					// si los datos no pueden ser guardados notifica al usuario
+			} else {
+				$this->Flash->error(__('The news events picture could not be saved. Please, try again.'));
+			}
+		}
+		$users = $this->NewsEventsPicture->User->find('list');
+		$news = $this->NewsEventsPicture->News->find('list');
+		$events = $this->NewsEventsPicture->Event->find('list');
+		$this->set(compact('users', 'news', 'events'));
+	}
+	
+	/**
+ * viewImagesNews method
+ *
+ * Esta función permite a los usuarios visualizar las imagenes que han sido agregadas a las noticias de la página web.
+ * 
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view_images_news($id = null) {
+			// permite la visualizacion de las imagenes de las noticias
+		$options = array('conditions' => array('NewsEventsPicture.' . $this->NewsEventsPicture->primaryKey => $id));
+		
+		$allPicturesOfThisNews = $this->NewsEventsPicture->find('all', array('recursive'=>-1,'conditions' => array('NewsEventsPicture.news_id' => $id)));
+		$this->set('pictures', $allPicturesOfThisNews);
+		$this->set('id',$id);
+	}
+/**
+ * viewImagesEvents method
+ * 
+ * Esta función permite a los usuarios visualizar las imagenes que han sido agregadas a los eventos de la página web.
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view_images_events($id = null) {
+		
+		// return debug("adsfs");
+		// permite la visualizacion de las imagenes de los eventos
+		$options = array('conditions' => array('NewsEventsPicture.' . $this->NewsEventsPicture->primaryKey => $id));
+		
+		$allPicturesOfThisEvent = $this->NewsEventsPicture->find('all', array('recursive'=>-1,'conditions' => array('NewsEventsPicture.event_id' => $id)));
+		$this->set('pictures', $allPicturesOfThisEvent);
+		$this->set('id',$id);
+	}
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	// public function edit($id = null) {
+	// 	if (!$this->NewsEventsPicture->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid news events picture'));
+	// 	}
+	// 	if ($this->request->is(array('post', 'put'))) {
+	// 		if ($this->NewsEventsPicture->save($this->request->data)) {
+	// 			$this->Flash->success(__('The news events picture has been saved.'));
+	// 			return $this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Flash->error(__('The news events picture could not be saved. Please, try again.'));
+	// 		}
+	// 	} else {
+	// 		$options = array('conditions' => array('NewsEventsPicture.' . $this->NewsEventsPicture->primaryKey => $id));
+	// 		$this->request->data = $this->NewsEventsPicture->find('first', $options);
+	// 	}
+	// 	$users = $this->NewsEventsPicture->User->find('list');
+	// 	$news = $this->NewsEventsPicture->News->find('list');
+	// 	$events = $this->NewsEventsPicture->Event->find('list');
+	// 	$this->set(compact('users', 'news', 'events'));
+	// }
+
+/**
+ * delete method
+ * 
+ * Esta función permite a los usuarios administradores/colaboradores eliminar las imagenes que han sido agregadas a las noticias o eventos de la página web.
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+			//	return debug($id);
+
+		$this->NewsEventsPicture->id = $id;
+		if (!$this->NewsEventsPicture->exists()) {
+			throw new NotFoundException(__('Invalid news events picture'));
+		}
+		
+		
+		$specificallyThisOne = $this->NewsEventsPicture->find('first', array('recursive'=>-1,'conditions' => array('NewsEventsPicture.id' => $id)));
+		
+		 //return debug($specificallyThisOne);
+	
+		$this->request->allowMethod('post', 'delete');
+		 //debug($id);
+		 //return debug($specificallyThisOne['NewsEventsPicture']['news_id']);
+		 // los datos logran ser eliminado notifa con un mensaje
+		if ($this->NewsEventsPicture->delete()) {
+			$this->Flash->success(__('The news events picture has been deleted.'));
+			// si los datos no logran ser eliminado notifica al usuario 
+		} else {
+			$this->Flash->error(__('The news events picture could not be deleted. Please, try again.'));
+		}
+		//dependiendo si se elimino un evento una noticia redirige a la vista de eventos o noticias
+		if($specificallyThisOne['NewsEventsPicture']['news_id']!=null)
+				return $this->redirect(array('action' => 'view_images_news',$specificallyThisOne['NewsEventsPicture']['news_id']));
+			else
+				return $this->redirect(array('action' => 'view_images_events',$specificallyThisOne['NewsEventsPicture']['event_id']));
+			
+	}
+}
+

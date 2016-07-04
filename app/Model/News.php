@@ -2,12 +2,16 @@
 App::uses('AppModel', 'Model');
 /**
  * News Model
+ * 
+ * Modelo que contiene las validaciones de los campos de News y sus relaciones con los otros modelos.
  *
  */
 class News extends AppModel {
 
 /**
  * Display field
+ * 
+ * Campo a mostrar para cuando se llame a News mediante relaciones.
  *
  * @var string
  */
@@ -15,6 +19,8 @@ class News extends AppModel {
 
 /**
  * Validation rules
+ * 
+ * Contiene las reglas de validación para el modelo, campos obligatorios, tamaños máximos, mínimos y no blancos.
  *
  * @var array
  */

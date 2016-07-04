@@ -8,10 +8,19 @@ class Picture extends AppModel {
 
 /**
  * Display field
+ * 
+ * Campo a mostrar para cuando se llame eventos mediante relaciones.
  *
  * @var string
  */
 	public $displayField = 'image';
+	
+	/**
+	 * actsAs
+	 * 
+	 * Verificación de datos al momento de guardar imagenes de taxones
+	 * @var array
+	 */
 	
 	public $actsAs = array(
         'Upload.Upload' => array(
@@ -30,10 +39,14 @@ class Picture extends AppModel {
         )
     );
     
-    /**
- * validate
+
+
+/**
+ * Validation rules
+ * 
+ * Reglas de validacion para las imagenes de taxones
  *
- * @var image
+ * @var array
  */
      public $validate = array(
  		// verifica que la imagen solo sea jpg y png

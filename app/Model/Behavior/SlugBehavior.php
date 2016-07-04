@@ -4,6 +4,9 @@ class SlugBehavior extends ModelBehavior {
 
     /**
      * Default model settings
+     * 
+     * Contiene los valores por defecto que carga el modelo
+     * 
      */
     var $defaultSettings = array('field' => 'name', 'slug_field' => 'slug', 'primary_key' => 'id', 'replacement' => '-', 'DBcheck' => false, 'set_func'=>'');
 

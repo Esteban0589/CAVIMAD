@@ -1,0 +1,233 @@
+<?php
+// Utiliza los métodos asociados al modelo TreeMenu
+App::uses('TreeMenuAppModel', 'TreeMenu.Model');
+
+/**
+ * Category Model
+ * 
+ * Modelo que contiene las validaciones de los campos de Categories y sus relaciones con los otros modelos.
+ *
+ */
+class Category extends TreeMenuAppModel {
+    
+    /**
+	 * actsAs
+	 * 
+	 * Manejo de campos que se despliegan del árbol.
+	 * @var array
+	 */
+    public $actsAs = array('Tree',
+        'TreeMenu.Slug' => array('field' => 'name', 'slug_field' => 'slug', 'primary_key' => 'id', 'replacement' => '_', 'DBcheck' => true),
+    );
+
+
+    /**
+	 * validate
+	 * 
+	 * Valida que los archivos agregados tengan formato de PDF y no excedan el tamaño indicado
+	 * 
+	 * @var array
+	 */
+    public $validate = array(
+    'report' => array(
+        // valida que el reporte sea un archivo pdf
+        'rule1' => array(
+            'rule'    => array(
+            'extension',array('pdf')),
+            'message' => 'Please upload pdf file only'
+         ),
+         // valida el tamaño maximo del reporte
+        'rule2' => array(
+            'rule'    => array('fileSize', '<=', '4MB'),
+            'message' => 'File must be less than 4MB'
+        )
+    )
+);
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    //  Lo comente porque no lo estaba usando... creo que el que esta usando es el modelo de plugin/tree... Esteban
+//     public $validate = array(
+//         'name' => array(
+// 			'notBlank' => array(
+// 				'rule' => array('notBlank'),
+// 				'message' => 'El nombre no debe estar vacío.',
+// 				// 'allowEmpty' => false,
+// 				// 'required' => true,
+// 				//'last' => false, // Stop validation after this rule
+// 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+// 			),
+// 			'unique' => array(
+// 				'rule' => array('isUnique'),
+// 				'message' => 'Ya existe otro nivel taxónomico con ese nombre.',
+// 				// 'allowEmpty' => false,
+// 				// 'required' => true,
+// 				//'last' => false, // Stop validation after this rule
+// 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+// 			),
+// 			'alphaNumeric' => array(
+//                 'rule' => 'alphaNumeric',
+//                 'required' => true,
+//                 'message' => 'Este campo solo permite letras y numeros.'
+//             ),
+//         ),
+//         'description' => array(
+// 			'notBlank' => array(
+// 				'rule' => array('notBlank'),
+// 				'message' => 'El nombre no debe estar vacío.',
+// 				// 'allowEmpty' => false,
+// 				// 'required' => true,
+// 				//'last' => false, // Stop validation after this rule
+// 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+// 			),
+// 			'alphaNumeric' => array(
+//                 'rule' => 'alphaNumeric',
+//                 'required' => true,
+//                 'message' => 'Este campo solo permite letras y numeros.'
+//             ),
+//         ),
+
+//     );
+
+ /**
+     * after save
+     * 
+     * Método que se encarga de limpiar la caché después de que se argeguen nuevos datos
+     *
+     * @param void
+	 * @return void
+     */
+    public function afterSave($created, $options = array()) {
+        parent::afterSave($created,$options);
+        Cache::clear();
+        clearCache();
+    }
+
+    /**
+     * Relaciones del modelo Category con los hijos de las categorias del padre y con el modelo de Pictures.
+     * Contiene también las relaciones para la bitácora en el modelo de Logbooks y la relación con el modelo de Genders para los géneros
+     *
+     * @var array
+     */
+	public $hasMany = array(
+		'ChildCategory' => array(
+			'className' => 'Category',
+			'foreignKey' => 'parent_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Picture' => array(
+			'className' => 'Picture',
+			'foreignKey' => 'category_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Logbook' => array(
+			'className' => 'Logbook',
+			'foreignKey' => 'category_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Gender' => array(
+			'className' => 'Gender',
+			'foreignKey' => 'category_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+      
+ /**
+     * after delete
+     * 
+     * Método que limpia la caché después eliminar un taxón
+     *
+     * @param void
+	 * @return void
+     */
+    public function afterDelete() {
+        parent::afterDelete();
+
+        Cache::clear();
+        clearCache();
+    }
+
+    /**
+      * getAllCategory method
+      *
+      * Método que obtiene todas las categorias existentes. 
+      *
+      * @param $alias
+	  * @return void
+      */
+    public function getAllCategory($alias = null) {
+        if (($categories = Cache::read('getAllCategory_' . $alias)) === false) {
+            $conditions = array();
+            if ($alias) {
+                $conditions['Category.alias'] = $alias;
+            }else{
+                $conditions[] = 'Category.alias IS NULL';
+            }
+            //Obtiene desde la base de datos todas las categorias existentes con los campos de id, parent_id, name, published.
+            $categories = $this->find('all', array('conditions' => $conditions,
+                'fields' => array('Category.id', 'Category.parent_id', 'Category.name', 'Category.published'),
+                'order' => array('Category.lft' => 'ASC')
+                    ));
+            Cache::write('getAllCategory_' . $alias, $categories);
+        }
+        return $categories;
+    }
+
+    /**
+      * getAllCategory method
+      *
+      * Método que genera toda la lista de categorias que contiene el árbol.
+      * 
+      * @param $alias
+	  * @return void
+      */
+
+    public function _generateTreeList($alias = null) {
+        if (($categories = Cache::read('GenerateTreeList' . $alias)) === false) {
+            $conditions = null;
+            if ($alias) {
+                $conditions['Category.alias'] = $alias;
+            }else{
+                $conditions[] = 'Category.alias IS NULL';
+            }
+            $categories = $this->generateTreeList($conditions);
+            Cache::write('GenerateTreeList' . $alias, $categories);
+        }
+        return $categories;
+    }
+
+}

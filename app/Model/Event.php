@@ -2,12 +2,16 @@
 App::uses('AppModel', 'Model');
 /**
  * Event Model
+ * 
+ * Modelo de verificacion de eventos
  *
  */
 class Event extends AppModel {
 
 /**
  * Display field
+ * 
+ * Campo a mostrar para cuando se llame eventos mediante relaciones.
  *
  * @var string
  */
@@ -15,6 +19,8 @@ class Event extends AppModel {
 
 /**
  * Validation rules
+ * 
+ * Reglas de validacion 
  *
  * @var array
  */

@@ -11,12 +11,12 @@ App::uses('AppModel', 'Model');
  * @property Download $Download
  * @property Link $Link
  */
-
- 
 class Administrator extends AppModel {
 
 /**
  * Validation rules
+ * 
+ * Contiene las reglas de validación para el modelo, campos obligatorios, tamaños máximos, mínimos y no blancos.
  *
  * @var array
  */
@@ -48,6 +48,7 @@ class Administrator extends AppModel {
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
+ * belongsTo associations
  * Relación con el modelo de User
  *
  * @var array
@@ -63,7 +64,7 @@ class Administrator extends AppModel {
 	);
 
 /**
- * Otras relaciones con el de modelo de Administrator
+ * Otras relaciones con el de modelo de Administrator, Download, Link
  *
  * @var array
  */

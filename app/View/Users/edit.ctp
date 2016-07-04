@@ -7,8 +7,8 @@
 	            <div class="page-header">
 	            	
 		            <h2><?php echo __('Editar perfil'); ?></h2>
-				<?php if($this->Session->read('username')==$this->request->data['User']['username']): ?>
-				<!--<?php debug($this->request->data)?>-->
+				<?php if($this->Session->read('Auth')['User']['username']==$this->request->data['User']['username']): ?>
+				<!--<?php //return debug($this->request->data['User']['username'])?>-->
 	            	</div>
 	            	
 	
@@ -57,7 +57,7 @@
 		            <div>&nbsp</div>
 		            <div>&nbsp</div>
              <?php endif; ?>
-             <?php if($this->Session->read('username')!=$this->request->data['User']['username']): ?>
+             <?php if($this->Session->read('Auth')['User']['username']!=$this->request->data['User']['username']): ?>
             	<div class="alert alert-warning alert-dismissable">
                  <p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            </div>

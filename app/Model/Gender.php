@@ -2,6 +2,8 @@
 App::uses('AppModel', 'Model');
 /**
  * Gender Model
+ * 
+ * Modelo que contiene las validaciones de los campos de Gender y sus relaciones con los otros modelos.
  *
  * @property Familie $Familie
  * @property Species $Species
@@ -101,6 +103,7 @@ class Gender extends AppModel {
 
 /**
  * belongsTo associations
+ * Relación con el modelo de Category
  *
  * @var array
  */
@@ -115,7 +118,7 @@ class Gender extends AppModel {
 	);
 
 /**
- * Relación del modelo de género con el modelo de categorías.
+ * Relación del modelo de género con los modelos Species y CountryGender.
  *
  * @var array
  */

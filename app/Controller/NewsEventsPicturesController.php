@@ -2,6 +2,9 @@
 App::uses('AppController', 'Controller');
 /**
  * NewsEventsPictures Controller
+ * 
+ * Este controllador contiene los metodos y componentes que se utilizaran en todos los controllers hijos.
+ * Es un controlador donde se manejan las fuciones que manenjan las fotográfias de las noticias y los eventos de la página web.
  *
  * @property NewsEventsPicture $NewsEventsPicture
  * @property PaginatorComponent $Paginator
@@ -12,6 +15,9 @@ class NewsEventsPicturesController extends AppController {
 
 /**
  * Components
+ * 
+ * Son los complementos que utilizaran los controllers que heredan de appController, en este caso el paginador, 
+ * mensajes tipo Flash y las variables de sesión.
  *
  * @var array
  */
@@ -47,8 +53,11 @@ class NewsEventsPicturesController extends AppController {
 
 /**
  * add method
- *
- * @return void
+ * 
+ * Esta función permite a un usuario de tipo Administrador agregarle una imágen a una noticia o evento.
+ * 
+ * @param void
+ * @return array
  */
 	public function add() {
 			// formulario de los datos de los eventos y noticias
@@ -76,6 +85,8 @@ class NewsEventsPicturesController extends AppController {
 	/**
  * viewImagesNews method
  *
+ * Esta función permite a los usuarios visualizar las imagenes que han sido agregadas a las noticias de la página web.
+ * 
  * @throws NotFoundException
  * @param string $id
  * @return void
@@ -88,8 +99,10 @@ class NewsEventsPicturesController extends AppController {
 		$this->set('pictures', $allPicturesOfThisNews);
 		$this->set('id',$id);
 	}
-		/**
+/**
  * viewImagesEvents method
+ * 
+ * Esta función permite a los usuarios visualizar las imagenes que han sido agregadas a los eventos de la página web.
  *
  * @throws NotFoundException
  * @param string $id
@@ -136,6 +149,8 @@ class NewsEventsPicturesController extends AppController {
 
 /**
  * delete method
+ * 
+ * Esta función permite a los usuarios administradores/colaboradores eliminar las imagenes que han sido agregadas a las noticias o eventos de la página web.
  *
  * @throws NotFoundException
  * @param string $id

@@ -3,6 +3,9 @@ App::uses('AppController', 'Controller');
 class DownloadsController extends AppController{
 /**
  * Downloads Controller
+ * 
+ * Este controllador contiene los metodos y componentes que se utilizaran en todos los controllers hijos.
+ * Es un controlador donde se manejan las fuciones de los documentos cargados en la página web.
  *
  * @property Download $Download
  * @property PaginatorComponent $Paginator
@@ -12,7 +15,14 @@ class DownloadsController extends AppController{
   public $helpers=array('Html','Form');
   public $components = array('Paginator', 'Flash', 'Session');
 
-
+/**
+	 * beforeFilter method
+	 * 
+	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa o sin los privilegios requeridos.
+	 * 
+	 * @param void
+	 * @return void
+	 */	
     public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
@@ -21,8 +31,12 @@ class DownloadsController extends AppController{
 
 /**
  * index method
+ * 
+ * Este método permite visualizar todos los documentos que contiene la página web desde la vista Documentos.
  *
+ * 
  * @return void
+ * @param void
  */
   /*function to display all files details*/
   public function index() {
@@ -31,6 +45,15 @@ class DownloadsController extends AppController{
      $this->set('Downloads', $docs);
         }
   
+  /**
+ * index_bio method
+ * 
+ * Este método permite visualizar todos los documentos que contiene la página web desde la vista Biomonitoreo.
+ *
+ * 
+ * @return void
+ * @param void
+ */
   public function index_bio() {
       //Carga los datos desde la base da datos 
       $this->loadModel('Link');
@@ -47,10 +70,12 @@ class DownloadsController extends AppController{
         }
   
   
-  
  /**
  * add method
- *Funcion que agregar un nuevo archivo a las base de datos
+ * 
+ * Función que agregar un nuevo archivo a las base de datos para que sea descargable desde la aplicación web desde la vista Documentos.
+ * 
+ * @param void
  * @return void
  */
      public function add() {
@@ -101,7 +126,10 @@ class DownloadsController extends AppController{
      
  /**
  * addbio method
+ * 
+ * Función que agregar un nuevo archivo a las base de datos para que sea descargable desde la aplicación web desde la vista Biomonitoreo.
  *
+ * @param void
  * @return void
  */    
       public function add_bio() {
@@ -162,8 +190,10 @@ class DownloadsController extends AppController{
  
     /**
     * sanitize method
+    * 
     *
-    * Restringe el acceso al documento
+    * Restringe el acceso al documento y estandariza los caracteres especiales del documento. 
+    * 
     * @throws NotFoundException
     * @param string $string
     * @param string $force_lowercase
@@ -186,8 +216,9 @@ class DownloadsController extends AppController{
     /**
      * view method
      *
+     * Función que permite ver todos los documentos disponibles para descargar en la aplicación web desde la vista Documentos
+     * 
      * @throws NotFoundException
-     * Funcion que descarga los archivos ya creados en la base de datos
      * @param string $id
      * @param string $download
      * @return void
@@ -215,8 +246,10 @@ class DownloadsController extends AppController{
     
     
         
-    /**
+/**
  * edit method
+ * 
+ * Función que permite editar documentos disponibles para descargar en la aplicación web desde la vista Documentos.
  *
  * @throws NotFoundException
  * @param string $id
@@ -256,8 +289,10 @@ public function edit($id = null) {
 		}
 	}
 	
-	    /**
+/**
  * edit_bio method
+ * 
+ * Función que permite ver todos los documentos disponibles para descargar en la aplicación web desde la vista Biomonitoreo.
  *
  * @throws NotFoundException
  * @param string $id
@@ -299,12 +334,13 @@ public function edit($id = null) {
 	
  /**
  * edit_doc method
+ * 
+ * Función que permite ver todos los documentos disponibles para descargar en la aplicación web desde la vista Documentos
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	
 		public function edit_doc($id = null) {
 		      // si no existe la descarga retorna error
 		if (!$this->Download->exists($id)) {
@@ -344,6 +380,8 @@ public function edit($id = null) {
 //}
 /**
  * delete method
+ * 
+ * Función que permite eliminar los documentos de la aplicación web desde la vista Documentos.
  *
  * @throws NotFoundException
  * @param string $id

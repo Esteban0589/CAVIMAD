@@ -2,36 +2,44 @@
 App::uses('AppController', 'Controller');
 /**
  * CountryGenders Controller
+ * 
+ * Metétodos del controlador CountryGender que se encarga del manejo de los países relacionados con los géneros
  *
  * @property CountryGender $CountryGender
  * @property PaginatorComponent $Paginator
  */
 class CountryGendersController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * Contine los componentes del controlador, en este caso el paginador.
+	 * 
+	 * @var array
+	 */
 	public $components = array('Paginator');
 
-/**
- * index method
- *	Indexa todos los países pertenecientes a los géneros.
- * @return void
- */
+	/**
+	 * index method
+	 * Indexa todos los países pertenecientes a los géneros.
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	public function index() {
 		$this->CountryGender->recursive = 0;
 		$this->set('countryGenders', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *	Muestra una vista por cada tupla en caso de ser necesaria.
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 * 
+	 *	Muestra una vista por cada tupla en caso de ser necesaria.
+	 * 
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
 		// si el pais no existe retorna error
 		if (!$this->CountryGender->exists($id)) {
@@ -41,11 +49,14 @@ class CountryGendersController extends AppController {
 		$this->set('countryGender', $this->CountryGender->find('first', $options));
 	}
 
-/**
- * add method
- *	Permite añadir una nueva tupla a la tabla.
- * @return void
- */
+	/**
+	 * add method
+	 * 
+	 *	Permite añadir una nueva tupla a la tabla.
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->CountryGender->create();
@@ -60,13 +71,15 @@ class CountryGendersController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *	Permite editar alguna tupla de la tabla CountryGender.
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * edit method
+	 * 
+	 *	Permite editar alguna tupla de la tabla CountryGender.
+	 * 
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit($id = null) {
 		// si el pais no existe retorna error
 		if (!$this->CountryGender->exists($id)) {
@@ -87,13 +100,15 @@ class CountryGendersController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *	Elimina una tupla de la tabla correspondiente.
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 * 
+	 *	Elimina una tupla de la tabla correspondiente.
+	 * 
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		$this->CountryGender->id = $id;
 		// si el pais no existe retorna error

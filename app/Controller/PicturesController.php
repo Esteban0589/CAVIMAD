@@ -2,6 +2,8 @@
 App::uses('AppController', 'Controller');
 /**
  * Pictures Controller
+ * 
+ * Este controlador tiene los métodos para el manejo de las fotos de los taxones
  *
  * @property Picture $Picture
  * @property PaginatorComponent $Paginator
@@ -10,26 +12,38 @@ App::uses('AppController', 'Controller');
  */
 class PicturesController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 * 
+	 * Contine los componentes del controlador, en este caso el paginador, flash para mensajes y el de sesión para el manejo de usuarios.
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator', 'Flash', 'Session');
 
+	/**
+	 * beforeFilter method
+	 * 
+	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa o sin los privilegios requeridos.
+	 * 
+	 *
+	 * @param void
+	 * @return void
+	 */
 	public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
         $this->Auth->allow('logout', 'login', 'view');
     }
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 * 
+	 * Método para visualizar las fotos asociadas a un taxón específico
+	 *
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
 		$this->loadModel('Gender');
 		// $this->loadModel('Family');
@@ -52,23 +66,26 @@ class PicturesController extends AppController {
 		
 	}
 
-/**
- * debugController method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * debugController method
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function debugController($id) {
 			$this->request->data = $id;
 	}
 	
 	
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 * 
+	 * Método para agregar una foto a un taxón del catálogo
+	 *
+	 * @param void
+	 * @return void
+	 */
 	public function add() {
 		// Controla el acceso de los usuarios habilitados o deshabilitados.
 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
@@ -175,13 +192,15 @@ class PicturesController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 * 
+	 * Método para eliminar alguna de las fotos asociadas a un taxón
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		// Controla el acceso de los usuarios habilitados o deshabilitados.
 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.

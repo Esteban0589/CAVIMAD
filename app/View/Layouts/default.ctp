@@ -75,7 +75,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad3-esteban0589.c9users.io/"/>-->
     <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
-     <!--<base href="http://cavimad-julioczar0.c9users.io/"/>-->
+     <base href="http://cavimad-julioczar0.c9users.io/"/>
      <!--<base href="http://ingenieria2-kevinfl.c9users.io/"/>-->
 
          <!--<base href="http://cavimad.biologia.ucr.ac.cr/"/>-->
@@ -181,7 +181,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <div = "Accesa a la búsqueda avanzada."><a href="categories/advanced_search2" title="">Búsqueda avanzada</a></div>
                         </li>
                         <li>
-                            <?php if(!empty($_SESSION['role'])){    ?>  
+                            <?php if(!empty($this->Session->read('Auth')['User']['role'])){    ?>  
                                 <a class="glyphicon glyphicon-cog" title="" style="font-size:1em;"></a>
                                 <ul class="sub-menu">
                         

@@ -55,7 +55,7 @@ class DownloadsController extends AppController{
  */
      public function add() {
       //Carga el modelo de Category
-          if($this->Session->read('Auth')['User']['role'] == 'Administrador') {
+          if($this->Session->read('Auth')['User']['role'] == 'Administrador' || $this->Session->read('Auth')['User']['role'] == 'Colaborador') {
             $this->loadModel('User');
           	$this->loadModel('Administrator');
           	$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$this->Session->read('Auth')['User']['id'])));
@@ -106,7 +106,7 @@ class DownloadsController extends AppController{
  */    
       public function add_bio() {
       //Carga el modelo de Category
-          if($this->Session->read('Auth')['User']['role'] == 'Administrador') {
+          if($this->Session->read('Auth')['User']['role'] == 'Administrador' || $this->Session->read('Auth')['User']['role'] == 'Colaborador') {
             $this->loadModel('User');
           	$this->loadModel('Administrator');
           	$adm_id=$this->Administrator->find('first',array('conditions' => array('Administrator.user_id'=>$this->Session->read('Auth')['User']['id'])));

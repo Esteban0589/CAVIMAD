@@ -90,9 +90,10 @@ class PicturesController extends AppController {
 		// Controla el acceso de los usuarios habilitados o deshabilitados.
 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
 		$this->loadModel('User');
-		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+		if($this->Session->read('Auth')['User']['activated'] !=1){
 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
+
 		$this->loadModel('Gender');
 		if (($this->request->is('post')) && ($this->request->data['Picture']['image']['name'] != '')) { 
 			$this->loadModel('Category');

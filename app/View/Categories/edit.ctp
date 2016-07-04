@@ -2,7 +2,7 @@
     
 	<div class="container"><!-- container -->
     
-    	<?php if($this->Session->read('Auth')['User']['role']=='Administrador'): ?>
+    	<?php if($this->Session->read('Auth')['User']['role']!='Usuario'): ?>
     	
         <div class="row"><!-- row -->
             
@@ -21,11 +21,11 @@
 					<fieldset class="col-lg-4 col-md-4" >
 								<h2><?php echo __('Editar taxón'); ?>
 									<?php 
-									if ($doc['Download']['id'] =! null){
+									if ($doc['Download']['id'] != null){
 										echo $this->Html->link(__('Editar documento'), array('controller'=>'downloads','action' => 'edit_doc', $doc['Download']['id'], 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
 									}
 									else{
-										echo $this->Html->link(__('Editar documento'), array('controller'=>'downloads','action' => 'add', 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
+										echo $this->Html->link(__('Agregar documento'), array('controller'=>'downloads','action' => 'add', 'alias'=>$alias), array('class' => 'glyphicon glyphicon-pencil','title' =>'Editar el taxón', 'style'=>'color: #3891D4;    font-size:25px;     padding: 5px;')); 
 									}
 									?>
 								</h2>
@@ -135,7 +135,7 @@
 		</div>
 		
 		<?php endif; ?>
-		<?php if($this->Session->read('Auth')['User']['role']!='Administrador'): ?>
+		<?php if($this->Session->read('Auth')['User']['role']=='Usuario'): ?>
             	<div class="alert alert-warning alert-dismissable">
                 	<p><strong>Upps!</strong> No puedes acceder a esta página.</p>
            		</div>

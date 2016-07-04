@@ -264,7 +264,6 @@ class UsersController extends AppController {
 			debug($this->request->data);
 			//Se guardan los datos correspondientes al usuario
 			if ($this->User->saveAll($this->request->data['User'])) {
-				debug("llegamos");
 				//Se chequea si el usuario es un administrador o un colaborador
 				if($this->Session->read('Auth')['User']['role'] == 'Administrador' || $this->Session->read('Auth')['User']['role'] == 'Colaborador') {
 					//En este caso se guardan también los datos correspondientes al modelo Administrator

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://cavimad.biologia.ucr.ac.cr/" />
+<title>Eliminar evento</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Eliminar evento</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Iniciar sesión</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=UserUsername</td>
+	<td>Julio123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=UserPassword</td>
+	<td>Julio123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Panel de control</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Administrar eventos</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a[@onclick='if (confirm(&quot;Atenci\u00f3n se va a el evento # 9&quot;)) { document.post_5779dfbdeb5ee185107756.submit(); } event.returnValue = false; return false;']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Atención se va a el evento # 9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Cerrar sesión</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

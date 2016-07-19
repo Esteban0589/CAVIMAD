@@ -41,7 +41,7 @@ class DownloadsController extends AppController{
   /*function to display all files details*/
   public function index() {
       //Carga los datos desde la base da datos 
-     $docs=$this->Download->find('all', array('conditions'=>array('Download.category_id'=>'0')));
+     $docs=$this->Download->find('all', array('conditions'=>array('Download.classification'=>!'Biomonitoreo')));
      $this->set('Downloads', $docs);
         }
   
@@ -57,9 +57,8 @@ class DownloadsController extends AppController{
   public function index_bio() {
       //Carga los datos desde la base da datos 
       $this->loadModel('Link');
-      $bios='Biomonitoreo';
-      $bio=$this->Download->find('all', array('conditions'=>array('Download.classification'=>$bios)));
-      $link=$this->Link->find('all', array('conditions'=>array('Link.relatedpage'=>$bios)));
+      $bio=$this->Download->find('all', array('conditions'=>array('Download.classification'=>'Biomonitoreo')));
+      $link=$this->Link->find('all', array('conditions'=>array('Link.relatedpage'=>'Biomonitoreo')));
       $links=[];
       for($i=0; $i<count($link); $i++){
           array_push($links, $link[$i]['Link']);

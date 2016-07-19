@@ -31,8 +31,8 @@ class LinksController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$this->Link->recursive = 0;
-		$this->set('links', $this->Paginator->paginate());
+		$link=$this->Link->find('all', array('conditions'=>array('Link.relatedpage'=>!'Biomonitoreo')));
+    	$this->set('Links', $link);
 	}
 
 

@@ -41,7 +41,7 @@
 					            </tr>
 					        </thead>
 					        <tbody>
-					        	<?php foreach ($links as $link): ?>
+					        	<?php foreach ($Links as $link): ?>
 									<tr>
 										<td><?php echo h($link['Link']['title']); ?>&nbsp;</td>
 										<td><a href="<?php echo ($link['Link']['url']); ?> "target="_blank"><?php echo ($link['Link']['url']); ?></a>&nbsp;</td>

@@ -2,6 +2,9 @@
 App::uses('AppController', 'Controller');
 /**
  * Links Controller
+ * 
+ * Este conrtolador tiene los métodos para manejar los links de referencias a otras páginas.
+ * Maneja tanto la sección de referencias, como la sección de biomonitoreo.
  *
  * @property Link $Link
  * @property PaginatorComponent $Paginator
@@ -10,40 +13,52 @@ App::uses('AppController', 'Controller');
  */
 class LinksController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 * 
+	 * Contine los componentes del controlador, en este caso el paginador, flash para mensajes y el de sesión para el manejo de usuarios.
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator', 'Flash', 'Session');
 
-/**
- * index method
- *
- * @return void
- */
+	/**
+	 * index method
+	 * 
+	 * Método que devuelve todas los links de referencia que han sido agregados
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	public function index() {
 		$this->Link->recursive = 0;
 		$this->set('links', $this->Paginator->paginate());
 	}
 
 
-/**
- * beforeFilter method
- *
- * @return void
- */
+	/**
+	 * beforeFilter method
+	 * 
+	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa o sin los privilegios requeridos.
+	 * 
+	 *
+	 * @param void
+	 * @return void
+	 */
     public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
         $this->Auth->allow('index','logout', 'login');
     }
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 * 
+	 * Método para agregar un nuevo link de referencia a la página
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	public function add() {
 		if($this->Session->read('Auth')['User']['role'] != 'Administrador' || $this->Session->read('Auth')['User']['role'] != 'Colaborador') {
 			$this->Flash->error(__('No puede acceder a esta sección.'));
@@ -77,11 +92,15 @@ class LinksController extends AppController {
 		}
 	//	debug($user);
 	}
-/**
- * add_bio method
- *
- * @return void
- */
+	
+	/**
+	 * add_bio method
+	 * 
+	 * Método para agregar un nuevo link de referencia en la sección de biomonitoreo
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	public function add_bio() {
 		if($this->Session->read('Auth')['User']['role'] != 'Administrador' || $this->Session->read('Auth')['User']['role'] != 'Colaborador') {
 			$this->Flash->error(__('No puede acceder a esta sección.'));
@@ -111,13 +130,15 @@ class LinksController extends AppController {
 	//	debug($user);
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * edit method
+	 * 
+	 * Método para editar un link de referencia
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit($id = null) {
 		//si el enlace no existe retorna error
 		if (!$this->Link->exists($id)) {
@@ -145,12 +166,14 @@ class LinksController extends AppController {
 	}
 	
 	/**
- * edit_bio method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	 * edit_bio method
+	 * 
+	 * Método para editar un link de referencia que esté en la sección de biomonitoreo
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit_bio($id = null) {
 		//si el enlace no existe retorna error
 		if (!$this->Link->exists($id)) {
@@ -171,15 +194,15 @@ class LinksController extends AppController {
 		}
 	}
 	
-	
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 * 
+	 * Método para eliminar un link de referencia
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		$this->Link->id = $id;
 		//si el enlace no existe retorna error

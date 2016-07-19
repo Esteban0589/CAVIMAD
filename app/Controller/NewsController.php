@@ -3,20 +3,28 @@ App::uses('AppController', 'Controller');
 /**
  * News Controller
  *
- * @property News $News
- * @property PaginatorComponent $Paginator
- * @property FlashComponent $Flash
- * @property SessionComponent $Session
+ * Este controllador contiene los metodos y componentes que se utilizaran para crear, editar,ver y eliminar noticias.
+ *
  */
 class NewsController extends AppController {
-
 /**
- * Components
+ * Componentes
  *
+ * Son los complementos que utilizaran los controllers que heredan de appController
+ * 
  * @var array
  */
 	public $components = array('Paginator', 'Flash', 'Session');
 	
+	
+	/**
+	 * beforeFilter method
+	 * 
+	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa o sin los privilegios requeridos.
+	 * 
+	 * @param void
+	 * @return void
+	 */	
 	public function beforeFilter() {
         parent::beforeFilter();
         //Métodos a los cuales se permite llamar
@@ -26,6 +34,10 @@ class NewsController extends AppController {
 /**
  * index method
  *
+ * Permite ingresar a la tabla que contiene a todos las noticias de la pagina web
+ * 
+ * @throws NotFoundException
+ * @param void
  * @return void
  */
 	public function index() {
@@ -37,6 +49,8 @@ class NewsController extends AppController {
 
 /**
  * view method
+ * 
+ * Permite ver la lista completa de las noticias de la página web.
  *
  * @throws NotFoundException
  * @param string $id
@@ -79,6 +93,9 @@ class NewsController extends AppController {
 /**
  * add method
  *
+ * Permite agregar una nueva noticia a la página web.
+ * 
+ * @param void
  * @return void
  */
 	public function add() {
@@ -114,6 +131,8 @@ class NewsController extends AppController {
 
 /**
  * edit method
+ * 
+ * Permite editar la información de una noticia previamente agregada.
  *
  * @throws NotFoundException
  * @param string $id
@@ -169,6 +188,8 @@ class NewsController extends AppController {
 /**
  * delete method
  *
+ * Elimina una noticia de la página web especificada por $id.
+ * 
  * @throws NotFoundException
  * @param string $id
  * @return void

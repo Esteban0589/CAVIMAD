@@ -6,7 +6,7 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
  * Users Controller
  * 
- * Esta clase contiene los métodos para el manejo de de usuarios.
+ * Esta clase contiene los métodos para la crear, editar, ver y eliminar usuarios.
  *
  * @property User $User
  * @property PaginatorComponent $Paginator
@@ -15,6 +15,8 @@ class UsersController extends AppController {
 
 	/**
 	 * Components
+	 * 
+	 * Contine los componentes del controlador, en este caso el paginador, flash para mensajes y el de sesión para el manejo de usuarios.
 	 *
 	 * @var array
 	 */
@@ -88,6 +90,15 @@ class UsersController extends AppController {
 		}
 	}
 	
+	
+	/**
+	 * controlPanel
+	 * 
+	 * Obtiene toda la informacion requerida para que el administrador pueda administrar la pagina web
+	 *
+	 * @throws NotFoundException
+	 * @return void
+	 */
 	public function controlpanel() {
 		if ( (!empty($this->Session->read('Auth')['User']['role'])) && ($this->Session->read('Auth')['User']['role'] != 'Administrador' ) ) {
 			//Si el usuario no es un administrador no se le permite el acceso
@@ -245,7 +256,7 @@ class UsersController extends AppController {
 		}
 		// Controla el acceso de los usuarios habilitados o deshabilitados.
 		// En caso de usuarios deshabilitados, los deslogea y los redirige a otra pagina.
-		if($this->User->findById($_SESSION['Auth']['User']['id'])['User']['activated']!=1){
+		if($this->User->findById($this->Session->read('Auth')['User']['id'])['User']['activated']!=1){
 			return $this->redirect(array('controller' => 'users','action' => 'userdesha'));
 		}
 		
@@ -253,7 +264,6 @@ class UsersController extends AppController {
 			debug($this->request->data);
 			//Se guardan los datos correspondientes al usuario
 			if ($this->User->saveAll($this->request->data['User'])) {
-				debug($this->request->data);
 				//Se chequea si el usuario es un administrador o un colaborador
 				if($this->Session->read('Auth')['User']['role'] == 'Administrador' || $this->Session->read('Auth')['User']['role'] == 'Colaborador') {
 					//En este caso se guardan también los datos correspondientes al modelo Administrator

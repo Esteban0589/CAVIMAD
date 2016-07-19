@@ -1,14 +1,17 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * CountryGender Model
+ * Administrator Model
+ * 
+ * Modelo que contiene las validaciones de los campos de CountryGender
  *
- * @property Gender $Gender
  */
 class CountryGender extends AppModel {
 
 /**
  * Use table
+ * 
+ * Este Modelo queriere de la tabla country_gender.
  *
  * @var mixed False or table name
  */
@@ -19,6 +22,8 @@ class CountryGender extends AppModel {
 
 /**
  * belongsTo associations
+ * 
+ * Declaracion de relacion de pertenencia a el modelo de generos
  *
  * @var array
  */

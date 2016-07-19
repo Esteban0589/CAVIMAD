@@ -2,24 +2,28 @@
 App::uses('AppModel', 'Model');
 /**
  * HomePicture Model
+ * 
+ * Modelo que contiene las validaciones de los campos de HomePicture y sus relaciones con los otros modelos.
  *
  */
 class HomePicture extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+    /*
+     * Display field
+     * 
+     * Campo a mostrar para cuando se llame a HomePicture mediante relaciones.
+     *
+     * @var string
+     */
 	public $displayField = 'title';
 	
-/*
- * actAs 
- *
- * Modulo necesario paraagregar fotos
- *
- * @var string
- */	
+    /*
+     * actAs 
+     *
+     * Modulo necesario paraagregar fotos
+     *
+     * @var string
+     */	
  	public $actsAs = array(
         'Upload.Upload' => array(
             'image' => array(
@@ -38,11 +42,13 @@ class HomePicture extends AppModel {
         )
     );
     
-/**
- * Validation rules
- *
- * @var array
- */
+    /**
+     * Validation rules
+     * 
+     * Contiene las validaciones de los campos para el modelo HomePicture
+     *
+     * @var array
+     */
 	public $validate = array(
 	    // valida que el titulo no sea vacio
 		'title' => array(

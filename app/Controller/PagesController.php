@@ -19,14 +19,11 @@
  */
 
 App::uses('AppController', 'Controller');
-
 /**
- * Static content controller
+ * Pages Controller
  *
- * Override this controller by placing a copy in controllers directory of an application
+ * Este controllador contiene los metodos y componentes que se utilizaran para manipular la pagina principal
  *
- * @package       app.Controller
- * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
 class PagesController extends AppController {
 	public function beforeFilter() {
@@ -35,7 +32,7 @@ class PagesController extends AppController {
     }
 
 /**
- * This controller does not use a model
+ * Este controlador no requiere de ningun moderlo
  *
  * @var array
  */
@@ -43,6 +40,8 @@ class PagesController extends AppController {
 
 /**
  * Displays a view
+ * 
+ * Metodo utilizado para mostrar a el home de la pagina web
  *
  * @return void
  * @throws NotFoundException When the view file could not be found

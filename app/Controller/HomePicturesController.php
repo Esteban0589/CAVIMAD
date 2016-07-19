@@ -2,6 +2,8 @@
 App::uses('AppController', 'Controller');
 /**
  * HomePictures Controller
+ * 
+ * Este controlador se encarga de manejar los métodos correspondientes al control de las fotos del home de la página
  *
  * @property HomePicture $HomePicture
  * @property PaginatorComponent $Paginator
@@ -9,34 +11,37 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class HomePicturesController extends AppController {
-	
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 * 
+	 * Contine los componentes del controlador, en este caso el paginador, flash para mensajes y el de sesión para el manejo de usuarios.
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator', 'Flash', 'Session');
-		
 
-	
-	
-/**
- * index method
- *
- * @return void
- */
+	/**
+	 * index method
+	 *
+	 * Método que carga las imágenes agregadas en el index
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	public function index() {
 		$this->HomePicture->recursive = 0;
 		$this->set('homePictures', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 * 
+	 * Método para visualizar una de las foto
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
 		// si la imagen no existe retorna error de imagen invalida
 		if (!$this->HomePicture->exists($id)) {
@@ -46,11 +51,14 @@ class HomePicturesController extends AppController {
 		$this->set('homePicture', $this->HomePicture->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 *
+	 * Método para agregar una foto al conjunto de imágenes
+	 * 
+	 * @param void
+	 * @return void
+	 */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->HomePicture->create();
@@ -71,13 +79,15 @@ class HomePicturesController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * edit method
+	 * 
+	 * Método para editar una de las fotos ya agregadas
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit($id = null) {
 		// si la imagen no existe retorna error de imagen invalida
 		if (!$this->HomePicture->exists($id)) {
@@ -101,13 +111,15 @@ class HomePicturesController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 * 
+	 * Método para eliminar alguna de las fotos del home
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		// si la imagen no existe retorna error de imagen invalida
 		$this->HomePicture->id = $id;

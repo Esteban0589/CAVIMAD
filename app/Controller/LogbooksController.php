@@ -2,6 +2,9 @@
 App::uses('AppController', 'Controller');
 /**
  * Logbooks Controller
+ * 
+ * Este controllador contiene los metodos y componentes que se utilizaran en todos los controllers hijos.
+ * Es un controlador donde se manejan las fuciones de la bitácora de la aplicación web.
  *
  * @property Logbook $Logbook
  * @property PaginatorComponent $Paginator
@@ -14,12 +17,17 @@ class LogbooksController extends AppController {
 /**
  * Helpers
  *
+ * Llama a la función auxiliar de javascript.
+ * 
  * @var array
  */
 	public $helpers = array('Js');
 
 /**
  * Components
+ * 
+ * Son los complementos que utilizaran los controllers que heredan de appController, en este caso el paginador, 
+ * mensajes tipo Flash y las variables de sesión.
  *
  * @var array
  */
@@ -28,6 +36,9 @@ class LogbooksController extends AppController {
 /**
  * index method
  *
+ * Función que permite a un administrador accesar a la vista de bitácora y poder consultar su contenido. 
+ * 
+ * @param void
  * @return void
  */
 	public function index() {

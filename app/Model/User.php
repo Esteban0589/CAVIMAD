@@ -11,11 +11,13 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
  */
 class User extends AppModel {
 
-	/**
-	 * Display field
-	 *
-	 * @var string
-	 */
+/**
+ * Display field
+ * 
+ * Campo a mostrar para cuando se llame eventos mediante relaciones.
+ *
+ * @var string
+ */
 	public $displayField = 'name';
 
 	/**
@@ -340,11 +342,11 @@ class User extends AppModel {
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * Relación con el modelo de Administrator.
- *
- * @var array
- */
+	/**
+	 * Relación con los modelos de Administrator y Logbook.
+	 *
+	 * @var array
+	 */
 	public $hasMany = array(
 		'Administrator' => array(
 			'className' => 'Administrator',
@@ -375,11 +377,11 @@ class User extends AppModel {
 	);
 
 
-/**
- * Relación con el modelo Picture
- *
- * @var array
- */
+	/**
+	 * Relación con el modelo Picture
+	 *
+	 * @var array
+	 */
 	public $hasAndBelongsToMany = array(
 		'Picture' => array(
 			'className' => 'Picture',

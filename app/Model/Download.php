@@ -13,7 +13,8 @@ class Download extends AppModel{
    /**
 	 * validate
 	 * 
-	 * Manejo de los archivos
+	 * Manejo de los archivos para solo aceptar documentos de extensión pdf.
+	 * 
 	 * @var array
 	 */
     

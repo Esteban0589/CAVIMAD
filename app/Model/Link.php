@@ -2,6 +2,8 @@
 App::uses('AppModel', 'Model');
 /**
  * Link Model
+ * 
+ * Modelo de valicion de datos para los enlaces de  la pagina web
  *
  * @property Administrator $Administrator
  */
@@ -9,6 +11,8 @@ class Link extends AppModel {
 
 /**
  * Display field
+ * 
+ * Campo a mostrar para cuando se llame eventos mediante relaciones.
  *
  * @var string
  */
@@ -16,6 +20,8 @@ class Link extends AppModel {
 
 /**
  * Validation rules
+ * 
+ * Reglas de validacion para los enlaces
  *
  * @var array
  */
@@ -45,7 +51,7 @@ class Link extends AppModel {
 	// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
+ * Relación con el modelo de administrador
  *
  * @var array
  */

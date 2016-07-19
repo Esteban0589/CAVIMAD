@@ -1,25 +1,26 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Comments Controller
- *
- * @property Comment $Comment
- * @property PaginatorComponent $Paginator
- * @property FlashComponent $Flash
- * @property SessionComponent $Session
+ * Controlador encargado de agregar, editar, mostrar y eliminar comentarios
+ * 
+ * @param void
+ * @return void
  */
 class CommentsController extends AppController {
 
 /**
- * Components
+ * Componentes necesarios para los comentarios
  *
  * @var array
  */
 	public $components = array('Paginator', 'Flash', 'Session');
 
 /**
- * index method
+ * index 
  *
+ * Permite ver todos los comentarios
+ * 
+ * @param void
  * @return void
  */
 	public function index() {
@@ -29,6 +30,8 @@ class CommentsController extends AppController {
 
 /**
  * view method
+ * 
+ * Metodo que permite ver un comentario en específico
  *
  * @throws NotFoundException
  * @param string $id
@@ -45,6 +48,8 @@ class CommentsController extends AppController {
 
 /**
  * add method
+ * 
+ * Metodo para agregar comentarios
  *
  * @return void
  */
@@ -67,6 +72,8 @@ class CommentsController extends AppController {
 
 /**
  * edit method
+ * 
+ * Metodo para editar un comentario especicado por $id.
  *
  * @throws NotFoundException
  * @param string $id
@@ -97,6 +104,8 @@ class CommentsController extends AppController {
 
 /**
  * delete method
+ * 
+ * Metodo para borrar un comentario en especifico.
  *
  * @throws NotFoundException
  * @param string $id

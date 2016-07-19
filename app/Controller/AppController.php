@@ -26,13 +26,18 @@ App::uses('CakeEmail', 'Network/Email');
 /**
  * Application Controller
  *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
+ * Este controllador contiene los metodos y componentes que se utilizaran en todos los controllers hijos
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+/**
+ * Components
+ *
+ * Son los complementos que utilizaran los controllers que heredan de appController
+ * 
+ * @param void
+ * @return void
+ */
     public $components = array(
 		'DebugKit.Toolbar',
 		'Session',
@@ -60,10 +65,13 @@ class AppController extends Controller {
 	); 
 
 /**
- * beforeFilther  method
- *
- *@return void
- */
+	 * beforeFilter method
+	 * 
+	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa o sin los privilegios requeridos.
+	 * 
+	 * @param void
+	 * @return void
+	 */	
     public function beforeFilter(){
     	$this->Auth->allow('login');
     	$this->set('current_user', $this->Auth->user());

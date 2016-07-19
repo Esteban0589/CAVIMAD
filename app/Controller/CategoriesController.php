@@ -3,6 +3,9 @@ App::uses('TreeMenuAppController', 'TreeMenu.Controller');
 
 /**
  * Categories Controller
+ * 
+ * Controlador que contiene los métodos de Categories, que se encargan del manejo de los taxones que tiene el cátalogo
+ * Además se manejan el agregado y borrado de los comentarios asociados a los taxones
  *
  * @property Category $Category
  */
@@ -18,7 +21,7 @@ class CategoriesController extends TreeMenuAppController {
 	 * beforeFilter method
 	 * 
 	 * Contiene los métodos a los cuales se permite llamar sin tener una sesión de usuario activa.
-	 * @param string $alias
+	 * @param void
 	 * @return void
 	 */	
     
@@ -52,7 +55,7 @@ class CategoriesController extends TreeMenuAppController {
      *  
      * método encargado de traer todas las categorías en el menú
      * 
-     * @param string $alias
+     * @param void
      * @return $categories
      */
 
@@ -80,7 +83,8 @@ class CategoriesController extends TreeMenuAppController {
      * admin_index method
      * 
      * Metodo encargado de la generación del index de categorías
-     *
+     * 
+     * @param void
      * @return void
      */
     public function index() {
@@ -109,6 +113,7 @@ class CategoriesController extends TreeMenuAppController {
      *
      * método para agregar una nueva categoría
      * 
+     * @param void
      * @return void
      */
      public function add() {
@@ -868,6 +873,7 @@ class CategoriesController extends TreeMenuAppController {
             $this->redirect($alias);
         }
     }
+    
     /**
      *  Active/Inactive
      *
@@ -877,7 +883,6 @@ class CategoriesController extends TreeMenuAppController {
      * @param int $status
      * 
      */
-     
     public function admin_toggle($id, $status, $field = 'published') {
         $this->autoRender = false;
 
@@ -900,8 +905,10 @@ class CategoriesController extends TreeMenuAppController {
     }
 
     /**
-     * Tree EXTJS
-     *
+     * Llama a la función de javascript para el Tree EXTJS
+     * 
+     * @param void
+     * @return void
      */
     public function sort() {
         $this->set('title', __('Category'));
@@ -912,8 +919,9 @@ class CategoriesController extends TreeMenuAppController {
      /**
      *  Buscar
      *
-     * método encargado de la busque (query)
+     * método encargado de la busqueda simple sobre los taxones del catálogo
      * 
+     * @param void
      * @return void
      * 
      */
@@ -1300,9 +1308,9 @@ class CategoriesController extends TreeMenuAppController {
     /**
       * advanced_search2 method
       *
-      * Método que carga la busqueda avanzada.
+      * Método que se encarga de manejar la busqueda avanzada.
       * 
-      *
+      * @param void
       * @return void
       */
     public function advanced_search2(){
@@ -1328,7 +1336,7 @@ class CategoriesController extends TreeMenuAppController {
       *
       * Método utilizado para refrescar las familias según el orden seleccionado. La actualización se realiza via javascript.
       * 
-      *
+      * @param void
       * @return void
       */
 	public function getDataFamily(){
@@ -1355,7 +1363,7 @@ class CategoriesController extends TreeMenuAppController {
       *
       * Método utilizado para refrescar los géneros según el orden seleccionado. La actualización se realiza via javascript.
       * 
-      *
+      * @param void
       * @return void
       */
 	public function getDataGenre(){
@@ -1381,7 +1389,7 @@ class CategoriesController extends TreeMenuAppController {
       *
       * Busca un colaborador según el nombre, apellido o usuario.
       * 
-      *
+      * @param $id : id del colaborador que se va a buscar
       * @return void
       */
 	public function search_colaborator($id=null) {
@@ -1425,57 +1433,12 @@ class CategoriesController extends TreeMenuAppController {
 	}
 	
 	/**
-      * search_document method
-      *
-      * Busca un documento.
-      * 
-      * @param int $id
-      * @return void
-      */
-    public function search_document($id=null) {
-        //Obtiene los datos de la búsqueda.
-		$doc=($this->request->pass['0']);//tipo de documento
-		$search=$this->request->pass[1];//nombre del documento
-		//Sí no es nulo.
-		if(($data)){
-		    //Carga el modelo de usuarios.
-			$this->loadModel('User');
-			//Separa la string que se manda por espacios y se guarda en un array, elimina espacios sobrantes.
-			$condition=explode(' ', trim($data));					
-			$condition=array_diff($condition,array(''));
-			if($condition){
-			    //Crea un array con las condiciones para buscar por documento.
-				foreach($condition as $tconditions){
-					$conditions[] = array(
-						"OR" => array(
-						    array('User.name LIKE '=>'%'.$tconditions.'%'),
-						    array('User.lastname1 LIKE'=>'%'.$tconditions.'%'),
-						    array('User.username LIKE'=>'%'.$tconditions.'%')
-						)
-					);
-				}
-				//Busca en la base según el array anteriormente creado.
-				$result=$this->User->find('all', array('recursive'=>0, 'conditions'=>$conditions));
-				if(count($result)>0){
-					$this->set('resultados',$result);
-				}
-				else{
-					return $this->Flash->error(__('No hay resultados para este criterio de búsqueda.'));
-				}
-			}
-		}
-		else{
-			return $this->Flash->error(__('Criterio de búsqueda no válido.'));
-		}
-	}
-	
-	
-	/**
       * redirect_to_methods method
       *
       * Redirecciona datos especificos de un solo form segun el tipo de búsqueda
       * que quiera, sea por colaboradores, docomentos o el nombre de algún taxon.
       * 
+      * @param void
       * @return void
       */
 	public function redirect_to_methods() {
@@ -1515,7 +1478,7 @@ class CategoriesController extends TreeMenuAppController {
       * Busca un dato en el árbol de taxones según el nombre, orden, familia, género 
       * o familia.
       * 
-      * 
+      * @param void
       * @return void
       */
 	public function search_data(){
@@ -1756,11 +1719,9 @@ class CategoriesController extends TreeMenuAppController {
       *
       * Busca si el usuario esta registrado y crea un comentario en el taxon asociado, para luego gurdarlo
       * 
-      * @param int $id
+      * @param $id
       * @return void
       */
-	
-	
 	public function addcomment($id = null) {
         $this->layout = 'ajax';
 	    return debug($this->request->data);
@@ -1798,15 +1759,14 @@ class CategoriesController extends TreeMenuAppController {
 	    
 	}
 	
-		/**
+	/**
       * delet method
       *
       * Busca si el usuario es administrador y borra el comentario en el taxon asociado, para luego gurdarlo
       * 
-      * @param int $id
+      * @param $id
       * @return void
       */
-	
 	public function deleteComment($id = null) {
         $this->loadModel('Comment');
         if (!$this->request->is('post')) {
@@ -1837,12 +1797,12 @@ class CategoriesController extends TreeMenuAppController {
         }
     }
     
-    	/**
+    /**
       * viewComment method
       *
       * Visualizacion del comentario
       * 
-      * @param int $id
+      * @param $id
       * @return void
       */
     public function viewComment($id = null) {

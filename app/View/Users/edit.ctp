@@ -8,7 +8,7 @@
 	            	
 		            <h2><?php echo __('Editar perfil'); ?></h2>
 				<?php if($this->Session->read('Auth')['User']['username']==$this->request->data['User']['username']): ?>
-				
+				<!--<?php //return debug($this->request->data['User']['username'])?>-->
 	            	</div>
 	            	
 	

@@ -1,5 +1,5 @@
 <?php
-
+// Utiliza los métodos asociados al modelo TreeMenu
 App::uses('TreeMenuAppModel', 'TreeMenu.Model');
 
 /**
@@ -8,8 +8,6 @@ App::uses('TreeMenuAppModel', 'TreeMenu.Model');
  * Modelo que contiene las validaciones de los campos de Categories y sus relaciones con los otros modelos.
  *
  */
-
- 
 class Category extends TreeMenuAppModel {
     
     /**
@@ -18,19 +16,18 @@ class Category extends TreeMenuAppModel {
 	 * Manejo de campos que se despliegan del árbol.
 	 * @var array
 	 */
-
     public $actsAs = array('Tree',
         'TreeMenu.Slug' => array('field' => 'name', 'slug_field' => 'slug', 'primary_key' => 'id', 'replacement' => '_', 'DBcheck' => true),
     );
 
 
- /**
+    /**
 	 * validate
 	 * 
-	 *
+	 * Valida que los archivos agregados tengan formato de PDF y no excedan el tamaño indicado
+	 * 
 	 * @var array
 	 */
-
     public $validate = array(
     'report' => array(
         // valida que el reporte sea un archivo pdf
@@ -96,8 +93,11 @@ class Category extends TreeMenuAppModel {
 
  /**
      * after save
+     * 
+     * Método que se encarga de limpiar la caché después de que se argeguen nuevos datos
      *
-     * @var array
+     * @param void
+	 * @return void
      */
     public function afterSave($created, $options = array()) {
         parent::afterSave($created,$options);
@@ -105,11 +105,12 @@ class Category extends TreeMenuAppModel {
         clearCache();
     }
 
-/**
- * Relaciones del modelo Category con los hijos de las categorias del padre y con el modelo de Pictures.
- *
- * @var array
- */
+    /**
+     * Relaciones del modelo Category con los hijos de las categorias del padre y con el modelo de Pictures.
+     * Contiene también las relaciones para la bitácora en el modelo de Logbooks y la relación con el modelo de Genders para los géneros
+     *
+     * @var array
+     */
 	public $hasMany = array(
 		'ChildCategory' => array(
 			'className' => 'Category',
@@ -167,8 +168,11 @@ class Category extends TreeMenuAppModel {
       
  /**
      * after delete
+     * 
+     * Método que limpia la caché después eliminar un taxón
      *
-     * @var array
+     * @param void
+	 * @return void
      */
     public function afterDelete() {
         parent::afterDelete();
@@ -181,12 +185,10 @@ class Category extends TreeMenuAppModel {
       * getAllCategory method
       *
       * Método que obtiene todas las categorias existentes. 
-      * 
       *
-      * @return void
+      * @param $alias
+	  * @return void
       */
-
-
     public function getAllCategory($alias = null) {
         if (($categories = Cache::read('getAllCategory_' . $alias)) === false) {
             $conditions = array();
@@ -210,8 +212,8 @@ class Category extends TreeMenuAppModel {
       *
       * Método que genera toda la lista de categorias que contiene el árbol.
       * 
-      *
-      * @return void
+      * @param $alias
+	  * @return void
       */
 
     public function _generateTreeList($alias = null) {

@@ -124,16 +124,23 @@ class CategoriesController extends TreeMenuAppController {
         $this->loadModel('CountryGender');
         $this->loadModel('Download');
         $alias = $this->categoryAlias;
-        if ($this->request->data['classification'] != 'Default')
-        {
             if ($this->request->is('post')) {
                 // se crea una categoría
                 $this->Category->create();
                 // en base a eso se le asigna un alias
                 if($alias) $this->request->data['Category']['alias'] = $alias;
                 //Si los datos son creados correctamente se notifica mediante un mensaje
-                $this->request->data['Category']['parent_id'] = $this->request->data['parent_id'];
-                $this->request->data['Category']['classification'] = $this->request->data['classification'];
+                if ($this->request->data['parent_id']){
+                    $this->request->data['Category']['parent_id'] = $this->request->data['parent_id'];
+                    $this->request->data['Category']['classification'] = $this->request->data['classification'];
+                    //return debug($this->request->data);
+                }
+                else {
+                    $this->request->data['Category']['parent_id']= '0'; 
+                    $this->request->data['Category']['classification']= 'Filo';
+                    //return debug($this->request->data);
+                }
+               
                 if ($this->Category->save($this->request->data)) {
                     $varDat=0;
                     //Este bloque se encarga de cargar el modelo Logbook, crea los datos necesarios dentro del arreglo al que Lookgbook 
@@ -252,11 +259,6 @@ class CategoriesController extends TreeMenuAppController {
                 $parentCategories = $this->Category->_generateTreeList($alias);
                 $this->set(compact('parentCategories'));
                 $this->set('classification', $this->classification);
-        }
-        else
-        {
-            $this->Session->setFlash(__('Los datos no se guardaron pues no se seleccionó un nivel taxonómico válido. Por favor, intente nuevamente.'), 'TreeMenu.error');
-        }
     }
     
 

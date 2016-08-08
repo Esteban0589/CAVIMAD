@@ -71,7 +71,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
    
  <!--<base href="http://cavimad-jimemachado.c9users.io/"/>-->
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
-    <!--<base href="http://cakebiolo-andres25fg.c9users.io/"/>-->
+    <base href="https://cakebiolo-andres25fg.c9users.io/"/>
     <!--<base href="http://inge2-maricelmonge.c9users.io"/>-->
     <!--<base href="http://cavimad3-esteban0589.c9users.io/"/>-->
     <!--<base href="http://cavimad-aivaco.c9users.io/"/>-->
@@ -172,7 +172,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                   </ul>
                         </li>
                         <li>
-                             <div = "¿Quiénes somos?"><a href="" title="">Sobre nosotros</a></div>
+                             <div = "¿Quiénes somos?"><a href="pages/aboutus" title="">Sobre nosotros</a></div>
                         </li>
                         <li>
                              <div = "Si desea enviarnos un mensaje."><a href="users/contact" title="">Contáctenos</a></div>

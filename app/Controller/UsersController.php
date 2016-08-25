@@ -261,22 +261,40 @@ class UsersController extends AppController {
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
-			debug($this->request->data);
-			//Se guardan los datos correspondientes al usuario
-			if ($this->User->saveAll($this->request->data['User'])) {
-				//Se chequea si el usuario es un administrador o un colaborador
-				if($this->Session->read('Auth')['User']['role'] == 'Administrador' || $this->Session->read('Auth')['User']['role'] == 'Colaborador') {
-					//En este caso se guardan también los datos correspondientes al modelo Administrator
-					$this->Administrator->saveAll($this->request->data['Administrator']);
-				}
-				//Se notifica que los cambios han sido realizados
-				$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
-				//Se redirige a la vista view del usuario en la sesión activa
-				return $this->redirect(array('action' => 'view',$id));
-			} else {
-				//En el caso de que no se puedan guardar los datos, se notifica mediante un error
-				$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevo'));
+			
+			
+			$email = $this->User->findById($this->request->data['User']['id']);
+			//Si el correo a guardar no se modifica
+			if($this->request->data['User']['email'] == $email['User']['email'])
+			{
+				unset($this->request->data['User']['email']);
 			}
+			//unset($this->request->data['Administrator'][0]['id']);
+				//Se guardan los datos correspondientes al usuario
+				if ($this->User->saveAll($this->request->data['User'])) {
+					//Se chequea si el usuario es un administrador o un colaborador
+					if($this->Session->read('Auth')['User']['role'] == 'Administrador' || $this->Session->read('Auth')['User']['role'] == 'Colaborador') {
+						$prueba = $this->request->data['Administrator'][0];
+						//debug($prueba);
+						//En este caso se guardan también los datos correspondientes al modelo Administrator
+						$this->Administrator->saveAll($prueba);
+						// $this->Administrator->updateAll(array('Administrator.specialty' => $this->request->data['Administrator'][0]['specialty']),
+						// 								array('Administrator.publication' => $this->request->data['Administrator'][0]['publication']),
+						// 								array('Administrator.curriculum' => $this->request->data['Administrator'][0]['curriculum'])
+						// 							);
+					}
+					//Se notifica que los cambios han sido realizados
+					$this->Flash->success(__('Los detalles de usuario han sido actualizados.'));
+					//Se redirige a la vista view del usuario en la sesión activa
+					return $this->redirect(array('action' => 'view',$id));
+				} else {
+					//En el caso de que no se puedan guardar los datos, se notifica mediante un error
+					$this->Flash->error(__('El usuario no pudo ser actualizado, intente de nuevo'));
+				}
+			
+			
+
+			
 
 		} else {
 			//Vuelve a cargar el usuario.
